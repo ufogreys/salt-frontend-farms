@@ -13,7 +13,7 @@ const IFrame: React.FC<IFrameProps> = (props) => {
   const iframeRef = useRef(null)
   const { isDark } = useContext(ThemeContext)
   const { selectedLanguage } = useContext(LanguageContext)
-  const sendSettings = (e) => {
+  const sendSettings = () => {
     const payload = {
       isDark,
       selectedLanguage,

@@ -1,5 +1,5 @@
 import React, { useEffect, Suspense, lazy } from 'react'
-import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { ResetCSS } from '@saltswap/uikit'
 import BigNumber from 'bignumber.js'
@@ -7,7 +7,6 @@ import { useFetchPublicData } from 'state/hooks'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
 import PageLoader from './components/PageLoader'
-import NftGlobalNotification from './views/Nft/components/NftGlobalNotification'
 
 // Route-based code splitting
 // Only pool is included in the main bundle because of it's the most visited page'
@@ -48,7 +47,7 @@ const App: React.FC = () => {
             <Route path="/farms">
               <Farms />
             </Route>
-            <Route path="/nests">
+            <Route path="/pools">
               <Farms tokenMode />
             </Route>
             {/* <Route path="/pools"> */}

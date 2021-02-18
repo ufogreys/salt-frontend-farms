@@ -123,7 +123,7 @@
     {
       "data": {
         "stringId": 320,
-        "text": "Stake LP tokens to earn EGG"
+        "text": "Stake LP tokens to earn SALT"
       }
     },
     {
@@ -435,7 +435,7 @@
     {
       "data": {
         "stringId": 454,
-        "text": "%num% EGG Available"
+        "text": "%num% SALT Available"
       }
     },
     {
@@ -813,13 +813,13 @@
     {
       "data": {
         "stringId": 596,
-        "text": "Buy EGG and BNB tokens"
+        "text": "Buy SALT and BNB tokens"
       }
     },
     {
       "data": {
         "stringId": 598,
-        "text": "Get EGG-BNB LP tokens by adding EGG and BNB liquidity"
+        "text": "Get SALT-BNB LP tokens by adding SALT and BNB liquidity"
       }
     },
     {
@@ -831,7 +831,7 @@
     {
       "data": {
         "stringId": 602,
-        "text": "While the sale is live, commit your EGG-LP tokens to buy the IFO tokens"
+        "text": "While the sale is live, commit your SALT-LP tokens to buy the IFO tokens"
       }
     },
     {
@@ -867,7 +867,7 @@
     {
       "data": {
         "stringId": 614,
-        "text": "Trade in for EGG, or keep for your collection!"
+        "text": "Trade in for SALT, or keep for your collection!"
       }
     },
     {
@@ -909,7 +909,7 @@
     {
       "data": {
         "stringId": 628,
-        "text": "When you trade in this NFT to receive EGG, you will lose access to it forever!"
+        "text": "When you trade in this NFT to receive SALT, you will lose access to it forever!"
       }
     },
     {
@@ -939,7 +939,7 @@
     {
       "data": {
         "stringId": 638,
-        "text": "Winners can trade in their NFTs for a EGG value until the expiry date written below. If you don't trade in your NFT by then, don\u2019t worry: you\u2019ll still keep it in your wallet!"
+        "text": "Winners can trade in their NFTs for a SALT value until the expiry date written below. If you don't trade in your NFT by then, don\u2019t worry: you\u2019ll still keep it in your wallet!"
       }
     },
     {
@@ -981,7 +981,7 @@
     {
       "data": {
         "stringId": 654,
-        "text": "Trade in for EGG"
+        "text": "Trade in for SALT"
       }
     },
     {
@@ -1107,7 +1107,7 @@
     {
       "data": {
         "stringId": 696,
-        "text": "Stake LP tokens to earn EGG"
+        "text": "Stake LP tokens to earn SALT"
       }
     },
     {
@@ -1143,13 +1143,13 @@
     {
       "data": {
         "stringId": 708,
-        "text": "The EGG Lottery"
+        "text": "The SALT Lottery"
       }
     },
     {
       "data": {
         "stringId": 710,
-        "text": "Buy tickets with EGG"
+        "text": "Buy tickets with SALT"
       }
     },
     {
@@ -1203,7 +1203,7 @@
     {
       "data": {
         "stringId": 10000,
-        "text": "Deposit Fee will be used to buyback EGG"
+        "text": "Deposit Fee will be used to buyback SALT"
       }
     },
     {
@@ -1215,7 +1215,7 @@
     {
       "data": {
         "stringId": 10002,
-        "text": "Stake tokens to earn EGG"
+        "text": "Stake tokens to earn SALT"
       }
     },
     {

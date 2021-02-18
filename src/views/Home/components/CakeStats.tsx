@@ -38,18 +38,18 @@ const CakeStats = () => {
     <StyledCakeStats>
       <CardBody>
         <Heading size="xl" mb="24px">
-          {TranslateString(534, 'Egg Stats')}
+          {TranslateString(534, 'Salty Stats')}
         </Heading>
         <Row>
-          <Text fontSize="14px">{TranslateString(536, 'Total EGG Supply')}</Text>
+          <Text fontSize="14px">{TranslateString(536, 'Total SALT Supply')}</Text>
           {cakeSupply && <CardValue fontSize="14px" value={cakeSupply} decimals={0} />}
         </Row>
         <Row>
-          <Text fontSize="14px">{TranslateString(538, 'Total EGG Burned')}</Text>
+          <Text fontSize="14px">{TranslateString(538, 'Total SALT Burned')}</Text>
           <CardValue fontSize="14px" value={getBalanceNumber(burnedBalance)} decimals={0} />
         </Row>
         <Row>
-          <Text fontSize="14px">{TranslateString(540, 'New EGG/block')}</Text>
+          <Text fontSize="14px">{TranslateString(540, 'New SALT per block')}</Text>
           <Text bold fontSize="14px">
             {saltPerBlock}
           </Text>
