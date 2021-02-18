@@ -168,9 +168,12 @@ const NftProvider: React.FC<NftProviderProps> = ({ children }) => {
     }
   }, [isInitialized, account, setState])
 
-  useEffect(() => () => {
+  useEffect(
+    () => () => {
       isMounted.current = false
-    }, [isMounted])
+    },
+    [isMounted],
+  )
 
   const canBurnNft = currentBlock <= state.endBlockNumber
   const getTokenIds = (bunnyId: number) => state.bunnyMap[bunnyId]

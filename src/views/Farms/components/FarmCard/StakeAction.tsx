@@ -39,7 +39,8 @@ const StakeAction: React.FC<FarmCardActionsProps> = ({ stakedBalance, tokenBalan
     <WithdrawModal max={stakedBalance} onConfirm={onUnstake} tokenName={tokenName} />,
   )
 
-  const renderStakingButtons = () => rawStakedBalance === 0 ? (
+  const renderStakingButtons = () =>
+    rawStakedBalance === 0 ? (
       <Button onClick={onPresentDeposit}>{TranslateString(999, 'Stake')}</Button>
     ) : (
       <IconButtonWrapper>

@@ -75,7 +75,6 @@ const App: React.FC = () => {
           </Switch>
         </Suspense>
       </Menu>
-      <NftGlobalNotification />
     </Router>
   )
 }

@@ -29,9 +29,9 @@ const CakeStats = () => {
   const farms = useFarms()
   const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
 
-  let eggPerBlock = 0
-  if (farms && farms[0] && farms[0].eggPerBlock) {
-    eggPerBlock = new BigNumber(farms[0].eggPerBlock).div(new BigNumber(10).pow(18)).toNumber()
+  let saltPerBlock = 0
+  if (farms && farms[0] && farms[0].saltPerBlock) {
+    saltPerBlock = new BigNumber(farms[0].saltPerBlock).div(new BigNumber(10).pow(18)).toNumber()
   }
 
   return (
@@ -51,7 +51,7 @@ const CakeStats = () => {
         <Row>
           <Text fontSize="14px">{TranslateString(540, 'New EGG/block')}</Text>
           <Text bold fontSize="14px">
-            {eggPerBlock}
+            {saltPerBlock}
           </Text>
         </Row>
       </CardBody>
