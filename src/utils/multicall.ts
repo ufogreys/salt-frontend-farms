@@ -15,7 +15,6 @@ const multicall = async (abi: any[], calls: Call[]) => {
   const multi = new web3.eth.Contract((MultiCallAbi as unknown) as AbiItem, getMulticallAddress())
   const itf = new Interface(abi)
 
-  calls.forEach((call) => console.log('foreach:', getMulticallAddress()))
   const calldata = calls.map((call) => [call.address.toLowerCase(), itf.encodeFunctionData(call.name, call.params)])
   // calldata = calldata.slice(0,1)
   const { returnData } = await multi.methods.aggregate(calldata).call()

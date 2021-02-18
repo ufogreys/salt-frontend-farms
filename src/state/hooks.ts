@@ -1,8 +1,8 @@
 import BigNumber from 'bignumber.js'
-import { useEffect, useMemo } from 'react'
+import { useEffect, } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import useRefresh from 'hooks/useRefresh'
-import { fetchFarmsPublicDataAsync, fetchPoolsPublicDataAsync, fetchPoolsUserDataAsync } from './actions'
+import { fetchFarmsPublicDataAsync, fetchPoolsUserDataAsync } from './actions'
 import { State, Farm, Pool } from './types'
 import { QuoteToken } from '../config/constants/types'
 
@@ -68,6 +68,7 @@ export const usePoolFromPid = (sousId): Pool => {
 // Prices
 
 export const usePriceBnbBusd = (): BigNumber => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const pid = 2 // BUSD-BNB LP
   // const farm = useFarmFromPid(pid)
   return ZERO // farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : ZERO // fixme: LP

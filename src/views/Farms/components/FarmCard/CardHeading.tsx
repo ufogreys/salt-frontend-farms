@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { Tag, Flex, Heading, Image } from '@saltswap/uikit'
-import { CommunityTag, CoreTag, RiskTag } from 'components/Tags'
+import { RiskTag } from 'components/Tags'
 
 export interface ExpandableSectionProps {
   lpLabel?: string
