@@ -12,11 +12,11 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'Exchange',
-        href: 'http://exchange.goosedefi.com/',
+        href: 'https://exchange.saltswap.finance',
       },
       {
         label: 'Liquidity',
-        href: 'http://exchange.goosedefi.com/#/pool',
+        href: 'https://exchange.saltswap.finance/#/pool',
       },
     ],
   },
@@ -50,8 +50,8 @@ const config: MenuEntry[] = [
     icon: 'InfoIcon',
     items: [
       {
-        label: 'PancakeSwap',
-        href: 'https://pancakeswap.info/token/0xF952Fc3ca7325Cc27D15885d37117676d25BfdA6',
+        label: 'SaltSwap',
+        href: 'https://saltswap.info/token/TODO',
       },
       {
         label: 'CoinGecko',
@@ -82,15 +82,15 @@ const config: MenuEntry[] = [
       // },
       {
         label: 'Github',
-        href: 'https://github.com/goosedefi/',
+        href: 'https://github.com/saltswap/',
       },
       {
         label: 'Docs',
-        href: 'https://goosedefi.gitbook.io/goose-finance/',
+        href: 'https://docs.saltswap.finance',
       },
       {
         label: 'Blog',
-        href: 'https://goosefinance.medium.com/',
+        href: 'https://saltswap.medium.com',
       },
     ],
   },

@@ -75,7 +75,7 @@
     {
       "data": {
         "stringId": 304,
-        "text": "Total EGG burned since launch"
+        "text": "Total SALT burned since launch"
       }
     },
     {
@@ -129,7 +129,7 @@
     {
       "data": {
         "stringId": 322,
-        "text": "Stake Egg, get SYRUP."
+        "text": "Stake Salt, get Pepper."
       }
     },
     {
@@ -153,19 +153,19 @@
     {
       "data": {
         "stringId": 334,
-        "text": "Every time you stake and unstake EGG tokens, the contract will automatically harvest EGG rewards for you!"
+        "text": "Every time you stake and unstake SALT tokens, the contract will automatically harvest SALT rewards for you!"
       }
     },
     {
       "data": {
         "stringId": 338,
-        "text": "The Sous Chef is cooking up a treat for all SYRUP holders"
+        "text": "The Sous Chef is cooking up a treat for all PEPPER holders"
       }
     },
     {
       "data": {
         "stringId": 340,
-        "text": "SYRUP Tokens Staked"
+        "text": "PEPPER Tokens Staked"
       }
     },
     {
@@ -177,7 +177,7 @@
     {
       "data": {
         "stringId": 344,
-        "text": "Stake your SYRUP to earn tokens of new projects."
+        "text": "Stake your PEPPER to earn tokens of new projects."
       }
     },
     {
@@ -219,7 +219,7 @@
     {
       "data": {
         "stringId": 358,
-        "text": "Egg price"
+        "text": "Salt price"
       }
     },
     {
@@ -243,7 +243,7 @@
     {
       "data": {
         "stringId": 380,
-        "text": "1 EGG = 1 SYRUP"
+        "text": "1 SALT = 1 PEPPER"
       }
     },
     {
@@ -291,13 +291,13 @@
     {
       "data": {
         "stringId": 400,
-        "text": "SYRUP holders proportionally split 25% of EGG block emissions each day (10 EGG per block), Rewards are distributed each block."
+        "text": "PEPPER holders proportionally split 25% of SALT block emissions each day (10 SALT per block), Rewards are distributed each block."
       }
     },
     {
       "data": {
         "stringId": 402,
-        "text": "Stake SYRUP to earn new tokens."
+        "text": "Stake PEPPER to earn new tokens."
       }
     },
     {
@@ -351,13 +351,13 @@
     {
       "data": {
         "stringId": 424,
-        "text": "%num% EGG"
+        "text": "%num% SALT"
       }
     },
     {
       "data": {
         "stringId": 426,
-        "text": "Spend EGG to buy tickets, contributing to the lottery pot. Ticket purchases end approx. 30 minutes before lottery. Win prizes if 2, 3, or 4 of your ticket numbers match the winning numbers and their positions! Good luck!"
+        "text": "Spend SALT to buy tickets, contributing to the lottery pot. Ticket purchases end approx. 30 minutes before lottery. Win prizes if 2, 3, or 4 of your ticket numbers match the winning numbers and their positions! Good luck!"
       }
     },
     {
@@ -441,13 +441,13 @@
     {
       "data": {
         "stringId": 456,
-        "text": "Your amount must be a multiple of 10 EGG"
+        "text": "Your amount must be a multiple of 10 SALT"
       }
     },
     {
       "data": {
         "stringId": 458,
-        "text": "1 Ticket = 10 EGG"
+        "text": "1 Ticket = 10 SALT"
       }
     },
     {
@@ -495,7 +495,7 @@
     {
       "data": {
         "stringId": 478,
-        "text": "Ticket purchases are final. Your EGG cannot be returned to you after buying tickets."
+        "text": "Ticket purchases are final. Your SALT cannot be returned to you after buying tickets."
       }
     },
     {
@@ -507,7 +507,7 @@
     {
       "data": {
         "stringId": 482,
-        "text": "EGG prizes to be claimed"
+        "text": "SALT prizes to be claimed"
       }
     },
     {
@@ -543,13 +543,13 @@
     {
       "data": {
         "stringId": 494,
-        "text": "Approve EGG"
+        "text": "Approve SALT"
       }
     },
     {
       "data": {
         "stringId": 496,
-        "text": "SYRUP holders proportionally split 40% of EGG block emissions each day (10 EGG per block), Rewards are distributed each block."
+        "text": "SYRUP holders proportionally split 40% of SALT block emissions each day (10 SALT per block), Rewards are distributed each block."
       }
     },
     {
@@ -567,19 +567,19 @@
     {
       "data": {
         "stringId": 504,
-        "text": "You\u2019ll pay for the new tokens using EGG-BNB LP tokens, which means you need to stake equal amounts of EGG and BNB in a liquidity pool to take part."
+        "text": "You\u2019ll pay for the new tokens using SALT-BNB LP tokens, which means you need to stake equal amounts of SALT and BNB in a liquidity pool to take part."
       }
     },
     {
       "data": {
         "stringId": 506,
-        "text": "Get EGG-BNB LP >"
+        "text": "Get SALT-BNB LP >"
       }
     },
     {
       "data": {
         "stringId": 508,
-        "text": "The project gets the BNB, Goose Finance burns the EGG."
+        "text": "The project gets the BNB, SaltSwap burns the SALT."
       }
     },
     {
@@ -597,7 +597,7 @@
     {
       "data": {
         "stringId": 514,
-        "text": "Launch your project with Goose Finance, Binance Smart Chain\u2019s most-used AMM project and liquidity provider, to bring your token directly to the most active and rapidly growing community on BSC."
+        "text": "Launch your project with SaltSwap, Binance Smart Chain\u2019s most-used AMM project and liquidity provider, to bring your token directly to the most active and rapidly growing community on BSC."
       }
     },
     {
@@ -645,25 +645,25 @@
     {
       "data": {
         "stringId": 534,
-        "text": "Egg Stats"
+        "text": "Salty Stats"
       }
     },
     {
       "data": {
         "stringId": 536,
-        "text": "Total EGG Supply"
+        "text": "Total SALT Supply"
       }
     },
     {
       "data": {
         "stringId": 538,
-        "text": "Total EGG Burned"
+        "text": "Total SALT Burned"
       }
     },
     {
       "data": {
         "stringId": 540,
-        "text": "New EGG\/block"
+        "text": "New SALT per block"
       }
     },
     {
@@ -675,19 +675,19 @@
     {
       "data": {
         "stringId": 544,
-        "text": "EGG to Harvest"
+        "text": "SALT to Harvest"
       }
     },
     {
       "data": {
         "stringId": 546,
-        "text": "EGG in Wallet"
+        "text": "SALT in Wallet"
       }
     },
     {
       "data": {
         "stringId": 548,
-        "text": "Collecting EGG"
+        "text": "Collecting SALT"
       }
     },
     {
@@ -699,7 +699,7 @@
     {
       "data": {
         "stringId": 552,
-        "text": "EGG to Collect"
+        "text": "SALT to Collect"
       }
     },
     {
@@ -753,19 +753,19 @@
     {
       "data": {
         "stringId": 576,
-        "text": "Goose Finance"
+        "text": "SaltSwap"
       }
     },
     {
       "data": {
         "stringId": 578,
-        "text": "The #1 AMM and yield farm on Binance Smart Chain."
+        "text": "The saltiest AMM and yield farm on Binance Smart Chain"
       }
     },
     {
       "data": {
         "stringId": 580,
-        "text": "Stake EGG to earn new tokens."
+        "text": "Stake SALT to earn new tokens."
       }
     },
     {
@@ -783,7 +783,7 @@
     {
       "data": {
         "stringId": 586,
-        "text": "EGG to burn (USD)"
+        "text": "SALT to burn (USD)"
       }
     },
     {
@@ -795,7 +795,7 @@
     {
       "data": {
         "stringId": 590,
-        "text": "\u2b50\ufe0f Every time you stake and unstake LP tokens, the contract will automatically harvest EGG rewards for you!"
+        "text": "\u2b50\ufe0f Every time you stake and unstake LP tokens, the contract will automatically harvest SALT rewarSALTs for you!"
       }
     },
     {
