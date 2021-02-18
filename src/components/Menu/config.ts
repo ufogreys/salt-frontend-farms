@@ -86,7 +86,7 @@ const config: MenuEntry[] = [
       },
       {
         label: 'Docs',
-        href: 'https://docs.saltswap.finance',
+        href: 'https://saltswap.gitbook.io/salt-swap/',
       },
       {
         label: 'Blog',
