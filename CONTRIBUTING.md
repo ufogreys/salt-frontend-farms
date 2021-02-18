@@ -1,7 +1,8 @@
-# Contributing to the Pancake ecosystem 🥞
+# Contributing to the SaltSwap ecosystem 🧂
 
-Thanks for taking the time to contribute !
-You can start by reading our [Contribution guidelines](https://docs.pancakeswap.finance/code/contributing) first.
+Thank you for taking the time to contribute!
+
+You can start by reading our [Contribution guidelines](https://docs.saltswap.finance/code/contributing) first.
 
 ## Setup
 
@@ -23,7 +24,7 @@ yarn start
 
 Don't forget to setup your IDE with `eslint` and `prettier`.
 
-## Projet structure
+## Project structure
 
 - **components** contains generic components used inside the application.
 - **views** contains building blocks for each page. The entry point of a view is used as the root component of each route.
@@ -47,19 +48,22 @@ A hook expose the function you need to translate content.
 
 ```
 import useI18n from 'hooks/useI18n'
+
 ...
 const TranslateString = useI18n()
 ...
-TranslateString(id, 'fallback')
+
+TranslateString(id, 'fallback', data)
 ```
 
 - **id** is the crowdin id of the string you want to translate.
 - **fallback** is a string fallback used if the id cannot be found.
+- **data** dynamic variables
 
-### Variables
+#### Dynamic variables Example
 
-The translation component can handle variables being passed in from Crowdin, with no code changes.
+If a Crowdin translation like this `You have %num% left in your wallet` - would look something like:
 
-It will only work if there is only **one** variable passed in, and if that variable within Crowdin is wrapped in **%** signs, i.e.:
-
-Translation in crowdin: `%asset% Earned` [link](https://crowdin.com/translate/pancakeswap/8/en-de#330)
+```
+TranslateString(675, `You have ${saltBalance} left in your wallet`, { num: saltBalance })
+```

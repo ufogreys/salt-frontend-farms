@@ -3,7 +3,7 @@ import { StringTranslations } from '@crowdin/crowdin-api-client'
 import { TranslationsContext } from 'contexts/Localisation/translationsContext'
 import { allLanguages, EN } from 'config/localisation/languageCodes'
 
-const CACHE_KEY = 'pancakeSwapLanguage'
+const CACHE_KEY = 'saltSwapLanguage'
 
 export interface LangType {
   code: string
@@ -53,7 +53,6 @@ const LanguageContextProvider = ({ children }) => {
 
   useEffect(() => {
     if (selectedLanguage) {
-      console.log(`import(\`../../../public/i18n/${selectedLanguage.code}.json\`)`)
       fetch(`./i18n/${selectedLanguage.code}.json`)
         .then((r) => r.json())
         // fetchTranslationsForSelectedLanguage(selectedLanguage)
