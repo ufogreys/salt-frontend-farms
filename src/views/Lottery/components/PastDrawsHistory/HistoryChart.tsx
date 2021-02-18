@@ -16,17 +16,15 @@ const InnerWrapper = styled.div`
 
 const HistoryChart: React.FC = () => {
   const { historyData, historyError } = useContext(PastLotteryDataContext)
-  const getDataArray = (kind) => historyData
-      .map((dataPoint) => dataPoint[kind])
-      .reverse()
+  const getDataArray = (kind) => historyData.map((dataPoint) => dataPoint[kind]).reverse()
 
   const lineStyles = ({ color }) => ({
-      borderColor: color,
-      fill: false,
-      borderWidth: 2,
-      pointRadius: 0,
-      pointHitRadius: 10,
-    })
+    borderColor: color,
+    fill: false,
+    borderWidth: 2,
+    pointRadius: 0,
+    pointHitRadius: 10,
+  })
 
   const chartData = {
     labels: getDataArray('lotteryNumber'),
@@ -47,19 +45,19 @@ const HistoryChart: React.FC = () => {
   }
 
   const axesStyles = ({ color, lineHeight }) => ({
-      borderCapStyle: 'round',
-      gridLines: { display: false },
-      ticks: {
-        fontFamily: 'Kanit, sans-serif',
-        fontColor: color,
-        fontSize: 14,
-        lineHeight,
-        maxRotation: 0,
-        beginAtZero: true,
-        autoSkipPadding: 15,
-        userCallback: (value) => value.toLocaleString(),
-      },
-    })
+    borderCapStyle: 'round',
+    gridLines: { display: false },
+    ticks: {
+      fontFamily: 'Kanit, sans-serif',
+      fontColor: color,
+      fontSize: 14,
+      lineHeight,
+      maxRotation: 0,
+      beginAtZero: true,
+      autoSkipPadding: 15,
+      userCallback: (value) => value.toLocaleString(),
+    },
+  })
 
   const options = {
     legend: { display: false },
