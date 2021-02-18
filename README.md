@@ -1,6 +1,6 @@
 # 🧂 SaltSwap Frontend
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/66319811-32db-485e-ae07-ae9431b16f46/deploy-status)](https://app.netlify.com/sites/naughty-goodall-df47f6/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6464acd7-f3b4-41de-b189-97e4b2c00985/deploy-status)](https://app.netlify.com/sites/eloquent-ramanujan-546aa9/deploys)
 
 This project contains the main features of the SaltSwap application.
 
