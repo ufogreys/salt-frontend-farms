@@ -47,7 +47,6 @@ const fetchFarms = async () => {
           name: 'decimals',
         },
       ]
-      console.log('before multicall')
       const [
         tokenBalanceLP,
         quoteTokenBlanceLP,
@@ -56,11 +55,6 @@ const fetchFarms = async () => {
         tokenDecimals,
         quoteTokenDecimals,
       ] = await multicall(erc20, calls)
-<<<<<<< Updated upstream
-
-=======
-      console.log('after multicall')
->>>>>>> Stashed changes
       let tokenAmount
       let lpTotalInQuoteToken
       let tokenPriceVsQuote
