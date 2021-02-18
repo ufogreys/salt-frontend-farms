@@ -22,17 +22,17 @@ const MultiplierTag = styled(Tag)`
 `
 
 const CardHeading: React.FC<ExpandableSectionProps> = ({ lpLabel, multiplier, risk, farmImage, tokenSymbol }) => (
-    <Wrapper justifyContent="space-between" alignItems="center" mb="12px">
-      <Image src={`/images/farms/${farmImage}.png`} alt={tokenSymbol} width={64} height={64} />
-      <Flex flexDirection="column" alignItems="flex-end">
-        <Heading mb="4px">{lpLabel}</Heading>
-        <Flex justifyContent="center">
-          {/* {isCommunityFarm ? <CommunityTag /> : <CoreTag />} */}
-          <RiskTag risk={risk} />
-          <MultiplierTag variant="secondary">{multiplier}</MultiplierTag>
-        </Flex>
+  <Wrapper justifyContent="space-between" alignItems="center" mb="12px">
+    <Image src={`/images/farms/${farmImage}.png`} alt={tokenSymbol} width={64} height={64} />
+    <Flex flexDirection="column" alignItems="flex-end">
+      <Heading mb="4px">{lpLabel}</Heading>
+      <Flex justifyContent="center">
+        {/* {isCommunityFarm ? <CommunityTag /> : <CoreTag />} */}
+        <RiskTag risk={risk} />
+        <MultiplierTag variant="secondary">{multiplier}</MultiplierTag>
       </Flex>
-    </Wrapper>
-  )
+    </Flex>
+  </Wrapper>
+)
 
 export default CardHeading
