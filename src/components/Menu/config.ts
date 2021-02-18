@@ -53,18 +53,18 @@ const config: MenuEntry[] = [
         label: 'SaltSwap',
         href: 'https://saltswap.info/token/TODO',
       },
-      {
-        label: 'CoinGecko',
-        href: 'https://www.coingecko.com/en/coins/goose-finance',
-      },
-      {
-        label: 'CoinMarketCap',
-        href: 'https://coinmarketcap.com/currencies/goose-finance/',
-      },
-      {
-        label: 'AstroTools',
-        href: 'https://app.astrotools.io/pancake-pair-explorer/0x19e7cbecdd23a16dfa5573df54d98f7caae03019',
-      },
+      // {
+      //   label: 'CoinGecko',
+      //   href: 'https://www.coingecko.com/en/coins/salt-swap',
+      // },
+      // {
+      //   label: 'CoinMarketCap',
+      //   href: 'https://coinmarketcap.com/currencies/salt-swap',
+      // },
+      // {
+      //   label: 'AstroTools',
+      //   href: 'https://app.astrotools.io/pancake-pair-explorer/0x19e7cbecdd23a16dfa5573df54d98f7caae03019',
+      // },
     ],
   },
   // {
@@ -90,7 +90,7 @@ const config: MenuEntry[] = [
       },
       {
         label: 'Blog',
-        href: 'https://saltswap.medium.com',
+        href: 'https://medium.com/@saltswap',
       },
     ],
   },
