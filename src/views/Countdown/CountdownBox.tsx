@@ -93,6 +93,7 @@ const BoxLeft = styled.div`
   transform: translate(-50%, -50%);
   font-weight: 600;
   font-size: 20px;
+  color: ${({ theme }) => (theme.isDark ? '#FFFFFF' : '#000000')};
 
   svg {
     position: relative;
@@ -112,6 +113,7 @@ const BoxLabel = styled.div`
   font-size: 14px;
   font-weight: 300;
   text-align: center;
+  color: ${({ theme }) => (theme.isDark ? '#FFFFFF' : '#000000')};
 
   svg {
     position: relative;
