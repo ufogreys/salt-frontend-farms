@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading, Text, BaseLayout } from '@saltswap/uikit'
+import { Heading, BaseLayout } from '@saltswap/uikit'
 import useI18n from 'hooks/useI18n'
 import Page from 'components/layout/Page'
 import Countdown from 'views/Countdown/Countdown'
@@ -60,7 +60,7 @@ const Home: React.FC = () => {
     <Page>
       <Hero>
         <Heading as="h1" size="xl" mb="24px" color="secondary">
-          SaltSwap Farms Opening In
+          {TranslateString(10004, 'SaltSwap Farms Opening In')}
         </Heading>
         {/* <Heading as="h1" size="xl" mb="24px" color="secondary">
           {TranslateString(576, 'SaltSwap')}

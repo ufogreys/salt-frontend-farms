@@ -31,11 +31,6 @@ const config: MenuEntry[] = [
     href: '/pools',
   },
   // {
-  //   label: 'Pools',
-  //   icon: 'PoolIcon',
-  //   href: '/pools',
-  // },
-  // {
   //   label: 'Lottery',
   //   icon: 'TicketIcon',
   //   href: '/lottery',
@@ -51,20 +46,8 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'SaltSwap',
-        href: 'https://saltswap.info/token/TODO',
-      },
-      // {
-      //   label: 'CoinGecko',
-      //   href: 'https://www.coingecko.com/en/coins/salt-swap',
-      // },
-      // {
-      //   label: 'CoinMarketCap',
-      //   href: 'https://coinmarketcap.com/currencies/salt-swap',
-      // },
-      // {
-      //   label: 'AstroTools',
-      //   href: 'https://app.astrotools.io/pancake-pair-explorer/0x19e7cbecdd23a16dfa5573df54d98f7caae03019',
-      // },
+        href: '#',
+      }
     ],
   },
   // {
@@ -78,7 +61,7 @@ const config: MenuEntry[] = [
     items: [
       // {
       //   label: 'Voting',
-      //   href: 'https://voting.pancakeswap.finance',
+      //   href: 'https://voting.saltswap.finance',
       // },
       {
         label: 'Github',

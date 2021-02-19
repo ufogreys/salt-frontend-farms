@@ -1223,6 +1223,12 @@
         "stringId": 10003,
         "text": "Announcements"
       }
+    },
+    {
+      "data": {
+        "stringId": 10004,
+        "text": "SaltSwap Farms Opening In"
+      }
     }
   ],
   "pagination": {

@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect, Fragment } from 'react'
+import React, { FC, useState, useEffect } from 'react'
 import styled from 'styled-components'
 import CountdownBox from './CountdownBox'
 import daysInYear from './helpers/daysInYear'
@@ -89,11 +89,6 @@ const Countdown: FC<CountdownProps> = ({ date }) => {
 
   return (
     <CountdownWrapper>
-      <CountdownBox
-        left={timeLeft.years}
-        divideBy={Math.floor(+timeLeft.years) / 100 === 0 ? 100 : Math.floor(+timeLeft.years / 100 + 100)}
-        label="years"
-      />
       <CountdownBox left={timeLeft.days} divideBy={daysInSelectedYear} label="days" />
       <CountdownBox left={timeLeft.hours} divideBy={24} label="hours" />
       <CountdownBox left={timeLeft.minutes} divideBy={60} label="minutes" />
