@@ -24,7 +24,7 @@ const farms: FarmConfig[] = [
     risk: 2,
     lpSymbol: 'SALT-BUSD',
     lpAddresses: {
-      97: '0xDcE45b2dc62239DD09D6ED97Eefb9276C634602c', // FIXME:
+      97: '0xf62e8d3EcA464C9Fa9D46f169211eF4a41E41fE8',
       56: '0xDcE45b2dc62239DD09D6ED97Eefb9276C634602c', // FIXME:
     },
     tokenSymbol: 'SALT',
@@ -86,18 +86,18 @@ const farms: FarmConfig[] = [
   {
     pid: 5,
     risk: 1,
-    lpSymbol: 'BETH-ETH',
+    lpSymbol: 'ETH-BETH',
     lpAddresses: {
       97: '0xDcE45b2dc62239DD09D6ED97Eefb9276C634602c', // FIXME:
       56: '0xDcE45b2dc62239DD09D6ED97Eefb9276C634602c', // FIXME:
     },
-    tokenSymbol: 'BETH',
+    tokenSymbol: 'ETH',
     tokenAddresses: {
       97: '0x89dcddca577f3658a451775d58ea99da532263c8', // FIXME:
       56: '0x89dcddca577f3658a451775d58ea99da532263c8', // FIXME:
     },
-    quoteTokenSymbol: QuoteToken.BUSD,
-    quoteTokenAdresses: contracts.busd,
+    quoteTokenSymbol: QuoteToken.ETH,
+    quoteTokenAdresses: contracts.eth,
   },
   {
     pid: 6,
