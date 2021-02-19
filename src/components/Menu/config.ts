@@ -47,7 +47,7 @@ const config: MenuEntry[] = [
       {
         label: 'SaltSwap',
         href: '#',
-      }
+      },
     ],
   },
   // {
@@ -73,7 +73,7 @@ const config: MenuEntry[] = [
       },
       {
         label: 'Blog',
-        href: 'https://medium.com/@saltswap',
+        href: 'https://saltswap.medium.com/',
       },
     ],
   },
