@@ -1,6 +1,6 @@
 {
-  "name": "goose-frontend",
-  "version": "0.1.0",
+  "name": "salt-frontend-farms",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "analyze": "source-map-explorer 'build/static/js/*.js'",
