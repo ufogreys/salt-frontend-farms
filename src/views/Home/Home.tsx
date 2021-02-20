@@ -67,7 +67,7 @@ const Home: React.FC = () => {
         </Heading>
         <Text>{TranslateString(578, 'The saltiest AMM and yield farm on Binance Smart Chain.')}</Text> */}
         <div className="wrapper">
-          <Countdown date="February 22 2021 18:32 GMT+2" />
+          <Countdown date="February 20 2021 21:00 GMT" />
         </div>
       </Hero>
       <div>
