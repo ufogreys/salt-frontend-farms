@@ -13,12 +13,12 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'Exchange',
-        href: 'https://salt-frontend-amm.netlify.app',
+        href: 'https://exchange.saltswap.finance/#/swap',
         icon: 'ExchangeIcon',
       },
       {
         label: 'Liquidity',
-        href: 'https://salt-frontend-amm.netlify.app#/pool',
+        href: 'https://exchange.saltswap.finance/#/pool',
         icon: 'LiquidityIcon',
       },
     ],
