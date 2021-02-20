@@ -14,12 +14,12 @@ const config: MenuEntry[] = [
       {
         label: 'Exchange',
         href: 'https://salt-frontend-amm.netlify.app',
-        icon: 'ExchangeIcon'
+        icon: 'ExchangeIcon',
       },
       {
         label: 'Liquidity',
         href: 'https://salt-frontend-amm.netlify.app#/pool',
-        icon: 'LiquidityIcon'
+        icon: 'LiquidityIcon',
       },
     ],
   },
@@ -69,17 +69,17 @@ const config: MenuEntry[] = [
       {
         label: 'Github',
         href: 'https://github.com/saltswap/',
-        icon: 'GithubIcon'
+        icon: 'GithubIcon',
       },
       {
         label: 'Docs',
         href: 'https://saltswap.gitbook.io/salt-swap/',
-        icon: 'GitbookIcon'
+        icon: 'GitbookIcon',
       },
       {
         label: 'Blog',
         href: 'https://saltswap.medium.com/',
-        icon: 'MediumIcon'
+        icon: 'MediumIcon',
       },
     ],
   },
