@@ -143,7 +143,21 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
         <Flex justifyContent="space-between" alignItems="center">
           <Text>{TranslateString(352, 'APR')}:</Text>
           <Text bold style={{ display: 'flex', alignItems: 'center' }}>
-            1000%
+            {farm.apy ? (
+              <>
+                <ApyButton
+                  lpLabel={lpLabel}
+                  quoteTokenAdresses={quoteTokenAdresses}
+                  quoteTokenSymbol={quoteTokenSymbol}
+                  tokenAddresses={tokenAddresses}
+                  cakePrice={cakePrice}
+                  apy={farm.apy}
+                />
+                {farmAPY}%
+              </>
+            ) : (
+              <Skeleton height={24} width={80} />
+            )}
           </Text>
         </Flex>
       )}
@@ -154,7 +168,7 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
       <Flex justifyContent="space-between">
         <Text style={{ fontSize: '24px' }}>{TranslateString(10001, 'Deposit Fee')}:</Text>
         <Text bold style={{ fontSize: '24px' }}>
-          {0}%
+          {farm.depositFeeBP / 100}%
         </Text>
       </Flex>
       <CardActionsContainer farm={farm} ethereum={ethereum} account={account} />
