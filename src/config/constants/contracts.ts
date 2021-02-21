@@ -20,7 +20,7 @@ export default {
     97: '',
   },
   mulltiCall: {
-    56: '0x2b4b36861769060c9B3ff8199d2343F731db240D',
+    56: '0x1ee38d535d541c55c9dae27b12edf090c608e6fb',
     97: '0x2b4b36861769060c9B3ff8199d2343F731db240D',
   },
   busd: {
@@ -28,7 +28,7 @@ export default {
     97: '0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee',
   },
   eth: {
-    56: '0xe9e7cea3dedca5984780bafc599bd69add087d56', // FIXME:
+    56: '0x2170ed0880ac9a755fd29b2688956bd959f933f8',
     97: '0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee', // FIXME:
   },
 }
