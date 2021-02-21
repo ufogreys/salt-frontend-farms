@@ -8,8 +8,8 @@ const farms: FarmConfig[] = [
     isTokenOnly: true,
     lpSymbol: 'SALT',
     lpAddresses: {
-      97: '0x0000000000000000000000000000000000000000',
-      56: '0x0000000000000000000000000000000000000000',
+      97: '0xf62e8d3EcA464C9Fa9D46f169211eF4a41E41fE8',
+      56: '0x6596f770786915556C47E301cC8290aa14288d99', // SALT-BUSD
     },
     tokenSymbol: 'SALT',
     tokenAddresses: {
@@ -50,7 +50,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
-  }, /*
+  } /*
   {
     pid: 3,
     risk: 1,
@@ -164,7 +164,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.ETH,
     quoteTokenAdresses: contracts.eth,
-  }, */
+  }, */,
 ]
 
 export default farms
