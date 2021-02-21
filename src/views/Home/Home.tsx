@@ -58,18 +58,18 @@ const Home: React.FC = () => {
 
   return (
     <Page>
-      <Hero>
+      {/* <Hero>
         <Heading as="h1" size="xl" mb="24px" color="secondary">
           {TranslateString(10004, 'SaltSwap Farms Opening In')}
         </Heading>
         {/* <Heading as="h1" size="xl" mb="24px" color="secondary">
           {TranslateString(576, 'SaltSwap')}
         </Heading>
-        <Text>{TranslateString(578, 'The saltiest AMM and yield farm on Binance Smart Chain.')}</Text> */}
+        <Text>{TranslateString(578, 'The saltiest AMM and yield farm on Binance Smart Chain.')}</Text>
         <div className="wrapper">
           <Countdown date="February 21 2021 10:00 GMT" />
         </div>
-      </Hero>
+      </Hero> */}
       <div>
         <Cards>
           <FarmStakingCard />
