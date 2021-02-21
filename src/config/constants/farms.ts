@@ -20,7 +20,7 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.busd,
   },
   {
-    pid: 2,
+    pid: 1,
     risk: 2,
     lpSymbol: 'SALT-BUSD',
     lpAddresses: {
@@ -36,7 +36,7 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.busd,
   },
   {
-    pid: 1,
+    pid: 2,
     risk: 2,
     lpSymbol: 'SALT-BNB',
     lpAddresses: {
@@ -50,7 +50,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
-  },
+  }, /*
   {
     pid: 3,
     risk: 1,
@@ -148,7 +148,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
-  },
+  }, 
   {
     pid: 10,
     risk: 1,
@@ -164,7 +164,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.ETH,
     quoteTokenAdresses: contracts.eth,
-  },
+  }, */
 ]
 
 export default farms
