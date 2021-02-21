@@ -20,7 +20,7 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.busd,
   },
   {
-    pid: 1,
+    pid: 2,
     risk: 2,
     lpSymbol: 'SALT-BUSD',
     lpAddresses: {
@@ -36,7 +36,7 @@ const farms: FarmConfig[] = [
     quoteTokenAdresses: contracts.busd,
   },
   {
-    pid: 2,
+    pid: 1,
     risk: 2,
     lpSymbol: 'SALT-BNB',
     lpAddresses: {
