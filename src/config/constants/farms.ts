@@ -91,10 +91,10 @@ const farms: FarmConfig[] = [
       97: '0xDcE45b2dc62239DD09D6ED97Eefb9276C634602c', // FIXME:
       56: '0x99d865Ed50D2C32c1493896810FA386c1Ce81D91', // https://bscscan.com/address/0x99d865Ed50D2C32c1493896810FA386c1Ce81D91
     },
-    tokenSymbol: 'ETH',
+    tokenSymbol: 'BETH',
     tokenAddresses: {
       97: '0x89dcddca577f3658a451775d58ea99da532263c8', // FIXME:
-      56: '0x2170ed0880ac9a755fd29b2688956bd959f933f8', // https://bscscan.com/address/0x2170ed0880ac9a755fd29b2688956bd959f933f8
+      56: '0x250632378e573c6be1ac2f97fcdf00515d0aa91b', // https://bscscan.com/address/0x2170ed0880ac9a755fd29b2688956bd959f933f8
     },
     quoteTokenSymbol: QuoteToken.ETH,
     quoteTokenAdresses: contracts.eth,
