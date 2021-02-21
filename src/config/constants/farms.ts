@@ -8,7 +8,7 @@ const farms: FarmConfig[] = [
     isTokenOnly: true,
     lpSymbol: 'SALT',
     lpAddresses: {
-      97: '0xDcE45b2dc62239DD09D6ED97Eefb9276C634602c',
+      97: '0x0000000000000000000000000000000000000000',
       56: '0x0000000000000000000000000000000000000000',
     },
     tokenSymbol: 'SALT',
@@ -121,8 +121,8 @@ const farms: FarmConfig[] = [
     isTokenOnly: true,
     lpSymbol: 'BUSD',
     lpAddresses: {
-      97: '0xDcE45b2dc62239DD09D6ED97Eefb9276C634602c', // FIXME:
-      56: '0x19e7cbecdd23a16dfa5573df54d98f7caae03019', // This will be ignored
+      97: '0x0000000000000000000000000000000000000000',
+      56: '0x0000000000000000000000000000000000000000',
     },
     tokenSymbol: 'BUSD',
     tokenAddresses: {
@@ -138,8 +138,8 @@ const farms: FarmConfig[] = [
     isTokenOnly: true,
     lpSymbol: 'BNB',
     lpAddresses: {
-      97: '0xDcE45b2dc62239DD09D6ED97Eefb9276C634602c', // FIXME:
-      56: '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c', // https://bscscan.com/address/0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c
+      97: '0x0000000000000000000000000000000000000000',
+      56: '0x0000000000000000000000000000000000000000',
     },
     tokenSymbol: 'BNB',
     tokenAddresses: {
@@ -148,6 +148,22 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
+  },
+  {
+    pid: 10,
+    risk: 1,
+    lpSymbol: 'ETH-BETH',
+    lpAddresses: {
+      97: '0xDcE45b2dc62239DD09D6ED97Eefb9276C634602c', // FIXME:
+      56: '0x99d865Ed50D2C32c1493896810FA386c1Ce81D91', // https://bscscan.com/address/0x99d865Ed50D2C32c1493896810FA386c1Ce81D91
+    },
+    tokenSymbol: 'ETH',
+    tokenAddresses: {
+      97: '0x89dcddca577f3658a451775d58ea99da532263c8', // FIXME:
+      56: '0x2170ed0880ac9a755fd29b2688956bd959f933f8', // https://bscscan.com/address/0x2170ed0880ac9a755fd29b2688956bd959f933f8
+    },
+    quoteTokenSymbol: QuoteToken.ETH,
+    quoteTokenAdresses: contracts.eth,
   },
 ]
 
