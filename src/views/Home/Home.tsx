@@ -1,9 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading, BaseLayout } from '@saltswap/uikit'
+import { Heading, BaseLayout, Text } from '@saltswap/uikit'
 import useI18n from 'hooks/useI18n'
 import Page from 'components/layout/Page'
-import Countdown from 'views/Countdown/Countdown'
 import FarmStakingCard from './components/FarmStakingCard'
 import CakeStats from './components/CakeStats'
 import TotalValueLockedCard from './components/TotalValueLockedCard'
@@ -60,15 +59,9 @@ const Home: React.FC = () => {
     <Page>
       <Hero>
         <Heading as="h1" size="xl" mb="24px" color="secondary">
-          {TranslateString(10004, 'SaltSwap Farms Opening In')}
+          {TranslateString(10004, 'SaltSwap Farms Are Opened')}
         </Heading>
-        {/* <Heading as="h1" size="xl" mb="24px" color="secondary">
-          {TranslateString(576, 'SaltSwap')}
-        </Heading>
-        <Text>{TranslateString(578, 'The saltiest AMM and yield farm on Binance Smart Chain.')}</Text> */}
-        <div className="wrapper">
-          <Countdown date="February 21 2021 10:00 GMT" />
-        </div>
+        <Text>{TranslateString(578, 'The saltiest AMM and yield farm on Binance Smart Chain.')}</Text>
       </Hero>
       <div>
         <Cards>
