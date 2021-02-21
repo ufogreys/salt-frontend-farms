@@ -8,7 +8,7 @@ import { Heading } from '@saltswap/uikit'
 import { BLOCKS_PER_YEAR } from 'config'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
-import { useFarms, usePriceBnbBusd, usePriceCakeBusd } from 'state/hooks'
+import { useFarms, usePriceBnbBusd, usePriceCakeBusd, usePriceEthBusd } from 'state/hooks'
 import useRefresh from 'hooks/useRefresh'
 import { fetchFarmUserDataAsync } from 'state/actions'
 import { QuoteToken } from 'config/constants/types'
@@ -27,8 +27,10 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
   const farmsLP = useFarms()
   const cakePrice = usePriceCakeBusd()
   const bnbPrice = usePriceBnbBusd()
+
   const { account, ethereum }: { account: string; ethereum: provider } = useWallet()
   const { tokenMode } = farmsProps
+  const ethPriceUsd = usePriceEthBusd()
 
   const dispatch = useDispatch()
   const { fastRefresh } = useRefresh()
@@ -67,6 +69,8 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
 
         if (farm.quoteTokenSymbol === QuoteToken.BNB) {
           totalValue = totalValue.times(bnbPrice)
+        } else if (farm.quoteTokenSymbol === QuoteToken.ETH) {
+          apy = ethPriceUsd.div(ethPriceUsd).times(cakeRewardPerYear).div(farm.lpTotalInQuoteToken)
         }
 
         if (totalValue.comparedTo(0) > 0) {
@@ -82,12 +86,13 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
           removed={removed}
           bnbPrice={bnbPrice}
           cakePrice={cakePrice}
+          ethPrice={ethPriceUsd}
           ethereum={ethereum}
           account={account}
         />
       ))
     },
-    [bnbPrice, account, cakePrice, ethereum],
+    [bnbPrice, account, cakePrice, ethPriceUsd, ethereum],
   )
 
   return (
