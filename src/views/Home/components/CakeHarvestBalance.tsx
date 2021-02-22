@@ -4,7 +4,9 @@ import { useWallet } from '@binance-chain/bsc-use-wallet'
 import BigNumber from 'bignumber.js'
 import useI18n from 'hooks/useI18n'
 import useAllEarnings from 'hooks/useAllEarnings'
+import { usePriceSaltBusd } from 'state/hooks'
 import CardValue from './CardValue'
+import CardBusdValue from './SaltBusdValue'
 
 const CakeHarvestBalance = () => {
   const TranslateString = useI18n()
@@ -15,6 +17,8 @@ const CakeHarvestBalance = () => {
     0,
   )
 
+  const earningsBusd = new BigNumber(earningsSum).multipliedBy(usePriceSaltBusd()).toNumber()
+
   if (!account) {
     return (
       <Text color="textDisabled" style={{ lineHeight: '60px' }}>
@@ -23,7 +27,12 @@ const CakeHarvestBalance = () => {
     )
   }
 
-  return <CardValue value={earningsSum} />
+  return (
+    <>
+      <CardValue value={earningsSum} lineHeight="1.5" />
+      <CardBusdValue value={earningsBusd} />
+    </>
+  )
 }
 
 export default CakeHarvestBalance

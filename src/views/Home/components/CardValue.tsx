@@ -2,11 +2,14 @@ import React, { useEffect, useRef } from 'react'
 import { useCountUp } from 'react-countup'
 import { Text } from '@saltswap/uikit'
 
-interface CardValueProps {
+export interface CardValueProps {
   value: number
   decimals?: number
   fontSize?: string
+  lineHeight?: string
   prefix?: string
+  bold?: boolean
+  color?: string
 }
 
 const CardValue: React.FC<CardValueProps> = ({ value, decimals, fontSize = '40px', prefix }) => {

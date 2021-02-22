@@ -5,11 +5,15 @@ import useTokenBalance from 'hooks/useTokenBalance'
 import useI18n from 'hooks/useI18n'
 import { getCakeAddress } from 'utils/addressHelpers'
 import { getBalanceNumber } from 'utils/formatBalance'
+import BigNumber from 'bignumber.js'
+import { usePriceSaltBusd } from 'state/hooks'
 import CardValue from './CardValue'
+import CardBusdValue from './SaltBusdValue'
 
 const CakeWalletBalance = () => {
   const TranslateString = useI18n()
   const cakeBalance = useTokenBalance(getCakeAddress())
+  const busdBalance = new BigNumber(getBalanceNumber(cakeBalance)).multipliedBy(usePriceSaltBusd()).toNumber()
   const { account } = useWallet()
 
   if (!account) {
@@ -20,7 +24,12 @@ const CakeWalletBalance = () => {
     )
   }
 
-  return <CardValue value={getBalanceNumber(cakeBalance)} fontSize="24px" />
+  return (
+    <>
+      <CardValue value={getBalanceNumber(cakeBalance)} fontSize="24px" />
+      <CardBusdValue value={busdBalance} />
+    </>
+  )
 }
 
 export default CakeWalletBalance
