@@ -7,7 +7,7 @@ import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
 import useI18n from 'hooks/useI18n'
 import { getCakeAddress } from 'utils/addressHelpers'
 import CardValue from './CardValue'
-import { useFarms } from '../../../state/hooks'
+import { useFarms, usePriceSaltBusd } from '../../../state/hooks'
 
 const StyledCakeStats = styled(Card)`
   margin-left: auto;
@@ -27,7 +27,11 @@ const CakeStats = () => {
   const totalSupply = useTotalSupply()
   const burnedBalance = useBurnedBalance(getCakeAddress())
   const farms = useFarms()
+
+  const eggPrice = usePriceSaltBusd()
+  const circSupply = totalSupply ? totalSupply.minus(burnedBalance) : new BigNumber(0)
   const cakeSupply = totalSupply ? getBalanceNumber(totalSupply) - getBalanceNumber(burnedBalance) : 0
+  const marketCap = eggPrice.times(circSupply)
 
   let saltPerBlock = 0
   if (farms && farms[0] && farms[0].saltPerBlock) {
@@ -47,6 +51,10 @@ const CakeStats = () => {
         <Row>
           <Text fontSize="14px">{TranslateString(538, 'Total SALT Burned')}</Text>
           <CardValue fontSize="14px" value={getBalanceNumber(burnedBalance)} decimals={0} />
+        </Row>
+        <Row>
+          <Text fontSize="14px">{TranslateString(999, 'Market Cap')}</Text>
+          <CardValue fontSize="14px" value={getBalanceNumber(marketCap)} decimals={0} prefix="$" />
         </Row>
         <Row>
           <Text fontSize="14px">{TranslateString(540, 'New SALT per block')}</Text>
