@@ -29,7 +29,7 @@ const config: MenuEntry[] = [
     href: '/farms',
   },
   {
-    label: 'Salty Pools',
+    label: 'Oceans',
     icon: 'PoolIcon',
     href: '/pools',
   },
