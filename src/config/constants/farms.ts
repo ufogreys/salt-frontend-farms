@@ -1,6 +1,8 @@
 import contracts from './contracts'
 import { FarmConfig, QuoteToken } from './types'
 
+const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
+
 const farms: FarmConfig[] = [
   {
     pid: 0,
@@ -13,11 +15,12 @@ const farms: FarmConfig[] = [
     },
     tokenSymbol: 'SALT',
     tokenAddresses: {
-      97: '0x89dcddca577f3658a451775d58ea99da532263c8',
+      97: '0x85582d24455CAAf44fC4f914bDca2a6CB73e6681',
       56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4',
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
+    isMasterChef: true,
   },
   {
     pid: 1,
@@ -29,11 +32,12 @@ const farms: FarmConfig[] = [
     },
     tokenSymbol: 'SALT',
     tokenAddresses: {
-      97: '0x89dcddca577f3658a451775d58ea99da532263c8',
+      97: '0x569FCb5d25C126F9b68405fFbB20D069768f0780',
       56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4',
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
+    isMasterChef: true,
   },
   {
     pid: 2,
@@ -45,11 +49,12 @@ const farms: FarmConfig[] = [
     },
     tokenSymbol: 'SALT',
     tokenAddresses: {
-      97: '0x89dcddca577f3658a451775d58ea99da532263c8',
+      97: '0x569FCb5d25C126F9b68405fFbB20D069768f0780',
       56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4',
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    isMasterChef: true,
   },
   {
     pid: 3,
@@ -66,6 +71,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
+    isMasterChef: true,
   },
   {
     pid: 4,
@@ -77,11 +83,12 @@ const farms: FarmConfig[] = [
     },
     tokenSymbol: 'DAI',
     tokenAddresses: {
-      97: '0x89dcddca577f3658a451775d58ea99da532263c8', // FIXME:
+      97: '0x569FCb5d25C126F9b68405fFbB20D069768f0780', // FIXME:
       56: '0x1af3f329e8be154074d8769d1ffa4ee058b1dbc3', // https://bscscan.com/address/0x1af3f329e8be154074d8769d1ffa4ee058b1dbc3
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
+    isMasterChef: true,
   },
   {
     pid: 5,
@@ -93,11 +100,12 @@ const farms: FarmConfig[] = [
     },
     tokenSymbol: 'BETH',
     tokenAddresses: {
-      97: '0x89dcddca577f3658a451775d58ea99da532263c8', // FIXME:
+      97: '0x569FCb5d25C126F9b68405fFbB20D069768f0780', // FIXME:
       56: '0x250632378e573c6be1ac2f97fcdf00515d0aa91b', // https://bscscan.com/address/0x2170ed0880ac9a755fd29b2688956bd959f933f8
     },
     quoteTokenSymbol: QuoteToken.ETH,
     quoteTokenAdresses: contracts.eth,
+    isMasterChef: true,
   },
   {
     pid: 6,
@@ -109,11 +117,12 @@ const farms: FarmConfig[] = [
     },
     tokenSymbol: 'CAKE',
     tokenAddresses: {
-      97: '0x89dcddca577f3658a451775d58ea99da532263c8', // FIXME:
+      97: '0x569FCb5d25C126F9b68405fFbB20D069768f0780', // FIXME:
       56: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82', // https://bscscan.com/address/0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
+    isMasterChef: true,
   },
   {
     pid: 7,
@@ -125,11 +134,12 @@ const farms: FarmConfig[] = [
     },
     tokenSymbol: 'CAKE',
     tokenAddresses: {
-      97: '0x89dcddca577f3658a451775d58ea99da532263c8', // FIXME:
+      97: '0x569FCb5d25C126F9b68405fFbB20D069768f0780', // FIXME:
       56: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82', // https://bscscan.com/address/0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82
     },
     quoteTokenSymbol: QuoteToken.BNB,
     quoteTokenAdresses: contracts.wbnb,
+    isMasterChef: true,
   },
   {
     pid: 8,
@@ -137,16 +147,17 @@ const farms: FarmConfig[] = [
     isTokenOnly: true,
     lpSymbol: 'BUSD',
     lpAddresses: {
-      97: '',
+      97: '0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee',
       56: '0x6596f770786915556C47E301cC8290aa14288d99',
     },
     tokenSymbol: 'BUSD',
     tokenAddresses: {
-      97: '0x89dcddca577f3658a451775d58ea99da532263c8', // FIXME:
+      97: '0x569FCb5d25C126F9b68405fFbB20D069768f0780', // FIXME:
       56: '0xe9e7cea3dedca5984780bafc599bd69add087d56', // https://bscscan.com/address/0xe9e7cea3dedca5984780bafc599bd69add087d56
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
+    isMasterChef: true,
   },
   {
     pid: 9,
@@ -159,11 +170,12 @@ const farms: FarmConfig[] = [
     },
     tokenSymbol: 'BNB',
     tokenAddresses: {
-      97: '0x89dcddca577f3658a451775d58ea99da532263c8', // FIXME:
+      97: '0x569FCb5d25C126F9b68405fFbB20D069768f0780', // FIXME:
       56: '0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c', // https://bscscan.com/address/0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
+    isMasterChef: true,
   },
   {
     pid: 10,
@@ -181,6 +193,7 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
+    isMasterChef: true,
   },
   {
     pid: 11,
@@ -198,7 +211,8 @@ const farms: FarmConfig[] = [
     },
     quoteTokenSymbol: QuoteToken.BUSD,
     quoteTokenAdresses: contracts.busd,
+    isMasterChef: true,
   },
-]
+].filter((f) => f.lpAddresses[CHAIN_ID])
 
 export default farms

@@ -70,15 +70,15 @@ const Farm: React.FC = () => {
       <Hero>
         <div>
           <Heading as="h1" size="xxl" mb="16px">
-            {TranslateString(282, 'SYRUP Pool')}
+            🆕 {TranslateString(282, 'Oceans')}
           </Heading>
           <ul>
-            <li>{TranslateString(580, 'Stake CAKE to earn new tokens.')}</li>
+            <li>{TranslateString(580, 'Stake SALT to earn new tokens.')}</li>
             <li>{TranslateString(404, 'You can unstake at any time.')}</li>
             <li>{TranslateString(406, 'Rewards are calculated per block.')}</li>
           </ul>
         </div>
-        <img src="/images/syrup.png" alt="SYRUP POOL icon" width={410} height={191} />
+        <img src="/images/ocean.png" alt="icean pool icon" width={435} height={218} />
       </Hero>
       <PoolTabButtons />
       <Divider />
@@ -110,7 +110,6 @@ const Hero = styled.div`
   margin-left: auto;
   margin-right: auto;
   max-width: 250px;
-  padding: 48px 0;
   ul {
     margin: 0;
     padding: 0;

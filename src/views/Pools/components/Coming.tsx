@@ -10,6 +10,7 @@ const Balance = styled.div`
   color: ${({ theme }) => theme.colors.text};
   font-size: 40px;
   font-weight: 600;
+  padding: 10px 0;
 `
 
 const Label = styled.div`
@@ -21,6 +22,7 @@ const Label = styled.div`
 const DetailPlaceholder = styled.div`
   display: flex;
   font-size: 14px;
+  padding: 4px 0;
 `
 const Value = styled.div`
   color: ${({ theme }) => theme.colors.text};
@@ -37,37 +39,32 @@ const Coming: React.FC = () => {
   return (
     <Card>
       <div style={{ padding: '24px' }}>
-        <CardTitle>
-          {TranslateString(414, 'Your Project?')}{' '}
-          <span role="img" aria-label="eyes">
-            👀
-          </span>
-        </CardTitle>
-        <Image src="/images/bunny-question.svg" width={64} height={64} alt="Your project here" />
-        <Balance>???</Balance>
+        <CardTitle>{TranslateString(414, 'Your Salty Project')}</CardTitle>
+        <Image src="/images/salt-bae-bw.png" width={64} height={64} alt="Your salty project" />
+        <Balance>0.0</Balance>
         <Label>{TranslateString(416, 'Create a pool for your token')}</Label>
         <Button
           variant="secondary"
-          as="a"
-          href="https://docs.google.com/forms/d/e/1FAIpQLScGdT5rrVMr4WOWr08pvcroSeuIOtEJf1sVdQGVdcAOqryigQ/viewform"
-          external
+          as="button"
           fullWidth
           mb="16px"
+          // eslint-disable-next-line no-alert
+          onClick={() => alert(`We'll announce soon on Telegram how to apply, stay tunned!`)}
         >
           {TranslateString(418, 'Apply Now')}
         </Button>
         <DetailPlaceholder>
           <div style={{ flex: 1 }}>{TranslateString(736, 'APR')}:</div>
-          <Value>??</Value>
+          <Value>0.0</Value>
         </DetailPlaceholder>
         <DetailPlaceholder>
           <div style={{ flex: 1 }}>
-            <span role="img" aria-label="syrup">
-              🥞{' '}
+            <span role="img" aria-label="salt">
+              🧂{' '}
             </span>
             {TranslateString(384, 'Your Stake')}:
           </div>
-          <Value>??? CAKE</Value>
+          <Value>0 SALT</Value>
         </DetailPlaceholder>
       </div>
       <Footer>

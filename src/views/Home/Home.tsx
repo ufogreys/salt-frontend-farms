@@ -58,10 +58,10 @@ const Home: React.FC = () => {
   return (
     <Page>
       <Hero>
-        <Heading as="h1" size="xl" mb="24px" color="secondary">
-          {TranslateString(10004, 'SaltSwap Farms Are Opened')}
+        <Heading as="h1" size="xxl" mb="24px" color="secondary">
+          {TranslateString(10004, 'SaltSwap Finance')}
         </Heading>
-        <Text>{TranslateString(578, 'The saltiest AMM and yield farm on Binance Smart Chain.')}</Text>
+        <Text>{TranslateString(578, 'The saltiest yield farm on Binance Smart Chain')}</Text>
       </Hero>
       <div>
         <Cards>

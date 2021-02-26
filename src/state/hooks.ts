@@ -2,7 +2,7 @@ import BigNumber from 'bignumber.js'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import useRefresh from 'hooks/useRefresh'
-import { fetchFarmsPublicDataAsync, fetchPoolsUserDataAsync } from './actions'
+import { fetchFarmsPublicDataAsync, fetchPoolsPublicDataAsync, fetchPoolsUserDataAsync } from './actions'
 import { State, Farm, Pool } from './types'
 import { QuoteToken } from '../config/constants/types'
 
@@ -13,41 +13,34 @@ export const useFetchPublicData = () => {
   const { slowRefresh } = useRefresh()
   useEffect(() => {
     dispatch(fetchFarmsPublicDataAsync())
-    // dispatch(fetchPoolsPublicDataAsync())
+    dispatch(fetchPoolsPublicDataAsync())
   }, [dispatch, slowRefresh])
 }
 
 // Farms
 
-export const useFarms = (): Farm[] => {
-  const farms = useSelector((state: State) => state.farms.data)
-  return farms
-}
+export const useFarms = (): Farm[] => useSelector((state: State) => state.farms.data)
 
-export const useFarmFromPid = (pid): Farm => {
-  const farm = useSelector((state: State) => state.farms.data.find((f) => f.pid === pid))
-  return farm
-}
+export const useFarmFromPid = (pid: number): Farm =>
+  useSelector((state: State) => state.farms.data.find((f) => f.pid === pid))
 
-export const useFarmFromSymbol = (lpSymbol: string): Farm => {
-  const farm = useSelector((state: State) => state.farms.data.find((f) => f.lpSymbol === lpSymbol))
-  return farm
-}
+export const useFarmFromSymbol = (lpSymbol: string): Farm =>
+  useSelector((state: State) => state.farms.data.find((f) => f.lpSymbol === lpSymbol))
 
-export const useFarmUser = (pid) => {
+export const useFarmUser = (pid: number) => {
   const farm = useFarmFromPid(pid)
 
   return {
-    allowance: farm.userData ? new BigNumber(farm.userData.allowance) : new BigNumber(0),
-    tokenBalance: farm.userData ? new BigNumber(farm.userData.tokenBalance) : new BigNumber(0),
-    stakedBalance: farm.userData ? new BigNumber(farm.userData.stakedBalance) : new BigNumber(0),
-    earnings: farm.userData ? new BigNumber(farm.userData.earnings) : new BigNumber(0),
+    allowance: farm.userData ? new BigNumber(farm.userData.allowance) : ZERO,
+    tokenBalance: farm.userData ? new BigNumber(farm.userData.tokenBalance) : ZERO,
+    stakedBalance: farm.userData ? new BigNumber(farm.userData.stakedBalance) : ZERO,
+    earnings: farm.userData ? new BigNumber(farm.userData.earnings) : ZERO,
   }
 }
 
 // Pools
 
-export const usePools = (account): Pool[] => {
+export const usePools = (account: string): Pool[] => {
   const { fastRefresh } = useRefresh()
   const dispatch = useDispatch()
   useEffect(() => {
@@ -56,35 +49,27 @@ export const usePools = (account): Pool[] => {
     }
   }, [account, dispatch, fastRefresh])
 
-  const pools = useSelector((state: State) => state.pools.data)
-  return pools
+  return useSelector((state: State) => state.pools.data)
 }
 
-export const usePoolFromPid = (sousId): Pool => {
-  const pool = useSelector((state: State) => state.pools.data.find((p) => p.sousId === sousId))
-  return pool
-}
+export const usePoolFromPid = (sousId: number): Pool =>
+  useSelector((state: State) => state.pools.data.find((p) => p.sousId === sousId))
 
 // Prices
 
+export const usePriceSaltBusd = (): BigNumber => {
+  const pid = 0 // SALT-BUSD LP
+  const farm = useFarmFromPid(pid)
+  return farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : ZERO
+}
+
 export const usePriceBnbBusd = (): BigNumber => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const pid = 3 // BUSD-BNB LP
   const farm = useFarmFromPid(pid)
   return farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : ZERO
 }
 
-export const usePriceEthBusd = (): BigNumber => new BigNumber(1966)
-
-export const usePriceSaltBusd = (): BigNumber => {
-  // const pid = 1 // CAKE-BNB LP
-  // const bnbPriceUSD = usePriceBnbBusd()
-  // const farm = useFarmFromPid(pid)
-  // return farm.tokenPriceVsQuote ? bnbPriceUSD.times(farm.tokenPriceVsQuote) : ZERO
-  const pid = 0 // SALT-BUSD LP
-  const farm = useFarmFromPid(pid)
-  return farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : ZERO
-}
+export const usePriceEthBusd = (): BigNumber => new BigNumber(1477)
 
 export const useTotalValue = (): BigNumber => {
   const farms = useFarms()
@@ -96,7 +81,7 @@ export const useTotalValue = (): BigNumber => {
   for (let i = 0; i < farms.length; i++) {
     const farm = farms[i]
     if (farm.lpTotalInQuoteToken) {
-      let val
+      let val: BigNumber
       if (farm.quoteTokenSymbol === QuoteToken.BNB) {
         val = bnbPrice.times(farm.lpTotalInQuoteToken)
       } else if (farm.quoteTokenSymbol === QuoteToken.CAKE) {

@@ -1,40 +1,23 @@
-import { PoolConfig } from './types'
+import { PoolCategory, PoolConfig, QuoteToken } from './types'
 
 const pools: PoolConfig[] = [
-  // {
-  //   sousId: 0,
-  //   tokenName: 'CAKE',
-  //   stakingTokenName: QuoteToken.CAKE,
-  //   stakingTokenAddress: '0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82',
-  //   contractAddress: {
-  //     97: '0xd3af5fe61dbaf8f73149bfcfa9fb653ff096029a',
-  //     56: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
-  //   },
-  //   poolCategory: PoolCategory.CORE,
-  //   projectLink: 'https://pancakeswap.finance/',
-  //   harvest: true,
-  //   tokenPerBlock: '10',
-  //   sortOrder: 1,
-  //   isFinished: false,
-  //   tokenDecimals: 18,
-  // },
-  // {
-  //   sousId: 1,
-  //   tokenName: 'TWT',
-  //   stakingTokenName: QuoteToken.SYRUP,
-  //   stakingTokenAddress: '0x009cF7bC57584b7998236eff51b98A168DceA9B0',
-  //   contractAddress: {
-  //     97: '0xAfd61Dc94f11A70Ae110dC0E0F2061Af5633061A',
-  //     56: '0xAfd61Dc94f11A70Ae110dC0E0F2061Af5633061A',
-  //   },
-  //   poolCategory: PoolCategory.CORE,
-  //   projectLink: 'https://trustwallet.com/',
-  //   harvest: true,
-  //   tokenPerBlock: '20',
-  //   sortOrder: 999,
-  //   isFinished: true,
-  //   tokenDecimals: 18,
-  // },
+  {
+    sousId: 0,
+    tokenName: 'CAKE',
+    stakingTokenName: QuoteToken.SALT,
+    stakingTokenAddress: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4', // SALT
+    contractAddress: {
+      97: '0x9FcA113B2D4E64462229E107A8F4Aa7359D055F5',
+      56: '0xfC2BA5B6Ec7A5Fe68546fC8fB55A915b5CA5E261', // SmartChef
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://pancakeswap.finance/',
+    harvest: true,
+    tokenPerBlock: '0.000001',
+    sortOrder: 1,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
 ]
 
 export default pools

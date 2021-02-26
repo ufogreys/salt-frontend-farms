@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components'
-// eslint-disable-next-line import/no-unresolved
 import { SaltTheme } from '@saltswap/uikit'
 
 declare module 'styled-components' {
@@ -13,6 +12,10 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     background-color: ${({ theme }) => theme.colors.background};
+    background-image: url('./images/salt-bottom-bg.svg');
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: contain;
 
     img {
       height: auto;

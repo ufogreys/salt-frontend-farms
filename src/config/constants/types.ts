@@ -22,6 +22,7 @@ export interface Ifo {
 export enum QuoteToken {
   'BNB' = 'BNB',
   'SALT' = 'SALT',
+  'SUSHI' = 'SUSHI',
   'CAKE' = 'CAKE',
   'SYRUP' = 'SYRUP',
   'BUSD' = 'BUSD',
@@ -49,6 +50,8 @@ export interface FarmConfig {
   tokenAddresses: Address
   quoteTokenSymbol: QuoteToken
   quoteTokenAdresses: Address
+  rewardTokenAddresses?: Address
+  isMasterChef: boolean
   multiplier?: string
   isTokenOnly?: boolean
   isCommunity?: boolean
