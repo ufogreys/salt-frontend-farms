@@ -31,6 +31,11 @@ const config: MenuEntry[] = [
     icon: 'WaveIcon',
     href: '/oceans',
   },
+  {
+    label: 'Audit By Certik 🚧',
+    icon: 'AuditIcon',
+    href: 'https://www.saltswap.finance/files/certik.pdf',
+  },
   // {
   //   label: 'Lottery',
   //   icon: 'TicketIcon',
