@@ -41,21 +41,21 @@ const Farm: React.FC = () => {
 
   const poolsWithApy = pools.map((pool) => {
     const isBnbPool = pool.poolCategory === PoolCategory.BINANCE
-    // const rewardTokenFarm = farms.find((f) => f.tokenSymbol === pool.tokenName)
+    const rewardTokenFarm = farms.find((f) => f.tokenSymbol === pool.tokenName)
     const stakingTokenFarm = farms.find((s) => s.tokenSymbol === pool.stakingTokenName)
 
     // /!\ Assume that the farm quote price is BNB
     const stakingTokenPriceInBNB = isBnbPool ? new BigNumber(1) : new BigNumber(stakingTokenFarm?.tokenPriceVsQuote)
-    // const rewardTokenPriceInBNB = priceToBnb(
-    //   pool.tokenName,
-    //   rewardTokenFarm?.tokenPriceVsQuote,
-    //   rewardTokenFarm?.quoteTokenSymbol,
-    // )
-    // const totalRewardPricePerYear = rewardTokenPriceInBNB.times(pool.tokenPerBlock).times(BLOCKS_PER_YEAR)
+    const rewardTokenPriceInBNB = priceToBnb(
+      pool.tokenName,
+      rewardTokenFarm?.tokenPriceVsQuote,
+      rewardTokenFarm?.quoteTokenSymbol,
+    )
+    const totalRewardPricePerYear = rewardTokenPriceInBNB.times(pool.tokenPerBlock).times(BLOCKS_PER_YEAR)
     const totalStakingTokenInPool = stakingTokenPriceInBNB.times(getBalanceNumber(pool.totalStaked))
 
     // 1200/(TOKENS IN POOL x SALT PRICE)*100
-    const apy = new BigNumber(1200).times(new BigNumber(365)).div(totalStakingTokenInPool).times(100)
+    const apy = new BigNumber(1011).times(new BigNumber(365)).div(totalStakingTokenInPool).times(100)
 
     return {
       ...pool,
