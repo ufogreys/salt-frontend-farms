@@ -11,29 +11,29 @@ const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 const fetchFarms = async () => {
   const data = await Promise.all(
     farmsConfig.map(async (farmConfig) => {
-      const lpAdress = farmConfig.lpAddresses
+      const lpAdress = farmConfig.lpAddresses[CHAIN_ID]
       const calls = [
         // Balance of token in the LP contract
         {
           address: farmConfig.tokenAddresses[CHAIN_ID],
           name: 'balanceOf',
-          params: [lpAdress[CHAIN_ID]],
+          params: [lpAdress],
         },
         // Balance of quote token on LP contract
         {
           address: farmConfig.quoteTokenAdresses[CHAIN_ID],
           name: 'balanceOf',
-          params: [lpAdress[CHAIN_ID]],
+          params: [lpAdress,
         },
         // Balance of LP tokens in the master chef contract
         {
-          address: farmConfig.isTokenOnly ? farmConfig.tokenAddresses[CHAIN_ID] : lpAdress[CHAIN_ID],
+          address: farmConfig.isTokenOnly ? farmConfig.tokenAddresses[CHAIN_ID] : lpAdress,
           name: 'balanceOf',
           params: [farmConfig.isMasterChef ? getMasterChefAddress() : getSmartChefAddress()],
         },
         // Total supply of LP tokens
         {
-          address: lpAdress[CHAIN_ID],
+          address: lpAdress,
           name: 'totalSupply',
         },
         // Token decimals
