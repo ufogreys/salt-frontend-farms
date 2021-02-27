@@ -13,7 +13,7 @@ const pools: PoolConfig[] = [
     poolCategory: PoolCategory.CORE,
     projectLink: 'https://pancakeswap.finance/',
     harvest: true,
-    tokenPerBlock: '0.000001',
+    tokenPerBlock: '0.00295',
     sortOrder: 1,
     isFinished: false,
     tokenDecimals: 18,
