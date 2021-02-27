@@ -12,8 +12,6 @@ import BuyTicketModal from './BuyTicketModal'
 import MyTicketsModal from './UserTicketsModal'
 import PurchaseWarningModal from './PurchaseWarningModal'
 
-const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
-
 const CardActions = styled.div`
   display: flex;
   justify-content: center;

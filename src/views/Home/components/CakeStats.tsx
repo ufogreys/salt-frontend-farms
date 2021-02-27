@@ -9,8 +9,6 @@ import { getCakeAddress } from 'utils/addressHelpers'
 import CardValue from './CardValue'
 import { useFarms, usePriceSaltBusd } from '../../../state/hooks'
 
-const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
-
 const StyledCakeStats = styled(Card)`
   margin-left: auto;
   margin-right: auto;

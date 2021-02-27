@@ -8,8 +8,6 @@ import { getTokenBalance } from 'utils/erc20'
 import { getCakeAddress } from 'utils/addressHelpers'
 import useRefresh from './useRefresh'
 
-const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
-
 const useTokenBalance = (tokenAddress: string) => {
   const [balance, setBalance] = useState(new BigNumber(0))
   const { account, ethereum }: { account: string; ethereum: provider } = useWallet()

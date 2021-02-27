@@ -12,8 +12,6 @@ import BuyModal from 'views/Lottery/components/TicketCard/BuyTicketModal'
 import CakeWinnings from './CakeWinnings'
 import LotteryJackpot from './LotteryJackpot'
 
-const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
-
 const StyledLotteryCard = styled(Card)`
   background-image: url('/images/ticket-bg.svg');
   background-repeat: no-repeat;
