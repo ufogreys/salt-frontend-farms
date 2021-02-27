@@ -9,6 +9,8 @@ import useI18n from 'hooks/useI18n'
 import { usePancakeRabbits } from 'hooks/useContract'
 import InfoRow from './InfoRow'
 
+const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
+
 interface TransferNftModalProps {
   nft: Nft
   tokenIds: number[]
@@ -43,7 +45,7 @@ const TransferNftModal: React.FC<TransferNftModalProps> = ({ nft, tokenIds, onSu
   const [error, setError] = useState(null)
   const TranslateString = useI18n()
   const { account } = useWallet()
-  const pancakeRabbitsContract = usePancakeRabbits(PANCAKE_RABBITS_ADDRESS)
+  const pancakeRabbitsContract = usePancakeRabbits(PANCAKE_RABBITS_ADDRESS[CHAIN_ID])
 
   const handleConfirm = async () => {
     try {

@@ -61,7 +61,7 @@ export const useBurnedBalance = (tokenAddress: string) => {
   }, [account, ethereum, slowRefresh, tokenAddress])
 
   if (!balance) {
-    return new BigNumber(0);
+    return new BigNumber(0)
   }
 
   return balance

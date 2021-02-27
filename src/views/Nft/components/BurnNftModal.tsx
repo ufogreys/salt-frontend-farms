@@ -8,6 +8,8 @@ import { RABBIT_MINTING_FARM_ADDRESS } from 'config/constants/nfts'
 import { useRabbitMintingFarm } from 'hooks/useContract'
 import InfoRow from './InfoRow'
 
+const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
+
 interface BurnNftModalProps {
   nft: Nft
   tokenIds: number[]
@@ -35,7 +37,7 @@ const BurnNftModal: React.FC<BurnNftModalProps> = ({ nft, tokenIds, onSuccess, o
   const [accepted, setAccepted] = useState(false)
   const TranslateString = useI18n()
   const { account } = useWallet()
-  const rabbitMintingContract = useRabbitMintingFarm(RABBIT_MINTING_FARM_ADDRESS)
+  const rabbitMintingContract = useRabbitMintingFarm(RABBIT_MINTING_FARM_ADDRESS[CHAIN_ID])
 
   const handleConfirm = async () => {
     try {

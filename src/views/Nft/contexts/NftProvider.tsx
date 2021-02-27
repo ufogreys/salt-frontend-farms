@@ -7,6 +7,8 @@ import { RABBIT_MINTING_FARM_ADDRESS } from 'config/constants/nfts'
 import multicall from 'utils/multicall'
 import { getPancakeRabbitContract } from '../utils/contracts'
 
+const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
+
 interface NftProviderProps {
   children: ReactNode
 }
@@ -66,11 +68,11 @@ const NftProvider: React.FC<NftProviderProps> = ({ children }) => {
           totalSupplyDistributedArr,
           currentDistributedSupplyArr,
         ] = await multicall(rabbitmintingfarm, [
-          { address: RABBIT_MINTING_FARM_ADDRESS, name: 'startBlockNumber' },
-          { address: RABBIT_MINTING_FARM_ADDRESS, name: 'endBlockNumber' },
-          { address: RABBIT_MINTING_FARM_ADDRESS, name: 'countBunniesBurnt' },
-          { address: RABBIT_MINTING_FARM_ADDRESS, name: 'totalSupplyDistributed' },
-          { address: RABBIT_MINTING_FARM_ADDRESS, name: 'currentDistributedSupply' },
+          { address: RABBIT_MINTING_FARM_ADDRESS[CHAIN_ID], name: 'startBlockNumber' },
+          { address: RABBIT_MINTING_FARM_ADDRESS[CHAIN_ID], name: 'endBlockNumber' },
+          { address: RABBIT_MINTING_FARM_ADDRESS[CHAIN_ID], name: 'countBunniesBurnt' },
+          { address: RABBIT_MINTING_FARM_ADDRESS[CHAIN_ID], name: 'totalSupplyDistributed' },
+          { address: RABBIT_MINTING_FARM_ADDRESS[CHAIN_ID], name: 'currentDistributedSupply' },
         ])
 
         // TODO: Figure out why these are coming back as arrays
@@ -103,8 +105,8 @@ const NftProvider: React.FC<NftProviderProps> = ({ children }) => {
       try {
         const pancakeRabbitsContract = getPancakeRabbitContract()
         const [canClaimArr, hasClaimedArr] = await multicall(rabbitmintingfarm, [
-          { address: RABBIT_MINTING_FARM_ADDRESS, name: 'canClaim', params: [account] },
-          { address: RABBIT_MINTING_FARM_ADDRESS, name: 'hasClaimed', params: [account] },
+          { address: RABBIT_MINTING_FARM_ADDRESS[CHAIN_ID], name: 'canClaim', params: [account] },
+          { address: RABBIT_MINTING_FARM_ADDRESS[CHAIN_ID], name: 'hasClaimed', params: [account] },
         ])
         const balanceOf = await pancakeRabbitsContract.methods.balanceOf(account).call()
         const [canClaim]: [boolean] = canClaimArr
