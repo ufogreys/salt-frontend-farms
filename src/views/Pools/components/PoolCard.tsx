@@ -8,7 +8,7 @@ import Label from 'components/Label'
 import { useERC20 } from 'hooks/useContract'
 import { useSousApprove } from 'hooks/useApprove'
 import useI18n from 'hooks/useI18n'
-import { useSousStake } from 'hooks/useStake'
+import { useSmartStake } from 'hooks/useStake'
 import { useSousUnstake } from 'hooks/useUnstake'
 import useBlock from 'hooks/useBlock'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -58,7 +58,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
   const { account } = useWallet()
   const block = useBlock()
   const { onApprove } = useSousApprove(stakingTokenContract, sousId)
-  const { onStake } = useSousStake(sousId, isBnbPool)
+  const { onStake } = useSmartStake(sousId, isBnbPool)
   const { onUnstake } = useSousUnstake(sousId)
   const { onReward } = useSmartChefHarvest(sousId, isBnbPool)
 

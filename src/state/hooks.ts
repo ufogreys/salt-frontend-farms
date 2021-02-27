@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import useRefresh from 'hooks/useRefresh'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
@@ -79,35 +79,44 @@ export const useTotalValue = (): BigNumber => {
   const bnbPrice = usePriceBnbBusd()
   const ethPrice = usePriceEthBusd()
   const saltPrice = usePriceSaltBusd()
+  const [totalValue, setTotalValue] = useState<BigNumber>(new BigNumber(0))
 
-  let farmsTotalValue = new BigNumber(0)
-  for (let i = 0; i < farms.length; i++) {
-    const farm = farms[i]
-    if (farm.lpTotalInQuoteToken) {
-      let val: BigNumber
-      if (farm.quoteTokenSymbol === QuoteToken.BNB) {
-        val = bnbPrice.times(farm.lpTotalInQuoteToken)
-      } else if (farm.quoteTokenSymbol === QuoteToken.CAKE) {
-        val = saltPrice.times(farm.lpTotalInQuoteToken)
-      } else if (farm.quoteTokenSymbol === QuoteToken.ETH) {
-        val = ethPrice.times(farm.lpTotalInQuoteToken)
-      } else {
-        val = farm.lpTotalInQuoteToken
+  useEffect(() => {
+    let farmsTotalValue = new BigNumber(0)
+    for (let i = 0; i < farms.length; i++) {
+      const farm = farms[i]
+      if (farm.lpTotalInQuoteToken) {
+        let val: BigNumber
+        if (farm.quoteTokenSymbol === QuoteToken.BNB) {
+          val = bnbPrice.times(farm.lpTotalInQuoteToken)
+        } else if (farm.quoteTokenSymbol === QuoteToken.CAKE) {
+          val = saltPrice.times(farm.lpTotalInQuoteToken)
+        } else if (farm.quoteTokenSymbol === QuoteToken.ETH) {
+          val = ethPrice.times(farm.lpTotalInQuoteToken)
+        } else {
+          val = farm.lpTotalInQuoteToken
+        }
+        farmsTotalValue = farmsTotalValue.plus(val)
       }
-      farmsTotalValue = farmsTotalValue.plus(val)
     }
+
+    let poolsTotalValue = new BigNumber(0)
+    for (let i = 0; i < pools.length; i++) {
+      const pool = pools[i]
+      let poolValue: BigNumber
+      if (pool.stakingTokenName === QuoteToken.SALT) {
+        const totalSaltStaked = new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(18));
+        poolValue = saltPrice.times(totalSaltStaked)
+      }
+      poolsTotalValue = poolsTotalValue.plus(poolValue)
+    }
+
+    setTotalValue(farmsTotalValue.plus(poolsTotalValue))
+  }, [bnbPrice, ethPrice, farms, pools, saltPrice])
+
+  if (!totalValue) {
+    return new BigNumber(0);
   }
 
-  let poolsTotalValue = new BigNumber(0)
-  for (let i = 0; i < pools.length; i++) {
-    const pool = pools[i]
-    let poolValue: BigNumber
-    if (pool.stakingTokenName === QuoteToken.SALT) {
-      const totalSaltStaked = new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(18));
-      poolValue = saltPrice.times(totalSaltStaked)
-    }
-    poolsTotalValue = poolsTotalValue.plus(poolValue)
-  }
-
-  return farmsTotalValue.plus(poolsTotalValue)
+  return totalValue
 }

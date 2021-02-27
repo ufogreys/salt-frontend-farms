@@ -16,7 +16,7 @@ const CardValue: React.FC<CardValueProps> = ({ value, decimals, fontSize = '40px
   const { countUp, update } = useCountUp({
     start: 0,
     end: value,
-    duration: 1,
+    duration: 2,
     separator: ',',
     decimals:
       // eslint-disable-next-line no-nested-ternary
