@@ -11,6 +11,8 @@ import useI18n from 'hooks/useI18n'
 import { useRabbitMintingFarm } from 'hooks/useContract'
 import InfoRow from './InfoRow'
 
+const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
+
 interface ClaimNftModalProps {
   nft: Nft
   onSuccess: () => any
@@ -36,8 +38,8 @@ const ClaimNftModal: React.FC<ClaimNftModalProps> = ({ nft, onSuccess, onDismiss
   const [error, setError] = useState(null)
   const TranslateString = useI18n()
   const { account } = useWallet()
-  const rabbitMintingContract = useRabbitMintingFarm(RABBIT_MINTING_FARM_ADDRESS)
-  const cakeBalance = useTokenBalance(getCakeAddress())
+  const rabbitMintingContract = useRabbitMintingFarm(RABBIT_MINTING_FARM_ADDRESS[CHAIN_ID])
+  const cakeBalance = useTokenBalance(getCakeAddress()[CHAIN_ID])
   const cakeInWallet = getBalanceNumber(cakeBalance)
 
   const handleConfirm = async () => {

@@ -9,6 +9,8 @@ import { getCakeAddress } from 'utils/addressHelpers'
 import CardValue from './CardValue'
 import { useFarms, usePriceSaltBusd } from '../../../state/hooks'
 
+const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
+
 const StyledCakeStats = styled(Card)`
   margin-left: auto;
   margin-right: auto;
@@ -25,7 +27,7 @@ const Row = styled.div`
 const CakeStats = () => {
   const TranslateString = useI18n()
   const totalSupply = useTotalSupply()
-  const burnedBalance = useBurnedBalance(getCakeAddress())
+  const burnedBalance = useBurnedBalance(getCakeAddress()[CHAIN_ID])
   const farms = useFarms()
 
   const eggPrice = usePriceSaltBusd()

@@ -105,7 +105,7 @@ export const useTotalValue = (): BigNumber => {
       const pool = pools[i]
       let poolValue: BigNumber
       if (pool.stakingTokenName === QuoteToken.SALT) {
-        const totalSaltStaked = new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(18));
+        const totalSaltStaked = new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(18))
         poolValue = saltPrice.times(totalSaltStaked)
       }
       poolsTotalValue = poolsTotalValue.plus(poolValue)
@@ -115,7 +115,7 @@ export const useTotalValue = (): BigNumber => {
   }, [bnbPrice, ethPrice, farms, pools, saltPrice])
 
   if (!totalValue) {
-    return new BigNumber(0);
+    return new BigNumber(0)
   }
 
   return totalValue

@@ -29,7 +29,7 @@ export const useSmartStake = (sousId, isUsingBnb = false) => {
 
   const handleStake = useCallback(
     async (amount: string) => {
-      const stakeFn = isUsingBnb ? smartStakeBnb : smartStake;
+      const stakeFn = isUsingBnb ? smartStakeBnb : smartStake
       await stakeFn(smartChefContract, amount, account)
       dispatch(updateUserStakedBalance(sousId, account))
       dispatch(updateUserBalance(sousId, account))

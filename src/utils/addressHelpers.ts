@@ -1,11 +1,9 @@
 import addresses from 'config/constants/contracts'
 
-const chainId = process.env.REACT_APP_CHAIN_ID
-
-export const getCakeAddress = () => addresses.cake[chainId]
-export const getMasterChefAddress = () => addresses.masterChef[chainId]
-export const getSmartChefAddress = () => addresses.smartChef[chainId]
-export const getMulticallAddress = () => addresses.mulltiCall[chainId]
-export const getWbnbAddress = () => addresses.wbnb[chainId]
-export const getLotteryAddress = () => addresses.lottery[chainId]
-export const getLotteryTicketAddress = () => addresses.lotteryNFT[chainId]
+export const getCakeAddress = () => addresses.cake
+export const getMasterChefAddress = () => addresses.masterChef
+export const getSmartChefAddress = () => addresses.smartChef
+export const getMulticallAddress = () => addresses.mulltiCall
+export const getWbnbAddress = () => addresses.wbnb
+export const getLotteryAddress = () => addresses.lottery
+export const getLotteryTicketAddress = () => addresses.lotteryNFT

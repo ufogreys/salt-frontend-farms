@@ -24,6 +24,8 @@ import OldSyrupTitle from './OldSyrupTitle'
 import HarvestButton from './HarvestButton'
 import CardFooter from './CardFooter'
 
+const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
+
 interface PoolWithApy extends Pool {
   apy: BigNumber
 }
@@ -54,7 +56,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
   // Pools using native BNB behave differently than pools using a token
   const isBnbPool = poolCategory === PoolCategory.BINANCE
   const TranslateString = useI18n()
-  const stakingTokenContract = useERC20(stakingTokenAddress)
+  const stakingTokenContract = useERC20(stakingTokenAddress[CHAIN_ID])
   const { account } = useWallet()
   const block = useBlock()
   const { onApprove } = useSousApprove(stakingTokenContract, sousId)

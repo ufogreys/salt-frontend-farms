@@ -8,6 +8,8 @@ import { getTokenBalance } from 'utils/erc20'
 import { getCakeAddress } from 'utils/addressHelpers'
 import useRefresh from './useRefresh'
 
+const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
+
 const useTokenBalance = (tokenAddress: string) => {
   const [balance, setBalance] = useState(new BigNumber(0))
   const { account, ethereum }: { account: string; ethereum: provider } = useWallet()
@@ -33,7 +35,7 @@ export const useTotalSupply = () => {
 
   useEffect(() => {
     async function fetchTotalSupply() {
-      const cakeContract = getContract(cakeABI, getCakeAddress())
+      const cakeContract = getContract(cakeABI, getCakeAddress()[CHAIN_ID])
       const supply = await cakeContract.methods.totalSupply().call()
       setTotalSupply(new BigNumber(supply))
     }
@@ -61,7 +63,7 @@ export const useBurnedBalance = (tokenAddress: string) => {
   }, [account, ethereum, slowRefresh, tokenAddress])
 
   if (!balance) {
-    return new BigNumber(0);
+    return new BigNumber(0)
   }
 
   return balance

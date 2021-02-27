@@ -17,11 +17,11 @@ const nonBnbPools = pools.filter((p) => p.stakingTokenName !== QuoteToken.BNB)
 const bnbPools = pools.filter((p) => p.stakingTokenName === QuoteToken.BNB)
 // const nonMasterPools = pools.filter((p) => p.sousId !== 0)
 const web3 = getWeb3()
-const smartChefContract = new web3.eth.Contract((smartChefABI as unknown) as AbiItem, getSmartChefAddress())
+const smartChefContract = new web3.eth.Contract((smartChefABI as unknown) as AbiItem, getSmartChefAddress()[CHAIN_ID])
 
 export const fetchPoolsAllowance = async (account) => {
   const calls = nonBnbPools.map((p) => ({
-    address: p.stakingTokenAddress,
+    address: p.stakingTokenAddress[CHAIN_ID],
     name: 'allowance',
     params: [account, p.contractAddress[CHAIN_ID]],
   }))
@@ -36,7 +36,7 @@ export const fetchPoolsAllowance = async (account) => {
 export const fetchUserBalances = async (account) => {
   // Non BNB pools
   const calls = nonBnbPools.map((p) => ({
-    address: p.stakingTokenAddress,
+    address: p.stakingTokenAddress[CHAIN_ID],
     name: 'balanceOf',
     params: [account],
   }))

@@ -12,6 +12,8 @@ import BuyTicketModal from './BuyTicketModal'
 import MyTicketsModal from './UserTicketsModal'
 import PurchaseWarningModal from './PurchaseWarningModal'
 
+const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
+
 const CardActions = styled.div`
   display: flex;
   justify-content: center;
@@ -28,7 +30,7 @@ const TicketCard: React.FC = () => {
   const allowance = useLotteryAllowance()
   const { onApprove } = useLotteryApprove()
   const lotteryHasDrawn = useGetLotteryHasDrawn()
-  const cakeBalance = useTokenBalance(getCakeAddress())
+  const cakeBalance = useTokenBalance(getCakeAddress()[CHAIN_ID])
 
   const tickets = useTickets()
   const ticketsLength = tickets.length

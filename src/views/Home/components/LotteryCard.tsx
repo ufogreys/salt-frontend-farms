@@ -12,6 +12,8 @@ import BuyModal from 'views/Lottery/components/TicketCard/BuyTicketModal'
 import CakeWinnings from './CakeWinnings'
 import LotteryJackpot from './LotteryJackpot'
 
+const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
+
 const StyledLotteryCard = styled(Card)`
   background-image: url('/images/ticket-bg.svg');
   background-repeat: no-repeat;
@@ -46,7 +48,7 @@ const FarmedStakingCard = () => {
   const TranslateString = useI18n()
   const { claimAmount } = useTotalClaim()
   const { onMultiClaim } = useMultiClaimLottery()
-  const cakeBalance = useTokenBalance(getCakeAddress())
+  const cakeBalance = useTokenBalance(getCakeAddress()[CHAIN_ID])
 
   const handleClaim = useCallback(async () => {
     try {
