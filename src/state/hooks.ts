@@ -2,6 +2,7 @@ import BigNumber from 'bignumber.js'
 import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import useRefresh from 'hooks/useRefresh'
+import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { fetchFarmsPublicDataAsync, fetchPoolsPublicDataAsync, fetchPoolsUserDataAsync } from './actions'
 import { State, Farm, Pool } from './types'
 import { QuoteToken } from '../config/constants/types'
@@ -73,11 +74,13 @@ export const usePriceEthBusd = (): BigNumber => new BigNumber(1477)
 
 export const useTotalValue = (): BigNumber => {
   const farms = useFarms()
+  const { account } = useWallet()
+  const pools = usePools(account)
   const bnbPrice = usePriceBnbBusd()
   const ethPrice = usePriceEthBusd()
   const saltPrice = usePriceSaltBusd()
 
-  let value = new BigNumber(0)
+  let farmsTotalValue = new BigNumber(0)
   for (let i = 0; i < farms.length; i++) {
     const farm = farms[i]
     if (farm.lpTotalInQuoteToken) {
@@ -91,8 +94,20 @@ export const useTotalValue = (): BigNumber => {
       } else {
         val = farm.lpTotalInQuoteToken
       }
-      value = value.plus(val)
+      farmsTotalValue = farmsTotalValue.plus(val)
     }
   }
-  return value
+
+  let poolsTotalValue = new BigNumber(0)
+  for (let i = 0; i < pools.length; i++) {
+    const pool = pools[i]
+    let poolValue: BigNumber
+    if (pool.stakingTokenName === QuoteToken.SALT) {
+      const totalSaltStaked = new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(18));
+      poolValue = saltPrice.times(totalSaltStaked)
+    }
+    poolsTotalValue = poolsTotalValue.plus(poolValue)
+  }
+
+  return farmsTotalValue.plus(poolsTotalValue)
 }
