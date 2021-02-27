@@ -27,7 +27,7 @@ const Row = styled.div`
 const CakeStats = () => {
   const TranslateString = useI18n()
   const totalSupply = useTotalSupply()
-  const burnedBalance = useBurnedBalance(getCakeAddress()[CHAIN_ID])
+  const burnedBalance = useBurnedBalance(getCakeAddress())
   const farms = useFarms()
 
   const eggPrice = usePriceSaltBusd()

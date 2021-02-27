@@ -30,7 +30,7 @@ const TicketCard: React.FC = () => {
   const allowance = useLotteryAllowance()
   const { onApprove } = useLotteryApprove()
   const lotteryHasDrawn = useGetLotteryHasDrawn()
-  const cakeBalance = useTokenBalance(getCakeAddress()[CHAIN_ID])
+  const cakeBalance = useTokenBalance(getCakeAddress())
 
   const tickets = useTickets()
   const ticketsLength = tickets.length

@@ -10,11 +10,10 @@ import { usePriceSaltBusd } from 'state/hooks'
 import CardValue from './CardValue'
 import CardBusdValue from './SaltBusdValue'
 
-const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
 const CakeWalletBalance = () => {
   const TranslateString = useI18n()
-  const cakeBalance = useTokenBalance(getCakeAddress()[CHAIN_ID])
+  const cakeBalance = useTokenBalance(getCakeAddress())
   const busdBalance = new BigNumber(getBalanceNumber(cakeBalance)).multipliedBy(usePriceSaltBusd()).toNumber()
   const { account } = useWallet()
 

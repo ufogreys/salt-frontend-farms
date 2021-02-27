@@ -7,11 +7,9 @@ import ticketAbi from 'config/abi/lotteryNft.json'
 import lotteryAbi from 'config/abi/lottery.json'
 import { getMulticallAddress } from './addressHelpers'
 
-const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
-
 export const multiCall = async (abi, calls) => {
   const web3 = getWeb3()
-  const multi = new web3.eth.Contract(MultiCallAbi, getMulticallAddress()[CHAIN_ID])
+  const multi = new web3.eth.Contract(MultiCallAbi, getMulticallAddress())
   const itf = new Interface(abi)
   let res = []
   if (calls.length > 100) {

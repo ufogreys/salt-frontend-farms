@@ -48,7 +48,7 @@ const FarmedStakingCard = () => {
   const TranslateString = useI18n()
   const { claimAmount } = useTotalClaim()
   const { onMultiClaim } = useMultiClaimLottery()
-  const cakeBalance = useTokenBalance(getCakeAddress()[CHAIN_ID])
+  const cakeBalance = useTokenBalance(getCakeAddress())
 
   const handleClaim = useCallback(async () => {
     try {

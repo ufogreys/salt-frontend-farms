@@ -22,8 +22,6 @@ import smartChef from 'config/abi/smartchef.json'
 import sousChef from 'config/abi/sousChef.json'
 import sousChefBnb from 'config/abi/sousChefBnb.json'
 
-const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
-
 const useContract = (abi: AbiItem, address: string, contractOptions?: ContractOptions) => {
   const web3 = useWeb3()
   const [contract, setContract] = useState(new web3.eth.Contract(abi, address, contractOptions))
@@ -49,7 +47,7 @@ export const useERC20 = (address: string) => {
   return useContract(erc20Abi, address)
 }
 
-export const useCake = () => useERC20(getCakeAddress()[CHAIN_ID])
+export const useCake = () => useERC20(getCakeAddress())
 
 export const useRabbitMintingFarm = (address: string) => {
   const rabbitMintingFarmAbi = (rabbitmintingfarm as unknown) as AbiItem
@@ -63,22 +61,22 @@ export const usePancakeRabbits = (address: string) => {
 
 export const useLottery = () => {
   const abi = (lottery as unknown) as AbiItem
-  return useContract(abi, getLotteryAddress()[CHAIN_ID])
+  return useContract(abi, getLotteryAddress())
 }
 
 export const useLotteryTicket = () => {
   const abi = (lotteryTicket as unknown) as AbiItem
-  return useContract(abi, getLotteryTicketAddress()[CHAIN_ID])
+  return useContract(abi, getLotteryTicketAddress())
 }
 
 export const useMasterchef = () => {
   const abi = (masterChef as unknown) as AbiItem
-  return useContract(abi, getMasterChefAddress()[CHAIN_ID])
+  return useContract(abi, getMasterChefAddress())
 }
 
 export const useSmartChef = () => {
   const abi = (smartChef as unknown) as AbiItem
-  return useContract(abi, getSmartChefAddress()[CHAIN_ID])
+  return useContract(abi, getSmartChefAddress())
 }
 
 export const useSousChef = (id) => {

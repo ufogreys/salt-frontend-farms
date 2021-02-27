@@ -29,7 +29,7 @@ const fetchFarms = async () => {
         {
           address: farmConfig.isTokenOnly ? farmConfig.tokenAddresses : lpAdress,
           name: 'balanceOf',
-          params: [farmConfig.isMasterChef ? getMasterChefAddress()[CHAIN_ID] : getSmartChefAddress()[CHAIN_ID]],
+          params: [farmConfig.isMasterChef ? getMasterChefAddress() : getSmartChefAddress()],
         },
         // Total supply of LP tokens
         {
