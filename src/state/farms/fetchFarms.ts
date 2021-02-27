@@ -23,7 +23,7 @@ const fetchFarms = async () => {
         {
           address: farmConfig.quoteTokenAdresses[CHAIN_ID],
           name: 'balanceOf',
-          params: [lpAdress,
+          params: [lpAdress],
         },
         // Balance of LP tokens in the master chef contract
         {
