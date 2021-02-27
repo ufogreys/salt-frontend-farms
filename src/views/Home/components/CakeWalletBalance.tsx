@@ -10,7 +10,6 @@ import { usePriceSaltBusd } from 'state/hooks'
 import CardValue from './CardValue'
 import CardBusdValue from './SaltBusdValue'
 
-
 const CakeWalletBalance = () => {
   const TranslateString = useI18n()
   const cakeBalance = useTokenBalance(getCakeAddress())

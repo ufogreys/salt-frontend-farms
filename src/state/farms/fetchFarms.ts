@@ -15,35 +15,35 @@ const fetchFarms = async () => {
       const calls = [
         // Balance of token in the LP contract
         {
-          address: farmConfig.tokenAddresses,
+          address: farmConfig.tokenAddresses[CHAIN_ID],
           name: 'balanceOf',
           params: [lpAdress[CHAIN_ID]],
         },
         // Balance of quote token on LP contract
         {
-          address: farmConfig.quoteTokenAdresses,
+          address: farmConfig.quoteTokenAdresses[CHAIN_ID],
           name: 'balanceOf',
           params: [lpAdress[CHAIN_ID]],
         },
         // Balance of LP tokens in the master chef contract
         {
-          address: farmConfig.isTokenOnly ? farmConfig.tokenAddresses : lpAdress,
+          address: farmConfig.isTokenOnly ? farmConfig.tokenAddresses[CHAIN_ID] : lpAdress[CHAIN_ID],
           name: 'balanceOf',
           params: [farmConfig.isMasterChef ? getMasterChefAddress() : getSmartChefAddress()],
         },
         // Total supply of LP tokens
         {
-          address: lpAdress,
+          address: lpAdress[CHAIN_ID],
           name: 'totalSupply',
         },
         // Token decimals
         {
-          address: farmConfig.tokenAddresses,
+          address: farmConfig.tokenAddresses[CHAIN_ID],
           name: 'decimals',
         },
         // Quote token decimals
         {
-          address: farmConfig.quoteTokenAdresses,
+          address: farmConfig.quoteTokenAdresses[CHAIN_ID],
           name: 'decimals',
         },
       ]

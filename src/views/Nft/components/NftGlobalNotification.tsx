@@ -8,6 +8,8 @@ import rabbitmintingfarm from 'config/abi/rabbitmintingfarm.json'
 import { RABBIT_MINTING_FARM_ADDRESS } from 'config/constants/nfts'
 import multicall from 'utils/multicall'
 
+const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
+
 interface NftYouWonModalProps {
   onDismiss?: () => void
 }
@@ -55,10 +57,10 @@ const NftGlobalNotification = () => {
       const [totalSupplyDistributedArr, currentDistributedSupplyArr, canClaimArr, hasClaimedArr] = await multicall(
         rabbitmintingfarm,
         [
-          { address: RABBIT_MINTING_FARM_ADDRESS, name: 'totalSupplyDistributed' },
-          { address: RABBIT_MINTING_FARM_ADDRESS, name: 'currentDistributedSupply' },
-          { address: RABBIT_MINTING_FARM_ADDRESS, name: 'canClaim', params: [account] },
-          { address: RABBIT_MINTING_FARM_ADDRESS, name: 'hasClaimed', params: [account] },
+          { address: RABBIT_MINTING_FARM_ADDRESS[CHAIN_ID], name: 'totalSupplyDistributed' },
+          { address: RABBIT_MINTING_FARM_ADDRESS[CHAIN_ID], name: 'currentDistributedSupply' },
+          { address: RABBIT_MINTING_FARM_ADDRESS[CHAIN_ID], name: 'canClaim', params: [account] },
+          { address: RABBIT_MINTING_FARM_ADDRESS[CHAIN_ID], name: 'hasClaimed', params: [account] },
         ],
       )
 
