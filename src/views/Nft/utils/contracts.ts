@@ -4,6 +4,7 @@ import { ContractOptions } from 'web3-eth-contract'
 import rabbitmintingfarm from 'config/abi/rabbitmintingfarm.json'
 import pancakeRabbits from 'config/abi/pancakeRabbits.json'
 import { RABBIT_MINTING_FARM_ADDRESS, PANCAKE_RABBITS_ADDRESS } from 'config/constants/nfts'
+
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
 // TODO: Figure out how to add current account to contracts to write methods can be used

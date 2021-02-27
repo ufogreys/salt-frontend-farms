@@ -11,7 +11,7 @@ import useI18n from 'hooks/useI18n'
 import useBlock from 'hooks/useBlock'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useFarms, usePriceBnbBusd, usePools } from 'state/hooks'
-import { QuoteToken, PoolCategory } from 'config/constants/types'
+import { QuoteToken } from 'config/constants/types'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
 import Coming from './components/Coming'
@@ -40,7 +40,7 @@ const Farm: React.FC = () => {
   }
 
   const poolsWithApy = pools.map((pool) => {
-    const isBnbPool = pool.poolCategory === PoolCategory.BINANCE
+    // const isBnbPool = pool.poolCategory === PoolCategory.BINANCE
     const rewardTokenFarm = farms.find((f) => f.tokenSymbol === pool.tokenName)
     const stakingTokenFarm = farms.find((s) => s.tokenSymbol === pool.stakingTokenName)
 
