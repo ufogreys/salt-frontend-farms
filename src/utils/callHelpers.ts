@@ -72,7 +72,7 @@ export const smartHarvest = async (sousChefContract, account) =>
     .send({ from: account })
     .on('transactionHash', (tx) => tx.transactionHash)
 
-export const soushHarvestBnb = async (sousChefContract, account) =>
+export const smartHarvestBnb = async (sousChefContract, account) =>
   sousChefContract.methods
     .deposit()
     .send({ from: account, value: new BigNumber(0) })

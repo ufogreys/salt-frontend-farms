@@ -21,6 +21,7 @@ export interface Ifo {
 
 export enum QuoteToken {
   'BNB' = 'BNB',
+  'WBNB' = 'WBNB',
   'SALT' = 'SALT',
   'SUSHI' = 'SUSHI',
   'CAKE' = 'CAKE',
@@ -71,6 +72,7 @@ export interface PoolConfig {
   stakingLimit?: number
   stakingTokenAddress?: Address
   contractAddress: Address
+  rewardTokenAddress: Address
   poolCategory: PoolCategory
   projectLink: string
   tokenPerBlock: string

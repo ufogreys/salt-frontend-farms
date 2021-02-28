@@ -7,8 +7,8 @@ import {
   updateUserBalance,
   updateUserPendingReward,
 } from 'state/actions'
-import { unstake, sousUnstake, sousEmegencyUnstake, smartChefUnstake } from 'utils/callHelpers'
-import { useMasterchef, useSmartChef, useSousChef } from './useContract'
+import { unstake, smartChefUnstake } from 'utils/callHelpers'
+import { useMasterchef, useSmartChef } from './useContract'
 
 const useUnstake = (pid: number) => {
   const dispatch = useDispatch()
@@ -27,33 +27,19 @@ const useUnstake = (pid: number) => {
   return { onUnstake: handleUnstake }
 }
 
-const SYRUPIDS = [5, 6, 3, 1, 22, 23]
-
-export const useSousUnstake = (sousId) => {
+export const useSmartUnstake = (sousId: number) => {
   const dispatch = useDispatch()
   const { account } = useWallet()
-  // const masterChefContract = useMasterchef()
-  const sousChefContract = useSousChef(sousId)
-  const smartChefContract = useSmartChef()
-  const isOldSyrup = SYRUPIDS.includes(sousId)
+  const smartChefContract = useSmartChef(sousId)
 
   const handleUnstake = useCallback(
     async (amount: string) => {
-      if (sousId === 0) {
-        const txHash = await smartChefUnstake(smartChefContract, amount, account)
-        console.info(txHash)
-      } else if (isOldSyrup) {
-        const txHash = await sousEmegencyUnstake(sousChefContract, amount, account)
-        console.info(txHash)
-      } else {
-        const txHash = await sousUnstake(sousChefContract, amount, account)
-        console.info(txHash)
-      }
-      dispatch(updateUserStakedBalance(sousId, account))
-      dispatch(updateUserBalance(sousId, account))
-      dispatch(updateUserPendingReward(sousId, account))
+      await smartChefUnstake(smartChefContract, amount, account)
+      dispatch(updateUserStakedBalance(String(sousId), account))
+      dispatch(updateUserBalance(String(sousId), account))
+      dispatch(updateUserPendingReward(String(sousId), account))
     },
-    [account, dispatch, isOldSyrup, sousChefContract, smartChefContract, sousId],
+    [account, dispatch, smartChefContract, sousId],
   )
 
   return { onUnstake: handleUnstake }

@@ -7,43 +7,50 @@ import BigNumber from 'bignumber.js'
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
 export const fetchPoolsBlockLimits = async () => {
-  // const poolsWithEnd = poolsConfig.filter((p) => p.sousId !== 0)
-  const callsStartBlock = poolsConfig.map((poolConfig) => ({
-    address: poolConfig.contractAddress[CHAIN_ID],
-    name: 'startBlock',
-  }))
-  const callsEndBlock = poolsConfig.map((poolConfig) => ({
-    address: poolConfig.contractAddress[CHAIN_ID],
-    name: 'bonusEndBlock',
-  }))
+  const cakePools = poolsConfig
+  const cakeStarts = await multicall(
+    sousChefABI,
+    cakePools.map((cakePool) => ({
+      address: cakePool.contractAddress[CHAIN_ID],
+      name: 'startBlock',
+    })),
+  )
+  const cakeEnds = await multicall(
+    sousChefABI,
+    cakePools.map((cakePool) => ({
+      address: cakePool.contractAddress[CHAIN_ID],
+      name: 'bonusEndBlock',
+    })),
+  )
 
-  const starts = await multicall(sousChefABI, callsStartBlock)
-  const ends = await multicall(sousChefABI, callsEndBlock)
-
-  return poolsConfig.map((cakePoolConfig, index) => {
-    const startBlock = starts[index]
-    const endBlock = ends[index]
-    return {
-      sousId: cakePoolConfig.sousId,
-      startBlock: new BigNumber(startBlock).toJSON(),
-      endBlock: new BigNumber(endBlock).toJSON(),
-    }
-  })
+  return [
+    ...cakePools.map((poolConfig, index) => {
+      const startBlock = cakeStarts[index]
+      const endBlock = cakeEnds[index]
+      return {
+        sousId: poolConfig.sousId,
+        startBlock: new BigNumber(startBlock).toJSON(),
+        endBlock: new BigNumber(endBlock).toJSON(),
+      }
+    }),
+  ]
 }
 
 export const fetchPoolsTotalStaking = async () => {
-  const pools = poolsConfig.map((poolConfig) => ({
-    address: poolConfig.stakingTokenAddress[CHAIN_ID],
-    name: 'balanceOf',
-    params: [poolConfig.contractAddress[CHAIN_ID]],
-  }))
-
-  const poolsTotalStaked = await multicall(cakeABI, pools)
+  const cakePools = poolsConfig
+  const cakePoolsTotalStaked = await multicall(
+    cakeABI,
+    cakePools.map((cakePool) => ({
+      address: cakePool.stakingTokenAddress[CHAIN_ID],
+      name: 'balanceOf',
+      params: [cakePool.contractAddress[CHAIN_ID]],
+    })),
+  )
 
   return [
-    ...poolsConfig.map((p, index) => ({
+    ...cakePools.map((p, index) => ({
       sousId: p.sousId,
-      totalStaked: new BigNumber(poolsTotalStaked[index]).toJSON(),
+      totalStaked: new BigNumber(cakePoolsTotalStaked[index]).toJSON(),
     })),
   ]
 }

@@ -315,6 +315,12 @@
     {
       "data": {
         "stringId": 410,
+        "text": "Start"
+      }
+    },
+    {
+      "data": {
+        "stringId": 411,
         "text": "End"
       }
     },
