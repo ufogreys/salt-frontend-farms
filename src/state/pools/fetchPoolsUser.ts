@@ -55,11 +55,14 @@ export const fetchUserBalances = async (account) => {
 export const fetchUserStakeBalances = async (account) => {
   // CAKE
   const cakePools = pools.filter((p) => p.tokenName === QuoteToken.CAKE)
-  const cakeUserInfo = await multicall(sousChefABI, cakePools.map((p) => ({
-    address: p.contractAddress[CHAIN_ID],
-    name: 'userInfo',
-    params: [account],
-  })))
+  const cakeUserInfo = await multicall(
+    sousChefABI,
+    cakePools.map((p) => ({
+      address: p.contractAddress[CHAIN_ID],
+      name: 'userInfo',
+      params: [account],
+    })),
+  )
 
   // WBNB
   const wbnbPools = pools.filter((p) => p.tokenName === QuoteToken.BNB)

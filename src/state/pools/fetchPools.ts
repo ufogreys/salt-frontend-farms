@@ -76,7 +76,7 @@ export const fetchPoolsTotalStaking = async () => {
 
   // WBNB
   const wbnbPools = poolsConfig.filter((p) => p.tokenName === QuoteToken.BNB)
-  const wbnbPoolsTotalStaked = [new BigNumber(0)]; // FIXME
+  const wbnbPoolsTotalStaked = [new BigNumber(0)] // FIXME
   // const wbnbPoolsTotalStaked = await multicall(
   //   wbnbABI,
   //   wbnbPools.map((wbnbPool) => ({

@@ -12,7 +12,7 @@ import pancakeRabbits from 'config/abi/pancakeRabbits.json'
 import lottery from 'config/abi/lottery.json'
 import lotteryTicket from 'config/abi/lotteryNft.json'
 import masterChef from 'config/abi/masterchef.json'
-import smartChef from 'config/abi/sousChef.json' // FIXME
+import sousChef from 'config/abi/sousChef.json'
 import smartChefBnb from 'config/abi/sousChefBnb.json' // FIXME
 
 const useContract = (abi: AbiItem, address: string, contractOptions?: ContractOptions) => {
@@ -69,7 +69,7 @@ export const useMasterchef = () => {
 
 export const useSmartChef = (id: number) => {
   const config = poolsConfig.find((pool) => pool.sousId === id)
-  const rawAbi = config.poolCategory === PoolCategory.BINANCE ? smartChefBnb : smartChef
+  const rawAbi = config.poolCategory === PoolCategory.BINANCE ? smartChefBnb : sousChef
   const abi = (rawAbi as unknown) as AbiItem
   return useContract(abi, config.contractAddress[process.env.REACT_APP_CHAIN_ID])
 }
