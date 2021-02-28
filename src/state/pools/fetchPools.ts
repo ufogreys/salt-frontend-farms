@@ -7,12 +7,12 @@ import BigNumber from 'bignumber.js'
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
 export const fetchPoolsBlockLimits = async () => {
-  const poolsWithEnd = poolsConfig.filter((p) => p.sousId !== 0)
-  const callsStartBlock = poolsWithEnd.map((poolConfig) => ({
+  // const poolsWithEnd = poolsConfig.filter((p) => p.sousId !== 0)
+  const callsStartBlock = poolsConfig.map((poolConfig) => ({
     address: poolConfig.contractAddress[CHAIN_ID],
     name: 'startBlock',
   }))
-  const callsEndBlock = poolsWithEnd.map((poolConfig) => ({
+  const callsEndBlock = poolsConfig.map((poolConfig) => ({
     address: poolConfig.contractAddress[CHAIN_ID],
     name: 'bonusEndBlock',
   }))
@@ -20,7 +20,7 @@ export const fetchPoolsBlockLimits = async () => {
   const starts = await multicall(sousChefABI, callsStartBlock)
   const ends = await multicall(sousChefABI, callsEndBlock)
 
-  return poolsWithEnd.map((cakePoolConfig, index) => {
+  return poolsConfig.map((cakePoolConfig, index) => {
     const startBlock = starts[index]
     const endBlock = ends[index]
     return {
