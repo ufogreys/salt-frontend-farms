@@ -11,8 +11,8 @@ const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
 // Pool 0, Cake / Cake is a different kind of contract (master chef)
 // BNB pools use the native BNB token (wrapping ? unwrapping is done at the contract level)
-const nonBnbPools = pools.filter((p) => p.stakingTokenName !== QuoteToken.BNB)
-const bnbPools = pools.filter((p) => p.stakingTokenName === QuoteToken.BNB)
+const nonBnbPools = pools.filter((p) => p.stakingTokenName !== QuoteToken.WBNB)
+const bnbPools = pools.filter((p) => p.stakingTokenName === QuoteToken.WBNB)
 const web3 = getWeb3()
 
 export const fetchPoolsAllowance = async (account) => {
@@ -65,7 +65,7 @@ export const fetchUserStakeBalances = async (account) => {
   )
 
   // WBNB
-  const wbnbPools = pools.filter((p) => p.tokenName === QuoteToken.BNB)
+  const wbnbPools = pools.filter((p) => p.tokenName === QuoteToken.WBNB)
   const wbnbUserInfo = await multicall(
     smartChefBnbABI,
     wbnbPools.map((p) => ({

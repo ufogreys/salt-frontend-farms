@@ -1,7 +1,6 @@
 import poolsConfig from 'config/constants/pools'
 import sousChefABI from 'config/abi/sousChef.json'
 import cakeABI from 'config/abi/cake.json'
-import wbnbABI from 'config/abi/wbnb.json' // FIXME Populate
 import smartChefBnbABI from 'config/abi/smartChefBnb.json'
 import multicall from 'utils/multicall'
 import BigNumber from 'bignumber.js'
@@ -28,7 +27,7 @@ export const fetchPoolsBlockLimits = async () => {
   )
 
   // WBNB
-  const wbnbPools = poolsConfig.filter((p) => p.tokenName === QuoteToken.BNB)
+  const wbnbPools = poolsConfig.filter((p) => p.tokenName === QuoteToken.WBNB)
   const wbnbStarts = await multicall(
     smartChefBnbABI,
     wbnbPools.map((wbnbPool) => ({
@@ -75,16 +74,15 @@ export const fetchPoolsTotalStaking = async () => {
   )
 
   // WBNB
-  const wbnbPools = poolsConfig.filter((p) => p.tokenName === QuoteToken.BNB)
-  const wbnbPoolsTotalStaked = [new BigNumber(0)] // FIXME
-  // const wbnbPoolsTotalStaked = await multicall(
-  //   wbnbABI,
-  //   wbnbPools.map((wbnbPool) => ({
-  //     address: wbnbPool.stakingTokenAddress[CHAIN_ID],
-  //     name: 'balanceOf',
-  //     params: [wbnbPool.contractAddress[CHAIN_ID]],
-  //   })),
-  // )
+  const wbnbPools = poolsConfig.filter((p) => p.tokenName === QuoteToken.WBNB)
+  const wbnbPoolsTotalStaked = await multicall(
+    cakeABI,
+    wbnbPools.map((wbnbPool) => ({
+      address: wbnbPool.stakingTokenAddress[CHAIN_ID],
+      name: 'balanceOf',
+      params: [wbnbPool.contractAddress[CHAIN_ID]],
+    })),
+  )
 
   return [
     ...cakePools.map((p, index) => ({
