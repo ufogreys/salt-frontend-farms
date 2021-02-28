@@ -15,6 +15,8 @@ import masterChef from 'config/abi/masterchef.json'
 import sousChef from 'config/abi/sousChef.json'
 import smartChefBnb from 'config/abi/sousChefBnb.json' // FIXME
 
+const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
+
 const useContract = (abi: AbiItem, address: string, contractOptions?: ContractOptions) => {
   const web3 = useWeb3()
   const [contract, setContract] = useState(new web3.eth.Contract(abi, address, contractOptions))
@@ -71,7 +73,7 @@ export const useSmartChef = (id: number) => {
   const config = poolsConfig.find((pool) => pool.sousId === id)
   const rawAbi = config.poolCategory === PoolCategory.BINANCE ? smartChefBnb : sousChef
   const abi = (rawAbi as unknown) as AbiItem
-  return useContract(abi, config.contractAddress[process.env.REACT_APP_CHAIN_ID])
+  return useContract(abi, config.contractAddress[CHAIN_ID])
 }
 
 export default useContract

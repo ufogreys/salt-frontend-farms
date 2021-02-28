@@ -1,7 +1,6 @@
 import pools from 'config/constants/pools'
 import erc20ABI from 'config/abi/erc20.json'
 import sousChefABI from 'config/abi/sousChef.json'
-import smartChefBnbABI from 'config/abi/smartChefBnb.json' // FIXME? Correct?
 import { QuoteToken } from 'config/constants/types'
 import multicall from 'utils/multicall'
 import { getWeb3 } from 'utils/web3'
@@ -53,22 +52,10 @@ export const fetchUserBalances = async (account) => {
 }
 
 export const fetchUserStakeBalances = async (account) => {
-  // CAKE
-  const cakePools = pools.filter((p) => p.tokenName === QuoteToken.CAKE)
+  const cakePools = pools
   const cakeUserInfo = await multicall(
     sousChefABI,
     cakePools.map((p) => ({
-      address: p.contractAddress[CHAIN_ID],
-      name: 'userInfo',
-      params: [account],
-    })),
-  )
-
-  // WBNB
-  const wbnbPools = pools.filter((p) => p.tokenName === QuoteToken.WBNB)
-  const wbnbUserInfo = await multicall(
-    smartChefBnbABI,
-    wbnbPools.map((p) => ({
       address: p.contractAddress[CHAIN_ID],
       name: 'userInfo',
       params: [account],
@@ -83,33 +70,14 @@ export const fetchUserStakeBalances = async (account) => {
       }),
       {},
     ),
-    ...bnbPools.reduce(
-      (acc, pool, index) => ({
-        ...acc,
-        [pool.sousId]: new BigNumber(wbnbUserInfo[index]?.amount._hex).toJSON(),
-      }),
-      {},
-    ),
   }
 }
 
 export const fetchUserPendingRewards = async (account) => {
-  // CAKE
-  const cakePools = pools.filter((p) => p.tokenName === QuoteToken.CAKE)
+  const cakePools = pools
   const res = await multicall(
     sousChefABI,
     cakePools.map((p) => ({
-      address: p.contractAddress[CHAIN_ID],
-      name: 'pendingReward',
-      params: [account],
-    })),
-  )
-
-  // WBNB
-  const wbnbPools = pools.filter((p) => p.tokenName === QuoteToken.BNB)
-  const wbnbRes = await multicall(
-    smartChefBnbABI,
-    wbnbPools.map((p) => ({
       address: p.contractAddress[CHAIN_ID],
       name: 'pendingReward',
       params: [account],
@@ -121,13 +89,6 @@ export const fetchUserPendingRewards = async (account) => {
       (acc, pool, index) => ({
         ...acc,
         [pool.sousId]: new BigNumber(res[index]).toJSON(),
-      }),
-      {},
-    ),
-    ...pools.reduce(
-      (acc, pool, index) => ({
-        ...acc,
-        [pool.sousId]: new BigNumber(wbnbRes[index]).toJSON(),
       }),
       {},
     ),
