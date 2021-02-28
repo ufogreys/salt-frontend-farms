@@ -15,7 +15,7 @@ const pools: PoolConfig[] = [
     },
     rewardTokenAddress: {
       97: '0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee', // BUSD, didnt find CAKE
-      56: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82', // CAKE
+      56: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82', // CAKE 
     },
     poolCategory: PoolCategory.CORE,
     projectLink: 'https://pancakeswap.finance/',
@@ -38,11 +38,11 @@ const pools: PoolConfig[] = [
       56: '', // SmartChef
     },
     rewardTokenAddress: {
-      97: '0xec5dcb5dbf4b114c9d0f65bccab49ec54f6a0867', // DAI, didnt had WBNB
-      56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', // WBNB
+      97: '0xec5dcb5dbf4b114c9d0f65bccab49ec54f6a0867', // DAI, didnt had WBNB 
+      56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', // WBNB 
     },
-    poolCategory: PoolCategory.BINANCE,
-    projectLink: 'https://binance.com/',
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://pancakeswap.finance/',
     harvest: true,
     tokenPerBlock: '0.00295',
     sortOrder: 1,
