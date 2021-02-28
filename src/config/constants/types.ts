@@ -71,6 +71,7 @@ export interface PoolConfig {
   stakingLimit?: number
   stakingTokenAddress?: Address
   contractAddress: Address
+  rewardTokenAddress: Address
   poolCategory: PoolCategory
   projectLink: string
   tokenPerBlock: string
