@@ -1,11 +1,9 @@
-import { AbiItem } from 'web3-utils'
 import pools from 'config/constants/pools'
-import smartChefABI from 'config/abi/smartchef.json'
-import sousChefABI from 'config/abi/sousChef.json'
+import smartChefABI from 'config/abi/smartChef.json'
+import smartChefBnbABI from 'config/abi/smartChefBnb.json'
 import erc20ABI from 'config/abi/erc20.json'
 import { QuoteToken } from 'config/constants/types'
 import multicall from 'utils/multicall'
-import { getSmartChefAddress } from 'utils/addressHelpers'
 import { getWeb3 } from 'utils/web3'
 import BigNumber from 'bignumber.js'
 
@@ -15,9 +13,7 @@ const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 // BNB pools use the native BNB token (wrapping ? unwrapping is done at the contract level)
 const nonBnbPools = pools.filter((p) => p.stakingTokenName !== QuoteToken.BNB)
 const bnbPools = pools.filter((p) => p.stakingTokenName === QuoteToken.BNB)
-// const nonMasterPools = pools.filter((p) => p.sousId !== 0)
 const web3 = getWeb3()
-const smartChefContract = new web3.eth.Contract((smartChefABI as unknown) as AbiItem, getSmartChefAddress())
 
 export const fetchPoolsAllowance = async (account) => {
   const calls = nonBnbPools.map((p) => ({
@@ -57,32 +53,53 @@ export const fetchUserBalances = async (account) => {
 }
 
 export const fetchUserStakeBalances = async (account) => {
-  const calls = pools.map((p) => ({
+  // Non BNB pools
+  const calls = nonBnbPools.map((p) => ({
     address: p.contractAddress[CHAIN_ID],
     name: 'userInfo',
     params: [account],
   }))
-  const userInfo = await multicall(sousChefABI, calls)
+
+  const userInfoNonBnb = await multicall(smartChefABI, calls)
   const stakedBalances = pools.reduce(
     (acc, pool, index) => ({
       ...acc,
-      [pool.sousId]: new BigNumber(userInfo[index].amount._hex).toJSON(),
+      [pool.sousId]: new BigNumber(userInfoNonBnb[index].amount._hex).toJSON(),
     }),
     {},
   )
 
-  // Salt / Salt pool
-  const { amount: masterPoolAmount } = await smartChefContract.methods.userInfo(account).call()
-  return { ...stakedBalances, 0: new BigNumber(masterPoolAmount).toJSON() }
+  // FIXME BNB pools -- how to get this? Same as non-BNB pools?
+  const bnbCalls = nonBnbPools.map((p) => ({
+    address: p.contractAddress[CHAIN_ID],
+    name: 'userInfo',
+    params: [account],
+  }))
+  // const userInfoBnb = await multicall(smartChefBnbABI, bnbCalls)
+  const userInfoBnb = [{
+    amount: {
+      _hex: 42
+    }
+  }]
+  const stakedBnbBalances = bnbPools.reduce(
+    (acc, pool, index) => ({
+      ...acc,
+      [pool.sousId]: new BigNumber(userInfoBnb[index].amount._hex).toJSON(),
+    }),
+    {},
+  )
+
+  return { ...stakedBalances, ...stakedBnbBalances }
 }
 
 export const fetchUserPendingRewards = async (account) => {
-  const calls = pools.map((p) => ({
+  // Non BNB pools
+  const calls = nonBnbPools.map((p) => ({
     address: p.contractAddress[CHAIN_ID],
     name: 'pendingReward',
     params: [account],
   }))
-  const res = await multicall(sousChefABI, calls)
+  const res = await multicall(smartChefABI, calls)
   const pendingRewards = pools.reduce(
     (acc, pool, index) => ({
       ...acc,
@@ -91,8 +108,21 @@ export const fetchUserPendingRewards = async (account) => {
     {},
   )
 
-  // Salt / Salt pool
-  const pendingReward = await smartChefContract.methods.pendingReward(account).call()
+  // FIXME BNB pools -- how to get this? Same as non-BNB pools?
+  const bnbCalls = bnbPools.map((p) => ({
+    address: p.contractAddress[CHAIN_ID],
+    name: 'pendingReward',
+    params: [account],
+  }))
+  // const bnbRes = await multicall(smartChefABI, bnbCalls)
+  const bnbRes = [42]
+  const bnbPendingRewards = pools.reduce(
+    (acc, pool, index) => ({
+      ...acc,
+      [pool.sousId]: new BigNumber(bnbRes[index]).toJSON(),
+    }),
+    {},
+  )
 
-  return { ...pendingRewards, 0: new BigNumber(pendingReward).toJSON() }
+  return { ...pendingRewards, ...bnbPendingRewards }
 }

@@ -9,7 +9,7 @@ import { useERC20 } from 'hooks/useContract'
 import { useSousApprove } from 'hooks/useApprove'
 import useI18n from 'hooks/useI18n'
 import { useSmartStake } from 'hooks/useStake'
-import { useSousUnstake } from 'hooks/useUnstake'
+import { useSmartUnstake } from 'hooks/useUnstake'
 import useBlock from 'hooks/useBlock'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useSmartChefHarvest } from 'hooks/useHarvest'
@@ -61,7 +61,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
   const block = useBlock()
   const { onApprove } = useSousApprove(stakingTokenContract, sousId)
   const { onStake } = useSmartStake(sousId, isBnbPool)
-  const { onUnstake } = useSousUnstake(sousId)
+  const { onUnstake } = useSmartUnstake(sousId)
   const { onReward } = useSmartChefHarvest(sousId, isBnbPool)
 
   const [requestedApproval, setRequestedApproval] = useState(false)

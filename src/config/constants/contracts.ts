@@ -7,10 +7,6 @@ export default {
     56: '0xB4405445fFAcF2B86BC2bD7D1C874AC739265658',
     97: '0xa5f8061Daf38E813dB352069560FCAeC061594f9',
   },
-  smartChef: {
-    56: '0xfC2BA5B6Ec7A5Fe68546fC8fB55A915b5CA5E261',
-    97: '0xd53186ADd1fc44cB57D13A7482a53eDDf7e48970',
-  },
   wbnb: {
     56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
     97: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
@@ -33,6 +29,6 @@ export default {
   },
   eth: {
     56: '0x2170ed0880ac9a755fd29b2688956bd959f933f8',
-    97: '0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee', // FIXME:
+    97: '0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee',
   },
 }

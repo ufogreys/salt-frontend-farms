@@ -2,7 +2,7 @@ import BigNumber from 'bignumber.js'
 import erc20 from 'config/abi/erc20.json'
 import masterchefABI from 'config/abi/masterchef.json'
 import multicall from 'utils/multicall'
-import { getMasterChefAddress, getSmartChefAddress } from 'utils/addressHelpers'
+import { getMasterChefAddress } from 'utils/addressHelpers'
 import farmsConfig from 'config/constants/farms'
 import { QuoteToken } from '../../config/constants/types'
 
@@ -29,7 +29,7 @@ const fetchFarms = async () => {
         {
           address: farmConfig.isTokenOnly ? farmConfig.tokenAddresses[CHAIN_ID] : lpAdress,
           name: 'balanceOf',
-          params: [farmConfig.isMasterChef ? getMasterChefAddress() : getSmartChefAddress()],
+          params: [getMasterChefAddress()],
         },
         // Total supply of LP tokens
         {

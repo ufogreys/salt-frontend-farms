@@ -22,17 +22,17 @@ const useStake = (pid: number) => {
   return { onStake: handleStake }
 }
 
-export const useSmartStake = (sousId, isUsingBnb = false) => {
+export const useSmartStake = (sousId: number, isUsingBnb = false) => {
   const dispatch = useDispatch()
   const { account } = useWallet()
-  const smartChefContract = useSmartChef()
+  const smartChefContract = useSmartChef(sousId)
 
   const handleStake = useCallback(
     async (amount: string) => {
       const stakeFn = isUsingBnb ? smartStakeBnb : smartStake
       await stakeFn(smartChefContract, amount, account)
-      dispatch(updateUserStakedBalance(sousId, account))
-      dispatch(updateUserBalance(sousId, account))
+      dispatch(updateUserStakedBalance(String(sousId), account))
+      dispatch(updateUserBalance(String(sousId), account))
     },
     [account, dispatch, isUsingBnb, smartChefContract, sousId],
   )
