@@ -46,6 +46,7 @@
     "name": "Withdraw",
     "type": "event"
   },
+  { "inputs": [], "name": "adjustBlockEnd", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
   {
     "inputs": [],
     "name": "bonusEndBlock",

@@ -44,7 +44,7 @@ export const fetchPoolsBlockLimits = async () => {
     })),
   ) // FIXME smartChefBnbABI?
 
-  return {
+  return [
     ...cakePools.map((poolConfig, index) => {
       const startBlock = cakeStarts[index]
       const endBlock = cakeEnds[index]
@@ -59,7 +59,7 @@ export const fetchPoolsBlockLimits = async () => {
       startBlock: new BigNumber(wbnbStarts[index]).toJSON(),
       endBlock: new BigNumber(wbnbEnds[index]).toJSON(),
     })),
-  }
+  ]
 }
 
 export const fetchPoolsTotalStaking = async () => {
