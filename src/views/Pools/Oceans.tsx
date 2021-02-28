@@ -30,7 +30,7 @@ const Farm: React.FC = () => {
 
   const priceToBnb = (tokenName: string, tokenPrice: BigNumber, quoteToken: QuoteToken): BigNumber => {
     const tokenPriceBN = new BigNumber(tokenPrice)
-    if (tokenName === 'BNB') {
+    if (tokenName === 'BNB' || tokenName === 'WBNB') {
       return new BigNumber(1)
     }
     if (tokenPrice && quoteToken === QuoteToken.BUSD) {
@@ -57,7 +57,6 @@ const Farm: React.FC = () => {
     )
     const totalRewardPricePerYear = rewardTokenPriceInBNB.times(pool.tokenPerBlock).times(BLOCKS_PER_YEAR)
     const totalStakingTokenInPool = stakingTokenPriceInBNB.times(getBalanceNumber(pool.totalStaked))
-
     // tokens per block * price of CAKE * blocks_per_year / ( tokens in pool x salt price) * 100
     const apy = totalRewardPricePerYear.div(totalStakingTokenInPool).times(100)
 
