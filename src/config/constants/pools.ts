@@ -25,30 +25,30 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
-  // {
-  //   sousId: 1,
-  //   tokenName: 'BNB',
-  //   stakingTokenName: QuoteToken.SALT,
-  //   stakingTokenAddress: {
-  //     97: '0x85582d24455caaf44fc4f914bdca2a6cb73e6681',
-  //     56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4', // SALT
-  //   },
-  //   contractAddress: {
-  //     97: '0xF08d05d91426A63aB35Ef7f4bBC6E8717B59e838',
-  //     56: '', // SmartChef
-  //   },
-  //   rewardTokenAddress: {
-  //     97: '0xec5dcb5dbf4b114c9d0f65bccab49ec54f6a0867', // DAI, didnt had WBNB
-  //     56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', // WBNB
-  //   },
-  //   poolCategory: PoolCategory.CORE,
-  //   projectLink: 'https://pancakeswap.finance/',
-  //   harvest: true,
-  //   tokenPerBlock: '0.00295',
-  //   sortOrder: 1,
-  //   isFinished: false,
-  //   tokenDecimals: 18,
-  // },
+  {
+    sousId: 1,
+    tokenName: 'BNB',
+    stakingTokenName: QuoteToken.SALT,
+    stakingTokenAddress: {
+      97: '0x85582d24455caaf44fc4f914bdca2a6cb73e6681',
+      56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4', // SALT
+    },
+    contractAddress: {
+      97: '0xF08d05d91426A63aB35Ef7f4bBC6E8717B59e838',
+      56: '', // SmartChef
+    },
+    rewardTokenAddress: {
+      97: '0xec5dcb5dbf4b114c9d0f65bccab49ec54f6a0867', // DAI, didnt had WBNB
+      56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', // WBNB
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://pancakeswap.finance/',
+    harvest: true,
+    tokenPerBlock: '0.00295',
+    sortOrder: 1,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
 ]
 
 export default pools

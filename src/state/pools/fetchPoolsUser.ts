@@ -1,7 +1,7 @@
 import pools from 'config/constants/pools'
 import erc20ABI from 'config/abi/erc20.json'
 import sousChefABI from 'config/abi/sousChef.json'
-import smartChefBnbABI from 'config/abi/smartChefBnb.json' // FIXME Populate
+import smartChefBnbABI from 'config/abi/smartChefBnb.json' // FIXME? Correct?
 import { QuoteToken } from 'config/constants/types'
 import multicall from 'utils/multicall'
 import { getWeb3 } from 'utils/web3'
@@ -73,20 +73,20 @@ export const fetchUserStakeBalances = async (account) => {
       name: 'userInfo',
       params: [account],
     })),
-  ) // FIXME smartChefBnbABI?
+  )
 
   return {
     ...pools.reduce(
       (acc, pool, index) => ({
         ...acc,
-        [pool.sousId]: new BigNumber(cakeUserInfo[index].amount._hex).toJSON(),
+        [pool.sousId]: new BigNumber(cakeUserInfo[index]?.amount._hex).toJSON(),
       }),
       {},
     ),
     ...bnbPools.reduce(
       (acc, pool, index) => ({
         ...acc,
-        [pool.sousId]: new BigNumber(wbnbUserInfo[index].amount._hex).toJSON(),
+        [pool.sousId]: new BigNumber(wbnbUserInfo[index]?.amount._hex).toJSON(),
       }),
       {},
     ),
@@ -114,7 +114,7 @@ export const fetchUserPendingRewards = async (account) => {
       name: 'pendingReward',
       params: [account],
     })),
-  ) // FIXME smartChefBnbABI?
+  )
 
   return {
     ...pools.reduce(

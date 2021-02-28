@@ -35,14 +35,14 @@ export const fetchPoolsBlockLimits = async () => {
       address: wbnbPool.contractAddress[CHAIN_ID],
       name: 'startBlock',
     })),
-  ) // FIXME smartChefBnbABI?
+  )
   const wbnbEnds = await multicall(
     smartChefBnbABI,
     wbnbPools.map((wbnbPool) => ({
       address: wbnbPool.contractAddress[CHAIN_ID],
       name: 'bonusEndBlock',
     })),
-  ) // FIXME smartChefBnbABI?
+  )
 
   return [
     ...cakePools.map((poolConfig, index) => {
