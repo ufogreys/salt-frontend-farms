@@ -53,56 +53,52 @@ export const fetchUserBalances = async (account) => {
 }
 
 export const fetchUserStakeBalances = async (account) => {
-  // Non BNB pools
-  const calls = nonBnbPools.map((p) => ({
+  // CAKE
+  const cakePools = pools.filter(p => p.stakingTokenName === QuoteToken.CAKE)
+  const cakeCalls = cakePools.map((p) => ({
     address: p.contractAddress[CHAIN_ID],
     name: 'userInfo',
     params: [account],
   }))
 
-  const userInfoNonBnb = await multicall(smartChefABI, calls)
-  const stakedBalances = pools.reduce(
+  const cakeUserInfo = await multicall(smartChefABI, cakeCalls)
+  const stakedCakeBalances = pools.reduce(
     (acc, pool, index) => ({
       ...acc,
-      [pool.sousId]: new BigNumber(userInfoNonBnb[index].amount._hex).toJSON(),
+      [pool.sousId]: new BigNumber(cakeUserInfo[index].amount._hex).toJSON(),
     }),
     {},
   )
 
-  // FIXME BNB pools -- how to get this? Same as non-BNB pools?
-  const bnbCalls = nonBnbPools.map((p) => ({
+  // WBNB
+  const wbnbPools = pools.filter(p => p.stakingTokenName === QuoteToken.BNB)
+  const wbnbCalls = wbnbPools.map((p) => ({
     address: p.contractAddress[CHAIN_ID],
     name: 'userInfo',
     params: [account],
   }))
-  // const userInfoBnb = await multicall(smartChefBnbABI, bnbCalls)
-  const userInfoBnb = [
-    {
-      amount: {
-        _hex: 42,
-      },
-    },
-  ]
-  const stakedBnbBalances = bnbPools.reduce(
+  const wbnbUserInfo = await multicall(smartChefBnbABI, wbnbCalls) // FIXME smartChefBnbABI?
+  const stakedWbnbBalances = bnbPools.reduce(
     (acc, pool, index) => ({
       ...acc,
-      [pool.sousId]: new BigNumber(userInfoBnb[index].amount._hex).toJSON(),
+      [pool.sousId]: new BigNumber(wbnbUserInfo[index].amount._hex).toJSON(),
     }),
     {},
   )
 
-  return { ...stakedBalances, ...stakedBnbBalances }
+  return { ...stakedCakeBalances, ...stakedWbnbBalances }
 }
 
 export const fetchUserPendingRewards = async (account) => {
-  // Non BNB pools
-  const calls = nonBnbPools.map((p) => ({
+  // CAKE
+  const cakePools = pools.filter(p => p.stakingTokenName === QuoteToken.CAKE)
+  const calls = cakePools.map((p) => ({
     address: p.contractAddress[CHAIN_ID],
     name: 'pendingReward',
     params: [account],
   }))
   const res = await multicall(smartChefABI, calls)
-  const pendingRewards = pools.reduce(
+  const cakePendingRewards = pools.reduce(
     (acc, pool, index) => ({
       ...acc,
       [pool.sousId]: new BigNumber(res[index]).toJSON(),
@@ -110,21 +106,21 @@ export const fetchUserPendingRewards = async (account) => {
     {},
   )
 
-  // FIXME BNB pools -- how to get this? Same as non-BNB pools?
-  const bnbCalls = bnbPools.map((p) => ({
+  // WBNB
+  const wbnbPools = pools.filter(p => p.stakingTokenName === QuoteToken.BNB)
+  const wbnbCalls = wbnbPools.map((p) => ({
     address: p.contractAddress[CHAIN_ID],
     name: 'pendingReward',
     params: [account],
   }))
-  // const bnbRes = await multicall(smartChefABI, bnbCalls)
-  const bnbRes = [42]
-  const bnbPendingRewards = pools.reduce(
+  const wbnbRes = await multicall(smartChefABI, wbnbCalls) // FIXME smartChefBnbABI?
+  const wbnbPendingRewards = pools.reduce(
     (acc, pool, index) => ({
       ...acc,
-      [pool.sousId]: new BigNumber(bnbRes[index]).toJSON(),
+      [pool.sousId]: new BigNumber(wbnbRes[index]).toJSON(),
     }),
     {},
   )
 
-  return { ...pendingRewards, ...bnbPendingRewards }
+  return { ...cakePendingRewards, ...wbnbPendingRewards }
 }
