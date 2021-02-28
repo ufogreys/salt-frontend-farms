@@ -55,19 +55,25 @@ export const fetchUserBalances = async (account) => {
 export const fetchUserStakeBalances = async (account) => {
   // CAKE
   const cakePools = pools.filter((p) => p.stakingTokenName === QuoteToken.CAKE)
-  const cakeUserInfo = await multicall(sousChefABI, cakePools.map((p) => ({
-    address: p.contractAddress[CHAIN_ID],
-    name: 'userInfo',
-    params: [account],
-  })))
+  const cakeUserInfo = await multicall(
+    sousChefABI,
+    cakePools.map((p) => ({
+      address: p.contractAddress[CHAIN_ID],
+      name: 'userInfo',
+      params: [account],
+    })),
+  )
 
   // WBNB
   const wbnbPools = pools.filter((p) => p.stakingTokenName === QuoteToken.BNB)
-  const wbnbUserInfo = await multicall(smartChefBnbABI, wbnbPools.map((p) => ({
-    address: p.contractAddress[CHAIN_ID],
-    name: 'userInfo',
-    params: [account],
-  }))) // FIXME smartChefBnbABI?
+  const wbnbUserInfo = await multicall(
+    smartChefBnbABI,
+    wbnbPools.map((p) => ({
+      address: p.contractAddress[CHAIN_ID],
+      name: 'userInfo',
+      params: [account],
+    })),
+  ) // FIXME smartChefBnbABI?
 
   return {
     ...pools.reduce(
@@ -76,32 +82,39 @@ export const fetchUserStakeBalances = async (account) => {
         [pool.sousId]: new BigNumber(cakeUserInfo[index].amount._hex).toJSON(),
       }),
       {},
-    ), ...bnbPools.reduce(
+    ),
+    ...bnbPools.reduce(
       (acc, pool, index) => ({
         ...acc,
         [pool.sousId]: new BigNumber(wbnbUserInfo[index].amount._hex).toJSON(),
       }),
       {},
-    )
+    ),
   }
 }
 
 export const fetchUserPendingRewards = async (account) => {
   // CAKE
   const cakePools = pools.filter((p) => p.stakingTokenName === QuoteToken.CAKE)
-  const res = await multicall(sousChefABI, cakePools.map((p) => ({
-    address: p.contractAddress[CHAIN_ID],
-    name: 'pendingReward',
-    params: [account],
-  })))
+  const res = await multicall(
+    sousChefABI,
+    cakePools.map((p) => ({
+      address: p.contractAddress[CHAIN_ID],
+      name: 'pendingReward',
+      params: [account],
+    })),
+  )
 
   // WBNB
   const wbnbPools = pools.filter((p) => p.stakingTokenName === QuoteToken.BNB)
-  const wbnbRes = await multicall(smartChefBnbABI, wbnbPools.map((p) => ({
-    address: p.contractAddress[CHAIN_ID],
-    name: 'pendingReward',
-    params: [account],
-  }))) // FIXME smartChefBnbABI?
+  const wbnbRes = await multicall(
+    smartChefBnbABI,
+    wbnbPools.map((p) => ({
+      address: p.contractAddress[CHAIN_ID],
+      name: 'pendingReward',
+      params: [account],
+    })),
+  ) // FIXME smartChefBnbABI?
 
   return {
     ...pools.reduce(
@@ -110,12 +123,13 @@ export const fetchUserPendingRewards = async (account) => {
         [pool.sousId]: new BigNumber(res[index]).toJSON(),
       }),
       {},
-    ), ...pools.reduce(
+    ),
+    ...pools.reduce(
       (acc, pool, index) => ({
         ...acc,
         [pool.sousId]: new BigNumber(wbnbRes[index]).toJSON(),
       }),
       {},
-    )
+    ),
   }
 }
