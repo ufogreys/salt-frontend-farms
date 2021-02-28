@@ -42,7 +42,7 @@ const pools: PoolConfig[] = [
       56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', // WBNB
     },
     poolCategory: PoolCategory.CORE,
-    projectLink: 'https://pancakeswap.finance/',
+    projectLink: 'https://binance.com/',
     harvest: true,
     tokenPerBlock: '0.0001736111111',
     sortOrder: 2,
