@@ -1,7 +1,7 @@
 import pools from 'config/constants/pools'
-import smartChefABI from 'config/abi/smartChef.json'
-import smartChefBnbABI from 'config/abi/smartChefBnb.json'
 import erc20ABI from 'config/abi/erc20.json'
+import sousChefABI from 'config/abi/sousChef.json'
+import smartChefBnbABI from 'config/abi/smartChefBnb.json' // FIXME Populate
 import { QuoteToken } from 'config/constants/types'
 import multicall from 'utils/multicall'
 import { getWeb3 } from 'utils/web3'
@@ -54,73 +54,68 @@ export const fetchUserBalances = async (account) => {
 
 export const fetchUserStakeBalances = async (account) => {
   // CAKE
-  const cakePools = pools.filter(p => p.stakingTokenName === QuoteToken.CAKE)
-  const cakeCalls = cakePools.map((p) => ({
+  const cakePools = pools.filter((p) => p.stakingTokenName === QuoteToken.CAKE)
+  const cakeUserInfo = await multicall(sousChefABI, cakePools.map((p) => ({
     address: p.contractAddress[CHAIN_ID],
     name: 'userInfo',
     params: [account],
-  }))
-
-  const cakeUserInfo = await multicall(smartChefABI, cakeCalls)
-  const stakedCakeBalances = pools.reduce(
-    (acc, pool, index) => ({
-      ...acc,
-      [pool.sousId]: new BigNumber(cakeUserInfo[index].amount._hex).toJSON(),
-    }),
-    {},
-  )
+  })))
 
   // WBNB
-  const wbnbPools = pools.filter(p => p.stakingTokenName === QuoteToken.BNB)
-  const wbnbCalls = wbnbPools.map((p) => ({
+  const wbnbPools = pools.filter((p) => p.stakingTokenName === QuoteToken.BNB)
+  const wbnbUserInfo = await multicall(smartChefBnbABI, wbnbPools.map((p) => ({
     address: p.contractAddress[CHAIN_ID],
     name: 'userInfo',
     params: [account],
-  }))
-  const wbnbUserInfo = await multicall(smartChefBnbABI, wbnbCalls) // FIXME smartChefBnbABI?
-  const stakedWbnbBalances = bnbPools.reduce(
-    (acc, pool, index) => ({
-      ...acc,
-      [pool.sousId]: new BigNumber(wbnbUserInfo[index].amount._hex).toJSON(),
-    }),
-    {},
-  )
+  }))) // FIXME smartChefBnbABI?
 
-  return { ...stakedCakeBalances, ...stakedWbnbBalances }
+  return {
+    ...pools.reduce(
+      (acc, pool, index) => ({
+        ...acc,
+        [pool.sousId]: new BigNumber(cakeUserInfo[index].amount._hex).toJSON(),
+      }),
+      {},
+    ), ...bnbPools.reduce(
+      (acc, pool, index) => ({
+        ...acc,
+        [pool.sousId]: new BigNumber(wbnbUserInfo[index].amount._hex).toJSON(),
+      }),
+      {},
+    )
+  }
 }
 
 export const fetchUserPendingRewards = async (account) => {
   // CAKE
-  const cakePools = pools.filter(p => p.stakingTokenName === QuoteToken.CAKE)
-  const calls = cakePools.map((p) => ({
+  const cakePools = pools.filter((p) => p.stakingTokenName === QuoteToken.CAKE)
+  const res = await multicall(sousChefABI, cakePools.map((p) => ({
     address: p.contractAddress[CHAIN_ID],
     name: 'pendingReward',
     params: [account],
-  }))
-  const res = await multicall(smartChefABI, calls)
-  const cakePendingRewards = pools.reduce(
-    (acc, pool, index) => ({
-      ...acc,
-      [pool.sousId]: new BigNumber(res[index]).toJSON(),
-    }),
-    {},
-  )
+  })))
 
   // WBNB
-  const wbnbPools = pools.filter(p => p.stakingTokenName === QuoteToken.BNB)
-  const wbnbCalls = wbnbPools.map((p) => ({
+  const wbnbPools = pools.filter((p) => p.stakingTokenName === QuoteToken.BNB)
+  const wbnbRes = await multicall(smartChefBnbABI, wbnbPools.map((p) => ({
     address: p.contractAddress[CHAIN_ID],
     name: 'pendingReward',
     params: [account],
-  }))
-  const wbnbRes = await multicall(smartChefABI, wbnbCalls) // FIXME smartChefBnbABI?
-  const wbnbPendingRewards = pools.reduce(
-    (acc, pool, index) => ({
-      ...acc,
-      [pool.sousId]: new BigNumber(wbnbRes[index]).toJSON(),
-    }),
-    {},
-  )
+  }))) // FIXME smartChefBnbABI?
 
-  return { ...cakePendingRewards, ...wbnbPendingRewards }
+  return {
+    ...pools.reduce(
+      (acc, pool, index) => ({
+        ...acc,
+        [pool.sousId]: new BigNumber(res[index]).toJSON(),
+      }),
+      {},
+    ), ...pools.reduce(
+      (acc, pool, index) => ({
+        ...acc,
+        [pool.sousId]: new BigNumber(wbnbRes[index]).toJSON(),
+      }),
+      {},
+    )
+  }
 }
