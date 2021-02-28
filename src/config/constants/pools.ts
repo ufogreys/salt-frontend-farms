@@ -35,7 +35,7 @@ const pools: PoolConfig[] = [
     },
     contractAddress: {
       97: '0xF08d05d91426A63aB35Ef7f4bBC6E8717B59e838',
-      56: '', // SmartChef
+      56: '0x8eAFF0bF4C7e8a9aA3cFe13e2B4533D23251fdaF', // SmartChef
     },
     rewardTokenAddress: {
       97: '0xec5dcb5dbf4b114c9d0f65bccab49ec54f6a0867', // DAI, didnt had WBNB
