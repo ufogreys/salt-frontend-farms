@@ -11,7 +11,7 @@ const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
 export const fetchPoolsBlockLimits = async () => {
   // CAKE
-  const cakePools = poolsConfig.filter((p) => p.stakingTokenName === QuoteToken.CAKE)
+  const cakePools = poolsConfig.filter((p) => p.tokenName === QuoteToken.CAKE)
   const cakeStarts = await multicall(
     sousChefABI,
     cakePools.map((cakePool) => ({
@@ -28,7 +28,7 @@ export const fetchPoolsBlockLimits = async () => {
   )
 
   // WBNB
-  const wbnbPools = poolsConfig.filter((p) => p.stakingTokenName === QuoteToken.BNB)
+  const wbnbPools = poolsConfig.filter((p) => p.tokenName === QuoteToken.BNB)
   const wbnbStarts = await multicall(
     smartChefBnbABI,
     wbnbPools.map((wbnbPool) => ({
@@ -64,7 +64,7 @@ export const fetchPoolsBlockLimits = async () => {
 
 export const fetchPoolsTotalStaking = async () => {
   // CAKE
-  const cakePools = poolsConfig.filter((p) => p.stakingTokenName === QuoteToken.CAKE)
+  const cakePools = poolsConfig.filter((p) => p.tokenName === QuoteToken.CAKE)
   const cakePoolsTotalStaked = await multicall(
     cakeABI,
     cakePools.map((cakePool) => ({
@@ -75,15 +75,16 @@ export const fetchPoolsTotalStaking = async () => {
   )
 
   // WBNB
-  const wbnbPools = poolsConfig.filter((p) => p.stakingTokenName === QuoteToken.BNB)
-  const wbnbPoolsTotalStaked = await multicall(
-    wbnbABI,
-    wbnbPools.map((wbnbPool) => ({
-      address: wbnbPool.stakingTokenAddress[CHAIN_ID],
-      name: 'balanceOf',
-      params: [wbnbPool.contractAddress[CHAIN_ID]],
-    })),
-  ) // FIXME
+  const wbnbPools = poolsConfig.filter((p) => p.tokenName === QuoteToken.BNB)
+  const wbnbPoolsTotalStaked = [new BigNumber(0)]; // FIXME
+  // const wbnbPoolsTotalStaked = await multicall(
+  //   wbnbABI,
+  //   wbnbPools.map((wbnbPool) => ({
+  //     address: wbnbPool.stakingTokenAddress[CHAIN_ID],
+  //     name: 'balanceOf',
+  //     params: [wbnbPool.contractAddress[CHAIN_ID]],
+  //   })),
+  // )
 
   return [
     ...cakePools.map((p, index) => ({
