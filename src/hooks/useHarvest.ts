@@ -38,7 +38,7 @@ export const useSmartChefHarvest = (sousId, isUsingBnb = false) => {
   const smartChefContract = useSmartChef(sousId)
 
   const handleHarvest = useCallback(async () => {
-    const harvestFn = isUsingBnb ? smartHarvestBnb : smartHarvest;
+    const harvestFn = isUsingBnb ? smartHarvestBnb : smartHarvest
     await harvestFn(smartChefContract, account)
     dispatch(updateUserPendingReward(sousId, account))
     dispatch(updateUserBalance(sousId, account))

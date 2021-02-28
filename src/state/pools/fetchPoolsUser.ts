@@ -76,11 +76,13 @@ export const fetchUserStakeBalances = async (account) => {
     params: [account],
   }))
   // const userInfoBnb = await multicall(smartChefBnbABI, bnbCalls)
-  const userInfoBnb = [{
-    amount: {
-      _hex: 42
-    }
-  }]
+  const userInfoBnb = [
+    {
+      amount: {
+        _hex: 42,
+      },
+    },
+  ]
   const stakedBnbBalances = bnbPools.reduce(
     (acc, pool, index) => ({
       ...acc,
