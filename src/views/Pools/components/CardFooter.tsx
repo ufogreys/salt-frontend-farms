@@ -123,7 +123,7 @@ const CardFooter: React.FC<Props> = ({
           {blocksUntilStart === 0 && blocksRemaining > 0 && (
             <Row>
               <FlexFull>
-                <Label>{TranslateString(410, 'End')}:</Label>
+                <Label>{TranslateString(411, 'End')}:</Label>
               </FlexFull>
               <Balance fontSize="14px" isDisabled={isFinished} value={blocksRemaining} unit={unit} decimals={0} />
             </Row>
