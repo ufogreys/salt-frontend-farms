@@ -195,6 +195,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
         isFinished={isFinished}
         blocksUntilStart={blocksUntilStart}
         poolCategory={poolCategory}
+        unit="blocks"
       />
     </Card>
   )
