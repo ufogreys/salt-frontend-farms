@@ -14,7 +14,7 @@ import useBlock from 'hooks/useBlock'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useSmartChefHarvest } from 'hooks/useHarvest'
 import Balance from 'components/Balance'
-import { QuoteToken } from 'config/constants/types'
+import { QuoteToken, PoolCategory } from 'config/constants/types'
 import { Pool } from 'state/types'
 import DepositModal from './DepositModal'
 import WithdrawModal from './WithdrawModal'
@@ -53,14 +53,16 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
     userData,
     stakingLimit,
   } = pool
+  // Pools using native BNB behave differently than pools using a token
+  const isBnbPool = poolCategory === PoolCategory.BINANCE
   const TranslateString = useI18n()
   const stakingTokenContract = useERC20(stakingTokenAddress[CHAIN_ID])
   const { account } = useWallet()
   const block = useBlock()
   const { onApprove } = useSousApprove(stakingTokenContract, sousId)
-  const { onStake } = useSmartStake(sousId)
+  const { onStake } = useSmartStake(sousId, isBnbPool)
   const { onUnstake } = useSmartUnstake(sousId)
-  const { onReward } = useSmartChefHarvest(sousId)
+  const { onReward } = useSmartChefHarvest(sousId, isBnbPool)
 
   const [requestedApproval, setRequestedApproval] = useState(false)
   const [pendingTx, setPendingTx] = useState(false)
@@ -74,7 +76,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
   const blocksRemaining = Math.max(endBlock - block, 0)
   const isOldSyrup = stakingTokenName === QuoteToken.SYRUP
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
-  const needsApproval = !accountHasStakedBalance && !allowance.toNumber()
+  const needsApproval = !accountHasStakedBalance && !allowance.toNumber() && !isBnbPool
   const isCardActive = isFinished && accountHasStakedBalance
 
   const convertedLimit = new BigNumber(stakingLimit).multipliedBy(new BigNumber(10).pow(tokenDecimals))
