@@ -1,6 +1,6 @@
 import pools from 'config/constants/pools'
 import erc20ABI from 'config/abi/erc20.json'
-import smartChefABI from 'config/abi/smartChef.json'
+import smartChefABI from 'config/abi/smartchef.json'
 import multicall from 'utils/multicall'
 import { getWeb3 } from 'utils/web3'
 import BigNumber from 'bignumber.js'

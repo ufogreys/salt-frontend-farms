@@ -11,7 +11,7 @@ import pancakeRabbits from 'config/abi/pancakeRabbits.json'
 import lottery from 'config/abi/lottery.json'
 import lotteryTicket from 'config/abi/lotteryNft.json'
 import masterChef from 'config/abi/masterchef.json'
-import smartChefABI from 'config/abi/smartChef.json'
+import smartChefABI from 'config/abi/smartchef.json'
 
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
