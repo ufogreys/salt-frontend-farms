@@ -49,6 +49,30 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 2,
+    tokenName: 'SLIME',
+    stakingTokenName: QuoteToken.SALT,
+    stakingTokenAddress: {
+      97: '0x85582d24455caaf44fc4f914bdca2a6cb73e6681',
+      56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4', // SALT
+    },
+    contractAddress: {
+      97: '0xF08d05d91426A63aB35Ef7f4bBC6E8717B59e838',
+      56: '0xFC4A74E326F34dA2954F8B0De39A759e14B5472f', // SmartChef
+    },
+    rewardTokenAddress: {
+      97: '0xec5dcb5dbf4b114c9d0f65bccab49ec54f6a0867', // DAI, didnt had SLIME
+      56: '0x4fcfa6cc8914ab455b5b33df916d90bfe70b6ab1', // SLIME
+    },
+    poolCategory: PoolCategory.COMMUNITY,
+    projectLink: 'https://slime.finance/',
+    harvest: true,
+    tokenPerBlock: '0.00496031746',
+    sortOrder: 3,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
 ]
 
 export default pools

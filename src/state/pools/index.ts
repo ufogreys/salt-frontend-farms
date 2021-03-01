@@ -33,7 +33,7 @@ export const PoolsSlice = createSlice({
     updatePoolsUserData: (state, action) => {
       const { field, value, sousId } = action.payload
       const index = state.data.findIndex((p) => p.sousId === sousId)
-      state.data[index] = { ...state.data[index], userData: { ...state.data[index].userData, [field]: value } }
+      state.data[index] = { ...state.data[index], userData: { ...state.data[index]?.userData, [field]: value } }
     },
   },
 })
