@@ -46,16 +46,16 @@ const config: MenuEntry[] = [
   //   icon: 'NftIcon',
   //   href: '/nft',
   // },
-  // {
-  //   label: 'Info',
-  //   icon: 'InfoIcon',
-  //   items: [
-  //     {
-  //       label: 'SaltSwap',
-  //       href: '#',
-  //     },
-  //   ],
-  // },
+  {
+    label: 'Listings',
+    icon: 'ListingIcon',
+    items: [
+      {
+        label: 'DappRadar',
+        href: 'https://dappradar.com/binance-smart-chain/defi/saltswap',
+      },
+    ],
+  },
   // {
   //   label: 'IFO',
   //   icon: 'IfoIcon',

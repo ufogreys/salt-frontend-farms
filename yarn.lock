@@ -1926,10 +1926,10 @@
     eslint-plugin-react "^7.21.5"
     eslint-plugin-react-hooks "^4.2.0"
 
-"@saltswap/uikit@^1.2.19":
-  version "1.2.19"
-  resolved "https://registry.yarnpkg.com/@saltswap/uikit/-/uikit-1.2.19.tgz#4e94e5576f30c1e6dc67c39bdf219461523ccaf9"
-  integrity sha512-dhVKQVA/o54GqSf8dOHlUHDaA9w8dx+b2vXlFme2IjaaCek+hhgmu5zaFVROYLhcSJg+RD79qtPm41o3OiRVRA==
+"@saltswap/uikit@^1.2.20":
+  version "1.2.20"
+  resolved "https://registry.yarnpkg.com/@saltswap/uikit/-/uikit-1.2.20.tgz#621fb3f159b4ec4dfe02dae8fcd28ebbb8fe2c16"
+  integrity sha512-R/feOXJz89U3omNvKtzadO3guuHlU8w7Nlfau42oO4I7xO+TAH3aLI2VA+SSbM0EwH8mV8ndAXBcTrrqkJM6+w==
   dependencies:
     "@types/lodash" "^4.14.162"
     "@types/styled-system" "^5.1.10"
