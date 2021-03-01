@@ -40,7 +40,6 @@ const Farm: React.FC = () => {
   }
 
   const poolsWithApy = pools.map((pool) => {
-    // const isBnbPool = pool.poolCategory === PoolCategory.BINANCE
     const rewardTokenFarm = farms.find((f) => f.tokenSymbol === pool.tokenName)
     const stakingTokenFarm = farms.find((s) => s.tokenSymbol === pool.stakingTokenName)
 
