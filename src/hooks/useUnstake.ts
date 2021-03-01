@@ -7,7 +7,7 @@ import {
   updateUserBalance,
   updateUserPendingReward,
 } from 'state/actions'
-import { unstake, smartChefUnstake } from 'utils/callHelpers'
+import { unstake, smartUnstake } from 'utils/callHelpers'
 import { useMasterchef, useSmartChef } from './useContract'
 
 const useUnstake = (pid: number) => {
@@ -34,7 +34,7 @@ export const useSmartUnstake = (sousId: number) => {
 
   const handleUnstake = useCallback(
     async (amount: string) => {
-      await smartChefUnstake(smartChefContract, amount, account)
+      await smartUnstake(smartChefContract, amount, account)
       dispatch(updateUserStakedBalance(String(sousId), account))
       dispatch(updateUserBalance(String(sousId), account))
       dispatch(updateUserPendingReward(String(sousId), account))
