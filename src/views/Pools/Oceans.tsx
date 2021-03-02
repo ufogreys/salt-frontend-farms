@@ -10,7 +10,7 @@ import partition from 'lodash/partition'
 import useI18n from 'hooks/useI18n'
 import useBlock from 'hooks/useBlock'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useFarms, usePriceBnbBusd, usePools } from 'state/hooks'
+import { useFarms, usePriceBnbBusd, usePools, usePriceSlimeBnb } from 'state/hooks'
 import { QuoteToken } from 'config/constants/types'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
@@ -27,6 +27,7 @@ const Farm: React.FC = () => {
   const pools = usePools(account)
   const bnbPriceUSD = usePriceBnbBusd()
   const block = useBlock()
+  const slimePrice = usePriceSlimeBnb()
 
   const priceToBnb = (tokenName: string, tokenPrice: BigNumber, quoteToken: QuoteToken): BigNumber => {
     const tokenPriceBN = new BigNumber(tokenPrice)
@@ -34,7 +35,7 @@ const Farm: React.FC = () => {
       return new BigNumber(1)
     }
     if (tokenName === 'SLIME') {
-      return new BigNumber(26).div(bnbPriceUSD)
+      return slimePrice
     }
     if (tokenPrice && quoteToken === QuoteToken.BUSD) {
       return tokenPriceBN.div(bnbPriceUSD)

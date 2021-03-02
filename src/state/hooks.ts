@@ -3,9 +3,14 @@ import { useEffect, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import useRefresh from 'hooks/useRefresh'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
+import poolsConfig from 'config/constants/pools'
+import erc20 from 'config/abi/erc20.json'
+import multicall from 'utils/multicall'
 import { fetchFarmsPublicDataAsync, fetchPoolsPublicDataAsync, fetchPoolsUserDataAsync } from './actions'
 import { State, Farm, Pool } from './types'
 import { QuoteToken } from '../config/constants/types'
+
+const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
 const ZERO = new BigNumber(0)
 
@@ -69,6 +74,37 @@ export const usePriceBnbBusd = (): BigNumber => {
   const farm = useFarmFromPid(pid)
   return farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : ZERO
 }
+
+export const usePriceSlimeBnb = () => {
+  const [price, setPrice] = useState(new BigNumber(0));
+
+  useEffect(() => {
+    const fetchPrice = async () => {
+      const lpAddress = '0xcb645714520080EF4E65De3254d61356262F0818' // SLIME/BNB LP
+      const [wbnbTokenBalanceLP, slimeTokenBalanceLP] = await multicall(erc20, [
+        {
+          address: poolsConfig.find((p) => p.sousId === 1).rewardTokenAddress[CHAIN_ID],
+          name: 'balanceOf',
+          params: [lpAddress],
+        },
+        {
+          address: poolsConfig.find((p) => p.sousId === 2).rewardTokenAddress[CHAIN_ID],
+          name: 'balanceOf',
+          params: [lpAddress],
+        },
+      ])
+
+      if (!slimeTokenBalanceLP || !wbnbTokenBalanceLP) return
+
+
+      setPrice((new BigNumber(slimeTokenBalanceLP).div(new BigNumber(wbnbTokenBalanceLP))))
+    };
+
+    fetchPrice();
+  }, []);
+
+  return price;
+};
 
 export const usePriceEthBusd = (): BigNumber => new BigNumber(1477)
 
