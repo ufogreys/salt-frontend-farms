@@ -51,7 +51,7 @@ const pools: PoolConfig[] = [
   },
   {
     sousId: 2,
-    tokenName: 'SLIME',
+    tokenName: 'SLME',
     stakingTokenName: QuoteToken.SALT,
     stakingTokenAddress: {
       97: '0x85582d24455caaf44fc4f914bdca2a6cb73e6681',
