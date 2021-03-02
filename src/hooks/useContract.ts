@@ -15,7 +15,6 @@ import masterChef from 'config/abi/masterchef.json'
 import sousChef from 'config/abi/sousChef.json'
 import smartChefBnb from 'config/abi/sousChefBnb.json' // FIXME
 
-
 const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
 const useContract = (abi: AbiItem, address: string, contractOptions?: ContractOptions) => {

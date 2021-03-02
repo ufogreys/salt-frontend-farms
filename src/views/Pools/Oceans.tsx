@@ -34,7 +34,7 @@ const Farm: React.FC = () => {
       return new BigNumber(1)
     }
     if (tokenName === 'SLIME') {
-      return new BigNumber(26).div(bnbPriceUSD)
+      return new BigNumber(22).div(bnbPriceUSD)
     }
     if (tokenPrice && quoteToken === QuoteToken.BUSD) {
       return tokenPriceBN.div(bnbPriceUSD)
