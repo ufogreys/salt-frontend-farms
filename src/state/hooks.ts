@@ -97,10 +97,10 @@ export const usePriceSlimeBnb = () => {
       if (!slimeTokenBalanceLP || !wbnbTokenBalanceLP) return
 
       setPrice(new BigNumber(wbnbTokenBalanceLP).div(new BigNumber(slimeTokenBalanceLP)))
-    };
+    }
 
-    fetchPrice();
-  }, []);
+    fetchPrice()
+  }, [])
 
   return price
 }
