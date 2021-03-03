@@ -76,7 +76,7 @@ export const usePriceBnbBusd = (): BigNumber => {
 }
 
 export const usePriceSlimeBnb = () => {
-  const [price, setPrice] = useState(new BigNumber(0));
+  const [price, setPrice] = useState(new BigNumber(0))
 
   useEffect(() => {
     const fetchPrice = async () => {
@@ -96,15 +96,14 @@ export const usePriceSlimeBnb = () => {
 
       if (!slimeTokenBalanceLP || !wbnbTokenBalanceLP) return
 
-
-      setPrice((new BigNumber(wbnbTokenBalanceLP).div(new BigNumber(slimeTokenBalanceLP))))
+      setPrice(new BigNumber(wbnbTokenBalanceLP).div(new BigNumber(slimeTokenBalanceLP)))
     };
 
     fetchPrice();
   }, []);
 
-  return price;
-};
+  return price
+}
 
 export const usePriceEthBusd = (): BigNumber => new BigNumber(1477)
 

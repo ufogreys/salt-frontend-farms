@@ -58,9 +58,6 @@ const Farm: React.FC = () => {
       rewardTokenFarm?.tokenPriceVsQuote,
       rewardTokenFarm?.quoteTokenSymbol,
     )
-    // console.log("pool.tokenName",pool.tokenName)
-    // console.log("rewardTokenPriceInBNB",rewardTokenPriceInBNB.toString())
-    // console.log("stakingTokenPriceInBNB", stakingTokenPriceInBNB.toString())
     const totalRewardPricePerYear = rewardTokenPriceInBNB.times(pool.tokenPerBlock).times(BLOCKS_PER_YEAR)
     const totalStakingTokenInPool = stakingTokenPriceInBNB.times(getBalanceNumber(pool.totalStaked))
     // tokens per block * price of CAKE * blocks_per_year / ( tokens in pool x salt price) * 100
