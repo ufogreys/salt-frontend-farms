@@ -67,10 +67,10 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
   const [requestedApproval, setRequestedApproval] = useState(false)
   const [pendingTx, setPendingTx] = useState(false)
 
-  const allowance = new BigNumber(Number(userData?.allowance) || 0)
-  const stakingTokenBalance = new BigNumber(Number(userData?.stakingTokenBalance) || 0)
-  const stakedBalance = new BigNumber(Number(userData?.stakedBalance) || 0)
-  const earnings = new BigNumber(Number(userData?.pendingReward) || 0)
+  const allowance = new BigNumber(userData?.allowance || 0)
+  const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
+  const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
+  const earnings = new BigNumber(userData?.pendingReward || 0)
 
   const blocksUntilStart = Math.max(startBlock - block, 0)
   const blocksRemaining = Math.max(endBlock - block, 0)
