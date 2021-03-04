@@ -111,7 +111,7 @@ export const usePriceEggBnb = () => {
   useEffect(() => {
     const fetchPrice = async () => {
       const lpAddress = '0xd1B59D11316E87C3a0A069E80F590BA35cD8D8D3' // EGG/BNB LP
-      const [wbnbTokenBalanceLP, slimeTokenBalanceLP] = await multicall(erc20, [
+      const [wbnbTokenBalanceLP, eggTokenBalanceLP] = await multicall(erc20, [
         {
           address: poolsConfig.find((p) => p.sousId === 1).rewardTokenAddress[CHAIN_ID],
           name: 'balanceOf',
@@ -124,9 +124,9 @@ export const usePriceEggBnb = () => {
         },
       ])
 
-      if (!slimeTokenBalanceLP || !wbnbTokenBalanceLP) return
+      if (!eggTokenBalanceLP || !wbnbTokenBalanceLP) return
 
-      setPrice(new BigNumber(wbnbTokenBalanceLP).div(new BigNumber(slimeTokenBalanceLP)))
+      setPrice(new BigNumber(wbnbTokenBalanceLP).div(new BigNumber(eggTokenBalanceLP)))
     }
 
     fetchPrice()
