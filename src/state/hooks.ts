@@ -105,6 +105,36 @@ export const usePriceSlimeBnb = () => {
   return price
 }
 
+export const usePriceEggBnb = () => {
+  const [price, setPrice] = useState(new BigNumber(0))
+
+  useEffect(() => {
+    const fetchPrice = async () => {
+      const lpAddress = '0xd1B59D11316E87C3a0A069E80F590BA35cD8D8D3' // EGG/BNB LP
+      const [wbnbTokenBalanceLP, eggTokenBalanceLP] = await multicall(erc20, [
+        {
+          address: poolsConfig.find((p) => p.sousId === 1).rewardTokenAddress[CHAIN_ID],
+          name: 'balanceOf',
+          params: [lpAddress],
+        },
+        {
+          address: poolsConfig.find((p) => p.sousId === 4).rewardTokenAddress[CHAIN_ID],
+          name: 'balanceOf',
+          params: [lpAddress],
+        },
+      ])
+
+      if (!eggTokenBalanceLP || !wbnbTokenBalanceLP) return
+
+      setPrice(new BigNumber(wbnbTokenBalanceLP).div(new BigNumber(eggTokenBalanceLP)))
+    }
+
+    fetchPrice()
+  }, [])
+
+  return price
+}
+
 export const usePriceEthBusd = (): BigNumber => new BigNumber(1477)
 
 export const useTotalValue = (): BigNumber => {
