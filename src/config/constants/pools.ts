@@ -97,6 +97,30 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 4,
+    tokenName: 'EGG',
+    stakingTokenName: QuoteToken.SALT,
+    stakingTokenAddress: {
+      97: '0x85582d24455caaf44fc4f914bdca2a6cb73e6681',
+      56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4', // SALT
+    },
+    contractAddress: {
+      97: '0xF08d05d91426A63aB35Ef7f4bBC6E8717B59e838',
+      56: '0x2974b4aECbEc5FFEA565E7Ef47395429f44D0c81', // SmartChef
+    },
+    rewardTokenAddress: {
+      97: '0xec5dcb5dbf4b114c9d0f65bccab49ec54f6a0867', // DAI
+      56: '0xf952fc3ca7325cc27d15885d37117676d25bfda6', // EGG
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://goosedefi.com',
+    harvest: true,
+    tokenPerBlock: '0.002624734287',
+    sortOrder: 5,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
 ]
 
 export default pools

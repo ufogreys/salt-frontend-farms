@@ -10,7 +10,7 @@ import partition from 'lodash/partition'
 import useI18n from 'hooks/useI18n'
 import useBlock from 'hooks/useBlock'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useFarms, usePriceBnbBusd, usePools, usePriceSlimeBnb } from 'state/hooks'
+import { useFarms, usePriceBnbBusd, usePools, usePriceSlimeBnb, usePriceEggBnb } from 'state/hooks'
 import { QuoteToken } from 'config/constants/types'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
@@ -28,6 +28,7 @@ const Farm: React.FC = () => {
   const bnbPriceUSD = usePriceBnbBusd()
   const block = useBlock()
   const slimePrice = usePriceSlimeBnb()
+  const eggPrice = usePriceEggBnb()
 
   const priceToBnb = (tokenName: string, tokenPrice: BigNumber, quoteToken: QuoteToken): BigNumber => {
     const tokenPriceBN = new BigNumber(tokenPrice)
@@ -36,6 +37,9 @@ const Farm: React.FC = () => {
     }
     if (tokenName === 'SLME') {
       return slimePrice
+    }
+    if (tokenName === 'EGG') {
+      return eggPrice
     }
     if (tokenPrice && quoteToken === QuoteToken.BUSD) {
       return tokenPriceBN.div(bnbPriceUSD)
@@ -58,6 +62,9 @@ const Farm: React.FC = () => {
       rewardTokenFarm?.tokenPriceVsQuote,
       rewardTokenFarm?.quoteTokenSymbol,
     )
+    // console.log("pool.tokenName",pool.tokenName)
+    // console.log("rewardTokenPriceInBNB",rewardTokenPriceInBNB.toString())
+    // console.log("stakingTokenPriceInBNB", stakingTokenPriceInBNB.toString())
     const totalRewardPricePerYear = rewardTokenPriceInBNB.times(pool.tokenPerBlock).times(BLOCKS_PER_YEAR)
     const totalStakingTokenInPool = stakingTokenPriceInBNB.times(getBalanceNumber(pool.totalStaked))
     // tokens per block * price of CAKE * blocks_per_year / ( tokens in pool x salt price) * 100
