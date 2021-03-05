@@ -1933,14 +1933,17 @@
     eslint-plugin-react "^7.21.5"
     eslint-plugin-react-hooks "^4.2.0"
 
-"@saltswap/uikit@^1.2.26":
-  version "1.2.26"
-  resolved "https://registry.yarnpkg.com/@saltswap/uikit/-/uikit-1.2.26.tgz#0c79bb68621b832b0672fc88f6e376a63416d7dc"
-  integrity sha512-M1cYbtDNCAOCreKn4PHTM/r/+HBojAJjKR4GrXlGt3deITfmgcelw6aGLmSOctoCA+ZJUI2FJRdY0jPzLPQImg==
+"@saltswap/uikit@^1.2.27":
+  version "1.2.27"
+  resolved "https://registry.yarnpkg.com/@saltswap/uikit/-/uikit-1.2.27.tgz#beb0951ac87ab2392c84b21d031438183c059ab3"
+  integrity sha512-gVvO2qCVcjqNXSmId714CrK5fuw6sW7KXnVxsmsdG8pOuzvGl6Y1caoCFB0fkUMZnRKI3qvKJgZwJDmFzmNPDw==
   dependencies:
     "@types/lodash" "^4.14.162"
     "@types/styled-system" "^5.1.10"
     lodash "^4.17.20"
+    react "^17.0.1"
+    react-dom "^17.0.1"
+    react-router-dom "^5.2.0"
     react-transition-group "^4.4.1"
     styled-system "^5.1.5"
 
