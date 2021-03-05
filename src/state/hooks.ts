@@ -118,7 +118,7 @@ export const usePriceEggBnb = () => {
           params: [lpAddress],
         },
         {
-          address: poolsConfig.find((p) => p.sousId === 5).rewardTokenAddress[CHAIN_ID],
+          address: poolsConfig.find((p) => p.sousId === 4).rewardTokenAddress[CHAIN_ID],
           name: 'balanceOf',
           params: [lpAddress],
         },
@@ -148,7 +148,7 @@ export const usePriceBrewBnb = () => {
           params: [lpAddress],
         },
         {
-          address: poolsConfig.find((p) => p.sousId === 4).rewardTokenAddress[CHAIN_ID],
+          address: poolsConfig.find((p) => p.sousId === 5).rewardTokenAddress[CHAIN_ID],
           name: 'balanceOf',
           params: [lpAddress],
         },
