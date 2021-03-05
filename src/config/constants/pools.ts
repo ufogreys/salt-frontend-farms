@@ -137,7 +137,7 @@ const pools: PoolConfig[] = [
       97: '0xec5dcb5dbf4b114c9d0f65bccab49ec54f6a0867', // DAI
       56: '0x790be81c3ca0e53974be2688cdb954732c9862e1', // BREW
     },
-    poolCategory: PoolCategory.CORE,
+    poolCategory: PoolCategory.COMMUNITY,
     projectLink: 'https://cafeswap.finance/',
     harvest: true,
     tokenPerBlock: '0.005006944444',
