@@ -47,6 +47,11 @@ const config: MenuEntry[] = [
   //   href: '/nft',
   // },
   {
+    label: 'Price Graph',
+    icon: 'GraphIcon',
+    href: '/graph',
+  },
+  {
     label: 'Listings',
     icon: 'ListingIcon',
     items: [
