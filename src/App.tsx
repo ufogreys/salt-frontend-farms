@@ -5,6 +5,7 @@ import { ResetCSS } from '@saltswap/uikit'
 import BigNumber from 'bignumber.js'
 import { useFetchPublicData } from 'state/hooks'
 import DocumentTitle from 'DocumentTitle'
+import Graph from 'views/Graph'
 import GlobalStyle from './style/Global'
 import Menu from './components/Menu'
 import PageLoader from './components/PageLoader'
@@ -54,6 +55,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/oceans">
               <Pools />
+            </Route>
+            <Route path="/graph">
+              <Graph />
             </Route>
             {/* <Route path="/pools"> */}
             {/*  <Pools /> */}
