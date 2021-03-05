@@ -10,7 +10,7 @@ import partition from 'lodash/partition'
 import useI18n from 'hooks/useI18n'
 import useBlock from 'hooks/useBlock'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useFarms, usePriceBnbBusd, usePools, usePriceSlimeBnb, usePriceEggBnb } from 'state/hooks'
+import { useFarms, usePriceBnbBusd, usePools, usePriceSlimeBnb, usePriceEggBnb, usePriceBrewBnb } from 'state/hooks'
 import { QuoteToken } from 'config/constants/types'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
@@ -29,6 +29,7 @@ const Farm: React.FC = () => {
   const block = useBlock()
   const slimePrice = usePriceSlimeBnb()
   const eggPrice = usePriceEggBnb()
+  const brewPrice = usePriceBrewBnb()
 
   const priceToBnb = (tokenName: string, tokenPrice: BigNumber, quoteToken: QuoteToken): BigNumber => {
     const tokenPriceBN = new BigNumber(tokenPrice)

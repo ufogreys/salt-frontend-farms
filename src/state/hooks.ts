@@ -118,6 +118,36 @@ export const usePriceEggBnb = () => {
           params: [lpAddress],
         },
         {
+          address: poolsConfig.find((p) => p.sousId === 5).rewardTokenAddress[CHAIN_ID],
+          name: 'balanceOf',
+          params: [lpAddress],
+        },
+      ])
+
+      if (!eggTokenBalanceLP || !wbnbTokenBalanceLP) return
+
+      setPrice(new BigNumber(wbnbTokenBalanceLP).div(new BigNumber(eggTokenBalanceLP)))
+    }
+
+    fetchPrice()
+  }, [])
+
+  return price
+}
+
+export const usePriceBrewBnb = () => {
+  const [price, setPrice] = useState(new BigNumber(0))
+
+  useEffect(() => {
+    const fetchPrice = async () => {
+      const lpAddress = '0x723203e821f1ff2d0e396d5dd2ea390f3c9d42cf' // BREW/BNB LP
+      const [wbnbTokenBalanceLP, eggTokenBalanceLP] = await multicall(erc20, [
+        {
+          address: poolsConfig.find((p) => p.sousId === 1).rewardTokenAddress[CHAIN_ID],
+          name: 'balanceOf',
+          params: [lpAddress],
+        },
+        {
           address: poolsConfig.find((p) => p.sousId === 4).rewardTokenAddress[CHAIN_ID],
           name: 'balanceOf',
           params: [lpAddress],

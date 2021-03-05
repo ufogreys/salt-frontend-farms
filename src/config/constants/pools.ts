@@ -121,6 +121,30 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
   },
+  {
+    sousId: 5,
+    tokenName: 'BREW',
+    stakingTokenName: QuoteToken.SALT,
+    stakingTokenAddress: {
+      97: '0x85582d24455caaf44fc4f914bdca2a6cb73e6681',
+      56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4', // SALT
+    },
+    contractAddress: {
+      97: '0xF08d05d91426A63aB35Ef7f4bBC6E8717B59e838',
+      56: '0x88d2fb892c9577Ecb542EF6860AF13524e668b02', // SmartChef
+    },
+    rewardTokenAddress: {
+      97: '0xec5dcb5dbf4b114c9d0f65bccab49ec54f6a0867', // DAI
+      56: '0x790be81c3ca0e53974be2688cdb954732c9862e1', // BREW
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://cafeswap.finance/',
+    harvest: true,
+    tokenPerBlock: '0.005006944444',
+    sortOrder: 6,
+    isFinished: false,
+    tokenDecimals: 18,
+  },
 ]
 
 export default pools
