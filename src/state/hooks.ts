@@ -207,7 +207,8 @@ export const useTotalValue = (): BigNumber => {
     }
 
     setTotalValue(farmsTotalValue.plus(poolsTotalValue))
-  }, [bnbPrice, ethPrice, farms, pools, saltPrice])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [farms, pools])
 
   if (!totalValue) {
     return new BigNumber(0)
