@@ -10,7 +10,15 @@ import partition from 'lodash/partition'
 import useI18n from 'hooks/useI18n'
 import useBlock from 'hooks/useBlock'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useFarms, usePriceBnbBusd, usePools, usePriceSlimeBnb, usePriceEggBnb, usePriceBrewBnb, usePriceBtcbBnb } from 'state/hooks'
+import {
+  useFarms,
+  usePriceBnbBusd,
+  usePools,
+  usePriceSlimeBnb,
+  usePriceEggBnb,
+  usePriceBrewBnb,
+  usePriceBtcbBnb,
+} from 'state/hooks'
 import { QuoteToken } from 'config/constants/types'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'

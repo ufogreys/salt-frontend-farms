@@ -132,7 +132,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
         </div>
         {!isOldSyrup ? (
           <BalanceAndCompound>
-            <Balance value={getBalanceNumber(earnings, tokenDecimals)} isDisabled={isFinished} />
+            <Balance value={getBalanceNumber(earnings, tokenDecimals)} decimals={tokenName === "BTCB" ? 5 : 3} isDisabled={isFinished} />
           </BalanceAndCompound>
         ) : (
           <OldSyrupTitle hasBalance={accountHasStakedBalance} />
