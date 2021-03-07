@@ -149,7 +149,7 @@ const pools: PoolConfig[] = [
     sortOrder: 6,
     isFinished: false,
     tokenDecimals: 18,
-    burnFee: 5,
+    burnFee: 0,
   },
 ]
 

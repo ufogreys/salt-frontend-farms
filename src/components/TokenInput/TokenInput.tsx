@@ -13,7 +13,15 @@ interface TokenInputProps extends InputProps {
   burnFee?: number
 }
 
-const TokenInput: React.FC<TokenInputProps> = ({ max, symbol, onChange, onSelectMax, value, depositFeeBP = 0, burnFee = 0 }) => {
+const TokenInput: React.FC<TokenInputProps> = ({
+  max,
+  symbol,
+  onChange,
+  onSelectMax,
+  value,
+  depositFeeBP = 0,
+  burnFee = 0,
+}) => {
   const TranslateString = useI18n()
   return (
     <StyledTokenInput>
@@ -44,8 +52,7 @@ const TokenInput: React.FC<TokenInputProps> = ({ max, symbol, onChange, onSelect
       ) : null}
       {burnFee > 0 ? (
         <StyledMaxText>
-          {TranslateString(10004, 'Burn Fee')}: {new BigNumber(value || 0).times(burnFee / 10000).toString()}{' '}
-          {symbol}
+          {TranslateString(10004, 'Burn Fee')}: {new BigNumber(value || 0).times(burnFee / 10000).toString()} {symbol}
         </StyledMaxText>
       ) : null}
     </StyledTokenInput>
