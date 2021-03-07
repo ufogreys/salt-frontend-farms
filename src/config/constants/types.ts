@@ -80,6 +80,7 @@ export interface PoolConfig {
   harvest?: boolean
   isFinished?: boolean
   tokenDecimals: number
+  burnFee: number
 }
 
 export type Nft = {

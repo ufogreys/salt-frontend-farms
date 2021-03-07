@@ -1235,7 +1235,13 @@
         "stringId": 10004,
         "text": "SaltSwap Finance"
       }
-    }
+    },
+    {
+      "data": {
+        "stringId": 10005,
+        "text": "Burn Fee"
+      }
+    },
   ],
   "pagination": {
     "offset": 0,
