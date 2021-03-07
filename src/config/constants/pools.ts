@@ -24,6 +24,7 @@ const pools: PoolConfig[] = [
     sortOrder: 1,
     isFinished: false,
     tokenDecimals: 18,
+    burnFee: 0,
   },
   {
     sousId: 1,
@@ -48,6 +49,7 @@ const pools: PoolConfig[] = [
     sortOrder: 2,
     isFinished: false,
     tokenDecimals: 18,
+    burnFee: 0,
   },
   {
     sousId: 2,
@@ -72,6 +74,7 @@ const pools: PoolConfig[] = [
     sortOrder: 3,
     isFinished: false,
     tokenDecimals: 18,
+    burnFee: 0,
   },
   {
     sousId: 3,
@@ -96,6 +99,7 @@ const pools: PoolConfig[] = [
     sortOrder: 4,
     isFinished: false,
     tokenDecimals: 18,
+    burnFee: 0,
   },
   {
     sousId: 4,
@@ -120,6 +124,7 @@ const pools: PoolConfig[] = [
     sortOrder: 5,
     isFinished: false,
     tokenDecimals: 18,
+    burnFee: 0,
   },
   {
     sousId: 5,
@@ -144,6 +149,7 @@ const pools: PoolConfig[] = [
     sortOrder: 6,
     isFinished: false,
     tokenDecimals: 18,
+    burnFee: 0,
   },
 ]
 
