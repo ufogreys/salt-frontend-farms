@@ -151,6 +151,56 @@ const pools: PoolConfig[] = [
     tokenDecimals: 18,
     burnFee: 0,
   },
+  {
+    sousId: 6,
+    tokenName: 'BUSD',
+    stakingTokenName: QuoteToken.SALT,
+    stakingTokenAddress: {
+      97: '0x85582d24455caaf44fc4f914bdca2a6cb73e6681',
+      56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4', // SALT
+    },
+    contractAddress: {
+      97: '0xF08d05d91426A63aB35Ef7f4bBC6E8717B59e838',
+      56: '0x36e3BC1E58B409160A191784E21327ACA6AcBc5C', // SmartChef
+    },
+    rewardTokenAddress: {
+      97: '0xec5dcb5dbf4b114c9d0f65bccab49ec54f6a0867', // DAI
+      56: '0xe9e7cea3dedca5984780bafc599bd69add087d56', // BUSD
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://binance.com/',
+    harvest: true,
+    tokenPerBlock: '0.3863194444',
+    sortOrder: 7,
+    isFinished: false,
+    tokenDecimals: 18,
+    burnFee: 5,
+  },
+  {
+    sousId: 7,
+    tokenName: 'BTCB',
+    stakingTokenName: QuoteToken.SALT,
+    stakingTokenAddress: {
+      97: '0x85582d24455caaf44fc4f914bdca2a6cb73e6681',
+      56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4', // SALT
+    },
+    contractAddress: {
+      97: '0xF08d05d91426A63aB35Ef7f4bBC6E8717B59e838',
+      56: '0xe2f75e1e327331c41a206D187f4D08F75FA9bF17', // SmartChef
+    },
+    rewardTokenAddress: {
+      97: '0xec5dcb5dbf4b114c9d0f65bccab49ec54f6a0867', // DAI
+      56: '0x7130d2a12b9bcbfae4f2634d864a1ee1ce3ead9c', // BTCB
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://binance.com/',
+    harvest: true,
+    tokenPerBlock: '0.000006944444444',
+    sortOrder: 8,
+    isFinished: false,
+    tokenDecimals: 18,
+    burnFee: 5,
+  },
 ]
 
 export default pools
