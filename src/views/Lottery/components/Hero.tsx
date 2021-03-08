@@ -1,13 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading, Text } from '@saltswap/uikit'
+import { Heading, Text, Image } from '@saltswap/uikit'
 import useI18n from 'hooks/useI18n'
 import Container from 'components/layout/Container'
 import LotteryProgress from './LotteryProgress'
 
 const Title = styled(Heading).attrs({ as: 'h1', size: 'xl' })`
   color: #ffffff;
-  margin-bottom: 24px;
 `
 
 const Blurb = styled(Text)`
@@ -63,16 +62,21 @@ const RightWrapper = styled.div`
   }
 `
 
+const StyledImage = styled(Image)`
+  align-self: center;
+`
+
 const Hero = () => {
   const TranslateString = useI18n()
 
   return (
     <StyledHero>
       <StyledContainer>
+        <StyledImage src="/images/salt-bae.png" alt="salt bae" width={110} height={110} />
         <LeftWrapper>
-          <Title>{TranslateString(999, 'The Salty Lottery 🤞')}</Title>
+          <Title>{TranslateString(999, 'The Salty Lottery')}</Title>
           <Blurb>{TranslateString(999, 'Buy salty tickets and win $SALT')}</Blurb>
-          <Blurb>{TranslateString(999, 'If 2, 3, or 4 of your numbers match you win! 🎉')}</Blurb>
+          <Blurb>{TranslateString(999, 'If you match any number you win! 🎉')}</Blurb>
         </LeftWrapper>
         <RightWrapper>
           <LotteryProgress />

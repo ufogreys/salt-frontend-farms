@@ -1,10 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text, Heading, Link, Image } from '@saltswap/uikit'
+import { Text, Heading, Link } from '@saltswap/uikit'
 import useI18n from 'hooks/useI18n'
 
 const LayoutWrapper = styled.div`
-  max-width: 500px;
   margin: 0 auto 40px;
   display: flex;
   flex-direction: column;
@@ -12,10 +11,6 @@ const LayoutWrapper = styled.div`
 
 const StyledHeading = styled(Heading)`
   margin: 16px 0;
-`
-
-const StyledImage = styled(Image)`
-  align-self: center;
 `
 
 const StyledLink = styled(Link)`
@@ -28,7 +23,6 @@ const HowItWorks = () => {
 
   return (
     <LayoutWrapper>
-      <StyledImage src="/images/salt-bae.png" alt="salt bae" width={140} height={140} />
       <StyledHeading size="lg" as="h3" color="secondary">
         {TranslateString(999, 'How it works')}
       </StyledHeading>

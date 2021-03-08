@@ -8,7 +8,6 @@ import YourPrizesCard from './components/YourPrizesCard'
 import UnlockWalletCard from './components/UnlockWalletCard'
 import TicketCard from './components/TicketCard'
 import TotalPrizesCard from './components/TotalPrizesCard'
-import WinningNumbers from './components/WinningNumbers'
 import HowItWorks from './components/HowItWorks'
 
 const Cards = styled(BaseLayout)`
@@ -61,8 +60,6 @@ const NextDrawPage: React.FC = () => {
         </SecondCardColumnWrapper>
       </Cards>
       <HowItWorks />
-      {/* legacy page content */}
-      <WinningNumbers />
     </>
   )
 }
