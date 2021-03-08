@@ -56,6 +56,10 @@ const config: MenuEntry[] = [
     icon: 'ListingIcon',
     items: [
       {
+        label: 'CoinMarketCap',
+        href: 'https://coinmarketcap.com/currencies/saltswap-finance',
+      },
+      {
         label: 'DappRadar',
         href: 'https://dappradar.com/binance-smart-chain/defi/saltswap',
       },
