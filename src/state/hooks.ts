@@ -234,7 +234,7 @@ export const useTotalValue = (): BigNumber => {
   const bnbPrice = usePriceBnbBusd()
   const ethPrice = usePriceEthBusd()
   const saltPrice = usePriceSaltBusd()
-  const totalValue = useRef(new BigNumber(0));
+  const totalValue = useRef(new BigNumber(0))
 
   useEffect(() => {
     let farmsTotalValue = new BigNumber(0)

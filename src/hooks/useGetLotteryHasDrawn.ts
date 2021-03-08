@@ -16,9 +16,8 @@ const useGetLotteryHasDrawn = () => {
   useEffect(() => {
     if (account && lotteryContract) {
       const fetchLotteryStatus = async () => {
-        // const state = await getLotteryStatus(lotteryContract)
-        // setLotteryHasDrawn(state)
-        setLotteryHasDrawn(false)
+        const state = await getLotteryStatus(lotteryContract)
+        setLotteryHasDrawn(state)
       }
 
       fetchLotteryStatus()
