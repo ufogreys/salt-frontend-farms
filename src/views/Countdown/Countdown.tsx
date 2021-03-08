@@ -89,7 +89,6 @@ const Countdown: FC<CountdownProps> = ({ date }) => {
 
   return (
     <CountdownWrapper>
-      <CountdownBox left={timeLeft.days} divideBy={daysInSelectedYear} label="days" />
       <CountdownBox left={timeLeft.hours} divideBy={24} label="hours" />
       <CountdownBox left={timeLeft.minutes} divideBy={60} label="minutes" />
       <CountdownBox left={timeLeft.seconds} divideBy={60} label="seconds" />

@@ -64,7 +64,7 @@ const TotalPrizesCard = () => {
             {currentLotteryNumber === 0 && <Skeleton height={20} width={56} />}
             {currentLotteryNumber > 0 && (
               <>
-                <Text fontSize="12px" style={{ fontWeight: 600 }}>{`Round #${currentLotteryNumber}`}</Text>
+                <Text fontSize="12px" style={{ fontWeight: 600 }}>{`🧂 Salty Round #${currentLotteryNumber}`}</Text>
               </>
             )}
           </Flex>
@@ -76,9 +76,9 @@ const TotalPrizesCard = () => {
             </IconWrapper>
             <PrizeCountWrapper>
               <Text fontSize="14px" color="textSubtle">
-                {TranslateString(999, 'Total Pot:')}
+                {TranslateString(999, 'Total Salty Pot:')}
               </Text>
-              <Heading size="lg">{lotteryPrizeWithCommaSeparators} CAKE</Heading>
+              <Heading size="lg">{lotteryPrizeWithCommaSeparators} SALT</Heading>
             </PrizeCountWrapper>
           </Left>
           <Right>

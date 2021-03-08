@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import useRefresh from 'hooks/useRefresh'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
@@ -234,7 +234,7 @@ export const useTotalValue = (): BigNumber => {
   const bnbPrice = usePriceBnbBusd()
   const ethPrice = usePriceEthBusd()
   const saltPrice = usePriceSaltBusd()
-  const [totalValue, setTotalValue] = useState<BigNumber>(new BigNumber(0))
+  const totalValue = useRef(new BigNumber(0));
 
   useEffect(() => {
     let farmsTotalValue = new BigNumber(0)
@@ -266,13 +266,12 @@ export const useTotalValue = (): BigNumber => {
       poolsTotalValue = poolsTotalValue.plus(poolValue)
     }
 
-    setTotalValue(farmsTotalValue.plus(poolsTotalValue))
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [farms, pools])
+    totalValue.current = farmsTotalValue.plus(poolsTotalValue)
+  }, [bnbPrice, ethPrice, farms, pools, saltPrice])
 
   if (!totalValue) {
     return new BigNumber(0)
   }
 
-  return totalValue
+  return totalValue.current
 }

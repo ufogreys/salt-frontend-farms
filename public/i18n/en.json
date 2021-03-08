@@ -405,19 +405,19 @@
     {
       "data": {
         "stringId": 442,
-        "text": "Tickets matching 4 numbers:"
+        "text": "Salty tickets matching 4 numbers:"
       }
     },
     {
       "data": {
         "stringId": 444,
-        "text": "Tickets matching 3 numbers:"
+        "text": "Salty tickets matching 3 numbers:"
       }
     },
     {
       "data": {
         "stringId": 446,
-        "text": "Tickets matching 2 numbers:"
+        "text": "Salty tickets matching 2 numbers:"
       }
     },
     {
@@ -447,13 +447,13 @@
     {
       "data": {
         "stringId": 456,
-        "text": "Your amount must be a multiple of 10 SALT"
+        "text": "Your amount must be a multiple of 1 SALT"
       }
     },
     {
       "data": {
         "stringId": 458,
-        "text": "1 Ticket = 10 SALT"
+        "text": "1 Ticket = 1 SALT"
       }
     },
     {
@@ -1185,7 +1185,7 @@
     {
       "data": {
         "stringId": 722,
-        "text": "Total Pot"
+        "text": "Total Salty Pot"
       }
     },
     {
