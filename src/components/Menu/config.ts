@@ -60,6 +60,10 @@ const config: MenuEntry[] = [
         href: 'https://coinmarketcap.com/currencies/saltswap-finance',
       },
       {
+        label: 'CoinGecko',
+        href: 'https://www.coingecko.com/en/coins/saltswap',
+      },
+      {
         label: 'DappRadar',
         href: 'https://dappradar.com/binance-smart-chain/defi/saltswap',
       },
