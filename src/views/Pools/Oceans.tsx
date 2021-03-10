@@ -88,7 +88,7 @@ const Farm: React.FC = () => {
 
     return {
       ...pool,
-      isFinished: pool.sousId === 0 ? false : pool.isFinished || block > pool.endBlock,
+      isFinished: pool.isFinished || block > pool.endBlock,
       apy,
     }
   })
