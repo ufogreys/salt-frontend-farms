@@ -201,6 +201,31 @@ const pools: PoolConfig[] = [
     tokenDecimals: 18,
     burnFee: 5,
   },
+  {
+    sousId: 8,
+    tokenName: 'CTC',
+    stakingTokenName: QuoteToken.SALT,
+    stakingTokenAddress: {
+      97: '0x85582d24455caaf44fc4f914bdca2a6cb73e6681',
+      56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4', // SALT
+    },
+    contractAddress: {
+      97: '0xF08d05d91426A63aB35Ef7f4bBC6E8717B59e838',
+      56: '0x85f27A63cFb4Dc5a36d7Eb5EF8620D343817e156', // SmartChef
+    },
+    rewardTokenAddress: {
+      97: '0xec5dcb5dbf4b114c9d0f65bccab49ec54f6a0867', // DAI
+      56: '0xb7F80a74aaA4FD30a3EE7C03FDe3DC88e6002C12', // CTC
+    },
+    poolCategory: PoolCategory.COMMUNITY,
+    projectLink: 'https://www.cryptocoinctc.org/',
+    harvest: true,
+    tokenPerBlock: '0.8680538',
+    sortOrder: 9,
+    isFinished: false,
+    tokenDecimals: 8,
+    burnFee: 0,
+  },
 ]
 
 export default pools
