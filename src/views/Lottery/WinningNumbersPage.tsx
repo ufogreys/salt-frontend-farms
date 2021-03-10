@@ -23,7 +23,7 @@ const WinningNumbersPage: React.FC = () => {
             <StyledCardHeader>
               <Title>
                 {account && lotteryHasDrawn
-                  ? `🥳${TranslateString(570, 'Winning Numbers This Round')}🥳`
+                  ? `🥳 ${TranslateString(570, 'Winning Numbers This Round')} 🥳`
                   : TranslateString(572, 'Latest Winning Numbers')}
               </Title>
             </StyledCardHeader>
@@ -61,7 +61,8 @@ const WinningNumbersPage: React.FC = () => {
                 </CenteredTextWithPadding>
               </RowNoPadding>
             </Column>
-            <Link href="https://saltswap-api.vercel.app/api/lottery?page=0&pageSize=25" target="_blank">
+            {/* FIXME <Link href="https://saltswap-api.vercel.app/api/lottery?page=0&pageSize=25" target="_blank"> */}
+            <Link href="http://localhost:3000/api/lottery?page=0&pageSize=25" target="_blank">
               {TranslateString(448, 'Export recent winning numbers')}
             </Link>
           </StyledCardContentInner>

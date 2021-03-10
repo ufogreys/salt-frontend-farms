@@ -41,8 +41,11 @@ const UserTicketsModal: React.FC<UserTicketsModalProps> = ({ myTicketNumbers, on
     return <p key={index}>{number.toString()}</p>
   })
 
+  console.log('myTicketNumbers.length', myTicketNumbers.length)
+
+  const tickets = myTicketNumbers.length
   return (
-    <Modal title={TranslateString(490, `My Tickets (Total: ${myTicketNumbers.length})`)} onDismiss={onDismiss}>
+    <Modal title={`You've bought ${tickets} ${tickets === 1 ? `ticket` : `tickets`}`} onDismiss={onDismiss}>
       <TicketsList>
         <h2>{listItems}</h2>
       </TicketsList>

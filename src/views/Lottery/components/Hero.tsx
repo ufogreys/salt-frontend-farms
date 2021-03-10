@@ -76,7 +76,7 @@ const Hero = () => {
         <LeftWrapper>
           <Title>{TranslateString(999, 'The Salty Lottery')}</Title>
           <Blurb>{TranslateString(999, 'Buy salty tickets and win $SALT')}</Blurb>
-          <Blurb>{TranslateString(999, 'If you match any number you win! 🎉')}</Blurb>
+          <Blurb>{TranslateString(999, 'If you match 2, 3 or 4 numbers you win! 🎉')}</Blurb>
         </LeftWrapper>
         <RightWrapper>
           <LotteryProgress />

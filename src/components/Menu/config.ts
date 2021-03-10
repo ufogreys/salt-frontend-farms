@@ -27,12 +27,12 @@ const config: MenuEntry[] = [
     href: '/pools',
   },
   {
-    label: 'Oceans 🆕',
+    label: 'Oceans',
     icon: 'WaveIcon',
     href: '/oceans',
   },
   {
-    label: 'Lottery',
+    label: 'Lottery 🆕',
     icon: 'TicketIcon',
     href: '/lottery',
   },

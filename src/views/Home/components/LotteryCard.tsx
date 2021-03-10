@@ -48,6 +48,8 @@ const FarmedStakingCard = () => {
   const { onMultiClaim } = useMultiClaimLottery()
   const cakeBalance = useTokenBalance(getCakeAddress())
 
+  console.log('lotteryHasDrawn', lotteryHasDrawn)
+
   const handleClaim = useCallback(async () => {
     try {
       setRequestedClaim(true)
@@ -88,7 +90,7 @@ const FarmedStakingCard = () => {
             {TranslateString(556, 'Collect Winnings')}
           </Button>
           <Button id="dashboard-buy-tickets" variant="secondary" onClick={onPresentBuy} disabled={lotteryHasDrawn}>
-            {TranslateString(558, 'Buy Tickets')}
+            {TranslateString(558, 'Buy Ticketsss')}
           </Button>
         </Actions>
       </CardBody>

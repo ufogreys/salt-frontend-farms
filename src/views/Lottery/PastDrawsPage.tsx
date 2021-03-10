@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { BaseLayout } from '@saltswap/uikit'
+import { BaseLayout, Ticket } from '@saltswap/uikit'
 import PastLotteryRoundViewer from './components/PastLotteryRoundViewer'
 import PastDrawsHistoryCard from './components/PastDrawsHistory/PastDrawsHistoryCard'
 
@@ -42,7 +42,7 @@ const PastDrawsPage: React.FC = () => (
     <SecondCardColumnWrapper>
       <PastDrawsHistoryCard />
       <BunnyImageWrapper>
-        <img src="/images/salt-bae.png" alt="salt bae" />
+        <img src="/images/ticket.svg" alt="ticket" style={{ height: '200px' }} />
       </BunnyImageWrapper>
     </SecondCardColumnWrapper>
   </Cards>

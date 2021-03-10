@@ -64,7 +64,7 @@ const TotalPrizesCard = () => {
             {currentLotteryNumber === 0 && <Skeleton height={20} width={56} />}
             {currentLotteryNumber > 0 && (
               <>
-                <Text fontSize="12px" style={{ fontWeight: 600 }}>{`🧂 Salty Round #${currentLotteryNumber}`}</Text>
+                <Text fontSize="12px" style={{ fontWeight: 600 }}>{`Salty Round #${currentLotteryNumber}`}</Text>
               </>
             )}
           </Flex>
