@@ -215,7 +215,7 @@ const pools: PoolConfig[] = [
     },
     rewardTokenAddress: {
       97: '0xec5dcb5dbf4b114c9d0f65bccab49ec54f6a0867', // DAI
-      56: '0xb7F80a74aaA4FD30a3EE7C03FDe3DC88e6002C12', // BTCB
+      56: '0xb7F80a74aaA4FD30a3EE7C03FDe3DC88e6002C12', // CTC
     },
     poolCategory: PoolCategory.COMMUNITY,
     projectLink: 'https://www.cryptocoinctc.org/',
