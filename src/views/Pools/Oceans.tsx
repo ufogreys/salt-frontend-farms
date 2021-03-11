@@ -18,6 +18,7 @@ import {
   usePriceEggBnb,
   usePriceBrewBnb,
   usePriceBtcbBnb,
+  usePriceCtcBnb,
 } from 'state/hooks'
 import { QuoteToken } from 'config/constants/types'
 import FlexLayout from 'components/layout/Flex'
@@ -39,6 +40,7 @@ const Farm: React.FC = () => {
   const eggPrice = usePriceEggBnb()
   const brewPrice = usePriceBrewBnb()
   const btcbPrice = usePriceBtcbBnb()
+  const ctcPrice = usePriceCtcBnb()
 
   const priceToBnb = (tokenName: string, tokenPrice: BigNumber, quoteToken: QuoteToken): BigNumber => {
     const tokenPriceBN = new BigNumber(tokenPrice)
@@ -56,6 +58,9 @@ const Farm: React.FC = () => {
     }
     if (tokenName === 'BTCB') {
       return btcbPrice
+    }
+    if (tokenName === 'CTC') {
+      return ctcPrice
     }
     if (tokenPrice && quoteToken === QuoteToken.BUSD) {
       return tokenPriceBN.div(bnbPriceUSD)
