@@ -196,12 +196,11 @@ export const usePriceBtcbBnb = () => {
 }
 
 export const usePriceCtcBnb = () => {
-  return new BigNumber(0)
   const [price, setPrice] = useState(new BigNumber(0))
 
   useEffect(() => {
     const fetchPrice = async () => {
-      const lpAddress = '' // CTC/BNB LP
+      const lpAddress = '0x4191251c15ae5b5b795c0ed58c33863a3c4ac3c0' // CTC/BNB LP
       const [wbnbTokenBalanceLP, ctcTokenBalanceLP] = await multicall(erc20, [
         {
           address: poolsConfig.find((p) => p.sousId === 1).rewardTokenAddress[CHAIN_ID],
