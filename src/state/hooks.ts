@@ -217,7 +217,6 @@ export const usePriceCtcBnb = () => {
       if (!ctcTokenBalanceLP || !wbnbTokenBalanceLP) return
 
       setPrice(new BigNumber(wbnbTokenBalanceLP).div(new BigNumber(ctcTokenBalanceLP)).div(10000000000))
-      console.log("test", new BigNumber(ctcTokenBalanceLP))
     }
 
     fetchPrice()
