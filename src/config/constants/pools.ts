@@ -22,7 +22,7 @@ const pools: PoolConfig[] = [
     harvest: true,
     tokenPerBlock: '0.00295',
     sortOrder: 1,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 18,
     burnFee: 0,
   },
@@ -72,7 +72,7 @@ const pools: PoolConfig[] = [
     harvest: true,
     tokenPerBlock: '0.00496031746',
     sortOrder: 3,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 18,
     burnFee: 0,
   },
@@ -97,7 +97,7 @@ const pools: PoolConfig[] = [
     harvest: true,
     tokenPerBlock: '0.694',
     sortOrder: 4,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 18,
     burnFee: 0,
   },
@@ -122,7 +122,7 @@ const pools: PoolConfig[] = [
     harvest: true,
     tokenPerBlock: '0.002624734287',
     sortOrder: 5,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 18,
     burnFee: 0,
   },
@@ -172,7 +172,7 @@ const pools: PoolConfig[] = [
     harvest: true,
     tokenPerBlock: '0.3863194444',
     sortOrder: 7,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 18,
     burnFee: 5,
   },
@@ -197,7 +197,7 @@ const pools: PoolConfig[] = [
     harvest: true,
     tokenPerBlock: '0.000006944444444',
     sortOrder: 8,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 18,
     burnFee: 5,
   },
@@ -206,15 +206,15 @@ const pools: PoolConfig[] = [
     tokenName: 'CTC',
     stakingTokenName: QuoteToken.SALT,
     stakingTokenAddress: {
-      97: '0x85582d24455caaf44fc4f914bdca2a6cb73e6681',
+      97: '0xa0286abcdf5ac136cdbea4fecea0f83c093e5107',
       56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4', // SALT
     },
     contractAddress: {
-      97: '0xF08d05d91426A63aB35Ef7f4bBC6E8717B59e838',
+      97: '0xFD8fa2A7a5DebB757C1CDe08B113DF395A774160', // test ctc
       56: '0x85f27A63cFb4Dc5a36d7Eb5EF8620D343817e156', // SmartChef
     },
     rewardTokenAddress: {
-      97: '0xec5dcb5dbf4b114c9d0f65bccab49ec54f6a0867', // DAI
+      97: '0xAA8Af527961533Ba61CeF965ED750060d459a918', // FAKECTC
       56: '0xb7F80a74aaA4FD30a3EE7C03FDe3DC88e6002C12', // CTC
     },
     poolCategory: PoolCategory.COMMUNITY,
@@ -222,7 +222,7 @@ const pools: PoolConfig[] = [
     harvest: true,
     tokenPerBlock: '0.8680538',
     sortOrder: 9,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 8,
     burnFee: 0,
   },
@@ -250,6 +250,31 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
     burnFee: 10,
+  },
+  {
+    sousId: 10,
+    tokenName: 'CTC',
+    stakingTokenName: QuoteToken.SALT,
+    stakingTokenAddress: {
+      97: '0xa0286abcdf5ac136cdbea4fecea0f83c093e5107',
+      56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4', // SALT
+    },
+    contractAddress: {
+      97: '0xFD8fa2A7a5DebB757C1CDe08B113DF395A774160', // test ctc
+      56: '0xf1eFc9e49EB1805AEd72917a0479bddFB5560d32', // SmartChef
+    },
+    rewardTokenAddress: {
+      97: '0xAA8Af527961533Ba61CeF965ED750060d459a918', // FAKECTC
+      56: '0xb7F80a74aaA4FD30a3EE7C03FDe3DC88e6002C12', // CTC
+    },
+    poolCategory: PoolCategory.COMMUNITY,
+    projectLink: 'https://www.cryptocoinctc.org/',
+    harvest: true,
+    tokenPerBlock: '0.8680538',
+    sortOrder: 11,
+    isFinished: false,
+    tokenDecimals: 8,
+    burnFee: 0,
   },
 ]
 
