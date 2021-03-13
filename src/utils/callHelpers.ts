@@ -48,7 +48,7 @@ export const sousUnstake = async (sousChefContract, amount, account) => {
       .send({ from: account })
       .on('transactionHash', (tx) => tx.transactionHash)
   }
-  //buggy CTC
+  // buggy CTC
   if (sousChefContract.options.address === '0x85f27A63cFb4Dc5a36d7Eb5EF8620D343817e156') {
     return sousChefContract.methods
       .emergencyWithdraw()
