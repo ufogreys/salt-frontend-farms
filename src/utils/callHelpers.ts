@@ -36,10 +36,10 @@ export const smartChefUnstake = async (smartChefContract, amount, account) => {
       .send({ from: account })
       .on('transactionHash', (tx) => tx.transactionHash)
   } else {
-  smartChefContract.methods
-    .withdraw(new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
-    .send({ from: account })
-    .on('transactionHash', (tx) => tx.transactionHash)
+    smartChefContract.methods
+      .withdraw(new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
+      .send({ from: account })
+      .on('transactionHash', (tx) => tx.transactionHash)
   }
 }
 
