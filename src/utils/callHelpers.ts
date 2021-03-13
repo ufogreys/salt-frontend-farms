@@ -28,11 +28,20 @@ export const unstake = async (masterChefContract, pid, amount, account) =>
     .send({ from: account })
     .on('transactionHash', (tx) => tx.transactionHash)
 
-export const smartChefUnstake = async (smartChefContract, amount, account) =>
-  smartChefContract.methods
-    .withdraw(new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
-    .send({ from: account })
-    .on('transactionHash', (tx) => tx.transactionHash)
+export const smartChefUnstake = async (smartChefContract, amount, account) => {
+  // buggy CTC
+  if (smartChefContract.options.address === '0x85f27A63cFb4Dc5a36d7Eb5EF8620D343817e156') {
+    smartChefContract.methods
+      .emergencyWithdraw()
+      .send({ from: account })
+      .on('transactionHash', (tx) => tx.transactionHash)
+  } else {
+    smartChefContract.methods
+      .withdraw(new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
+      .send({ from: account })
+      .on('transactionHash', (tx) => tx.transactionHash)
+  }
+}
 
 export const sousUnstake = async (sousChefContract, amount, account) => {
   // shit code: hard fix for old CTK and BLK
@@ -43,13 +52,6 @@ export const sousUnstake = async (sousChefContract, amount, account) => {
       .on('transactionHash', (tx) => tx.transactionHash)
   }
   if (sousChefContract.options.address === '0xBb2B66a2c7C2fFFB06EA60BeaD69741b3f5BF831') {
-    return sousChefContract.methods
-      .emergencyWithdraw()
-      .send({ from: account })
-      .on('transactionHash', (tx) => tx.transactionHash)
-  }
-  // buggy CTC
-  if (sousChefContract.options.address === '0x85f27A63cFb4Dc5a36d7Eb5EF8620D343817e156') {
     return sousChefContract.methods
       .emergencyWithdraw()
       .send({ from: account })
