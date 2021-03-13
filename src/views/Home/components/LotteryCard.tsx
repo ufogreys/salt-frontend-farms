@@ -48,8 +48,6 @@ const FarmedStakingCard = () => {
   const { onMultiClaim } = useMultiClaimLottery()
   const cakeBalance = useTokenBalance(getCakeAddress())
 
-  console.log('lotteryHasDrawn', lotteryHasDrawn)
-
   const handleClaim = useCallback(async () => {
     try {
       setRequestedClaim(true)
