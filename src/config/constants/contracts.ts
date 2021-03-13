@@ -13,11 +13,11 @@ export default {
   },
   lottery: {
     56: '0x3C3f2049cc17C136a604bE23cF7E42745edf3b91', // FIXME: Pancake Lottery
-    97: '0x4834F4097EA99892f086169C95248218B69827E5',
+    97: '0x667843a3d28F0686EBbe7CC7d58A966dC544B3D8',
   },
   lotteryNFT: {
     56: '0x5e74094Cd416f55179DBd0E45b1a8ED030e396A1', // FIXME: Pancake Lottery
-    97: '0xbb32bE0967bCD039097bC466574a964523631903',
+    97: '0xaf483Beb2A0a26Da91f0872ee9F9948f5AD1619f',
   },
   mulltiCall: {
     56: '0x1ee38d535d541c55c9dae27b12edf090c608e6fb',
