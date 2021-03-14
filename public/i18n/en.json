@@ -927,7 +927,7 @@
     {
       "data": {
         "stringId": 632,
-        "text": "How it works"
+        "text": "How does it work?"
       }
     },
     {
@@ -1241,7 +1241,7 @@
         "stringId": 10005,
         "text": "Burn Fee"
       }
-    },
+    }
   ],
   "pagination": {
     "offset": 0,

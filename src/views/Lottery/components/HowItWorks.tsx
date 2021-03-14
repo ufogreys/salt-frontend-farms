@@ -26,7 +26,7 @@ const HowItWorks = () => {
   return (
     <LayoutWrapper>
       <StyledHeading size="lg" as="h3" color="secondary">
-        {TranslateString(999, 'How it works')}
+        {TranslateString(999, 'How does it work?')}
       </StyledHeading>
       <Text fontSize="16px" style={{ display: 'flex', justifyContent: 'center' }}>
         Spend SALT to buy tickets, contributing to the lottery pot.

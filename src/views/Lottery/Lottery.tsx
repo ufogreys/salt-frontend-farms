@@ -29,7 +29,7 @@ const Lottery: React.FC = () => {
   const [historyData, setHistoryData] = useState([])
   const [historyError, setHistoryError] = useState(false)
   const [currentLotteryNumber, setCurrentLotteryNumber] = useState(0)
-  const [mostRecentLotteryNumber, setMostRecentLotteryNumber] = useState(1)
+  const [mostRecentLotteryNumber, setMostRecentLotteryNumber] = useState(0)
 
   useEffect(() => {
     fetch(`https://saltswap-api.vercel.app/api/lotteryHistory`)
