@@ -17,8 +17,8 @@ const Blurb = styled(Text)`
 
 const StyledHero = styled.div`
   background: ${({ theme }) => (theme.isDark ? '#07060c' : '#20c0ff')};
-  padding-bottom: 24px;
-  padding-top: 24px;
+  padding-bottom: 36px;
+  padding-top: 36px;
 `
 
 const StyledContainer = styled(Container)`
