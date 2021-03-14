@@ -7,6 +7,8 @@ import useI18n from 'hooks/useI18n'
 import { useTotalRewards } from 'hooks/useTickets'
 import PastLotteryDataContext from 'contexts/PastLotteryDataContext'
 import ExpandableSectionButton from 'components/ExpandableSectionButton/ExpandableSectionButton'
+import { usePriceSaltBusd } from 'state/hooks'
+import BigNumber from 'bignumber.js'
 import PrizeGrid from '../PrizeGrid'
 
 const CardHeading = styled.div`
@@ -55,6 +57,8 @@ const TotalPrizesCard = () => {
   const lotteryPrizeAmount = +getBalanceNumber(useTotalRewards()).toFixed(0)
   const lotteryPrizeWithCommaSeparators = lotteryPrizeAmount.toLocaleString()
   const { currentLotteryNumber } = useContext(PastLotteryDataContext)
+  const saltPriceUsd = usePriceSaltBusd()
+  const lotteryPrizeDollarAmount = saltPriceUsd.times(new BigNumber(lotteryPrizeAmount))
 
   return (
     <Card>
@@ -78,6 +82,9 @@ const TotalPrizesCard = () => {
                 {TranslateString(999, 'Total Pot:')}
               </Text>
               <Heading size="lg">{lotteryPrizeWithCommaSeparators} SALT</Heading>
+              <Text fontSize="14px" color="textSubtle">
+                ≈${(+lotteryPrizeDollarAmount.toFixed(0)).toLocaleString()}
+              </Text>
             </PrizeCountWrapper>
           </Left>
           <Right>

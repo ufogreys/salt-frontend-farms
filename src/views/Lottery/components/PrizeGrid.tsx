@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import useI18n from 'hooks/useI18n'
 import { Heading, Text } from '@saltswap/uikit'
+import { usePriceSaltBusd } from 'state/hooks'
+import BigNumber from 'bignumber.js'
 
 export interface PrizeGridProps {
   lotteryPrizeAmount?: number
@@ -13,7 +15,7 @@ export interface PrizeGridProps {
 
 const Grid = styled.div<{ pastDraw?: boolean }>`
   display: grid;
-  grid-template-columns: repeat(${(props) => (props.pastDraw ? 3 : 2)}, 1fr);
+  grid-template-columns: repeat(${(props) => (props.pastDraw ? 4 : 3)}, 1fr);
   grid-template-rows: repeat(4, auto);
 `
 
@@ -40,11 +42,12 @@ const PrizeGrid: React.FC<PrizeGridProps> = ({
   twoTicketMatches,
   threeTicketMatches,
 }) => {
-  const fourMatchesAmount = +((lotteryPrizeAmount / 100) * 60).toFixed(2)
+  const fourMatchesAmount = +((lotteryPrizeAmount / 100) * 50).toFixed(2)
   const threeMatchesAmount = +((lotteryPrizeAmount / 100) * 20).toFixed(2)
   const twoMatchesAmount = +((lotteryPrizeAmount / 100) * 10).toFixed(2)
-  const burnAmount = +((lotteryPrizeAmount / 100) * 10).toFixed(2)
+  const burnAmount = +((lotteryPrizeAmount / 100) * 20).toFixed(2)
   const TranslateString = useI18n()
+  const saltPriceUsd = usePriceSaltBusd()
 
   return (
     <Grid pastDraw={pastDraw}>
@@ -65,9 +68,14 @@ const PrizeGrid: React.FC<PrizeGridProps> = ({
           {TranslateString(999, 'Prize Pot')}
         </RightAlignedText>
       </GridItem>
+      <GridItem>
+        <RightAlignedText fontSize="14px" color="textSubtle">
+          {TranslateString(999, 'USD')}
+        </RightAlignedText>
+      </GridItem>
       {/* 4 matches row */}
       <GridItem>
-        <Heading size="md">4</Heading>
+        <Heading size="md">4 matches</Heading>
       </GridItem>
       {pastDraw && (
         <PastDrawGridItem>
@@ -75,11 +83,16 @@ const PrizeGrid: React.FC<PrizeGridProps> = ({
         </PastDrawGridItem>
       )}
       <GridItem>
-        <RightAlignedHeading size="md">{fourMatchesAmount.toLocaleString()}</RightAlignedHeading>
+        <RightAlignedHeading size="md">{fourMatchesAmount.toLocaleString()} SALT</RightAlignedHeading>
+      </GridItem>
+      <GridItem>
+        <RightAlignedHeading>
+          ${(+saltPriceUsd.times(new BigNumber(fourMatchesAmount)).toFixed(0)).toLocaleString()}
+        </RightAlignedHeading>
       </GridItem>
       {/* 3 matches row */}
       <GridItem>
-        <Text bold>3</Text>
+        <Text bold>3 matches</Text>
       </GridItem>
       {pastDraw && (
         <PastDrawGridItem>
@@ -87,11 +100,16 @@ const PrizeGrid: React.FC<PrizeGridProps> = ({
         </PastDrawGridItem>
       )}
       <GridItem>
-        <RightAlignedText>{threeMatchesAmount.toLocaleString()}</RightAlignedText>
+        <RightAlignedText bold>{threeMatchesAmount.toLocaleString()} SALT</RightAlignedText>
+      </GridItem>
+      <GridItem>
+        <RightAlignedText bold>
+          ${(+saltPriceUsd.times(new BigNumber(threeMatchesAmount)).toFixed(0)).toLocaleString()}
+        </RightAlignedText>
       </GridItem>
       {/* 2 matches row */}
       <GridItem marginBottom="20px">
-        <Text>2</Text>
+        <Text>2 matches</Text>
       </GridItem>
       {pastDraw && (
         <PastDrawGridItem marginBottom="20px">
@@ -99,24 +117,34 @@ const PrizeGrid: React.FC<PrizeGridProps> = ({
         </PastDrawGridItem>
       )}
       <GridItem marginBottom="20px">
-        <RightAlignedText>{twoMatchesAmount.toLocaleString()}</RightAlignedText>
+        <RightAlignedText>{twoMatchesAmount.toLocaleString()} SALT</RightAlignedText>
+      </GridItem>
+      <GridItem>
+        <RightAlignedText>
+          ${(+saltPriceUsd.times(new BigNumber(twoMatchesAmount)).toFixed(0)).toLocaleString()}
+        </RightAlignedText>
       </GridItem>
       {/* Burn row */}
       <GridItem marginBottom="0">
-        <Text>{TranslateString(999, `${pastDraw ? 'Burned' : 'To burn'}`)}:</Text>
+        <Text>🔥{TranslateString(999, `${pastDraw ? 'Burned' : 'To burn'}`)}:</Text>
       </GridItem>
       {pastDraw ? (
         <>
           <GridItem marginBottom="0" />
           <GridItem marginBottom="0">
-            <RightAlignedText>{burnAmount.toLocaleString()}</RightAlignedText>
+            <RightAlignedText>{burnAmount.toLocaleString()} SALT</RightAlignedText>
           </GridItem>
         </>
       ) : (
         <GridItem marginBottom="0">
-          <RightAlignedText>{burnAmount.toLocaleString()}</RightAlignedText>
+          <RightAlignedText>{burnAmount.toLocaleString()} SALT</RightAlignedText>
         </GridItem>
       )}
+      <GridItem>
+        <RightAlignedText>
+          ${(+saltPriceUsd.times(new BigNumber(burnAmount)).toFixed(0)).toLocaleString()}
+        </RightAlignedText>
+      </GridItem>
     </Grid>
   )
 }
