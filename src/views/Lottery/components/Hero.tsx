@@ -16,7 +16,7 @@ const Blurb = styled(Text)`
 `
 
 const StyledHero = styled.div`
-  background: ${({ theme }) => (theme.isDark ? '#29383d' : '#20c0ff')};
+  background: ${({ theme }) => (theme.isDark ? '#07060c' : '#20c0ff')};
   padding-bottom: 24px;
   padding-top: 24px;
 `
