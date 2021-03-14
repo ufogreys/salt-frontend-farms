@@ -32,8 +32,7 @@ const Lottery: React.FC = () => {
   const [mostRecentLotteryNumber, setMostRecentLotteryNumber] = useState(1)
 
   useEffect(() => {
-    // FIXME fetch(`https://saltswap-api.vercel.app/api/lotteryHistory`)
-    fetch(`http://localhost:3000/api/lotteryHistory`)
+    fetch(`https://saltswap-api.vercel.app/api/lotteryHistory`)
       .then((response) => response.json())
       .then((data) => setHistoryData(data))
       .catch(() => {
