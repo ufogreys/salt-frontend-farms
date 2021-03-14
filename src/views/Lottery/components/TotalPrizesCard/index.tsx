@@ -78,12 +78,9 @@ const TotalPrizesCard = () => {
               <SaltRoundIcon />
             </IconWrapper>
             <PrizeCountWrapper>
-              <Text fontSize="14px" color="textSubtle">
-                {TranslateString(999, 'Total Pot:')}
-              </Text>
               <Heading size="lg">{lotteryPrizeWithCommaSeparators} SALT</Heading>
               <Text fontSize="14px" color="textSubtle">
-                ≈${(+lotteryPrizeDollarAmount.toFixed(0)).toLocaleString()}
+                {TranslateString(999, 'Total Pot')} ≈ ${(+lotteryPrizeDollarAmount.toFixed(0)).toLocaleString()}
               </Text>
             </PrizeCountWrapper>
           </Left>

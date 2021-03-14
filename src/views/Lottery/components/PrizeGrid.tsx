@@ -23,7 +23,7 @@ const RightAlignedText = styled(Text)`
   text-align: right;
 `
 
-const RightAlignedHeading = styled(Heading)`
+const RightAlignedHeading = styled(Text)`
   text-align: right;
 `
 
@@ -75,73 +75,83 @@ const PrizeGrid: React.FC<PrizeGridProps> = ({
       </GridItem>
       {/* 4 matches row */}
       <GridItem>
-        <Heading size="md">4 matches</Heading>
+        <Text fontSize="16px" bold>
+          4 matches
+        </Text>
       </GridItem>
       {pastDraw && (
         <PastDrawGridItem>
-          <RightAlignedHeading size="md">{jackpotMatches}</RightAlignedHeading>
+          <RightAlignedHeading fontSize="16px" bold>
+            {jackpotMatches}
+          </RightAlignedHeading>
         </PastDrawGridItem>
       )}
       <GridItem>
-        <RightAlignedHeading size="md">{fourMatchesAmount.toLocaleString()} SALT</RightAlignedHeading>
+        <RightAlignedHeading fontSize="16px" bold>
+          {fourMatchesAmount.toLocaleString()} SALT
+        </RightAlignedHeading>
       </GridItem>
       <GridItem>
-        <RightAlignedHeading>
+        <RightAlignedHeading fontSize="16px" bold>
           ${(+saltPriceUsd.times(new BigNumber(fourMatchesAmount)).toFixed(0)).toLocaleString()}
         </RightAlignedHeading>
       </GridItem>
       {/* 3 matches row */}
       <GridItem>
-        <Text bold>3 matches</Text>
+        <Text fontSize="15px">3 matches</Text>
       </GridItem>
       {pastDraw && (
         <PastDrawGridItem>
-          <RightAlignedText bold>{threeTicketMatches}</RightAlignedText>
+          <RightAlignedText fontSize="15px" bold>
+            {threeTicketMatches}
+          </RightAlignedText>
         </PastDrawGridItem>
       )}
       <GridItem>
-        <RightAlignedText bold>{threeMatchesAmount.toLocaleString()} SALT</RightAlignedText>
+        <RightAlignedText fontSize="15px" bold>
+          {threeMatchesAmount.toLocaleString()} SALT
+        </RightAlignedText>
       </GridItem>
       <GridItem>
-        <RightAlignedText bold>
+        <RightAlignedText fontSize="15px" bold>
           ${(+saltPriceUsd.times(new BigNumber(threeMatchesAmount)).toFixed(0)).toLocaleString()}
         </RightAlignedText>
       </GridItem>
       {/* 2 matches row */}
       <GridItem marginBottom="20px">
-        <Text>2 matches</Text>
+        <Text fontSize="14px">2 matches</Text>
       </GridItem>
       {pastDraw && (
         <PastDrawGridItem marginBottom="20px">
-          <RightAlignedText>{twoTicketMatches}</RightAlignedText>
+          <RightAlignedText fontSize="14px">{twoTicketMatches}</RightAlignedText>
         </PastDrawGridItem>
       )}
       <GridItem marginBottom="20px">
-        <RightAlignedText>{twoMatchesAmount.toLocaleString()} SALT</RightAlignedText>
+        <RightAlignedText fontSize="14px">{twoMatchesAmount.toLocaleString()} SALT</RightAlignedText>
       </GridItem>
       <GridItem>
-        <RightAlignedText>
+        <RightAlignedText fontSize="14px">
           ${(+saltPriceUsd.times(new BigNumber(twoMatchesAmount)).toFixed(0)).toLocaleString()}
         </RightAlignedText>
       </GridItem>
       {/* Burn row */}
       <GridItem marginBottom="0">
-        <Text>🔥{TranslateString(999, `${pastDraw ? 'Burned' : 'To burn'}`)}:</Text>
+        <Text fontSize="15px">🔥{TranslateString(999, `${pastDraw ? 'Burned' : 'To burn'}`)}:</Text>
       </GridItem>
       {pastDraw ? (
         <>
           <GridItem marginBottom="0" />
           <GridItem marginBottom="0">
-            <RightAlignedText>{burnAmount.toLocaleString()} SALT</RightAlignedText>
+            <RightAlignedText fontSize="15px">{burnAmount.toLocaleString()} SALT</RightAlignedText>
           </GridItem>
         </>
       ) : (
         <GridItem marginBottom="0">
-          <RightAlignedText>{burnAmount.toLocaleString()} SALT</RightAlignedText>
+          <RightAlignedText fontSize="15px">{burnAmount.toLocaleString()} SALT</RightAlignedText>
         </GridItem>
       )}
       <GridItem>
-        <RightAlignedText>
+        <RightAlignedText fontSize="15px">
           ${(+saltPriceUsd.times(new BigNumber(burnAmount)).toFixed(0)).toLocaleString()}
         </RightAlignedText>
       </GridItem>
