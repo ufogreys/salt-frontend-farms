@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import styled from 'styled-components'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
-import { Heading, Card, CardBody, CardFooter, Text, SaltRoundIcon, Flex, Skeleton } from '@saltswap/uikit'
+import { Heading, Card, CardBody, CardFooter, Text, SaltRoundIcon, Flex } from '@saltswap/uikit'
 import { getBalanceNumber } from 'utils/formatBalance'
 import useI18n from 'hooks/useI18n'
 import { useTotalRewards } from 'hooks/useTickets'
@@ -61,8 +61,7 @@ const TotalPrizesCard = () => {
       <CardBody>
         {account && (
           <Flex mb="16px" alignItems="center" justifyContent="space-between" style={{ height: '20px' }}>
-            {currentLotteryNumber === 0 && <Skeleton height={20} width={56} />}
-            {currentLotteryNumber > 0 && (
+            {currentLotteryNumber >= 0 && (
               <>
                 <Text fontSize="12px" style={{ fontWeight: 600 }}>{`Salty Round #${currentLotteryNumber}`}</Text>
               </>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import { Text } from '@saltswap/uikit'
 import useI18n from 'hooks/useI18n'
@@ -6,6 +6,7 @@ import useGetLotteryHasDrawn from 'hooks/useGetLotteryHasDrawn'
 import { useCurrentTime } from 'hooks/useTimer'
 import moment from 'moment'
 import { createStyles, LinearProgress, Theme, withStyles } from '@material-ui/core'
+import { ThemeContext } from 'contexts/ThemeContext'
 import { getTicketSaleTime } from '../helpers/CountdownHelpers'
 
 const ProgressWrapper = styled.div`
@@ -32,8 +33,10 @@ const StyledPrimaryText = styled(Text)`
   margin-left: 8px;
 `
 
-const BorderLinearProgress = withStyles((theme: Theme) =>
-  createStyles({
+const BorderLinearProgress = withStyles((theme: Theme) => {
+  const { isDark } = useContext(ThemeContext)
+
+  return createStyles({
     root: {
       height: 20,
       borderRadius: 10,
@@ -43,10 +46,10 @@ const BorderLinearProgress = withStyles((theme: Theme) =>
     },
     bar: {
       borderRadius: 5,
-      backgroundColor: '#1a90ff',
+      backgroundColor: isDark ? '#6d6d6d' : '#1a90ff',
     },
-  }),
-)(LinearProgress)
+  })
+})(LinearProgress)
 
 const LotteryProgress = () => {
   const TranslateString = useI18n()
@@ -74,7 +77,7 @@ const LotteryProgress = () => {
       {lotteryHasDrawn && (
         <BottomTextWrapper>
           <Text color="invertedContrast">
-            {timeUntilLotteryDraw} {TranslateString(0, 'Until lottery draw')}
+            {TranslateString(0, 'Lottery draw')} {timeUntilLotteryDraw}
           </Text>
         </BottomTextWrapper>
       )}
