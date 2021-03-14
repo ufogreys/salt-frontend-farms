@@ -67,7 +67,7 @@ const PrizesWonContent: React.FC = () => {
         <Won />
       </IconWrapper>
       <Heading as="h3" size="lg" color="secondary">
-        {TranslateString(999, 'You won!')}
+        {TranslateString(999, 'You won!🥳')}
       </Heading>
       {claimLoading && <Loading />}
       {!claimLoading && (
@@ -77,7 +77,7 @@ const PrizesWonContent: React.FC = () => {
               {winnings}
             </Heading>
             <Heading as="h4" size="lg">
-              CAKE
+              SALT
             </Heading>
           </WinningsWrapper>
         </>

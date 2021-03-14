@@ -3,7 +3,7 @@ import { Text } from '@saltswap/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import useTokenBalance from 'hooks/useTokenBalance'
 import useI18n from 'hooks/useI18n'
-import { getCakeAddress } from 'utils/addressHelpers'
+import { getSaltAddress } from 'utils/addressHelpers'
 import { getBalanceNumber } from 'utils/formatBalance'
 import BigNumber from 'bignumber.js'
 import { usePriceSaltBusd } from 'state/hooks'
@@ -12,7 +12,7 @@ import CardBusdValue from './SaltBusdValue'
 
 const CakeWalletBalance = () => {
   const TranslateString = useI18n()
-  const cakeBalance = useTokenBalance(getCakeAddress())
+  const cakeBalance = useTokenBalance(getSaltAddress())
   const busdBalance = new BigNumber(getBalanceNumber(cakeBalance)).multipliedBy(usePriceSaltBusd()).toNumber()
   const { account } = useWallet()
 

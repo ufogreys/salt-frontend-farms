@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     background-color: ${({ theme }) => theme.colors.background};
-    background-image: url('./images/salt-bottom-bg.svg');
+    background-image: url(${({ theme }) => `./images/salt-bottom-bg-${theme.isDark ? 'dark' : 'light'}.svg`});
     background-repeat: no-repeat;
     background-position: bottom;
     background-size: contain;

@@ -33,13 +33,13 @@ const HistoryChart: React.FC = () => {
         label: 'Pool Size',
         data: getDataArray('poolSize'),
         yAxisID: 'y-axis-pool',
-        ...lineStyles({ color: '#8F80BA' }),
+        ...lineStyles({ color: '#6d6d6d' }),
       },
       {
         label: 'Burned',
         data: getDataArray('burned'),
         yAxisID: 'y-axis-burned',
-        ...lineStyles({ color: '#1FC7D4' }),
+        ...lineStyles({ color: '#b0bec5' }),
       },
     ],
   }
@@ -68,19 +68,19 @@ const HistoryChart: React.FC = () => {
           display: true,
           position: 'left',
           id: 'y-axis-pool',
-          ...axesStyles({ color: '#8f80ba', lineHeight: 1.6 }),
+          ...axesStyles({ color: '#6d6d6d', lineHeight: 1.6 }),
         },
         {
           type: 'linear',
           display: true,
           position: 'right',
           id: 'y-axis-burned',
-          ...axesStyles({ color: '#1FC7D4', lineHeight: 1.5 }),
+          ...axesStyles({ color: '#b0bec5', lineHeight: 1.5 }),
         },
       ],
       xAxes: [
         {
-          ...axesStyles({ color: '#452A7A', lineHeight: 1 }),
+          ...axesStyles({ color: '#20c0ff', lineHeight: 1 }),
         },
       ],
     },

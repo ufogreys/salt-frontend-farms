@@ -5,7 +5,7 @@ import styled from 'styled-components'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useTotalSupply, useBurnedBalance } from 'hooks/useTokenBalance'
 import useI18n from 'hooks/useI18n'
-import { getCakeAddress } from 'utils/addressHelpers'
+import { getSaltAddress } from 'utils/addressHelpers'
 import CardValue from './CardValue'
 import { useFarms, usePriceSaltBusd } from '../../../state/hooks'
 
@@ -25,7 +25,7 @@ const Row = styled.div`
 const CakeStats = () => {
   const TranslateString = useI18n()
   const totalSupply = useTotalSupply()
-  const burnedBalance = useBurnedBalance(getCakeAddress())
+  const burnedBalance = useBurnedBalance(getSaltAddress())
   const farms = useFarms()
 
   const eggPrice = usePriceSaltBusd()

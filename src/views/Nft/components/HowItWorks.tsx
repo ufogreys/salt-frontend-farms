@@ -37,7 +37,7 @@ const HowItWorks = () => {
       <StyledHowItWorks>
         <Section>
           <Heading id="how-it-works" color="secondary" size="lg" mb="16px">
-            {TranslateString(632, 'How it works')}
+            {TranslateString(632, 'How does it work?')}
           </Heading>
           <Row>
             <Icon>

@@ -1,21 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Text, Heading, Link, Image } from '@saltswap/uikit'
+import { Text, Heading, Link } from '@saltswap/uikit'
 import useI18n from 'hooks/useI18n'
 
 const LayoutWrapper = styled.div`
-  max-width: 500px;
   margin: 0 auto 40px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  display: flex;
 `
 
 const StyledHeading = styled(Heading)`
   margin: 16px 0;
-`
-
-const StyledImage = styled(Image)`
-  align-self: center;
 `
 
 const StyledLink = styled(Link)`
@@ -28,15 +25,14 @@ const HowItWorks = () => {
 
   return (
     <LayoutWrapper>
-      <StyledImage src="/images/pancake-lottery-bunny.png" alt="lottery bunny" width={163} height={140} />
       <StyledHeading size="lg" as="h3" color="secondary">
-        {TranslateString(999, 'How it works')}
+        {TranslateString(999, 'How does it work?')}
       </StyledHeading>
-      <Text fontSize="16px">
-        {TranslateString(
-          999,
-          'Spend CAKE to buy tickets, contributing to the lottery pot. Win prizes if 2, 3, or 4 of your ticket numbers match the winning numbers and their exact order!',
-        )}
+      <Text fontSize="16px" style={{ display: 'flex', justifyContent: 'center' }}>
+        Spend SALT to buy tickets, contributing to the lottery pot.
+      </Text>
+      <Text fontSize="16px" style={{ display: 'flex', justifyContent: 'center' }}>
+        Win prizes if 2, 3, or 4 of your ticket numbers match the winning numbers and their exact order!
       </Text>
       <StyledLink href="https://saltswap.gitbook.io/salt/core-products/lottery">Read more</StyledLink>
     </LayoutWrapper>

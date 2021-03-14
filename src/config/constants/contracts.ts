@@ -1,7 +1,7 @@
 export default {
-  cake: {
+  salt: {
     56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4',
-    97: '0x85582d24455CAAf44fC4f914bDca2a6CB73e6681',
+    97: '0xe14247879e6def1ac07ae5579433e03fe6881714', // FIXME: Sushi
   },
   masterChef: {
     56: '0xB4405445fFAcF2B86BC2bD7D1C874AC739265658',
@@ -12,12 +12,12 @@ export default {
     97: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c',
   },
   lottery: {
-    56: '',
-    97: '',
+    56: '0x9e76bb91f3E90dcE3431b83F9944Bc9E3b27b619',
+    97: '0xdfF6FCD188b8eC11a1a8acF5336f66b26eDB70A0',
   },
   lotteryNFT: {
-    56: '',
-    97: '',
+    56: '0xea05Ec5F75d38e419b50D64bD203a9399579e929',
+    97: '0x2D0C4E1EDac9d8c1b07D8e2330F23cEb3473a906',
   },
   mulltiCall: {
     56: '0x1ee38d535d541c55c9dae27b12edf090c608e6fb',

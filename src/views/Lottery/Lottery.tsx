@@ -11,6 +11,7 @@ import Hero from './components/Hero'
 import Divider from './components/Divider'
 import NextDrawPage from './NextDrawPage'
 import PastDrawsPage from './PastDrawsPage'
+import WinningNumbersPage from './WinningNumbersPage'
 
 const Wrapper = styled.div`
   position: relative;
@@ -28,10 +29,10 @@ const Lottery: React.FC = () => {
   const [historyData, setHistoryData] = useState([])
   const [historyError, setHistoryError] = useState(false)
   const [currentLotteryNumber, setCurrentLotteryNumber] = useState(0)
-  const [mostRecentLotteryNumber, setMostRecentLotteryNumber] = useState(1)
+  const [mostRecentLotteryNumber, setMostRecentLotteryNumber] = useState(0)
 
   useEffect(() => {
-    fetch(`https://api.saltswap.finance/api/lotteryHistory`)
+    fetch(`https://saltswap-api.vercel.app/api/lotteryHistory`)
       .then((response) => response.json())
       .then((data) => setHistoryData(data))
       .catch(() => {
@@ -63,15 +64,18 @@ const Lottery: React.FC = () => {
       <Page>
         <Wrapper>
           <ButtonMenu activeIndex={activeIndex} onClick={handleClick} size="sm" variant="subtle">
-            <ButtonMenuItem>{TranslateString(999, 'Next draw')}</ButtonMenuItem>
-            <ButtonMenuItem>{TranslateString(999, 'Past draws')}</ButtonMenuItem>
+            <ButtonMenuItem>{TranslateString(999, 'Next Draw')}</ButtonMenuItem>
+            <ButtonMenuItem>{TranslateString(999, 'Past Draws')}</ButtonMenuItem>
+            <ButtonMenuItem>{TranslateString(999, 'Winning Numbers')}</ButtonMenuItem>
           </ButtonMenu>
         </Wrapper>
         <Divider />
         <PastLotteryDataContext.Provider
           value={{ historyError, historyData, mostRecentLotteryNumber, currentLotteryNumber }}
         >
-          {activeIndex === 0 ? <NextDrawPage /> : <PastDrawsPage />}
+          {activeIndex === 0 && <NextDrawPage />}
+          {activeIndex === 1 && <PastDrawsPage />}
+          {activeIndex === 2 && <WinningNumbersPage />}
         </PastLotteryDataContext.Provider>
       </Page>
     </>

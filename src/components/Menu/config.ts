@@ -27,20 +27,20 @@ const config: MenuEntry[] = [
     href: '/pools',
   },
   {
-    label: 'Oceans 🆕',
+    label: 'Oceans',
     icon: 'WaveIcon',
     href: '/oceans',
+  },
+  {
+    label: 'Lottery 🆕',
+    icon: 'TicketIcon',
+    href: '/lottery',
   },
   {
     label: 'Audit By Certik in progress...',
     icon: 'AuditIcon',
     href: '/',
   },
-  // {
-  //   label: 'Lottery',
-  //   icon: 'TicketIcon',
-  //   href: '/lottery',
-  // },
   // {
   //   label: 'NFT',
   //   icon: 'NftIcon',

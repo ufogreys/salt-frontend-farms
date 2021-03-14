@@ -1,25 +1,24 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading, Text } from '@saltswap/uikit'
+import { Heading, Text, Image } from '@saltswap/uikit'
 import useI18n from 'hooks/useI18n'
 import Container from 'components/layout/Container'
 import LotteryProgress from './LotteryProgress'
 
 const Title = styled(Heading).attrs({ as: 'h1', size: 'xl' })`
-  color: ${({ theme }) => theme.colors.secondary};
-  margin-bottom: 24px;
+  color: #ffffff;
 `
 
 const Blurb = styled(Text)`
-  color: #ffffff;
+  color: #c8efff;
   font-size: 20px;
   font-weight: 600;
 `
 
 const StyledHero = styled.div`
-  background-image: linear-gradient(180deg, #53dee9 0%, #1fc7d4 100%);
-  padding-bottom: 40px;
-  padding-top: 40px;
+  background: ${({ theme }) => (theme.isDark ? '#07060c' : '#20c0ff')};
+  padding-bottom: 36px;
+  padding-top: 36px;
 `
 
 const StyledContainer = styled(Container)`
@@ -63,16 +62,22 @@ const RightWrapper = styled.div`
   }
 `
 
+const StyledImage = styled(Image)`
+  align-self: center;
+  margin-right: 10px;
+`
+
 const Hero = () => {
   const TranslateString = useI18n()
 
   return (
     <StyledHero>
       <StyledContainer>
+        <StyledImage src="/images/salt-bae.png" alt="salt bae" width={110} height={110} />
         <LeftWrapper>
-          <Title>{TranslateString(999, 'The CAKE Lottery')}</Title>
-          <Blurb>{TranslateString(999, 'Buy tickets with CAKE')}</Blurb>
-          <Blurb>{TranslateString(999, 'Win if 2, 3, or 4 of your ticket numbers match!')}</Blurb>
+          <Title>{TranslateString(999, 'The Salty Lottery')}</Title>
+          <Blurb>{TranslateString(999, 'Buy salty tickets and win $SALT')}</Blurb>
+          <Blurb>{TranslateString(999, 'If you match 2, 3 or 4 numbers you win 🎉')}</Blurb>
         </LeftWrapper>
         <RightWrapper>
           <LotteryProgress />

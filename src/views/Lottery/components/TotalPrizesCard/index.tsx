@@ -1,12 +1,14 @@
 import React, { useContext, useState } from 'react'
 import styled from 'styled-components'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
-import { Heading, Card, CardBody, CardFooter, Text, SaltRoundIcon, Flex, Skeleton } from '@saltswap/uikit'
+import { Heading, Card, CardBody, CardFooter, Text, SaltRoundIcon, Flex } from '@saltswap/uikit'
 import { getBalanceNumber } from 'utils/formatBalance'
 import useI18n from 'hooks/useI18n'
 import { useTotalRewards } from 'hooks/useTickets'
 import PastLotteryDataContext from 'contexts/PastLotteryDataContext'
 import ExpandableSectionButton from 'components/ExpandableSectionButton/ExpandableSectionButton'
+import { usePriceSaltBusd } from 'state/hooks'
+import BigNumber from 'bignumber.js'
 import PrizeGrid from '../PrizeGrid'
 
 const CardHeading = styled.div`
@@ -55,16 +57,17 @@ const TotalPrizesCard = () => {
   const lotteryPrizeAmount = +getBalanceNumber(useTotalRewards()).toFixed(0)
   const lotteryPrizeWithCommaSeparators = lotteryPrizeAmount.toLocaleString()
   const { currentLotteryNumber } = useContext(PastLotteryDataContext)
+  const saltPriceUsd = usePriceSaltBusd()
+  const lotteryPrizeDollarAmount = saltPriceUsd.times(new BigNumber(lotteryPrizeAmount))
 
   return (
     <Card>
       <CardBody>
         {account && (
           <Flex mb="16px" alignItems="center" justifyContent="space-between" style={{ height: '20px' }}>
-            {currentLotteryNumber === 0 && <Skeleton height={20} width={56} />}
-            {currentLotteryNumber > 0 && (
+            {currentLotteryNumber >= 0 && (
               <>
-                <Text fontSize="12px" style={{ fontWeight: 600 }}>{`Round #${currentLotteryNumber}`}</Text>
+                <Text fontSize="12px" style={{ fontWeight: 600 }}>{`Salty Round #${currentLotteryNumber}`}</Text>
               </>
             )}
           </Flex>
@@ -75,10 +78,10 @@ const TotalPrizesCard = () => {
               <SaltRoundIcon />
             </IconWrapper>
             <PrizeCountWrapper>
+              <Heading size="lg">{lotteryPrizeWithCommaSeparators} SALT</Heading>
               <Text fontSize="14px" color="textSubtle">
-                {TranslateString(999, 'Total Pot:')}
+                {TranslateString(999, 'Total Pot')} ≈ ${(+lotteryPrizeDollarAmount.toFixed(0)).toLocaleString()}
               </Text>
-              <Heading size="lg">{lotteryPrizeWithCommaSeparators} CAKE</Heading>
             </PrizeCountWrapper>
           </Left>
           <Right>
