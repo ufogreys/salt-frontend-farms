@@ -1,5 +1,5 @@
 export default {
-  cake: {
+  salt: {
     56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4',
     97: '0xe14247879e6def1ac07ae5579433e03fe6881714', // FIXME: Sushi
   },
