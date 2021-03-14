@@ -22,8 +22,17 @@ const TopTextWrapper = styled.div`
   text-align: center;
 `
 
+const MiddleTextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+`
+
 const BottomTextWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
@@ -57,8 +66,8 @@ const LotteryProgress = () => {
   const currentMillis = useCurrentTime()
   const timeUntilTicketSale = getTicketSaleTime(currentMillis)
   // const timeUntilLotteryDraw = getLotteryDrawTime(currentMillis)
-  const timeFirstReset = moment('14/03/2021 07:00:00', 'DD/MM/YYYY HH:mm:ss')
-  const timeLotteryDraw = moment('17/03/2021 07:00:00', 'DD/MM/YYYY HH:mm:ss')
+  const timeFirstReset = moment.utc('14/03/2021T09:00', 'DD/MM/YYYYTHH:mm')
+  const timeLotteryDraw = moment.utc('17/03/2021T09:00', 'DD/MM/YYYYTHH:mm')
   const timeUntilLotteryDraw = timeLotteryDraw.fromNow()
 
   const progress = (moment().diff(timeFirstReset).valueOf() / timeLotteryDraw.diff(timeFirstReset)).valueOf() * 100
@@ -66,14 +75,19 @@ const LotteryProgress = () => {
   return (
     <ProgressWrapper>
       <BorderLinearProgress variant="determinate" value={progress} />
-      <TopTextWrapper>
-        <Text fontSize="20px" bold color="#c8efff">
-          {lotteryHasDrawn ? TranslateString(0, 'Until ticket sale') : TranslateString(0, 'Lottery draw')}
+      <MiddleTextWrapper>
+        <TopTextWrapper>
+          <Text fontSize="20px" bold color="#c8efff">
+            {lotteryHasDrawn ? TranslateString(0, 'Until ticket sale') : TranslateString(0, 'Lottery draw')}
+          </Text>
+          <StyledPrimaryText fontSize="20px" bold color="#FFFFFF">
+            {lotteryHasDrawn ? timeUntilTicketSale : timeUntilLotteryDraw}
+          </StyledPrimaryText>
+        </TopTextWrapper>
+        <Text fontSize="12px" color="invertedContrast">
+          {timeLotteryDraw.toLocaleString()}
         </Text>
-        <StyledPrimaryText fontSize="20px" bold color="#FFFFFF">
-          {lotteryHasDrawn ? timeUntilTicketSale : timeUntilLotteryDraw}
-        </StyledPrimaryText>
-      </TopTextWrapper>
+      </MiddleTextWrapper>
       {lotteryHasDrawn && (
         <BottomTextWrapper>
           <Text color="invertedContrast">
