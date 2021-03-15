@@ -301,6 +301,31 @@ const pools: PoolConfig[] = [
     tokenDecimals: 18,
     burnFee: 15,
   },
+  {
+    sousId: 12,
+    tokenName: 'WBNB',
+    stakingTokenName: QuoteToken.SALT,
+    stakingTokenAddress: {
+      97: '0x85582d24455caaf44fc4f914bdca2a6cb73e6681',
+      56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4', // SALT
+    },
+    contractAddress: {
+      97: '0xF08d05d91426A63aB35Ef7f4bBC6E8717B59e838',
+      56: '0xA5e2C1ABc73F411180e0a2371a3A546B402A96F9', // SmartChef
+    },
+    rewardTokenAddress: {
+      97: '0xec5dcb5dbf4b114c9d0f65bccab49ec54f6a0867', // DAI, didnt had WBNB
+      56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', // WBNB
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://binance.com/',
+    harvest: true,
+    tokenPerBlock: '0.0001736111111',
+    sortOrder: 13,
+    isFinished: false,
+    tokenDecimals: 18,
+    burnFee: 15,
+  },
 ]
 
 export default pools
