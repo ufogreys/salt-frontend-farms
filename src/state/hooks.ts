@@ -244,7 +244,7 @@ export const usePriceBlueBnb = () => {
           params: [lpAddress],
         },
         {
-          address: "0x36C0556c2B15aED79F842675Ff030782738eF9e8",
+          address: '0x36C0556c2B15aED79F842675Ff030782738eF9e8',
           name: 'balanceOf',
           params: [lpAddress],
         },
@@ -252,7 +252,6 @@ export const usePriceBlueBnb = () => {
 
       if (!blueTokenBalanceLP || !wbnbTokenBalanceLP) return
 
-      
       // salt-blue = salt/bnb + blue/bnb
       setPrice(new BigNumber(wbnbTokenBalanceLP).div(new BigNumber(blueTokenBalanceLP)))
     }

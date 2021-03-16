@@ -343,7 +343,7 @@ const pools: PoolConfig[] = [
       56: '0x36C0556c2B15aED79F842675Ff030782738eF9e8', // BLUE
     },
     poolCategory: PoolCategory.COMMUNITY,
-    projectLink: 'https://binance.com/',
+    projectLink: 'https://blueswap.finance/',
     harvest: true,
     tokenPerBlock: '0.005787037037',
     sortOrder: 14,

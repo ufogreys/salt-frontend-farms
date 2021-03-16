@@ -102,7 +102,7 @@ const Farm: React.FC = () => {
     } else {
       totalStakingTokenInPool = stakingTokenPriceInBNB.times(getBalanceNumber(pool.totalStaked))
     }
-    
+
     // tokens per block * price of CAKE * blocks_per_year / ( tokens in pool x salt price) * 100
     const apy = totalRewardPricePerYear.div(totalStakingTokenInPool).times(100)
 
