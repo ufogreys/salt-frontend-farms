@@ -69,6 +69,12 @@ export const usePriceSaltBusd = (): BigNumber => {
   return farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : ZERO
 }
 
+export const usePriceSaltBnb = (): BigNumber => {
+  const pid = 2 // SALT-BNB LP
+  const farm = useFarmFromPid(pid)
+  return farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : ZERO
+}
+
 export const usePriceBnbBusd = (): BigNumber => {
   const pid = 3 // BUSD-BNB LP
   const farm = useFarmFromPid(pid)
@@ -217,6 +223,36 @@ export const usePriceCtcBnb = () => {
       if (!ctcTokenBalanceLP || !wbnbTokenBalanceLP) return
 
       setPrice(new BigNumber(wbnbTokenBalanceLP).div(new BigNumber(ctcTokenBalanceLP)).div(10000000000))
+    }
+
+    fetchPrice()
+  }, [])
+
+  return price
+}
+
+export const usePriceBlueBnb = () => {
+  const [price, setPrice] = useState(new BigNumber(0))
+
+  useEffect(() => {
+    const fetchPrice = async () => {
+      const lpAddress = '0xca5a529f3137109eccd5a239e58a150f651710a2' // BLUE/BNB LP
+      const [wbnbTokenBalanceLP, blueTokenBalanceLP] = await multicall(erc20, [
+        {
+          address: poolsConfig.find((p) => p.sousId === 1).rewardTokenAddress[CHAIN_ID],
+          name: 'balanceOf',
+          params: [lpAddress],
+        },
+        {
+          address: '0x36C0556c2B15aED79F842675Ff030782738eF9e8',
+          name: 'balanceOf',
+          params: [lpAddress],
+        },
+      ])
+
+      if (!blueTokenBalanceLP || !wbnbTokenBalanceLP) return
+
+      setPrice(new BigNumber(wbnbTokenBalanceLP).div(new BigNumber(blueTokenBalanceLP)))
     }
 
     fetchPrice()

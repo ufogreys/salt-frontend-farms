@@ -326,6 +326,31 @@ const pools: PoolConfig[] = [
     tokenDecimals: 18,
     burnFee: 15,
   },
+  {
+    sousId: 13,
+    tokenName: 'SALT-BLUE',
+    stakingTokenName: QuoteToken.SALTBLUE,
+    stakingTokenAddress: {
+      97: '0x85582d24455caaf44fc4f914bdca2a6cb73e6681',
+      56: '0xc7953f27b4b7049e41c3c10354e995870cb8e109', // SALT-BLUE
+    },
+    contractAddress: {
+      97: '0xF08d05d91426A63aB35Ef7f4bBC6E8717B59e838',
+      56: '0xdF62141c12f54B17B7e6F158eD36629856E74C97', // SmartChef
+    },
+    rewardTokenAddress: {
+      97: '0xec5dcb5dbf4b114c9d0f65bccab49ec54f6a0867', // DAI, didnt had WBNB
+      56: '0x36C0556c2B15aED79F842675Ff030782738eF9e8', // BLUE
+    },
+    poolCategory: PoolCategory.COMMUNITY,
+    projectLink: 'https://blueswap.finance/',
+    harvest: true,
+    tokenPerBlock: '0.005787037037',
+    sortOrder: 14,
+    isFinished: false,
+    tokenDecimals: 18,
+    burnFee: 0,
+  },
 ]
 
 export default pools
