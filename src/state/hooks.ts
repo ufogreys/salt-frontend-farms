@@ -252,7 +252,6 @@ export const usePriceBlueBnb = () => {
 
       if (!blueTokenBalanceLP || !wbnbTokenBalanceLP) return
 
-      // salt-blue = salt/bnb + blue/bnb
       setPrice(new BigNumber(wbnbTokenBalanceLP).div(new BigNumber(blueTokenBalanceLP)))
     }
 
