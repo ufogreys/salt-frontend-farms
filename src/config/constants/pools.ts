@@ -328,7 +328,7 @@ const pools: PoolConfig[] = [
   },
   {
     sousId: 13,
-    tokenName: 'SALT-BLUE',
+    tokenName: 'BLUE',
     stakingTokenName: QuoteToken.SALTBLUE,
     stakingTokenAddress: {
       97: '0x85582d24455caaf44fc4f914bdca2a6cb73e6681',
