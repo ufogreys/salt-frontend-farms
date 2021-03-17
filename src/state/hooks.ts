@@ -270,6 +270,7 @@ export const useTotalValue = (): BigNumber => {
   const bnbPrice = usePriceBnbBusd()
   const ethPrice = usePriceEthBusd()
   const saltPrice = usePriceSaltBusd()
+  const bluePrice = usePriceBlueBnb()
   const totalValue = useRef(new BigNumber(0))
 
   useEffect(() => {
@@ -299,11 +300,17 @@ export const useTotalValue = (): BigNumber => {
         const totalSaltStaked = new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(18))
         poolValue = saltPrice.times(totalSaltStaked)
       }
+
+      if (pool.stakingTokenName === QuoteToken.SALTBLUE) {
+        const totalSaltStaked = new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(18))
+        poolValue = bluePrice.times(bnbPrice).times(totalSaltStaked)
+      }
+
       poolsTotalValue = poolsTotalValue.plus(poolValue)
     }
 
     totalValue.current = farmsTotalValue.plus(poolsTotalValue)
-  }, [bnbPrice, ethPrice, farms, pools, saltPrice])
+  }, [bluePrice, bnbPrice, ethPrice, farms, pools, saltPrice])
 
   if (!totalValue) {
     return new BigNumber(0)
