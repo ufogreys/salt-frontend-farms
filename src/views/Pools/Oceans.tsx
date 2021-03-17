@@ -66,7 +66,7 @@ const Farm: React.FC = () => {
     if (tokenName === 'CTC') {
       return ctcPrice
     }
-    if (tokenName === 'SALT-BLUE') {
+    if (tokenName === 'BLUE') {
       return bluePrice
     }
     if (tokenPrice && quoteToken === QuoteToken.BUSD) {
@@ -95,7 +95,7 @@ const Farm: React.FC = () => {
     // console.log('stakingTokenPriceInBNB', stakingTokenPriceInBNB.toString())
     const totalRewardPricePerYear = rewardTokenPriceInBNB.times(pool.tokenPerBlock).times(BLOCKS_PER_YEAR)
     let totalStakingTokenInPool = new BigNumber(0)
-    if (pool.tokenName === 'SALT-BLUE') {
+    if (pool.tokenName === 'BLUE') {
       totalStakingTokenInPool = saltPrice.plus(rewardTokenPriceInBNB).times(getBalanceNumber(pool.totalStaked))
       // console.log('salt price', saltPrice.toString())
       // console.log('rewardTokenPriceInBNB2', saltPrice.plus(rewardTokenPriceInBNB).toString())
