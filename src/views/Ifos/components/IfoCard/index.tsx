@@ -15,16 +15,13 @@ import IfoCardDescription from './IfoCardDescription'
 import IfoCardDetails from './IfoCardDetails'
 import IfoCardTime from './IfoCardTime'
 import IfoCardContribute from './IfoCardContribute'
+import CurrencyInputPanel from '../CurrencyInputPanel'
 
 export interface IfoCardProps {
   ifo: Ifo
 }
 
 const StyledIfoCard = styled(Card)<{ ifoId: string }>`
-  background-image: ${({ ifoId }) => `url('/images/ifos/${ifoId}-bg.svg')`};
-  background-repeat: no-repeat;
-  background-size: contain;
-  padding-top: 112px;
   margin-left: auto;
   margin-right: auto;
   max-width: 437px;
@@ -94,6 +91,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
 
   const currentBlock = useBlock()
   const TranslateString = useI18n()
+  const [value, setValue] = useState('')
 
   const Ribbon = getRibbonComponent(state.status, TranslateString)
 
@@ -152,7 +150,19 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
           block={isActive || isFinished ? state.endBlockNum : state.startBlockNum}
         />
         {!account && <UnlockButton fullWidth />}
-        {(isActive || isFinished) && (
+        <CurrencyInputPanel
+          label=""
+          placeholder="0.0"
+          value={value}
+          showMaxButton={false}
+          onUserInput={(input) => {
+            setValue(input)
+          }}
+          currency={{ name: 'BNB', symbol: 'BNB', decimals: 18 }}
+          id="ido-input-token"
+          showCommonBases={false}
+        />
+        {true && (
           <IfoCardContribute
             address={address}
             currency={currency}

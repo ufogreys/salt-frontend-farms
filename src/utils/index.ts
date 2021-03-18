@@ -4,3 +4,7 @@ export { default as formatAddress } from './formatAddress'
 
 export const bnToDec = (bn: BigNumber, decimals = 18): number =>
   bn.dividedBy(new BigNumber(10).pow(decimals)).toNumber()
+
+export function escapeRegExp(string: string): string {
+  return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') // $& means the whole matched string
+}

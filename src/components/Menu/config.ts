@@ -39,7 +39,7 @@ const config: MenuEntry[] = [
   {
     label: 'Launchpad (IDOs)',
     icon: 'IfoIcon',
-    href: '/ifo',
+    href: '/ido',
   },
   {
     label: 'Audit By Certik in progress...',
