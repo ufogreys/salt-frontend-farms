@@ -17,7 +17,7 @@ const IfoTabButtons = () => {
     <Wrapper>
       <ButtonMenu activeIndex={!isExact ? 1 : 0} size="sm" variant="subtle">
         <ButtonMenuItem as={Link} to={`${url}`}>
-          Next IDO
+          Current IDO
         </ButtonMenuItem>
         <ButtonMenuItem as={Link} to={`${url}/history`}>
           Past IDOs
