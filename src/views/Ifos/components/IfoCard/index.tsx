@@ -150,18 +150,20 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
           block={isActive || isFinished ? state.endBlockNum : state.startBlockNum}
         />
         {!account && <UnlockButton fullWidth />}
-        <CurrencyInputPanel
-          label=""
-          placeholder="0.0"
-          value={value}
-          showMaxButton={false}
-          onUserInput={(input) => {
-            setValue(input)
-          }}
-          currency={{ name: 'BNB', symbol: 'BNB', decimals: 18 }}
-          id="ido-input-token"
-          showCommonBases={false}
-        />
+        {account && (
+          <CurrencyInputPanel
+            label=""
+            placeholder="0.0"
+            value={value}
+            showMaxButton={false}
+            onUserInput={(input) => {
+              setValue(input)
+            }}
+            currency={{ name: 'BNB', symbol: 'BNB', decimals: 18 }}
+            id="ido-input-token"
+            showCommonBases={false}
+          />
+        )}
         {(isActive || isFinished) && (
           <IfoCardContribute
             address={address}
