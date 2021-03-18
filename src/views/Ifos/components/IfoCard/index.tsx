@@ -162,7 +162,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
           id="ido-input-token"
           showCommonBases={false}
         />
-        {true && (
+        {(isActive || isFinished) && (
           <IfoCardContribute
             address={address}
             currency={currency}
