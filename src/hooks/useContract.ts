@@ -6,6 +6,7 @@ import { getMasterChefAddress, getSaltAddress, getLotteryAddress, getLotteryTick
 import { poolsConfig } from 'config/constants'
 import { PoolCategory } from 'config/constants/types'
 import ifo from 'config/abi/ifo.json'
+import ido from 'config/abi/ido.json'
 import erc20 from 'config/abi/erc20.json'
 import rabbitmintingfarm from 'config/abi/rabbitmintingfarm.json'
 import pancakeRabbits from 'config/abi/pancakeRabbits.json'
@@ -35,6 +36,11 @@ const useContract = (abi: AbiItem, address: string, contractOptions?: ContractOp
 export const useIfoContract = (address: string) => {
   const ifoAbi = (ifo as unknown) as AbiItem
   return useContract(ifoAbi, address)
+}
+
+export const useIdoContract = (address: string) => {
+  const idoAbi = (ido as unknown) as AbiItem
+  return useContract(idoAbi, address)
 }
 
 export const useERC20 = (address: string) => {
