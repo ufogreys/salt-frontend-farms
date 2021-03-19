@@ -21,6 +21,7 @@ import {
   usePriceCtcBnb,
   usePriceBlueBnb,
   usePriceSaltBnb,
+  usePriceBlueSaltLPBnb,
 } from 'state/hooks'
 import { QuoteToken } from 'config/constants/types'
 import FlexLayout from 'components/layout/Flex'
@@ -45,6 +46,7 @@ const Farm: React.FC = () => {
   const ctcPrice = usePriceCtcBnb()
   const bluePrice = usePriceBlueBnb()
   const saltPrice = usePriceSaltBnb()
+  const saltBlueLPPrice = usePriceBlueSaltLPBnb()
 
   const priceToBnb = (tokenName: string, tokenPrice: BigNumber, quoteToken: QuoteToken): BigNumber => {
     const tokenPriceBN = new BigNumber(tokenPrice)
@@ -96,9 +98,8 @@ const Farm: React.FC = () => {
     const totalRewardPricePerYear = rewardTokenPriceInBNB.times(pool.tokenPerBlock).times(BLOCKS_PER_YEAR)
     let totalStakingTokenInPool = new BigNumber(0)
     if (pool.tokenName === 'BLUE') {
-      totalStakingTokenInPool = saltPrice.plus(rewardTokenPriceInBNB).times(getBalanceNumber(pool.totalStaked))
-      // console.log('salt price', saltPrice.toString())
-      // console.log('rewardTokenPriceInBNB2', saltPrice.plus(rewardTokenPriceInBNB).toString())
+      // console.log("salt-blue LP", saltBlueLPPrice.times(getBalanceNumber(pool.totalStaked)).toString())
+      totalStakingTokenInPool = saltBlueLPPrice.times(getBalanceNumber(pool.totalStaked))
     } else {
       totalStakingTokenInPool = stakingTokenPriceInBNB.times(getBalanceNumber(pool.totalStaked))
     }
