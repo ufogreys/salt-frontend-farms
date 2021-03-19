@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import BigNumber from 'bignumber.js'
 import { Modal, Button, Flex, LinkExternal } from '@saltswap/uikit'
 import BalanceInput from 'components/Input/BalanceInput'
-import useTokenBalance from 'hooks/useTokenBalance'
+import { getWeb3 } from 'utils/web3'
 import { getFullDisplayBalance } from 'utils/formatBalance'
 
 interface Props {
@@ -15,9 +15,21 @@ interface Props {
 
 const ContributeModal: React.FC<Props> = ({ currency, contract, currencyAddress, onDismiss }) => {
   const [value, setValue] = useState('')
+  const [bnbBalance, setBnbBalance] = useState(new BigNumber(0))
   const [pendingTx, setPendingTx] = useState(false)
   const { account } = useWallet()
-  const balance = getFullDisplayBalance(useTokenBalance(currencyAddress))
+
+  useEffect(() => {
+    const fetch = async () => {
+      const balance = await getWeb3().eth.getBalance(account)
+
+      setBnbBalance(new BigNumber(balance))
+    }
+
+    if (account) {
+      fetch()
+    }
+  }, [account])
 
   return (
     <Modal title={`Contribute ${currency}`} onDismiss={onDismiss}>
@@ -25,8 +37,8 @@ const ContributeModal: React.FC<Props> = ({ currency, contract, currencyAddress,
         value={value}
         onChange={(e) => setValue(e.currentTarget.value)}
         symbol={currency}
-        max={balance}
-        onSelectMax={() => setValue(balance.toString())}
+        max={getFullDisplayBalance(bnbBalance)}
+        onSelectMax={() => setValue(bnbBalance.toString())}
       />
       <Flex justifyContent="space-between" mb="24px">
         <Button fullWidth variant="secondary" onClick={onDismiss} mr="8px">

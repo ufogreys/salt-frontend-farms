@@ -59,7 +59,6 @@ const IfoCardContribute: React.FC<Props> = ({
     }
   }, [account, contract.methods, pendingTx])
 
-  // TODO allowance is null, we need to check it somehow
   if (allowance === null) {
     return null
   }

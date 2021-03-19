@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import BigNumber from 'bignumber.js'
-import { Button, Card, CardBody, CardRibbon, Flex, Text } from '@saltswap/uikit'
+import { Button, Card, CardBody, CardRibbon, Flex, Text, useModal } from '@saltswap/uikit'
 import { Ifo, IfoStatus } from 'config/constants/types'
 import useI18n from 'hooks/useI18n'
 import { useIdoContract } from 'hooks/useContract'
@@ -13,6 +13,7 @@ import IfoCardDescription from './IfoCardDescription'
 import IfoCardDetails from './IfoCardDetails'
 import IfoCardContribute from './IfoCardContribute'
 import CurrencyInputPanel from '../CurrencyInputPanel'
+import ContributeModal from './ContributeModal'
 
 export interface IfoCardProps {
   ifo: Ifo
@@ -71,9 +72,9 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
     softCap: new BigNumber(0),
     hardCap: new BigNumber(0),
     tokensPerBnb: new BigNumber(0),
-    // totalBnb: new BigNumber(0),
     softCapProgress: 0,
     hardCapProgress: 0,
+    weiRaised: new BigNumber(0),
   })
   const { account } = useWallet()
   const presaleContract = useIdoContract('0x9DDE81E9E62DCa90cA08E6c55220edcCD8A2C1fD')
@@ -83,15 +84,17 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
 
   const Ribbon = getRibbonComponent('live', TranslateString)
 
+  const [onPresentContributeModal] = useModal(
+    <ContributeModal currency="BNB" contract={presaleContract} currencyAddress={currencyAddress} />,
+  )
+
   useEffect(() => {
     const fetchProgress = async () => {
-      const [softCap, hardCap, tokensPerBnb] = await Promise.all([
+      const [softCap, hardCap, tokensPerBnb, weiRaised] = await Promise.all([
         presaleContract.methods.softCap().call(),
         presaleContract.methods.hardCap().call(),
         presaleContract.methods.tokensPerBnb().call(),
-        presaleContract.methods.minContribution().call(),
-        presaleContract.methods.maxContribution().call(),
-        // presaleContract.methods.totalBnb().call(),
+        presaleContract.methods.weiRaised().call(),
       ])
 
       const softCapProgress = 10 // new BigNumber(100).pow(18)
@@ -104,7 +107,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
         tokensPerBnb,
         softCapProgress,
         hardCapProgress,
-        // totalBnb,
+        weiRaised,
       })
     }
 
@@ -115,6 +118,12 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
     <StyledIfoCard ifoId={id} ribbon={Ribbon} isActive>
       <CardBody>
         <IfoCardHeader ifoId={id} name={name} subTitle={subTitle} />
+        <Flex justifyContent="space-between">
+          <Text style={{ fontSize: '16px' }}>Wei raised:</Text>
+          <Text bold style={{ fontSize: '16px' }}>
+            {state.weiRaised?.toString()}
+          </Text>
+        </Flex>
         <Flex justifyContent="space-between">
           <Text style={{ fontSize: '16px' }}>Soft Cap:</Text>
           <Text bold style={{ fontSize: '16px' }}>
@@ -138,7 +147,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
         {!account && <UnlockButton fullWidth />}
         {account && (
           <>
-            <CurrencyInputPanel
+            {/* <CurrencyInputPanel
               label=""
               placeholder="0.0"
               value={value}
@@ -149,33 +158,22 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
               currency={{ name: 'BNB', symbol: 'BNB', decimals: 18 }}
               id="ido-input-token"
               showCommonBases={false}
-            />
+            /> */}
 
             <ButtonsWrapper>
               <Button
-                id="buy"
+                id="contribute"
                 style={{ marginRight: '8px' }}
                 fullWidth
                 disabled={false}
-                onClick={() => {
-                  console.log('buy clicked!')
-                }}
+                onClick={onPresentContributeModal}
               >
-                Buy
-              </Button>
-              <Button
-                id="refund"
-                variant="secondary"
-                fullWidth
-                onClick={() => {
-                  console.log('refund clicked!')
-                }}
-              >
-                Refund
+                Contribute
               </Button>
             </ButtonsWrapper>
           </>
         )}
+        {/* <ContributeModal currency={currency} contract={presaleContract} currencyAddress={currencyAddress} /> */}
         <IfoCardContribute
           address={address}
           currency={currency}
