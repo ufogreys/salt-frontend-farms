@@ -2,13 +2,16 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import BigNumber from 'bignumber.js'
-import { Card, CardBody, CardRibbon } from '@saltswap/uikit'
+import { Button, Card, CardBody, CardRibbon, Progress, Text } from '@saltswap/uikit'
 import { BSC_BLOCK_TIME } from 'config'
 import { Ifo, IfoStatus } from 'config/constants/types'
 import useI18n from 'hooks/useI18n'
 import useBlock from 'hooks/useBlock'
-import { useIfoContract } from 'hooks/useContract'
+import { useERC20, useIdoContract, useIfoContract } from 'hooks/useContract'
 import UnlockButton from 'components/UnlockButton'
+import { useIdoSoftCap } from 'hooks/useAllowance'
+import { makeStyles } from '@material-ui/core/styles'
+import LinearProgress from '@material-ui/core/LinearProgress'
 import IfoCardHeader from './IfoCardHeader'
 import IfoCardProgress from './IfoCardProgress'
 import IfoCardDescription from './IfoCardDescription'
@@ -28,33 +31,45 @@ const StyledIfoCard = styled(Card)<{ ifoId: string }>`
   width: 100%;
 `
 
-const getStatus = (currentBlock: number, startBlock: number, endBlock: number): IfoStatus | null => {
-  if (currentBlock < startBlock) {
-    return 'coming_soon'
-  }
+const StyledProgress = styled.div`
+  margin-top: 4px;
+  margin-bottom: 16px;
+`
 
-  if (currentBlock >= startBlock && currentBlock <= endBlock) {
-    return 'live'
-  }
+const ButtonsWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+  justify-content: space-between;
+`
 
-  if (currentBlock > endBlock) {
-    return 'finished'
-  }
+// const getStatus = (currentBlock: number, startBlock: number, endBlock: number): IfoStatus | null => {
+//   if (currentBlock < startBlock) {
+//     return 'coming_soon'
+//   }
 
-  return null
-}
+//   if (currentBlock >= startBlock && currentBlock <= endBlock) {
+//     return 'live'
+//   }
 
-const getRibbonComponent = (status: IfoStatus, TranslateString: (translationId: number, fallback: string) => any) => {
-  if (status === 'coming_soon') {
-    return <CardRibbon variantColor="textDisabled" text={TranslateString(999, 'Coming Soon')} />
-  }
+//   if (currentBlock > endBlock) {
+//     return 'finished'
+//   }
 
-  if (status === 'live') {
-    return <CardRibbon variantColor="primary" text={TranslateString(999, 'LIVE NOW!')} />
-  }
+//   return null
+// }
 
-  return null
-}
+// const getRibbonComponent = (status: IfoStatus, TranslateString: (translationId: number, fallback: string) => any) => {
+//   if (status === 'coming_soon') {
+//     return <CardRibbon variantColor="textDisabled" text={TranslateString(999, 'Coming Soon')} />
+//   }
+
+//   if (status === 'live') {
+//     return <CardRibbon variantColor="primary" text={TranslateString(999, 'LIVE NOW!')} />
+//   }
+
+//   return null
+// }
 
 const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
   const {
@@ -72,106 +87,141 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
     currency,
     currencyAddress,
     tokenDecimals,
-    releaseBlockNumber,
   } = ifo
   const [state, setState] = useState({
     isLoading: true,
     status: null,
-    blocksRemaining: 0,
-    secondsUntilStart: 0,
-    progress: 0,
-    secondsUntilEnd: 0,
-    raisingAmount: new BigNumber(0),
-    totalAmount: new BigNumber(0),
-    startBlockNum: 0,
-    endBlockNum: 0,
+    softCap: new BigNumber(0),
+    hardCap: new BigNumber(0),
+    tokensPerBnb: new BigNumber(0),
+    minContribution: new BigNumber(0),
+    maxContribution: new BigNumber(0),
+    // totalBnb: new BigNumber(0),
+    softCapProgress: 0,
+    hardCapProgress: 0,
   })
   const { account } = useWallet()
-  const contract = useIfoContract(address)
+  const presaleContract = useIdoContract('0x9DDE81E9E62DCa90cA08E6c55220edcCD8A2C1fD')
 
-  const currentBlock = useBlock()
-  const TranslateString = useI18n()
+  // const currentBlock = useBlock()
+  // const TranslateString = useI18n()
   const [value, setValue] = useState('')
 
-  const Ribbon = getRibbonComponent(state.status, TranslateString)
+  // const Ribbon = getRibbonComponent(state.status, TranslateString)
 
   useEffect(() => {
     const fetchProgress = async () => {
-      const [startBlock, endBlock, raisingAmount, totalAmount] = await Promise.all([
-        contract.methods.startBlock().call(),
-        contract.methods.endBlock().call(),
-        contract.methods.raisingAmount().call(),
-        contract.methods.totalAmount().call(),
+      const [softCap, hardCap, tokensPerBnb, minContribution, maxContribution] = await Promise.all([
+        presaleContract.methods.softCap().call(),
+        presaleContract.methods.hardCap().call(),
+        presaleContract.methods.tokensPerBnb().call(),
+        presaleContract.methods.minContribution().call(),
+        presaleContract.methods.maxContribution().call(),
+        // presaleContract.methods.totalBnb().call(),
       ])
 
-      const startBlockNum = parseInt(startBlock, 10)
-      const endBlockNum = parseInt(endBlock, 10)
+      const totalBnb = new BigNumber(100).pow(18)
 
-      const status = getStatus(currentBlock, startBlockNum, endBlockNum)
-      const totalBlocks = endBlockNum - startBlockNum
-      const blocksRemaining = endBlockNum - currentBlock
+      const softCapProgress = 10 // new BigNumber(100).pow(18)
+      const hardCapProgress = 1
 
-      // Calculate the total progress until finished or until start
-      const progress =
-        currentBlock > startBlockNum
-          ? ((currentBlock - startBlockNum) / totalBlocks) * 100
-          : ((currentBlock - releaseBlockNumber) / (startBlockNum - releaseBlockNumber)) * 100
+      // eslint-disable-next-line no-console
+      console.log('softCap', softCap)
 
       setState({
         isLoading: false,
-        secondsUntilEnd: blocksRemaining * BSC_BLOCK_TIME,
-        secondsUntilStart: (startBlockNum - currentBlock) * BSC_BLOCK_TIME,
-        raisingAmount: new BigNumber(raisingAmount),
-        totalAmount: new BigNumber(totalAmount),
-        status,
-        progress,
-        blocksRemaining,
-        startBlockNum,
-        endBlockNum,
+        status: null,
+        softCap,
+        hardCap,
+        tokensPerBnb,
+        minContribution,
+        maxContribution,
+        softCapProgress,
+        hardCapProgress,
+        // totalBnb,
       })
     }
 
     fetchProgress()
-  }, [currentBlock, contract, releaseBlockNumber, setState])
+  }, [presaleContract, setState])
 
   const isActive = state.status === 'live'
   const isFinished = state.status === 'finished'
 
   return (
-    <StyledIfoCard ifoId={id} ribbon={Ribbon} isActive={isActive}>
+    <StyledIfoCard ifoId={id} isActive={isActive}>
       <CardBody>
         <IfoCardHeader ifoId={id} name={name} subTitle={subTitle} />
-        <IfoCardProgress progress={state.progress} />
-        <IfoCardTime
+        <Text fontSize="14px" color="textSubtle">
+          Soft Cap: {state.softCapProgress?.toString()}%
+        </Text>
+        <Text fontSize="14px" color="textSubtle">
+          Hard Cap: {state.hardCapProgress?.toString()}%
+        </Text>
+        <StyledProgress>
+          <LinearProgress
+            variant="buffer"
+            value={state.hardCapProgress}
+            valueBuffer={state.softCapProgress}
+            color="secondary"
+          />
+        </StyledProgress>
+        {/* <IfoCardTime
           isLoading={state.isLoading}
           status={state.status}
           secondsUntilStart={state.secondsUntilStart}
           secondsUntilEnd={state.secondsUntilEnd}
           block={isActive || isFinished ? state.endBlockNum : state.startBlockNum}
-        />
+        /> */}
         {!account && <UnlockButton fullWidth />}
         {account && (
-          <CurrencyInputPanel
-            label=""
-            placeholder="0.0"
-            value={value}
-            showMaxButton={false}
-            onUserInput={(input) => {
-              setValue(input)
-            }}
-            currency={{ name: 'BNB', symbol: 'BNB', decimals: 18 }}
-            id="ido-input-token"
-            showCommonBases={false}
-          />
+          <>
+            <CurrencyInputPanel
+              label=""
+              placeholder="0.0"
+              value={value}
+              showMaxButton={false}
+              onUserInput={(input) => {
+                setValue(input)
+              }}
+              currency={{ name: 'BNB', symbol: 'BNB', decimals: 18 }}
+              id="ido-input-token"
+              showCommonBases={false}
+            />
+
+            <ButtonsWrapper>
+              <Button
+                id="buy"
+                style={{ marginRight: '8px' }}
+                fullWidth
+                disabled={false}
+                onClick={() => {
+                  console.log('buy clicked!')
+                }}
+              >
+                Buy
+              </Button>
+              <Button
+                id="refund"
+                variant="secondary"
+                fullWidth
+                onClick={() => {
+                  console.log('refund clicked!')
+                }}
+              >
+                Refund
+              </Button>
+            </ButtonsWrapper>
+          </>
         )}
         {(isActive || isFinished) && (
           <IfoCardContribute
             address={address}
             currency={currency}
             currencyAddress={currencyAddress}
-            contract={contract}
+            contract={presaleContract}
             status={state.status}
-            raisingAmount={state.raisingAmount}
+            raisingAmount={new BigNumber(100)} // TODO
             tokenDecimals={tokenDecimals}
           />
         )}
@@ -183,8 +233,8 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
           raiseAmount={raiseAmount}
           cakeToBurn={cakeToBurn}
           projectSiteUrl={projectSiteUrl}
-          raisingAmount={state.raisingAmount}
-          totalAmount={state.totalAmount}
+          raisingAmount={new BigNumber(100)} // TODO
+          totalAmount={new BigNumber(100)} // TODO
         />
       </CardBody>
     </StyledIfoCard>
