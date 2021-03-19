@@ -320,7 +320,7 @@ const pools: PoolConfig[] = [
     poolCategory: PoolCategory.CORE,
     projectLink: 'https://binance.com/',
     harvest: true,
-    tokenPerBlock: '0.0001736111111',
+    tokenPerBlock: '0.00005541666667',
     sortOrder: 13,
     isFinished: false,
     tokenDecimals: 18,

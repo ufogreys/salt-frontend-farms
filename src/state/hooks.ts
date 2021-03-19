@@ -265,13 +265,13 @@ export const usePriceBlueSaltLPBnb = () => {
   const bluePrice = usePriceBlueBnb()
   const saltPrice = usePriceSaltBnb()
   const [price, setPrice] = useState(new BigNumber(0))
-  
+
   useEffect(() => {
     const fetchPrice = async () => {
       const lpAddress = '0xc7953f27b4b7049e41c3c10354e995870cb8e109' // SALT/BLUE LP
       const [saltTokenBalanceLP, blueTokenBalanceLP, totalSupply] = await multicall(erc20, [
         {
-          address: "0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4", // SALT
+          address: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4', // SALT
           name: 'balanceOf',
           params: [lpAddress],
         },
@@ -291,7 +291,7 @@ export const usePriceBlueSaltLPBnb = () => {
       // price salt x salts in LP + price blue x blue in LP / LP tokens
       const saltValue = new BigNumber(saltTokenBalanceLP).times(saltPrice)
       const blueValue = new BigNumber(blueTokenBalanceLP).times(bluePrice)
-      const topValue =  saltValue.plus(blueValue)
+      const topValue = saltValue.plus(blueValue)
       const lpPrice = topValue.div(totalSupply)
       setPrice(lpPrice)
     }
