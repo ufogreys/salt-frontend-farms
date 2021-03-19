@@ -44,8 +44,11 @@ const IfoCardContribute: React.FC<Props> = ({
 
   useEffect(() => {
     const fetch = async () => {
-      const balance = new BigNumber(await contract.methods.getOfferingAmount(account).call())
-      const userinfo = await contract.methods.userInfo(account).call()
+      // const balance = new BigNumber(await contract.methods.getOfferingAmount(account).call())
+      // const userinfo = await contract.methods.userInfo(account).call()
+
+      const balance = new BigNumber(10)
+      const userinfo = { amount: 10, claimed: false }
 
       setUserInfo(userinfo)
       setOfferingTokenBalance(balance)
@@ -56,6 +59,7 @@ const IfoCardContribute: React.FC<Props> = ({
     }
   }, [account, contract.methods, pendingTx])
 
+  // TODO allowance is null, we need to check it somehow
   if (allowance === null) {
     return null
   }
