@@ -35,9 +35,6 @@ const IfoCardContribute: React.FC<Props> = ({
   const [userInfo, setUserInfo] = useState({ amount: 0, claimed: false })
 
   const { account } = useWallet()
-  const contractRaisingToken = useERC20(currencyAddress)
-  const allowance = useIfoAllowance(contractRaisingToken, address, pendingTx)
-  const onApprove = useIfoApprove(contractRaisingToken, address)
   const [onPresentContributeModal] = useModal(
     <ContributeModal currency={currency} contract={contract} currencyAddress={currencyAddress} />,
   )
@@ -59,10 +56,6 @@ const IfoCardContribute: React.FC<Props> = ({
     }
   }, [account, contract.methods, pendingTx])
 
-  if (allowance === null) {
-    return null
-  }
-
   const claim = async () => {
     setPendingTx(true)
     await contract.methods.harvest().send({ from: account })
@@ -70,27 +63,6 @@ const IfoCardContribute: React.FC<Props> = ({
   }
   const isFinished = status === 'finished'
   const percentOfUserContribution = new BigNumber(userInfo.amount).div(raisingAmount).times(100)
-
-  if (allowance <= 0) {
-    return (
-      <Button
-        fullWidth
-        disabled={pendingTx || isFinished}
-        onClick={async () => {
-          try {
-            setPendingTx(true)
-            await onApprove()
-            setPendingTx(false)
-          } catch (e) {
-            setPendingTx(false)
-            console.error(e)
-          }
-        }}
-      >
-        Approve
-      </Button>
-    )
-  }
 
   return (
     <>

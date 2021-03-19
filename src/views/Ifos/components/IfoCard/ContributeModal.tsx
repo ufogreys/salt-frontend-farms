@@ -49,9 +49,11 @@ const ContributeModal: React.FC<Props> = ({ currency, contract, currencyAddress,
           disabled={pendingTx}
           onClick={async () => {
             setPendingTx(true)
-            await contract.methods
-              .deposit(new BigNumber(value).times(new BigNumber(10).pow(18)).toString())
-              .send({ from: account })
+            await getWeb3().eth.sendTransaction({
+              from: account,
+              to: contract,
+              value: new BigNumber(value).times(new BigNumber(10).pow(18)).toString(),
+            })
             setPendingTx(false)
             onDismiss()
           }}
