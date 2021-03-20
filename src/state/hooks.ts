@@ -265,9 +265,11 @@ export const usePriceBlueSaltLPBnb = () => {
   const bluePrice = usePriceBlueBnb()
   const saltPrice = usePriceSaltBnb()
   const [price, setPrice] = useState(
-    { blueTokenBalance: new BigNumber(0),
+    {
+      blueTokenBalance: new BigNumber(0),
       saltTokenBalance: new BigNumber(0),
-      totalSupplyLP: new BigNumber(0) })
+      totalSupplyLP: new BigNumber(0)
+    })
 
   useEffect(() => {
     const fetchPrice = async () => {
@@ -291,9 +293,11 @@ export const usePriceBlueSaltLPBnb = () => {
       ])
 
       if (!blueTokenBalanceLP || !saltTokenBalanceLP || !totalSupply) return
-      setPrice({blueTokenBalance: blueTokenBalanceLP,
+      setPrice({
+        blueTokenBalance: blueTokenBalanceLP,
         saltTokenBalance: saltTokenBalanceLP,
-        totalSupplyLP: totalSupply})
+        totalSupplyLP: totalSupply
+      })
     }
 
     fetchPrice()
@@ -312,9 +316,11 @@ export const usePriceSlmeSaltLPBnb = () => {
   const smlePrice = usePriceSlimeBnb()
   const saltPrice = usePriceSaltBnb()
   const [price, setPrice] = useState(
-    { blueTokenBalance: new BigNumber(0),
+    {
+      blueTokenBalance: new BigNumber(0),
       saltTokenBalance: new BigNumber(0),
-      totalSupplyLP: new BigNumber(0) })
+      totalSupplyLP: new BigNumber(0)
+    })
 
   useEffect(() => {
     const fetchPrice = async () => {
@@ -338,9 +344,11 @@ export const usePriceSlmeSaltLPBnb = () => {
       ])
 
       if (!slmeTokenBalanceLP || !saltTokenBalanceLP || !totalSupply) return
-      setPrice({blueTokenBalance: slmeTokenBalanceLP,
+      setPrice({
+        blueTokenBalance: slmeTokenBalanceLP,
         saltTokenBalance: saltTokenBalanceLP,
-        totalSupplyLP: totalSupply})
+        totalSupplyLP: totalSupply
+      })
     }
 
     fetchPrice()
@@ -365,6 +373,7 @@ export const useTotalValue = (): BigNumber => {
   const ethPrice = usePriceEthBusd()
   const saltPrice = usePriceSaltBusd()
   const bluePrice = usePriceBlueBnb()
+  const slimePrice = usePriceSlimeBnb()
   const totalValue = useRef(new BigNumber(0))
 
   useEffect(() => {
@@ -400,11 +409,16 @@ export const useTotalValue = (): BigNumber => {
         poolValue = bluePrice.times(bnbPrice).times(totalSaltStaked)
       }
 
+      if (pool.stakingTokenName === QuoteToken.SALTSLME) {
+        const totalSaltStaked = new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(18))
+        poolValue = slimePrice.times(bnbPrice).times(totalSaltStaked)
+      }
+
       poolsTotalValue = poolsTotalValue.plus(poolValue)
     }
 
     totalValue.current = farmsTotalValue.plus(poolsTotalValue)
-  }, [bluePrice, bnbPrice, ethPrice, farms, pools, saltPrice])
+  }, [bluePrice, bnbPrice, ethPrice, farms, pools, saltPrice, slimePrice])
 
   if (!totalValue) {
     return new BigNumber(0)
