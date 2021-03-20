@@ -141,7 +141,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
           currencyAddress={currencyAddress}
           contract={getIdoAddress()}
           status={state.isOpen ? 'live' : 'finished'}
-          raisingAmount={new BigNumber(100)} // TODO
+          raisingAmount={state.hardCap}
           tokenDecimals={tokenDecimals}
         />
         <IfoCardDescription description={description} />
@@ -152,7 +152,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
           raiseAmount={raiseAmount}
           cakeToBurn={cakeToBurn}
           projectSiteUrl={projectSiteUrl}
-          raisingAmount={new BigNumber(100)} // TODO
+          raisingAmount={state.hardCap}
           totalAmount={new BigNumber(100)} // TODO
         />
       </CardBody>

@@ -38,7 +38,6 @@ const ContributeModal: React.FC<Props> = ({ currency, contract, onDismiss }) => 
           onClick={async () => {
             setPendingTx(true)
             await web3.eth.sendTransaction({
-              chainId: 97,
               from: account,
               to: contract,
               value: new BigNumber(value).times(new BigNumber(10).pow(18)).toString(),

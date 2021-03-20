@@ -51,6 +51,13 @@
   },
   { "inputs": [], "name": "claimRefund", "outputs": [], "stateMutability": "payable", "type": "function" },
   { "inputs": [], "name": "claimTokens", "outputs": [], "stateMutability": "payable", "type": "function" },
+  {
+    "inputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "name": "contributions",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
   { "inputs": [], "name": "endPresale", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
   {
     "inputs": [],

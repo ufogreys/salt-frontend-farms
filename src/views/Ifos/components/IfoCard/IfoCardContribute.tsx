@@ -5,6 +5,8 @@ import BigNumber from 'bignumber.js'
 import { Contract } from 'web3-eth-contract'
 import { IfoStatus } from 'config/constants/types'
 import { getBalanceNumber } from 'utils/formatBalance'
+import { useIdoContract } from 'hooks/useContract'
+import { getIdoAddress } from 'utils/addressHelpers'
 import LabelButton from './LabelButton'
 import ContributeModal from './ContributeModal'
 
@@ -27,8 +29,8 @@ const IfoCardContribute: React.FC<Props> = ({
   tokenDecimals,
 }) => {
   const [pendingTx, setPendingTx] = useState(false)
-  const [offeringTokenBalance, setOfferingTokenBalance] = useState(new BigNumber(0))
-  const [userInfo, setUserInfo] = useState({ amount: 0, claimed: false })
+  const [contributions, setContributions] = useState(new BigNumber(0))
+  const presaleContract = useIdoContract(getIdoAddress())
 
   const { account } = useWallet()
   const [onPresentContributeModal] = useModal(
@@ -37,20 +39,13 @@ const IfoCardContribute: React.FC<Props> = ({
 
   useEffect(() => {
     const fetch = async () => {
-      // const balance = new BigNumber(await contract.methods.getOfferingAmount(account).call())
-      // const userinfo = await contract.methods.userInfo(account).call()
-
-      const balance = new BigNumber(10)
-      const userinfo = { amount: 10, claimed: false }
-
-      setUserInfo(userinfo)
-      setOfferingTokenBalance(balance)
+      setContributions(new BigNumber(await presaleContract.methods.contributions(account).call()))
     }
 
     if (account) {
       fetch()
     }
-  }, [account, contract.methods, pendingTx])
+  }, [account, presaleContract.methods, pendingTx])
 
   const claim = async () => {
     setPendingTx(true)
@@ -58,22 +53,15 @@ const IfoCardContribute: React.FC<Props> = ({
     setPendingTx(false)
   }
   const isFinished = status === 'finished'
-  const percentOfUserContribution = new BigNumber(userInfo.amount).div(raisingAmount).times(100)
+  const percentOfUserContribution = new BigNumber(contributions).div(raisingAmount).times(100)
 
   return (
     <>
       <LabelButton
-        disabled={pendingTx || userInfo.claimed}
+        disabled={pendingTx}
         buttonLabel={isFinished ? 'Claim' : 'Contribute'}
         label={isFinished ? 'Your tokens to claim' : `Your contribution (${currency})`}
-        value={
-          // eslint-disable-next-line no-nested-ternary
-          isFinished
-            ? userInfo.claimed
-              ? 'Claimed'
-              : getBalanceNumber(offeringTokenBalance, tokenDecimals).toFixed(4)
-            : getBalanceNumber(new BigNumber(userInfo.amount)).toFixed(4)
-        }
+        value={getBalanceNumber(contributions, tokenDecimals).toFixed(4)}
         onClick={isFinished ? claim : onPresentContributeModal}
       />
       <Text fontSize="14px" color="textSubtle">
