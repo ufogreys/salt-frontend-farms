@@ -33,6 +33,6 @@ export default {
   },
   ido: {
     56: '', // TODO
-    97: '0x9DDE81E9E62DCa90cA08E6c55220edcCD8A2C1fD',
+    97: '0x219B7Ff08d2cAdCfdc729c8EBcCCE1EA594F8D10',
   },
 }

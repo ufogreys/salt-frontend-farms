@@ -64,6 +64,14 @@ const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({
           <Display>{TranslateString(999, 'To raise (BNB)')}</Display>
           <Text>{raiseAmount} BNB</Text>
         </Item>
+        <Item>
+          <Display>Max contribution</Display>
+          <Text>50 BNB</Text>
+        </Item>
+        <Item>
+          <Display>Min contribution</Display>
+          <Text>0.1 BNB</Text>
+        </Item>
       </StyledIfoCardDetails>
       <LinkExternal href={projectSiteUrl} style={{ margin: 'auto' }}>
         {TranslateString(412, 'View project site')}
