@@ -31,8 +31,4 @@ export default {
     56: '0x2170ed0880ac9a755fd29b2688956bd959f933f8',
     97: '0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee',
   },
-  ido: {
-    56: '', // TODO
-    97: '0x219B7Ff08d2cAdCfdc729c8EBcCCE1EA594F8D10',
-  },
 }

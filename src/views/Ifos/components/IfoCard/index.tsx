@@ -8,7 +8,6 @@ import useI18n from 'hooks/useI18n'
 import { useIdoContract } from 'hooks/useContract'
 import UnlockButton from 'components/UnlockButton'
 import LinearProgress from '@material-ui/core/LinearProgress'
-import { getIdoAddress } from 'utils/addressHelpers'
 import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
 import useBlock from 'hooks/useBlock'
 import { withStyles } from '@material-ui/core'
@@ -18,6 +17,8 @@ import IfoCardDetails from './IfoCardDetails'
 import IfoCardContribute from './IfoCardContribute'
 import IfoCardProgress from './IfoCardProgress'
 import IfoCardTime from './IfoCardTime'
+
+const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
 export interface IfoCardProps {
   ifo: Ifo
@@ -136,7 +137,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
     weiRaised: new BigNumber(0),
   })
   const { account } = useWallet()
-  const presaleContract = useIdoContract(getIdoAddress())
+  const presaleContract = useIdoContract(ifo.address[CHAIN_ID])
 
   const currentBlock = useBlock()
   const TranslateString = useI18n()
@@ -215,7 +216,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
             <Flex justifyContent="space-between">
               <Text style={{ fontSize: '16px' }}>Price:</Text>
               <Text bold style={{ fontSize: '16px' }}>
-                1 BNB = 10 MOMO
+              1 BNB = {`${new BigNumber(state.tokensPerBnb).div(10e18)}`} {ifo.token}
               </Text>
             </Flex>
             <Flex justifyContent="space-between">
@@ -248,10 +249,10 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
         {!account && <UnlockButton fullWidth />}
         {(isActive || isFinished) && account && (
           <IfoCardContribute
-            address={address}
+            address={ifo.address[CHAIN_ID]}
             currency="BNB"
             currencyAddress={currencyAddress}
-            contract={getIdoAddress()}
+            contract={presaleContract}
             status={state.status}
             raisingAmount={state.hardCap}
             tokenDecimals={tokenDecimals}

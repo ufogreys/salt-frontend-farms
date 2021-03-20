@@ -6,9 +6,10 @@ import { Contract } from 'web3-eth-contract'
 import { IfoStatus } from 'config/constants/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { useIdoContract } from 'hooks/useContract'
-import { getIdoAddress } from 'utils/addressHelpers'
 import LabelButton from './LabelButton'
 import ContributeModal from './ContributeModal'
+
+const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
 export interface Props {
   address: string
@@ -21,6 +22,7 @@ export interface Props {
 }
 
 const IfoCardContribute: React.FC<Props> = ({
+  address,
   currency,
   currencyAddress,
   contract,
@@ -30,7 +32,7 @@ const IfoCardContribute: React.FC<Props> = ({
 }) => {
   const [pendingTx, setPendingTx] = useState(false)
   const [contributions, setContributions] = useState(new BigNumber(0))
-  const presaleContract = useIdoContract(getIdoAddress())
+  const presaleContract = contract
 
   const { account } = useWallet()
   const [onPresentContributeModal] = useModal(

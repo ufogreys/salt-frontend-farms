@@ -3,7 +3,10 @@ import { Ifo } from './types'
 const ifos: Ifo[] = [
   {
     id: 'rebasingprotocol',
-    address: '0x9C21123D94b93361a29B2C2EFB3d5CD8B17e0A9e',
+    address:  {
+      56: '', // TODO
+      97: '0x219B7Ff08d2cAdCfdc729c8EBcCCE1EA594F8D10',
+    },
     isActive: true,
     name: 'RebasingProtocol',
     token: 'RBT',
@@ -25,7 +28,10 @@ const ifos: Ifo[] = [
   },
   {
     id: 'momoprotocol',
-    address: '0x9C21123D94b93361a29B2C2EFB3d5CD8B17e0A9e',
+    address: {
+      56: '', // TODO
+      97: '0x219B7Ff08d2cAdCfdc729c8EBcCCE1EA594F8D10',
+    },
     isActive: false,
     name: 'MomoProtocol',
     token: 'MOMO',
