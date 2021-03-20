@@ -264,7 +264,10 @@ export const usePriceBlueBnb = () => {
 export const usePriceBlueSaltLPBnb = () => {
   const bluePrice = usePriceBlueBnb()
   const saltPrice = usePriceSaltBnb()
-  const [price, setPrice] = useState(new BigNumber(0))
+  const [price, setPrice] = useState(
+    { blueTokenBalance: new BigNumber(0),
+      saltTokenBalance: new BigNumber(0),
+      totalSupplyLP: new BigNumber(0) })
 
   useEffect(() => {
     const fetchPrice = async () => {
@@ -288,18 +291,21 @@ export const usePriceBlueSaltLPBnb = () => {
       ])
 
       if (!blueTokenBalanceLP || !saltTokenBalanceLP || !totalSupply) return
-      // price salt x salts in LP + price blue x blue in LP / LP tokens
-      const saltValue = new BigNumber(saltTokenBalanceLP).times(saltPrice)
-      const blueValue = new BigNumber(blueTokenBalanceLP).times(bluePrice)
-      const topValue = saltValue.plus(blueValue)
-      const lpPrice = topValue.div(totalSupply)
-      setPrice(lpPrice)
+      setPrice({blueTokenBalance: blueTokenBalanceLP,
+        saltTokenBalance: saltTokenBalanceLP,
+        totalSupplyLP: totalSupply})
     }
 
     fetchPrice()
-  }, [bluePrice, saltPrice])
+  }, [])
 
-  return price
+  // price salt x salts in LP + price blue x blue in LP / LP tokens
+  const saltValue = new BigNumber(price.saltTokenBalance).times(saltPrice)
+  const blueValue = new BigNumber(price.blueTokenBalance).times(bluePrice)
+  const topValue = saltValue.plus(blueValue)
+  const lpPrice = topValue.div(price.totalSupplyLP)
+
+  return lpPrice
 }
 
 export const usePriceEthBusd = (): BigNumber => new BigNumber(1477)
