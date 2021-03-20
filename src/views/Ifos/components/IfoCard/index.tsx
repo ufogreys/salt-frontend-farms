@@ -12,6 +12,7 @@ import LinearProgress from '@material-ui/core/LinearProgress'
 import { getIdoAddress } from 'utils/addressHelpers'
 import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
 import useBlock from 'hooks/useBlock'
+import { withStyles } from '@material-ui/core'
 import IfoCardHeader from './IfoCardHeader'
 import IfoCardDescription from './IfoCardDescription'
 import IfoCardDetails from './IfoCardDetails'
@@ -35,8 +36,15 @@ const StyledProgress = styled.div`
   margin-bottom: 16px;
 `
 
+const StyledLinearProgress = withStyles({
+  root: {
+    borderRadius: 5,
+    height: 14,
+    padding: '0 20px',
+  },
+})(LinearProgress)
+
 const getStatus = (currentBlock: number, startBlock: number, endBlock: number): IfoStatus | null => {
-  return 'live'
   if (currentBlock < startBlock) {
     return 'coming_soon'
   }
@@ -203,11 +211,10 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
               </Text>
             </Flex>
             <StyledProgress>
-              <LinearProgress
+              <StyledLinearProgress
                 variant="buffer"
                 value={state.hardCapProgress}
                 valueBuffer={state.softCapProgress}
-                color="secondary"
               />
             </StyledProgress>
           </>
