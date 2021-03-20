@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import BigNumber from 'bignumber.js'
 import { Card, CardBody, CardRibbon, Flex, Text } from '@saltswap/uikit'
-import { BSC_BLOCK_TIME } from 'config'
 import { Ifo, IfoStatus } from 'config/constants/types'
 import useI18n from 'hooks/useI18n'
 import { useIdoContract } from 'hooks/useContract'
@@ -44,21 +43,37 @@ const StyledLinearProgress = withStyles({
   },
 })(LinearProgress)
 
-const getStatus = (currentBlock: number, startBlock: number, endBlock: number): IfoStatus | null => {
-  if (currentBlock < startBlock) {
+const getStatus = (currentTime: number, startTime: number, endTime: number): IfoStatus | null => {
+  if (currentTime < startTime) {
     return 'coming_soon'
   }
 
-  if (currentBlock >= startBlock && currentBlock <= endBlock) {
+  if (currentTime >= startTime && currentTime <= endTime) {
     return 'live'
   }
 
-  if (currentBlock > endBlock) {
+  if (currentTime > endTime) {
     return 'finished'
   }
 
   return null
 }
+
+// const getStatus = (currentBlock: number, startBlock: number, endBlock: number): IfoStatus | null => {
+//   if (currentBlock < startBlock) {
+//     return 'coming_soon'
+//   }
+
+//   if (currentBlock >= startBlock && currentBlock <= endBlock) {
+//     return 'live'
+//   }
+
+//   if (currentBlock > endBlock) {
+//     return 'finished'
+//   }
+
+//   return null
+// }
 
 const getRibbonComponent = (status: IfoStatus, TranslateString: (translationId: number, fallback: string) => any) => {
   if (status === 'coming_soon') {
@@ -136,16 +151,18 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
 
       const startBlockNum = parseInt(startTime, 10)
       const endBlockNum = parseInt(endTime, 10)
-      const totalBlocks = endBlockNum - startBlockNum
       const blocksRemaining = endBlockNum - currentBlock
 
-      const status = getStatus(currentBlock, startBlockNum, endBlockNum)
+      const currentTime = Math.round(Date.now() / 1000)
+
+      // const status = getStatus(currentBlock, startBlockNum, endBlockNum)
+      const status = getStatus(currentTime, startTime, endTime)
 
       // Calculate the total progress until finished or until start
       const progress =
-        currentBlock > startBlockNum
-          ? ((currentBlock - startBlockNum) / totalBlocks) * 100
-          : ((currentBlock - releaseBlockNumber) / (startBlockNum - releaseBlockNumber)) * 100
+        currentTime > startTime
+          ? ((currentTime - startTime) / (endTime - startTime)) * 100
+          : ((currentTime - endTime) / (startTime - endTime)) * 100
 
       setState({
         blocksRemaining,
@@ -155,8 +172,8 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
         isLoading: false,
         isOpen,
         progress,
-        secondsUntilEnd: blocksRemaining * BSC_BLOCK_TIME,
-        secondsUntilStart: (startBlockNum - currentBlock) * BSC_BLOCK_TIME,
+        secondsUntilEnd: endTime - currentTime,
+        secondsUntilStart: startTime - currentTime,
         softCap,
         softCapProgress,
         startBlockNum,
