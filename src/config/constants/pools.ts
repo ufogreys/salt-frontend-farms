@@ -351,6 +351,31 @@ const pools: PoolConfig[] = [
     tokenDecimals: 18,
     burnFee: 0,
   },
+  {
+    sousId: 14,
+    tokenName: 'SLME',
+    stakingTokenName: QuoteToken.SALTSLME,
+    stakingTokenAddress: {
+      97: '0x85582d24455caaf44fc4f914bdca2a6cb73e6681',
+      56: '0xbea4674a61cccc6b735999511ba9a8ba3aa26a85', // SALT-slime
+    },
+    contractAddress: {
+      97: '0xF08d05d91426A63aB35Ef7f4bBC6E8717B59e838',
+      56: '0xD4A55D437Da5753da2f937518Fd797f5d2211E1c', // SmartChef
+    },
+    rewardTokenAddress: {
+      97: '0xec5dcb5dbf4b114c9d0f65bccab49ec54f6a0867', // DAI, didnt had SLIME
+      56: '0x4fcfa6cc8914ab455b5b33df916d90bfe70b6ab1', // SLIME
+    },
+    poolCategory: PoolCategory.COMMUNITY,
+    projectLink: 'https://slime.finance/',
+    harvest: true,
+    tokenPerBlock: '.002899305556',
+    sortOrder: 15,
+    isFinished: false,
+    tokenDecimals: 18,
+    burnFee: 30,
+  },
 ]
 
 export default pools
