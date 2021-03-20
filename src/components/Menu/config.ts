@@ -37,6 +37,11 @@ const config: MenuEntry[] = [
     href: '/lottery',
   },
   {
+    label: 'Launchpad (IDOs)',
+    icon: 'IfoIcon',
+    href: '/ido',
+  },
+  {
     label: 'Audit By Certik in progress...',
     icon: 'AuditIcon',
     href: '/',
@@ -69,11 +74,6 @@ const config: MenuEntry[] = [
       },
     ],
   },
-  // {
-  //   label: 'IFO',
-  //   icon: 'IfoIcon',
-  //   href: '/ifo',
-  // },
   {
     label: 'More',
     icon: 'MoreIcon',

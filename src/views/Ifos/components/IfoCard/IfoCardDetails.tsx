@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
-import { Text, LinkExternal, Link } from '@saltswap/uikit'
+import { Text, LinkExternal } from '@saltswap/uikit'
 import useI18n from 'hooks/useI18n'
 
 export interface IfoCardDetailsProps {
@@ -13,6 +13,10 @@ export interface IfoCardDetailsProps {
   projectSiteUrl: string
   raisingAmount: BigNumber
   totalAmount: BigNumber
+  token: string
+  currency: string
+  maxContribution: string
+  minContribution: string
 }
 
 const StyledIfoCardDetails = styled.div`
@@ -30,21 +34,24 @@ const Display = styled(Text)`
 `
 
 const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({
-  launchDate,
-  launchTime,
+  // launchDate,
+  // launchTime,
   saleAmount,
-  raiseAmount,
-  cakeToBurn,
+  token,
+  currency,
+  // raiseAmount,
   projectSiteUrl,
-  raisingAmount,
-  totalAmount,
+  // raisingAmount,
+  // totalAmount,
+  maxContribution,
+  minContribution,
 }) => {
   const TranslateString = useI18n()
 
   return (
     <>
       <StyledIfoCardDetails>
-        <Item>
+        {/* <Item>
           <Display>{TranslateString(582, 'Launch Time')}</Display>
           <Text>
             {launchDate},
@@ -58,23 +65,33 @@ const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({
               {launchTime}
             </Link>
           </Text>
-        </Item>
+        </Item> */}
         <Item>
           <Display>{TranslateString(584, 'For Sale')}</Display>
-          <Text>{saleAmount}</Text>
+          <Text>
+            {saleAmount} {token}
+          </Text>
+        </Item>
+        {/* <Item>
+          <Display>{TranslateString(999, 'To raise (BNB)')}</Display>
+          <Text>{raiseAmount} BNB</Text>
+        </Item> */}
+        <Item>
+          <Display>Max contribution</Display>
+          <Text>
+            {maxContribution} {currency}
+          </Text>
         </Item>
         <Item>
-          <Display>{TranslateString(999, 'To raise (USD)')}</Display>
-          <Text>{raiseAmount}</Text>
+          <Display>Min contribution</Display>
+          <Text>
+            {minContribution} {currency}
+          </Text>
         </Item>
-        <Item>
-          <Display>{TranslateString(586, 'CAKE to burn (USD)')}</Display>
-          <Text>{cakeToBurn}</Text>
-        </Item>
-        <Item>
+        {/* <Item>
           <Display>{TranslateString(999, 'Total raised (% of target)')}</Display>
           <Text>{`${totalAmount.div(raisingAmount).times(100).toFixed(2)}%`}</Text>
-        </Item>
+        </Item> */}
       </StyledIfoCardDetails>
       <LinkExternal href={projectSiteUrl} style={{ margin: 'auto' }}>
         {TranslateString(412, 'View project site')}

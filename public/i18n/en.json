@@ -440,12 +440,6 @@
     },
     {
       "data": {
-        "stringId": 454,
-        "text": "%num% SALT Available"
-      }
-    },
-    {
-      "data": {
         "stringId": 456,
         "text": "Your amount must be a multiple of 1 SALT"
       }
@@ -561,7 +555,7 @@
     {
       "data": {
         "stringId": 500,
-        "text": "IFO: Initial Farm Offerings"
+        "text": "IDO: Initial Dex Offering"
       }
     },
     {

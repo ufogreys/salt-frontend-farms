@@ -2,50 +2,88 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import BigNumber from 'bignumber.js'
-import { Card, CardBody, CardRibbon } from '@saltswap/uikit'
-import { BSC_BLOCK_TIME } from 'config'
+import { Card, CardBody, CardRibbon, Flex, Text } from '@saltswap/uikit'
 import { Ifo, IfoStatus } from 'config/constants/types'
 import useI18n from 'hooks/useI18n'
-import useBlock from 'hooks/useBlock'
-import { useIfoContract } from 'hooks/useContract'
+import { useIdoContract } from 'hooks/useContract'
 import UnlockButton from 'components/UnlockButton'
+import LinearProgress from '@material-ui/core/LinearProgress'
+import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
+import useBlock from 'hooks/useBlock'
+import { withStyles } from '@material-ui/core'
 import IfoCardHeader from './IfoCardHeader'
-import IfoCardProgress from './IfoCardProgress'
 import IfoCardDescription from './IfoCardDescription'
 import IfoCardDetails from './IfoCardDetails'
-import IfoCardTime from './IfoCardTime'
 import IfoCardContribute from './IfoCardContribute'
+import IfoCardProgress from './IfoCardProgress'
+import IfoCardTime from './IfoCardTime'
+
+const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
 export interface IfoCardProps {
   ifo: Ifo
 }
 
 const StyledIfoCard = styled(Card)<{ ifoId: string }>`
-  background-image: ${({ ifoId }) => `url('/images/ifos/${ifoId}-bg.svg')`};
-  background-repeat: no-repeat;
-  background-size: contain;
-  padding-top: 112px;
   margin-left: auto;
   margin-right: auto;
   max-width: 437px;
   width: 100%;
 `
 
-const getStatus = (currentBlock: number, startBlock: number, endBlock: number): IfoStatus | null => {
-  if (currentBlock < startBlock) {
+const StyledProgress = styled.div`
+  margin-top: 12px;
+  margin-bottom: 16px;
+`
+
+const StyledLinearProgress = withStyles({
+  barColorPrimary: {
+    backgroundColor: '#5f696e',
+  },
+  bar2Buffer: {
+    backgroundColor: '#b0bec5',
+  },
+  dashedColorPrimary: {
+    backgroundImage: `radial-gradient(#b0bec5 0%, #97a4ab 16%, transparent 42%);`,
+  },
+  root: {
+    borderRadius: 5,
+    height: 14,
+    padding: '0 20px',
+  },
+})(LinearProgress)
+
+const getStatus = (currentTime: number, startTime: number, endTime: number): IfoStatus | null => {
+  if (currentTime < startTime) {
     return 'coming_soon'
   }
 
-  if (currentBlock >= startBlock && currentBlock <= endBlock) {
+  if (currentTime >= startTime && currentTime <= endTime) {
     return 'live'
   }
 
-  if (currentBlock > endBlock) {
+  if (currentTime > endTime) {
     return 'finished'
   }
 
   return null
 }
+
+// const getStatus = (currentBlock: number, startBlock: number, endBlock: number): IfoStatus | null => {
+//   if (currentBlock < startBlock) {
+//     return 'coming_soon'
+//   }
+
+//   if (currentBlock >= startBlock && currentBlock <= endBlock) {
+//     return 'live'
+//   }
+
+//   if (currentBlock > endBlock) {
+//     return 'finished'
+//   }
+
+//   return null
+// }
 
 const getRibbonComponent = (status: IfoStatus, TranslateString: (translationId: number, fallback: string) => any) => {
   if (status === 'coming_soon') {
@@ -72,25 +110,34 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
     raiseAmount,
     cakeToBurn,
     projectSiteUrl,
-    currency,
     currencyAddress,
     tokenDecimals,
     releaseBlockNumber,
+    currency,
+    maxContribution,
+    minContribution,
+    token,
   } = ifo
+
   const [state, setState] = useState({
-    isLoading: true,
-    status: null,
     blocksRemaining: 0,
-    secondsUntilStart: 0,
+    endBlockNum: 0,
+    hardCap: new BigNumber(0),
+    hardCapProgress: 0,
+    isLoading: true,
+    isOpen: null,
     progress: 0,
     secondsUntilEnd: 0,
-    raisingAmount: new BigNumber(0),
-    totalAmount: new BigNumber(0),
+    secondsUntilStart: 0,
+    softCap: new BigNumber(0),
+    softCapProgress: 0,
     startBlockNum: 0,
-    endBlockNum: 0,
+    status: null,
+    tokensPerBnb: new BigNumber(0),
+    weiRaised: new BigNumber(0),
   })
   const { account } = useWallet()
-  const contract = useIfoContract(address)
+  const presaleContract = useIdoContract(ifo.address[CHAIN_ID])
 
   const currentBlock = useBlock()
   const TranslateString = useI18n()
@@ -99,42 +146,55 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
 
   useEffect(() => {
     const fetchProgress = async () => {
-      const [startBlock, endBlock, raisingAmount, totalAmount] = await Promise.all([
-        contract.methods.startBlock().call(),
-        contract.methods.endBlock().call(),
-        contract.methods.raisingAmount().call(),
-        contract.methods.totalAmount().call(),
+      const [startTime, endTime, softCap, hardCap, tokensPerBnb, weiRaised, isOpen] = await Promise.all([
+        presaleContract.methods.startTime().call(),
+        presaleContract.methods.endTime().call(),
+        presaleContract.methods.softCap().call(),
+        presaleContract.methods.hardCap().call(),
+        presaleContract.methods.tokensPerBnb().call(),
+        presaleContract.methods.weiRaised().call(),
+        presaleContract.methods.isOpen().call(),
       ])
 
-      const startBlockNum = parseInt(startBlock, 10)
-      const endBlockNum = parseInt(endBlock, 10)
+      const softCapProgress = (weiRaised / softCap) * 100
+      const hardCapProgress = (weiRaised / hardCap) * 100
 
-      const status = getStatus(currentBlock, startBlockNum, endBlockNum)
-      const totalBlocks = endBlockNum - startBlockNum
+      const startBlockNum = parseInt(startTime, 10)
+      const endBlockNum = parseInt(endTime, 10)
       const blocksRemaining = endBlockNum - currentBlock
+
+      const currentTime = Math.round(Date.now() / 1000)
+
+      // const status = getStatus(currentBlock, startBlockNum, endBlockNum)
+      const status = getStatus(currentTime, startTime, endTime)
 
       // Calculate the total progress until finished or until start
       const progress =
-        currentBlock > startBlockNum
-          ? ((currentBlock - startBlockNum) / totalBlocks) * 100
-          : ((currentBlock - releaseBlockNumber) / (startBlockNum - releaseBlockNumber)) * 100
+        currentTime > startTime
+          ? ((currentTime - startTime) / (endTime - startTime)) * 100
+          : ((currentTime - endTime) / (startTime - endTime)) * 100
 
       setState({
-        isLoading: false,
-        secondsUntilEnd: blocksRemaining * BSC_BLOCK_TIME,
-        secondsUntilStart: (startBlockNum - currentBlock) * BSC_BLOCK_TIME,
-        raisingAmount: new BigNumber(raisingAmount),
-        totalAmount: new BigNumber(totalAmount),
-        status,
-        progress,
         blocksRemaining,
-        startBlockNum,
         endBlockNum,
+        hardCap,
+        hardCapProgress,
+        isLoading: false,
+        isOpen,
+        progress,
+        secondsUntilEnd: endTime - currentTime,
+        secondsUntilStart: startTime - currentTime,
+        softCap,
+        softCapProgress,
+        startBlockNum,
+        status,
+        tokensPerBnb,
+        weiRaised,
       })
     }
 
     fetchProgress()
-  }, [currentBlock, contract, releaseBlockNumber, setState])
+  }, [currentBlock, presaleContract, releaseBlockNumber, setState])
 
   const isActive = state.status === 'live'
   const isFinished = state.status === 'finished'
@@ -151,19 +211,54 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
           secondsUntilEnd={state.secondsUntilEnd}
           block={isActive || isFinished ? state.endBlockNum : state.startBlockNum}
         />
-        {!account && <UnlockButton fullWidth />}
         {(isActive || isFinished) && (
+          <>
+            <Flex justifyContent="space-between">
+              <Text style={{ fontSize: '16px' }}>Price:</Text>
+              <Text bold style={{ fontSize: '16px' }}>
+                1 BNB = {`${new BigNumber(state.tokensPerBnb).div(10e18)}`} {ifo.token}
+              </Text>
+            </Flex>
+            <Flex justifyContent="space-between">
+              <Text style={{ fontSize: '16px' }}>BNB raised:</Text>
+              <Text bold style={{ fontSize: '16px' }}>
+                {getFullDisplayBalance(new BigNumber(state.weiRaised))} BNB
+              </Text>
+            </Flex>
+            <Flex justifyContent="space-between">
+              <Text style={{ fontSize: '16px' }}>Soft Cap ({getBalanceNumber(state.softCap)} BNB):</Text>
+              <Text bold style={{ fontSize: '16px' }}>
+                {`${state.softCapProgress.toFixed(2)}%`}
+              </Text>
+            </Flex>
+            <Flex justifyContent="space-between">
+              <Text style={{ fontSize: '16px' }}>Hard Cap ({getBalanceNumber(state.hardCap)} BNB):</Text>
+              <Text bold style={{ fontSize: '16px' }}>
+                {`${state.hardCapProgress.toFixed(2)}%`}
+              </Text>
+            </Flex>
+            <StyledProgress>
+              <StyledLinearProgress
+                variant="buffer"
+                value={state.hardCapProgress}
+                valueBuffer={state.softCapProgress}
+              />
+            </StyledProgress>
+          </>
+        )}
+        {!account && <UnlockButton fullWidth />}
+        {(isActive || isFinished) && account && (
           <IfoCardContribute
-            address={address}
-            currency={currency}
+            address={ifo.address[CHAIN_ID]}
+            currency="BNB"
             currencyAddress={currencyAddress}
-            contract={contract}
+            contract={presaleContract}
             status={state.status}
-            raisingAmount={state.raisingAmount}
+            raisingAmount={state.hardCap}
             tokenDecimals={tokenDecimals}
           />
         )}
-        <IfoCardDescription description={description} />
+        <IfoCardDescription description={description} defaultIsOpen={false} />
         <IfoCardDetails
           launchDate={launchDate}
           launchTime={launchTime}
@@ -171,8 +266,12 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
           raiseAmount={raiseAmount}
           cakeToBurn={cakeToBurn}
           projectSiteUrl={projectSiteUrl}
-          raisingAmount={state.raisingAmount}
-          totalAmount={state.totalAmount}
+          raisingAmount={state.hardCap}
+          totalAmount={new BigNumber(state.weiRaised)}
+          maxContribution={maxContribution}
+          minContribution={minContribution}
+          currency={currency}
+          token={token}
         />
       </CardBody>
     </StyledIfoCard>
