@@ -58,7 +58,7 @@ const IfoCardContribute: React.FC<Props> = ({
         disabled={pendingTx}
         buttonLabel={isFinished ? 'Claim' : 'Contribute'}
         label={isFinished ? 'Your tokens to claim' : `Your contribution (${currency})`}
-        value={getBalanceNumber(contributions, tokenDecimals).toFixed(4)}
+        value={getBalanceNumber(contributions, 18).toFixed(4)}
         onClick={isFinished ? claim : onPresentContributeModal}
       />
       <Text fontSize="14px" color="textSubtle">
