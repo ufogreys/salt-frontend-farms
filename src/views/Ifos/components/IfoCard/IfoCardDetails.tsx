@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import BigNumber from 'bignumber.js'
-import { Text, LinkExternal, Link } from '@saltswap/uikit'
+import { Text, LinkExternal } from '@saltswap/uikit'
 import useI18n from 'hooks/useI18n'
 
 export interface IfoCardDetailsProps {
@@ -34,8 +34,8 @@ const Display = styled(Text)`
 `
 
 const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({
-  launchDate,
-  launchTime,
+  // launchDate,
+  // launchTime,
   saleAmount,
   token,
   currency,
@@ -51,7 +51,7 @@ const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({
   return (
     <>
       <StyledIfoCardDetails>
-        <Item>
+        {/* <Item>
           <Display>{TranslateString(582, 'Launch Time')}</Display>
           <Text>
             {launchDate},
@@ -65,7 +65,7 @@ const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({
               {launchTime}
             </Link>
           </Text>
-        </Item>
+        </Item> */}
         <Item>
           <Display>{TranslateString(584, 'For Sale')}</Display>
           <Text>
