@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import { useModal, Button, Text } from '@saltswap/uikit'
+import { useModal, Text } from '@saltswap/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import BigNumber from 'bignumber.js'
 import { Contract } from 'web3-eth-contract'
-import { useERC20 } from 'hooks/useContract'
-import { useIfoAllowance } from 'hooks/useAllowance'
-import { useIfoApprove } from 'hooks/useApprove'
 import { IfoStatus } from 'config/constants/types'
 import { getBalanceNumber } from 'utils/formatBalance'
 import LabelButton from './LabelButton'
@@ -22,7 +19,6 @@ export interface Props {
 }
 
 const IfoCardContribute: React.FC<Props> = ({
-  address,
   currency,
   currencyAddress,
   contract,

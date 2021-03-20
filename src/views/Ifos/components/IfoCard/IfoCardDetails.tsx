@@ -34,10 +34,7 @@ const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({
   launchTime,
   saleAmount,
   raiseAmount,
-  cakeToBurn,
   projectSiteUrl,
-  raisingAmount,
-  totalAmount,
 }) => {
   const TranslateString = useI18n()
 
@@ -65,15 +62,7 @@ const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({
         </Item>
         <Item>
           <Display>{TranslateString(999, 'To raise (BNB)')}</Display>
-          <Text>{raiseAmount}</Text>
-        </Item>
-        <Item>
-          <Display>{TranslateString(586, 'CAKE to burn (USD)')}</Display>
-          <Text>{cakeToBurn}</Text>
-        </Item>
-        <Item>
-          <Display>{TranslateString(999, 'Total raised (% of target)')}</Display>
-          <Text>{`${totalAmount.div(raisingAmount).times(100).toFixed(2)}%`}</Text>
+          <Text>{raiseAmount} BNB</Text>
         </Item>
       </StyledIfoCardDetails>
       <LinkExternal href={projectSiteUrl} style={{ margin: 'auto' }}>

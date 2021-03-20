@@ -9,6 +9,7 @@ import { useIdoContract } from 'hooks/useContract'
 import UnlockButton from 'components/UnlockButton'
 import LinearProgress from '@material-ui/core/LinearProgress'
 import { getIdoAddress } from 'utils/addressHelpers'
+import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
 import IfoCardHeader from './IfoCardHeader'
 import IfoCardDescription from './IfoCardDescription'
 import IfoCardDetails from './IfoCardDetails'
@@ -85,8 +86,8 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
         presaleContract.methods.isOpen().call(),
       ])
 
-      const softCapProgress = 10 // TODO new BigNumber(100).pow(18)
-      const hardCapProgress = 1 // TODO
+      const softCapProgress = (weiRaised / softCap) * 100
+      const hardCapProgress = (weiRaised / hardCap) * 100
 
       setState({
         isLoading: false,
@@ -108,19 +109,19 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
       <CardBody>
         <IfoCardHeader ifoId={id} name={name} subTitle={subTitle} />
         <Flex justifyContent="space-between">
-          <Text style={{ fontSize: '16px' }}>Wei raised:</Text>
+          <Text style={{ fontSize: '16px' }}>BNB raised:</Text>
           <Text bold style={{ fontSize: '16px' }}>
-            {state.weiRaised?.toString()}
+            {getFullDisplayBalance(new BigNumber(state.weiRaised))} BNB
           </Text>
         </Flex>
         <Flex justifyContent="space-between">
-          <Text style={{ fontSize: '16px' }}>Soft Cap:</Text>
+          <Text style={{ fontSize: '16px' }}>Soft Cap ({getBalanceNumber(state.softCap)} BNB):</Text>
           <Text bold style={{ fontSize: '16px' }}>
             {state.softCapProgress?.toString()}%
           </Text>
         </Flex>
         <Flex justifyContent="space-between">
-          <Text style={{ fontSize: '16px' }}>Hard Cap:</Text>
+          <Text style={{ fontSize: '16px' }}>Hard Cap ({getBalanceNumber(state.hardCap)} BNB):</Text>
           <Text bold style={{ fontSize: '16px' }}>
             {state.hardCapProgress?.toString()}%
           </Text>
@@ -138,7 +139,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
           address={address}
           currency="BNB"
           currencyAddress={currencyAddress}
-          contract={presaleContract}
+          contract={getIdoAddress()}
           status={state.isOpen ? 'live' : 'finished'}
           raisingAmount={new BigNumber(100)} // TODO
           tokenDecimals={tokenDecimals}
