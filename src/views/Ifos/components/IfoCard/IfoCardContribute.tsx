@@ -5,11 +5,8 @@ import BigNumber from 'bignumber.js'
 import { Contract } from 'web3-eth-contract'
 import { IfoStatus } from 'config/constants/types'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useIdoContract } from 'hooks/useContract'
 import LabelButton from './LabelButton'
 import ContributeModal from './ContributeModal'
-
-const CHAIN_ID = process.env.REACT_APP_CHAIN_ID
 
 export interface Props {
   address: string
@@ -22,7 +19,6 @@ export interface Props {
 }
 
 const IfoCardContribute: React.FC<Props> = ({
-  address,
   currency,
   currencyAddress,
   contract,
