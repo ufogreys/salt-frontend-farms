@@ -264,12 +264,11 @@ export const usePriceBlueBnb = () => {
 export const usePriceBlueSaltLPBnb = () => {
   const bluePrice = usePriceBlueBnb()
   const saltPrice = usePriceSaltBnb()
-  const [price, setPrice] = useState(
-    {
-      blueTokenBalance: new BigNumber(0),
-      saltTokenBalance: new BigNumber(0),
-      totalSupplyLP: new BigNumber(0)
-    })
+  const [price, setPrice] = useState({
+    blueTokenBalance: new BigNumber(0),
+    saltTokenBalance: new BigNumber(0),
+    totalSupplyLP: new BigNumber(0),
+  })
 
   useEffect(() => {
     const fetchPrice = async () => {
@@ -296,7 +295,7 @@ export const usePriceBlueSaltLPBnb = () => {
       setPrice({
         blueTokenBalance: blueTokenBalanceLP,
         saltTokenBalance: saltTokenBalanceLP,
-        totalSupplyLP: totalSupply
+        totalSupplyLP: totalSupply,
       })
     }
 
@@ -315,12 +314,11 @@ export const usePriceBlueSaltLPBnb = () => {
 export const usePriceSlmeSaltLPBnb = () => {
   const smlePrice = usePriceSlimeBnb()
   const saltPrice = usePriceSaltBnb()
-  const [price, setPrice] = useState(
-    {
-      blueTokenBalance: new BigNumber(0),
-      saltTokenBalance: new BigNumber(0),
-      totalSupplyLP: new BigNumber(0)
-    })
+  const [price, setPrice] = useState({
+    blueTokenBalance: new BigNumber(0),
+    saltTokenBalance: new BigNumber(0),
+    totalSupplyLP: new BigNumber(0),
+  })
 
   useEffect(() => {
     const fetchPrice = async () => {
@@ -347,7 +345,7 @@ export const usePriceSlmeSaltLPBnb = () => {
       setPrice({
         blueTokenBalance: slmeTokenBalanceLP,
         saltTokenBalance: saltTokenBalanceLP,
-        totalSupplyLP: totalSupply
+        totalSupplyLP: totalSupply,
       })
     }
 
@@ -414,7 +412,7 @@ export const useTotalValue = (): BigNumber => {
         poolValue = slimePrice.times(bnbPrice).times(totalSaltStaked)
       }
 
-      poolsTotalValue = poolsTotalValue.plus(poolValue)
+      poolsTotalValue = poolsTotalValue.plus(poolValue ?? ZERO)
     }
 
     totalValue.current = farmsTotalValue.plus(poolsTotalValue)
