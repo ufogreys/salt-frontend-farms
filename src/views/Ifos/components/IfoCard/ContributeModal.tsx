@@ -36,7 +36,6 @@ const ContributeModal: React.FC<Props> = ({ currency, contract, onDismiss }) => 
           fullWidth
           disabled={pendingTx}
           onClick={async () => {
-            console.log('contract.address', contract._address)
             setPendingTx(true)
             await web3.eth.sendTransaction({
               from: account,

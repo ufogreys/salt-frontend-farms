@@ -28,7 +28,6 @@ const IfoCardContribute: React.FC<Props> = ({
 }) => {
   const [pendingTx, setPendingTx] = useState(false)
   const [contributions, setContributions] = useState(new BigNumber(0))
-  const presaleContract = contract
 
   const { account } = useWallet()
   const [onPresentContributeModal] = useModal(
@@ -37,13 +36,13 @@ const IfoCardContribute: React.FC<Props> = ({
 
   useEffect(() => {
     const fetch = async () => {
-      setContributions(new BigNumber(await presaleContract.methods.contributions(account).call()))
+      setContributions(new BigNumber(await contract.methods.contributions(account).call()))
     }
 
     if (account) {
       fetch()
     }
-  }, [account, presaleContract.methods, pendingTx])
+  }, [account, contract.methods, pendingTx])
 
   const claim = async () => {
     setPendingTx(true)
