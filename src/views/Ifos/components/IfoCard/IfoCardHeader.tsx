@@ -12,7 +12,7 @@ const StyledIfoCardHeader = styled(Flex)`
   & > div {
     flex: 1;
   }
-  margin-top: 32px;
+  margin-top: 48px;
 `
 
 const Name = styled(Heading).attrs({ as: 'h3', size: 'lg' })`
