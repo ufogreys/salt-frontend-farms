@@ -36,6 +36,15 @@ const StyledProgress = styled.div`
 `
 
 const StyledLinearProgress = withStyles({
+  barColorPrimary: {
+    backgroundColor: '#5f696e',
+  },
+  bar2Buffer: {
+    backgroundColor: '#b0bec5',
+  },
+  dashedColorPrimary: {
+    backgroundImage: `radial-gradient(#b0bec5 0%, #97a4ab 16%, transparent 42%);`,
+  },
   root: {
     borderRadius: 5,
     height: 14,
