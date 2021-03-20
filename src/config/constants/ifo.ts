@@ -4,7 +4,7 @@ const ifos: Ifo[] = [
   {
     id: 'rebasingprotocol',
     address: {
-      56: '0xddbd45f450a92ce93064632a30a18fa78bf0a6df', // TODO
+      56: '0xE5A1ab7017b3b01ec6C0b68790f28577c734e2b1',
       97: '0xd8EbfE72627d9E708d2AC2DD31Df28F42ca338DD',
     },
     isActive: true,
@@ -15,15 +15,15 @@ const ifos: Ifo[] = [
       'Rebasing Protocol is a decentralized and Elastic Supply token based on Binance Smart Chain. Rebasing Protocol is built on adaptable, fair, safe, and sustainable core values, compatible with Smart Contract. It has novel features such as token burn and add liquidity to pool automatically from a percent of every transaction. Pegged price can be changed as per community once Governance is launched.',
     launchDate: 'Mar. 20',
     launchTime: '4PM CET',
-    saleAmount: '5000',
+    saleAmount: '5200',
     raiseAmount: '400',
     cakeToBurn: '0',
     projectSiteUrl: 'https://rebasing.live',
     currency: 'BNB',
     currencyAddress: '0xDd3F196c59Df7bdABc18BBcfFb6440298AE117e2', // FIX This is WBNB
-    tokenDecimals: 18,
+    tokenDecimals: 9,
     releaseBlockNumber: 7086064,
-    maxContribution: '100',
+    maxContribution: '50',
     minContribution: '0.1',
   },
   /*
