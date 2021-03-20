@@ -4,8 +4,8 @@ const ifos: Ifo[] = [
   {
     id: 'rebasingprotocol',
     address: {
-      56: '0x219B7Ff08d2cAdCfdc729c8EBcCCE1EA594F8D10', // TODO
-      97: '0x219B7Ff08d2cAdCfdc729c8EBcCCE1EA594F8D10',
+      56: '0xddbd45f450a92ce93064632a30a18fa78bf0a6df', // TODO
+      97: '0xd8EbfE72627d9E708d2AC2DD31Df28F42ca338DD',
     },
     isActive: true,
     name: 'RebasingProtocol',
@@ -23,7 +23,7 @@ const ifos: Ifo[] = [
     currencyAddress: '0xDd3F196c59Df7bdABc18BBcfFb6440298AE117e2', // FIX This is WBNB
     tokenDecimals: 18,
     releaseBlockNumber: 7086064,
-    maxContribution: '500',
+    maxContribution: '100',
     minContribution: '0.1',
   },
   /*
