@@ -24,7 +24,7 @@ const ifos: Ifo[] = [
     tokenDecimals: 9,
     releaseBlockNumber: 7086064,
     maxContribution: '50',
-    minContribution: '0.1',
+    minContribution: '0.001',
   },
   /*
   {
