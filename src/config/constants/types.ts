@@ -5,6 +5,9 @@ export interface Ifo {
   isActive: boolean
   address: string
   name: string
+  token: string;
+  maxContribution: string;
+  minContribution: string;
   subTitle?: string
   description?: string
   launchDate: string

@@ -13,6 +13,10 @@ export interface IfoCardDetailsProps {
   projectSiteUrl: string
   raisingAmount: BigNumber
   totalAmount: BigNumber
+  token: string
+  currency: string
+  maxContribution: string
+  minContribution: string
 }
 
 const StyledIfoCardDetails = styled.div`
@@ -33,8 +37,14 @@ const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({
   launchDate,
   launchTime,
   saleAmount,
-  raiseAmount,
+  token,
+  currency,
+  // raiseAmount,
   projectSiteUrl,
+  // raisingAmount,
+  // totalAmount,
+  maxContribution,
+  minContribution,
 }) => {
   const TranslateString = useI18n()
 
@@ -58,20 +68,30 @@ const IfoCardDetails: React.FC<IfoCardDetailsProps> = ({
         </Item>
         <Item>
           <Display>{TranslateString(584, 'For Sale')}</Display>
-          <Text>{saleAmount}</Text>
+          <Text>
+            {saleAmount} {token}
+          </Text>
         </Item>
-        <Item>
+        {/* <Item>
           <Display>{TranslateString(999, 'To raise (BNB)')}</Display>
           <Text>{raiseAmount} BNB</Text>
-        </Item>
+        </Item> */}
         <Item>
           <Display>Max contribution</Display>
-          <Text>50 BNB</Text>
+          <Text>
+            {maxContribution} {currency}
+          </Text>
         </Item>
         <Item>
           <Display>Min contribution</Display>
-          <Text>0.1 BNB</Text>
+          <Text>
+            {minContribution} {currency}
+          </Text>
         </Item>
+        {/* <Item>
+          <Display>{TranslateString(999, 'Total raised (% of target)')}</Display>
+          <Text>{`${totalAmount.div(raisingAmount).times(100).toFixed(2)}%`}</Text>
+        </Item> */}
       </StyledIfoCardDetails>
       <LinkExternal href={projectSiteUrl} style={{ margin: 'auto' }}>
         {TranslateString(412, 'View project site')}

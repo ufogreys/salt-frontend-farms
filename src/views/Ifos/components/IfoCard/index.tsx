@@ -36,6 +36,7 @@ const StyledProgress = styled.div`
 `
 
 const getStatus = (currentBlock: number, startBlock: number, endBlock: number): IfoStatus | null => {
+  return 'live'
   if (currentBlock < startBlock) {
     return 'coming_soon'
   }
@@ -77,8 +78,12 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
     cakeToBurn,
     projectSiteUrl,
     currencyAddress,
-    releaseBlockNumber,
     tokenDecimals,
+    releaseBlockNumber,
+    currency,
+    maxContribution,
+    minContribution,
+    token,
   } = ifo
 
   const [state, setState] = useState({
@@ -174,6 +179,12 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
         {(isActive || isFinished) && (
           <>
             <Flex justifyContent="space-between">
+              <Text style={{ fontSize: '16px' }}>Price:</Text>
+              <Text bold style={{ fontSize: '16px' }}>
+                1 BNB = 10 MOMO
+              </Text>
+            </Flex>
+            <Flex justifyContent="space-between">
               <Text style={{ fontSize: '16px' }}>BNB raised:</Text>
               <Text bold style={{ fontSize: '16px' }}>
                 {getFullDisplayBalance(new BigNumber(state.weiRaised))} BNB
@@ -182,13 +193,13 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
             <Flex justifyContent="space-between">
               <Text style={{ fontSize: '16px' }}>Soft Cap ({getBalanceNumber(state.softCap)} BNB):</Text>
               <Text bold style={{ fontSize: '16px' }}>
-                {state.softCapProgress?.toString()}%
+                {`${state.softCapProgress.toFixed(2)}%`}
               </Text>
             </Flex>
             <Flex justifyContent="space-between">
               <Text style={{ fontSize: '16px' }}>Hard Cap ({getBalanceNumber(state.hardCap)} BNB):</Text>
               <Text bold style={{ fontSize: '16px' }}>
-                {state.hardCapProgress?.toString()}%
+                {`${state.hardCapProgress.toFixed(2)}%`}
               </Text>
             </Flex>
             <StyledProgress>
@@ -222,7 +233,11 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
           cakeToBurn={cakeToBurn}
           projectSiteUrl={projectSiteUrl}
           raisingAmount={state.hardCap}
-          totalAmount={new BigNumber(100)} // TODO
+          totalAmount={new BigNumber(state.weiRaised)}
+          maxContribution={maxContribution}
+          minContribution={minContribution}
+          currency={currency}
+          token={token}
         />
       </CardBody>
     </StyledIfoCard>
