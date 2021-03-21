@@ -41,7 +41,14 @@ const PastDrawsPage: React.FC = () => (
     <PastLotteryRoundViewer />
     <SecondCardColumnWrapper>
       <BunnyImageWrapper>
-        <img src="/images/ticket.svg" alt="ticket" style={{ height: '200px' }} />
+        <img src="/images/ticket.svg" alt="ticket" style={{ height: '55px' }} />
+        <img src="/images/ticket.svg" alt="ticket" style={{ height: '55px' }} />
+        <img src="/images/ticket.svg" alt="ticket" style={{ height: '55px' }} />
+        <img src="/images/ticket.svg" alt="ticket" style={{ height: '55px' }} />
+        <img src="/images/ticket.svg" alt="ticket" style={{ height: '55px' }} />
+        <img src="/images/ticket.svg" alt="ticket" style={{ height: '55px' }} />
+        <img src="/images/ticket.svg" alt="ticket" style={{ height: '55px' }} />
+        <img src="/images/ticket.svg" alt="ticket" style={{ height: '55px' }} />
       </BunnyImageWrapper>
       <PastDrawsHistoryCard />
     </SecondCardColumnWrapper>

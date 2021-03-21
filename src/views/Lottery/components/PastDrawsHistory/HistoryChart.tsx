@@ -14,35 +14,32 @@ const InnerWrapper = styled.div`
   justify-content: center;
 `
 
+const LegendItem = styled.div`
+  display: flex;
+  margin-right: 18px;
+  align-items: center;
+  margin: 12px 0;
+`
+
+const Circle = styled.div<{ isPoolSize?: boolean }>`
+  width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: ${({ isPoolSize, theme }) => theme.colors[isPoolSize ? 'textSubtle' : 'primary']};
+  margin-right: 6px;
+`
+
 const HistoryChart: React.FC = () => {
   const { historyData, historyError } = useContext(PastLotteryDataContext)
   const getDataArray = (kind) => historyData.map((dataPoint) => dataPoint[kind]).reverse()
 
   const lineStyles = ({ color }) => ({
     borderColor: color,
-    fill: false,
-    borderWidth: 2,
-    pointRadius: 0,
+    fill: true,
+    borderWidth: 3,
+    pointRadius: 3,
     pointHitRadius: 10,
   })
-
-  const chartData = {
-    labels: getDataArray('lotteryNumber'),
-    datasets: [
-      {
-        label: 'Pool Size',
-        data: getDataArray('poolSize'),
-        yAxisID: 'y-axis-pool',
-        ...lineStyles({ color: '#6d6d6d' }),
-      },
-      {
-        label: 'Burned',
-        data: getDataArray('burned'),
-        yAxisID: 'y-axis-burned',
-        ...lineStyles({ color: '#b0bec5' }),
-      },
-    ],
-  }
 
   const axesStyles = ({ color, lineHeight }) => ({
     borderCapStyle: 'round',
@@ -59,33 +56,6 @@ const HistoryChart: React.FC = () => {
     },
   })
 
-  const options = {
-    legend: { display: false },
-    scales: {
-      yAxes: [
-        {
-          type: 'linear',
-          display: true,
-          position: 'left',
-          id: 'y-axis-pool',
-          ...axesStyles({ color: '#6d6d6d', lineHeight: 1.6 }),
-        },
-        {
-          type: 'linear',
-          display: true,
-          position: 'right',
-          id: 'y-axis-burned',
-          ...axesStyles({ color: '#b0bec5', lineHeight: 1.5 }),
-        },
-      ],
-      xAxes: [
-        {
-          ...axesStyles({ color: '#20c0ff', lineHeight: 1 }),
-        },
-      ],
-    },
-  }
-
   return (
     <>
       {historyError && (
@@ -95,7 +65,81 @@ const HistoryChart: React.FC = () => {
       )}
       {!historyError && historyData.length > 1 ? (
         <Suspense fallback={<div>Loading...</div>}>
-          <Line data={chartData} options={options} type="line" />
+          <LegendItem>
+            <Circle isPoolSize />
+            <Text>Pool Size</Text>
+          </LegendItem>
+          <Line
+            data={{
+              labels: getDataArray('lotteryNumber'),
+              datasets: [
+                {
+                  label: 'Pool Size',
+                  data: getDataArray('poolSize'),
+                  yAxisID: 'y-axis-pool',
+                  ...lineStyles({ color: '#6d6d6d' }),
+                },
+              ],
+            }}
+            options={{
+              legend: { display: false },
+              scales: {
+                yAxes: [
+                  {
+                    type: 'linear',
+                    display: true,
+                    position: 'left',
+                    id: 'y-axis-pool',
+                    ...axesStyles({ color: '#6d6d6d', lineHeight: 1.6 }),
+                  },
+                ],
+                xAxes: [
+                  {
+                    ...axesStyles({ color: '#6d6d6d', lineHeight: 1 }),
+                  },
+                ],
+              },
+            }}
+            type="line"
+          />
+
+          <LegendItem>
+            <Circle />
+            <Text>Burned</Text>
+          </LegendItem>
+          <Line
+            data={{
+              labels: getDataArray('lotteryNumber'),
+              datasets: [
+                {
+                  label: 'Burned',
+                  data: getDataArray('burned'),
+                  yAxisID: 'y-axis-burned',
+                  ...lineStyles({ color: '#b0bec5' }),
+                },
+              ],
+            }}
+            options={{
+              legend: { display: false },
+              scales: {
+                yAxes: [
+                  {
+                    type: 'linear',
+                    display: true,
+                    position: 'left',
+                    id: 'y-axis-burned',
+                    ...axesStyles({ color: '#b0bec5', lineHeight: 1.5 }),
+                  },
+                ],
+                xAxes: [
+                  {
+                    ...axesStyles({ color: '#b0bec5', lineHeight: 1 }),
+                  },
+                ],
+              },
+            }}
+            type="line"
+          />
         </Suspense>
       ) : (
         <InnerWrapper>
