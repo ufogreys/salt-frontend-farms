@@ -5,7 +5,7 @@ const ifos: Ifo[] = [
     id: 'rebasingprotocol',
     address: {
       56: '0xE5A1ab7017b3b01ec6C0b68790f28577c734e2b1',
-      97: '0xd8EbfE72627d9E708d2AC2DD31Df28F42ca338DD',
+      97: '0x8E3Be059992dee2a668902EED64bac9Bab134071',
     },
     isActive: true,
     name: 'RebasingProtocol',

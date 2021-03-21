@@ -50,7 +50,7 @@ const IfoCardContribute: React.FC<Props> = ({
 
   const claim = async () => {
     setPendingTx(true)
-    await contract.methods.claimTokens()
+    await contract.methods.claimTokens().send({ from: account })
     setPendingTx(false)
   }
   const isFinished = status === 'finished'
