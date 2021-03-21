@@ -54,7 +54,6 @@ const StyledLinearProgress = withStyles({
 })(LinearProgress)
 
 const getStatus = (currentTime: number, startTime: number, endTime: number): IfoStatus | null => {
-  return 'finished'
   if (currentTime < startTime) {
     return 'coming_soon'
   }
