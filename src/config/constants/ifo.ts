@@ -31,7 +31,7 @@ const ifos: Ifo[] = [
     id: 'momoprotocol',
     address: {
       56: '', // TODO
-      97: '0x219B7Ff08d2cAdCfdc729c8EBcCCE1EA594F8D10',
+      97: '0x8E3Be059992dee2a668902EED64bac9Bab134071',
     },
     isActive: false,
     name: 'MomoProtocol',

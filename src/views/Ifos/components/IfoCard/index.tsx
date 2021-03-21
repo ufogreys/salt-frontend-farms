@@ -54,6 +54,7 @@ const StyledLinearProgress = withStyles({
 })(LinearProgress)
 
 const getStatus = (currentTime: number, startTime: number, endTime: number): IfoStatus | null => {
+  return 'finished'
   if (currentTime < startTime) {
     return 'coming_soon'
   }
@@ -216,7 +217,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
             <Flex justifyContent="space-between">
               <Text style={{ fontSize: '16px' }}>Price:</Text>
               <Text bold style={{ fontSize: '16px' }}>
-                1 BNB = { `${new BigNumber(state.tokensPerBnb).div(10**tokenDecimals)}`}  {ifo.token}
+                1 BNB = {`${new BigNumber(state.tokensPerBnb).div(10 ** tokenDecimals)}`} {ifo.token}
               </Text>
             </Flex>
             <Flex justifyContent="space-between">
@@ -237,6 +238,10 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
                 {`${state.hardCapProgress.toFixed(2)}%`}
               </Text>
             </Flex>
+          </>
+        )}
+        {isActive ||
+          (!isFinished && (
             <StyledProgress>
               <StyledLinearProgress
                 variant="buffer"
@@ -244,8 +249,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
                 valueBuffer={state.softCapProgress}
               />
             </StyledProgress>
-          </>
-        )}
+          ))}
         {!account && <UnlockButton fullWidth />}
         {(isActive || isFinished) && account && (
           <IfoCardContribute

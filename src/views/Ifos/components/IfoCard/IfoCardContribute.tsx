@@ -28,6 +28,8 @@ const IfoCardContribute: React.FC<Props> = ({
 }) => {
   const [pendingTx, setPendingTx] = useState(false)
   const [contributions, setContributions] = useState(new BigNumber(0))
+  const [claimedTokens, setClaimedTokens] = useState(new BigNumber(0))
+  const [tokensPerBnb, setTokensPerBnb] = useState(new BigNumber(0))
 
   const { account } = useWallet()
   const [onPresentContributeModal] = useModal(
@@ -37,6 +39,8 @@ const IfoCardContribute: React.FC<Props> = ({
   useEffect(() => {
     const fetch = async () => {
       setContributions(new BigNumber(await contract.methods.contributions(account).call()))
+      setClaimedTokens(new BigNumber(await contract.methods.claimedTokens(account).call()))
+      setTokensPerBnb(new BigNumber(await contract.methods.tokensPerBnb().call()))
     }
 
     if (account) {
@@ -46,19 +50,30 @@ const IfoCardContribute: React.FC<Props> = ({
 
   const claim = async () => {
     setPendingTx(true)
-    await contract.methods.harvest().send({ from: account })
+    await contract.methods.claimTokens()
     setPendingTx(false)
   }
   const isFinished = status === 'finished'
   const percentOfUserContribution = new BigNumber(contributions).div(raisingAmount).times(100)
 
+  const userClaimed = isFinished && claimedTokens.isGreaterThan(new BigNumber(0))
+
+  const claimableTokens = getBalanceNumber(contributions) * getBalanceNumber(tokensPerBnb)
+
   return (
     <>
       <LabelButton
-        disabled={pendingTx}
+        disabled={pendingTx || userClaimed}
         buttonLabel={isFinished ? 'Claim' : 'Contribute'}
         label={isFinished ? 'Your tokens to claim' : `Your contribution (${currency})`}
-        value={getBalanceNumber(contributions, 18).toFixed(4)}
+        value={
+          // eslint-disable-next-line no-nested-ternary
+          isFinished
+            ? userClaimed
+              ? 'Claimed'
+              : claimableTokens.toFixed(4)
+            : getBalanceNumber(contributions, 1 ** 18).toFixed(4)
+        }
         onClick={isFinished ? claim : onPresentContributeModal}
       />
       <Text fontSize="14px" color="textSubtle">

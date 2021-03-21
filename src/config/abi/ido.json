@@ -49,8 +49,15 @@
     "name": "TokenPurchase",
     "type": "event"
   },
-  { "inputs": [], "name": "claimRefund", "outputs": [], "stateMutability": "payable", "type": "function" },
-  { "inputs": [], "name": "claimTokens", "outputs": [], "stateMutability": "payable", "type": "function" },
+  { "inputs": [], "name": "claimRefund", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
+  { "inputs": [], "name": "claimTokens", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
+  {
+    "inputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "name": "claimedTokens",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    "stateMutability": "view",
+    "type": "function"
+  },
   {
     "inputs": [{ "internalType": "address", "name": "", "type": "address" }],
     "name": "contributions",
@@ -116,9 +123,9 @@
     "type": "function"
   },
   {
-    "inputs": [],
-    "name": "refundable",
-    "outputs": [{ "internalType": "bool", "name": "", "type": "bool" }],
+    "inputs": [{ "internalType": "address", "name": "", "type": "address" }],
+    "name": "refunds",
+    "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }],
     "stateMutability": "view",
     "type": "function"
   },
@@ -172,7 +179,6 @@
     "stateMutability": "view",
     "type": "function"
   },
-  { "inputs": [], "name": "withdrawEmergency", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
   { "inputs": [], "name": "withdrawTokens", "outputs": [], "stateMutability": "nonpayable", "type": "function" },
   { "stateMutability": "payable", "type": "receive" }
 ]
