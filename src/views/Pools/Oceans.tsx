@@ -19,6 +19,9 @@ import {
   usePriceBrewBnb,
   usePriceBtcbBnb,
   usePriceCtcBnb,
+  usePriceBlueBnb,
+  usePriceBlueSaltLPBnb,
+  usePriceSlmeSaltLPBnb,
 } from 'state/hooks'
 import { QuoteToken } from 'config/constants/types'
 import FlexLayout from 'components/layout/Flex'
@@ -41,6 +44,9 @@ const Farm: React.FC = () => {
   const brewPrice = usePriceBrewBnb()
   const btcbPrice = usePriceBtcbBnb()
   const ctcPrice = usePriceCtcBnb()
+  const bluePrice = usePriceBlueBnb()
+  const saltBlueLPPrice = usePriceBlueSaltLPBnb()
+  const saltSlmeLPPrice = usePriceSlmeSaltLPBnb()
 
   const priceToBnb = (tokenName: string, tokenPrice: BigNumber, quoteToken: QuoteToken): BigNumber => {
     const tokenPriceBN = new BigNumber(tokenPrice)
@@ -61,6 +67,9 @@ const Farm: React.FC = () => {
     }
     if (tokenName === 'CTC') {
       return ctcPrice
+    }
+    if (tokenName === 'BLUE') {
+      return bluePrice
     }
     if (tokenPrice && quoteToken === QuoteToken.BUSD) {
       return tokenPriceBN.div(bnbPriceUSD)
@@ -87,7 +96,16 @@ const Farm: React.FC = () => {
     // console.log('rewardTokenPriceInBNB', rewardTokenPriceInBNB.toString())
     // console.log('stakingTokenPriceInBNB', stakingTokenPriceInBNB.toString())
     const totalRewardPricePerYear = rewardTokenPriceInBNB.times(pool.tokenPerBlock).times(BLOCKS_PER_YEAR)
-    const totalStakingTokenInPool = stakingTokenPriceInBNB.times(getBalanceNumber(pool.totalStaked))
+    let totalStakingTokenInPool = new BigNumber(0)
+    if (pool.tokenName === 'BLUE') {
+      // console.log("salt-blue LP", saltBlueLPPrice.times(getBalanceNumber(pool.totalStaked)).toString())
+      totalStakingTokenInPool = saltBlueLPPrice.times(getBalanceNumber(pool.totalStaked))
+    } else if (pool.tokenName === 'SLME') {
+      totalStakingTokenInPool = saltSlmeLPPrice.times(getBalanceNumber(pool.totalStaked))
+    } else {
+      totalStakingTokenInPool = stakingTokenPriceInBNB.times(getBalanceNumber(pool.totalStaked))
+    }
+
     // tokens per block * price of CAKE * blocks_per_year / ( tokens in pool x salt price) * 100
     const apy = totalRewardPricePerYear.div(totalStakingTokenInPool).times(100)
 
