@@ -216,7 +216,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
             <Flex justifyContent="space-between">
               <Text style={{ fontSize: '16px' }}>Price:</Text>
               <Text bold style={{ fontSize: '16px' }}>
-                1 BNB = {`${new BigNumber(state.tokensPerBnb).div(10e9)}`} {ifo.token}
+                1 BNB = {/* `${new BigNumber(state.tokensPerBnb).div(10e18)}` */} 13 {ifo.token}
               </Text>
             </Flex>
             <Flex justifyContent="space-between">
