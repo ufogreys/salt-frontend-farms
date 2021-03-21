@@ -15,17 +15,9 @@ export interface Props {
   contract: Contract
   status: IfoStatus
   raisingAmount: BigNumber
-  tokenDecimals: number
 }
 
-const IfoCardContribute: React.FC<Props> = ({
-  currency,
-  currencyAddress,
-  contract,
-  status,
-  raisingAmount,
-  tokenDecimals,
-}) => {
+const IfoCardContribute: React.FC<Props> = ({ currency, currencyAddress, contract, status, raisingAmount }) => {
   const [pendingTx, setPendingTx] = useState(false)
   const [contributions, setContributions] = useState(new BigNumber(0))
   const [claimedTokens, setClaimedTokens] = useState(new BigNumber(0))

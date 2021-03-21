@@ -69,22 +69,6 @@ const getStatus = (currentTime: number, startTime: number, endTime: number): Ifo
   return null
 }
 
-// const getStatus = (currentBlock: number, startBlock: number, endBlock: number): IfoStatus | null => {
-//   if (currentBlock < startBlock) {
-//     return 'coming_soon'
-//   }
-
-//   if (currentBlock >= startBlock && currentBlock <= endBlock) {
-//     return 'live'
-//   }
-
-//   if (currentBlock > endBlock) {
-//     return 'finished'
-//   }
-
-//   return null
-// }
-
 const getRibbonComponent = (status: IfoStatus, TranslateString: (translationId: number, fallback: string) => any) => {
   if (status === 'coming_soon') {
     return <CardRibbon variantColor="textDisabled" text={TranslateString(999, 'Coming Soon')} />
@@ -100,19 +84,14 @@ const getRibbonComponent = (status: IfoStatus, TranslateString: (translationId: 
 const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
   const {
     id,
-    address,
     name,
     subTitle,
     description,
-    launchDate,
-    launchTime,
     saleAmount,
     raiseAmount,
-    cakeToBurn,
     projectSiteUrl,
     currencyAddress,
     tokenDecimals,
-    releaseBlockNumber,
     currency,
     maxContribution,
     minContribution,
@@ -194,7 +173,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
     }
 
     fetchProgress()
-  }, [currentBlock, presaleContract, releaseBlockNumber, setState])
+  }, [currentBlock, presaleContract, setState])
 
   const isActive = state.status === 'live'
   const isFinished = state.status === 'finished'
@@ -209,7 +188,6 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
           status={state.status}
           secondsUntilStart={state.secondsUntilStart}
           secondsUntilEnd={state.secondsUntilEnd}
-          block={isActive || isFinished ? state.endBlockNum : state.startBlockNum}
         />
         {(isActive || isFinished) && (
           <>
@@ -258,16 +236,12 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
             contract={presaleContract}
             status={state.status}
             raisingAmount={state.hardCap}
-            tokenDecimals={tokenDecimals}
           />
         )}
         <IfoCardDescription description={description} defaultIsOpen={false} />
         <IfoCardDetails
-          launchDate={launchDate}
-          launchTime={launchTime}
           saleAmount={saleAmount}
           raiseAmount={raiseAmount}
-          cakeToBurn={cakeToBurn}
           projectSiteUrl={projectSiteUrl}
           raisingAmount={state.hardCap}
           totalAmount={new BigNumber(state.weiRaised)}
