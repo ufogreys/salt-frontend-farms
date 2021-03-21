@@ -65,9 +65,13 @@ const LotteryProgress = () => {
   const lotteryHasDrawn = useGetLotteryHasDrawn()
   const currentMillis = useCurrentTime()
   const timeUntilTicketSale = getTicketSaleTime(currentMillis)
-  // const timeUntilLotteryDraw = getLotteryDrawTime(currentMillis)
   const timeFirstReset = moment.utc('19/03/2021T09:00', 'DD/MM/YYYYTHH:mm')
-  const timeLotteryDraw = moment.utc('21/03/2021T09:00', 'DD/MM/YYYYTHH:mm')
+
+  let timeLotteryDraw = timeFirstReset.clone()
+  while (timeLotteryDraw.isBefore(moment.utc())) {
+    timeLotteryDraw = timeLotteryDraw.add(2, 'days')
+  }
+
   const timeUntilLotteryDraw = timeLotteryDraw.fromNow()
 
   const progress = (moment().diff(timeFirstReset).valueOf() / timeLotteryDraw.diff(timeFirstReset)).valueOf() * 100
