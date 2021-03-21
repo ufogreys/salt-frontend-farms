@@ -185,7 +185,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
         secondsUntilEnd: endTime - currentTime,
         secondsUntilStart: startTime - currentTime,
         softCap,
-        softCapProgress,
+        softCapProgress: softCapProgress > 100 ? 100 : softCapProgress,
         startBlockNum,
         status,
         tokensPerBnb,
