@@ -301,6 +301,81 @@ const pools: PoolConfig[] = [
     tokenDecimals: 18,
     burnFee: 15,
   },
+  {
+    sousId: 12,
+    tokenName: 'WBNB',
+    stakingTokenName: QuoteToken.SALT,
+    stakingTokenAddress: {
+      97: '0x85582d24455caaf44fc4f914bdca2a6cb73e6681',
+      56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4', // SALT
+    },
+    contractAddress: {
+      97: '0xF08d05d91426A63aB35Ef7f4bBC6E8717B59e838',
+      56: '0xA5e2C1ABc73F411180e0a2371a3A546B402A96F9', // SmartChef
+    },
+    rewardTokenAddress: {
+      97: '0xec5dcb5dbf4b114c9d0f65bccab49ec54f6a0867', // DAI, didnt had WBNB
+      56: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', // WBNB
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://binance.com/',
+    harvest: true,
+    tokenPerBlock: '0.00005541666667',
+    sortOrder: 13,
+    isFinished: false,
+    tokenDecimals: 18,
+    burnFee: 15,
+  },
+  {
+    sousId: 13,
+    tokenName: 'BLUE',
+    stakingTokenName: QuoteToken.SALTBLUE,
+    stakingTokenAddress: {
+      97: '0x85582d24455caaf44fc4f914bdca2a6cb73e6681',
+      56: '0xc7953f27b4b7049e41c3c10354e995870cb8e109', // SALT-BLUE
+    },
+    contractAddress: {
+      97: '0xF08d05d91426A63aB35Ef7f4bBC6E8717B59e838',
+      56: '0xdF62141c12f54B17B7e6F158eD36629856E74C97', // SmartChef
+    },
+    rewardTokenAddress: {
+      97: '0xec5dcb5dbf4b114c9d0f65bccab49ec54f6a0867', // DAI, didnt had WBNB
+      56: '0x36C0556c2B15aED79F842675Ff030782738eF9e8', // BLUE
+    },
+    poolCategory: PoolCategory.COMMUNITY,
+    projectLink: 'https://blueswap.finance/',
+    harvest: true,
+    tokenPerBlock: '0.005787037037',
+    sortOrder: 14,
+    isFinished: false,
+    tokenDecimals: 18,
+    burnFee: 0,
+  },
+  {
+    sousId: 14,
+    tokenName: 'SLME',
+    stakingTokenName: QuoteToken.SALTSLME,
+    stakingTokenAddress: {
+      97: '0x85582d24455caaf44fc4f914bdca2a6cb73e6681',
+      56: '0xbea4674a61cccc6b735999511ba9a8ba3aa26a85', // SALT-slime
+    },
+    contractAddress: {
+      97: '0xF08d05d91426A63aB35Ef7f4bBC6E8717B59e838',
+      56: '0xD4A55D437Da5753da2f937518Fd797f5d2211E1c', // SmartChef
+    },
+    rewardTokenAddress: {
+      97: '0xec5dcb5dbf4b114c9d0f65bccab49ec54f6a0867', // DAI, didnt had SLIME
+      56: '0x4fcfa6cc8914ab455b5b33df916d90bfe70b6ab1', // SLIME
+    },
+    poolCategory: PoolCategory.COMMUNITY,
+    projectLink: 'https://slime.finance/',
+    harvest: true,
+    tokenPerBlock: '.002899305556',
+    sortOrder: 15,
+    isFinished: false,
+    tokenDecimals: 18,
+    burnFee: 30,
+  },
 ]
 
 export default pools

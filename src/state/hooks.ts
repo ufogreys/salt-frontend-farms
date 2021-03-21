@@ -69,6 +69,12 @@ export const usePriceSaltBusd = (): BigNumber => {
   return farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : ZERO
 }
 
+export const usePriceSaltBnb = (): BigNumber => {
+  const pid = 2 // SALT-BNB LP
+  const farm = useFarmFromPid(pid)
+  return farm.tokenPriceVsQuote ? new BigNumber(farm.tokenPriceVsQuote) : ZERO
+}
+
 export const usePriceBnbBusd = (): BigNumber => {
   const pid = 3 // BUSD-BNB LP
   const farm = useFarmFromPid(pid)
@@ -225,6 +231,136 @@ export const usePriceCtcBnb = () => {
   return price
 }
 
+export const usePriceBlueBnb = () => {
+  const [price, setPrice] = useState(new BigNumber(0))
+
+  useEffect(() => {
+    const fetchPrice = async () => {
+      const lpAddress = '0xca5a529f3137109eccd5a239e58a150f651710a2' // BLUE/BNB LP
+      const [wbnbTokenBalanceLP, blueTokenBalanceLP] = await multicall(erc20, [
+        {
+          address: poolsConfig.find((p) => p.sousId === 1).rewardTokenAddress[CHAIN_ID],
+          name: 'balanceOf',
+          params: [lpAddress],
+        },
+        {
+          address: '0x36C0556c2B15aED79F842675Ff030782738eF9e8',
+          name: 'balanceOf',
+          params: [lpAddress],
+        },
+      ])
+
+      if (!blueTokenBalanceLP || !wbnbTokenBalanceLP) return
+
+      setPrice(new BigNumber(wbnbTokenBalanceLP).div(new BigNumber(blueTokenBalanceLP)))
+    }
+
+    fetchPrice()
+  }, [])
+
+  return price
+}
+
+export const usePriceBlueSaltLPBnb = () => {
+  const bluePrice = usePriceBlueBnb()
+  const saltPrice = usePriceSaltBnb()
+  const [price, setPrice] = useState({
+    blueTokenBalance: new BigNumber(0),
+    saltTokenBalance: new BigNumber(0),
+    totalSupplyLP: new BigNumber(0),
+  })
+
+  useEffect(() => {
+    const fetchPrice = async () => {
+      const lpAddress = '0xc7953f27b4b7049e41c3c10354e995870cb8e109' // SALT/BLUE LP
+      const [saltTokenBalanceLP, blueTokenBalanceLP, totalSupply] = await multicall(erc20, [
+        {
+          address: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4', // SALT
+          name: 'balanceOf',
+          params: [lpAddress],
+        },
+        {
+          address: '0x36C0556c2B15aED79F842675Ff030782738eF9e8', // BLUE
+          name: 'balanceOf',
+          params: [lpAddress],
+        },
+        {
+          address: lpAddress,
+          name: 'totalSupply',
+          params: [],
+        },
+      ])
+
+      if (!blueTokenBalanceLP || !saltTokenBalanceLP || !totalSupply) return
+      setPrice({
+        blueTokenBalance: blueTokenBalanceLP,
+        saltTokenBalance: saltTokenBalanceLP,
+        totalSupplyLP: totalSupply,
+      })
+    }
+
+    fetchPrice()
+  }, [])
+
+  // price salt x salts in LP + price blue x blue in LP / LP tokens
+  const saltValue = new BigNumber(price.saltTokenBalance).times(saltPrice)
+  const blueValue = new BigNumber(price.blueTokenBalance).times(bluePrice)
+  const topValue = saltValue.plus(blueValue)
+  const lpPrice = topValue.div(price.totalSupplyLP)
+
+  return lpPrice
+}
+
+export const usePriceSlmeSaltLPBnb = () => {
+  const smlePrice = usePriceSlimeBnb()
+  const saltPrice = usePriceSaltBnb()
+  const [price, setPrice] = useState({
+    blueTokenBalance: new BigNumber(0),
+    saltTokenBalance: new BigNumber(0),
+    totalSupplyLP: new BigNumber(0),
+  })
+
+  useEffect(() => {
+    const fetchPrice = async () => {
+      const lpAddress = '0xbea4674a61cccc6b735999511ba9a8ba3aa26a85' // SALT/BLUE LP
+      const [saltTokenBalanceLP, slmeTokenBalanceLP, totalSupply] = await multicall(erc20, [
+        {
+          address: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4', // SALT
+          name: 'balanceOf',
+          params: [lpAddress],
+        },
+        {
+          address: '0x4fcfa6cc8914ab455b5b33df916d90bfe70b6ab1', // BLUE
+          name: 'balanceOf',
+          params: [lpAddress],
+        },
+        {
+          address: lpAddress,
+          name: 'totalSupply',
+          params: [],
+        },
+      ])
+
+      if (!slmeTokenBalanceLP || !saltTokenBalanceLP || !totalSupply) return
+      setPrice({
+        blueTokenBalance: slmeTokenBalanceLP,
+        saltTokenBalance: saltTokenBalanceLP,
+        totalSupplyLP: totalSupply,
+      })
+    }
+
+    fetchPrice()
+  }, [])
+
+  // price salt x salts in LP + price blue x blue in LP / LP tokens
+  const saltValue = new BigNumber(price.saltTokenBalance).times(saltPrice)
+  const slmeValue = new BigNumber(price.blueTokenBalance).times(smlePrice)
+  const topValue = saltValue.plus(slmeValue)
+  const lpPrice = topValue.div(price.totalSupplyLP)
+
+  return lpPrice
+}
+
 export const usePriceEthBusd = (): BigNumber => new BigNumber(1477)
 
 export const useTotalValue = (): BigNumber => {
@@ -234,6 +370,8 @@ export const useTotalValue = (): BigNumber => {
   const bnbPrice = usePriceBnbBusd()
   const ethPrice = usePriceEthBusd()
   const saltPrice = usePriceSaltBusd()
+  const bluePrice = usePriceBlueBnb()
+  const slimePrice = usePriceSlimeBnb()
   const totalValue = useRef(new BigNumber(0))
 
   useEffect(() => {
@@ -263,11 +401,22 @@ export const useTotalValue = (): BigNumber => {
         const totalSaltStaked = new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(18))
         poolValue = saltPrice.times(totalSaltStaked)
       }
-      poolsTotalValue = poolsTotalValue.plus(poolValue)
+
+      if (pool.stakingTokenName === QuoteToken.SALTBLUE) {
+        const totalSaltStaked = new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(18))
+        poolValue = bluePrice.times(bnbPrice).times(totalSaltStaked)
+      }
+
+      if (pool.stakingTokenName === QuoteToken.SALTSLME) {
+        const totalSaltStaked = new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(18))
+        poolValue = slimePrice.times(bnbPrice).times(totalSaltStaked)
+      }
+
+      poolsTotalValue = poolsTotalValue.plus(poolValue ?? ZERO)
     }
 
     totalValue.current = farmsTotalValue.plus(poolsTotalValue)
-  }, [bnbPrice, ethPrice, farms, pools, saltPrice])
+  }, [bluePrice, bnbPrice, ethPrice, farms, pools, saltPrice, slimePrice])
 
   if (!totalValue) {
     return new BigNumber(0)
