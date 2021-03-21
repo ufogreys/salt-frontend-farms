@@ -67,14 +67,16 @@ const LotteryProgress = () => {
   const timeUntilTicketSale = getTicketSaleTime(currentMillis)
   const timeFirstReset = moment.utc('19/03/2021T09:00', 'DD/MM/YYYYTHH:mm')
 
-  let timeLotteryDraw = timeFirstReset.clone()
-  while (timeLotteryDraw.isBefore(moment.utc())) {
-    timeLotteryDraw = timeLotteryDraw.add(2, 'days')
+  let nextLotteryDraw = timeFirstReset.clone()
+  while (nextLotteryDraw.isBefore(moment.utc())) {
+    nextLotteryDraw = nextLotteryDraw.add(2, 'days')
   }
 
-  const timeUntilLotteryDraw = timeLotteryDraw.fromNow()
+  const timeUntilLotteryDraw = nextLotteryDraw.fromNow()
 
-  const progress = (moment().diff(timeFirstReset).valueOf() / timeLotteryDraw.diff(timeFirstReset)).valueOf() * 100
+  const lastLotteryDraw = nextLotteryDraw.clone().subtract(2, 'days')
+
+  const progress = (moment.utc().diff(lastLotteryDraw).valueOf() / nextLotteryDraw.diff(timeFirstReset)).valueOf() * 100
 
   return (
     <ProgressWrapper>
@@ -89,7 +91,7 @@ const LotteryProgress = () => {
           </StyledPrimaryText>
         </TopTextWrapper>
         <Text fontSize="12px" color="invertedContrast">
-          {timeLotteryDraw.toLocaleString()}
+          {nextLotteryDraw.toLocaleString()}
         </Text>
       </MiddleTextWrapper>
       {lotteryHasDrawn && (
