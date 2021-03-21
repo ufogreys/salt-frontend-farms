@@ -15,9 +15,17 @@ export interface Props {
   contract: Contract
   status: IfoStatus
   raisingAmount: BigNumber
+  softCapReached: boolean
 }
 
-const IfoCardContribute: React.FC<Props> = ({ currency, currencyAddress, contract, status, raisingAmount }) => {
+const IfoCardContribute: React.FC<Props> = ({
+  currency,
+  currencyAddress,
+  contract,
+  status,
+  raisingAmount,
+  softCapReached,
+}) => {
   const [pendingTx, setPendingTx] = useState(false)
   const [contributions, setContributions] = useState(new BigNumber(0))
   const [claimedTokens, setClaimedTokens] = useState(new BigNumber(0))
@@ -61,8 +69,6 @@ const IfoCardContribute: React.FC<Props> = ({ currency, currencyAddress, contrac
   const userRefunded = isFinished && refundedTokens.isGreaterThan(new BigNumber(0))
 
   const claimableTokens = getBalanceNumber(contributions) * getBalanceNumber(tokensPerBnb)
-
-  const softCapReached = true
 
   const getButtonLabel = () => {
     if (!isFinished) return 'Contribute'

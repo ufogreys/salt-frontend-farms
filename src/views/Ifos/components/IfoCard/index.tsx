@@ -117,6 +117,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
     status: null,
     tokensPerBnb: new BigNumber(0),
     weiRaised: new BigNumber(0),
+    softCapReached: false,
   })
   const { account } = useWallet()
   const presaleContract = useIdoContract(ifo.address[CHAIN_ID])
@@ -128,7 +129,16 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
 
   useEffect(() => {
     const fetchProgress = async () => {
-      const [startTime, endTime, softCap, hardCap, tokensPerBnb, weiRaised, isOpen] = await Promise.all([
+      const [
+        startTime,
+        endTime,
+        softCap,
+        hardCap,
+        tokensPerBnb,
+        weiRaised,
+        isOpen,
+        softCapReached,
+      ] = await Promise.all([
         presaleContract.methods.startTime().call(),
         presaleContract.methods.endTime().call(),
         presaleContract.methods.softCap().call(),
@@ -136,6 +146,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
         presaleContract.methods.tokensPerBnb().call(),
         presaleContract.methods.weiRaised().call(),
         presaleContract.methods.isOpen().call(),
+        presaleContract.methods.softCapReached().call(),
       ])
 
       const softCapProgress = (weiRaised / softCap) * 100
@@ -172,6 +183,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
         status,
         tokensPerBnb,
         weiRaised,
+        softCapReached,
       })
     }
 
@@ -240,6 +252,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
               contract={presaleContract}
               status={state.status}
               raisingAmount={state.hardCap}
+              softCapReached={state.softCapReached}
             />
           )}
         </ActionWrapper>
