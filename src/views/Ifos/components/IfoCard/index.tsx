@@ -178,7 +178,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
         blocksRemaining,
         endBlockNum,
         hardCap,
-        hardCapProgress,
+        hardCapProgress: hardCapProgress > 100 ? 100 : hardCapProgress,
         isLoading: false,
         isOpen,
         progress,
