@@ -32,8 +32,11 @@ const StyledIfoCard = styled(Card)<{ ifoId: string }>`
 `
 
 const StyledProgress = styled.div`
-  margin-top: 12px;
   margin-bottom: 16px;
+`
+
+const ActionWrapper = styled.div`
+  margin-top: 12px;
 `
 
 const StyledLinearProgress = withStyles({
@@ -217,27 +220,29 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
             </Flex>
           </>
         )}
-        {isActive ||
-          (!isFinished && (
-            <StyledProgress>
-              <StyledLinearProgress
-                variant="buffer"
-                value={state.hardCapProgress}
-                valueBuffer={state.softCapProgress}
-              />
-            </StyledProgress>
-          ))}
-        {!account && <UnlockButton fullWidth />}
-        {(isActive || isFinished) && account && (
-          <IfoCardContribute
-            address={ifo.address[CHAIN_ID]}
-            currency="BNB"
-            currencyAddress={currencyAddress}
-            contract={presaleContract}
-            status={state.status}
-            raisingAmount={state.hardCap}
-          />
-        )}
+        <ActionWrapper>
+          {isActive ||
+            (!isFinished && (
+              <StyledProgress>
+                <StyledLinearProgress
+                  variant="buffer"
+                  value={state.hardCapProgress}
+                  valueBuffer={state.softCapProgress}
+                />
+              </StyledProgress>
+            ))}
+          {!account && <UnlockButton fullWidth />}
+          {(isActive || isFinished) && account && (
+            <IfoCardContribute
+              address={ifo.address[CHAIN_ID]}
+              currency="BNB"
+              currencyAddress={currencyAddress}
+              contract={presaleContract}
+              status={state.status}
+              raisingAmount={state.hardCap}
+            />
+          )}
+        </ActionWrapper>
         <IfoCardDescription description={description} defaultIsOpen={false} />
         <IfoCardDetails
           saleAmount={saleAmount}
