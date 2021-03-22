@@ -233,16 +233,15 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
           </>
         )}
         <ActionWrapper>
-          {isActive ||
-            (!isFinished && (
-              <StyledProgress>
-                <StyledLinearProgress
-                  variant="buffer"
-                  value={state.hardCapProgress}
-                  valueBuffer={state.softCapProgress}
-                />
-              </StyledProgress>
-            ))}
+          {(isActive || !isFinished) && (
+            <StyledProgress>
+              <StyledLinearProgress
+                variant="buffer"
+                value={state.hardCapProgress}
+                valueBuffer={state.softCapProgress}
+              />
+            </StyledProgress>
+          )}
           {!account && <UnlockButton fullWidth />}
           {(isActive || isFinished) && account && (
             <IfoCardContribute
