@@ -76,7 +76,8 @@ const LotteryProgress = () => {
 
   const lastLotteryDraw = nextLotteryDraw.clone().subtract(2, 'days')
 
-  const progress = (moment.utc().diff(lastLotteryDraw).valueOf() / nextLotteryDraw.diff(timeFirstReset)).valueOf() * 100
+  const progress =
+    (moment.utc().diff(lastLotteryDraw).valueOf() / nextLotteryDraw.diff(lastLotteryDraw)).valueOf() * 100
 
   return (
     <ProgressWrapper>
