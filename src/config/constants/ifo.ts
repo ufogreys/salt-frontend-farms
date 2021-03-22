@@ -7,7 +7,7 @@ const ifos: Ifo[] = [
       56: '0xE5A1ab7017b3b01ec6C0b68790f28577c734e2b1',
       97: '0x8E3Be059992dee2a668902EED64bac9Bab134071',
     },
-    isActive: true,
+    isActive: false,
     name: 'RebasingProtocol',
     token: 'RBT',
     subTitle: 'Rebasing Protocol is a decentralized and Elastic Supply token based on Binance Smart Chain',
@@ -22,14 +22,13 @@ const ifos: Ifo[] = [
     maxContribution: '50',
     minContribution: '0.001',
   },
-  /*
   {
     id: 'momoprotocol',
     address: {
-      56: '', // TODO
+      56: '0xCE1a3381E60D18916e5532bf9F5233f7A4baB64C',
       97: '0x8E3Be059992dee2a668902EED64bac9Bab134071',
     },
-    isActive: false,
+    isActive: true,
     name: 'MomoProtocol',
     token: 'MOMO',
     subTitle: 'The 1st BSC project that offers Flashloan Arbitrage & Rewards Contributors through our Social App',
@@ -39,11 +38,11 @@ const ifos: Ifo[] = [
     raiseAmount: '2,000',
     projectSiteUrl: 'https://momoprotocol.finance/#/',
     currency: 'BNB',
-    currencyAddress: '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', // FIX This is WBNB
+    currencyAddress: '0xafb2997fe9a99022e61c7e01b974e0e3d7704b02',
     tokenDecimals: 18,
     maxContribution: '50',
     minContribution: '0.1',
-  }, */
+  },
 ]
 
 export default ifos
