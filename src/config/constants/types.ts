@@ -10,16 +10,12 @@ export interface Ifo {
   minContribution: string
   subTitle?: string
   description?: string
-  launchDate: string
-  launchTime: string
   saleAmount: string
   raiseAmount: string
-  cakeToBurn: string
   projectSiteUrl: string
   currency: string
   currencyAddress: string
   tokenDecimals: number
-  releaseBlockNumber: number
 }
 
 export enum QuoteToken {

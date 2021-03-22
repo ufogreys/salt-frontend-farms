@@ -32,8 +32,11 @@ const StyledIfoCard = styled(Card)<{ ifoId: string }>`
 `
 
 const StyledProgress = styled.div`
-  margin-top: 12px;
   margin-bottom: 16px;
+`
+
+const ActionWrapper = styled.div`
+  margin-top: 12px;
 `
 
 const StyledLinearProgress = withStyles({
@@ -69,22 +72,6 @@ const getStatus = (currentTime: number, startTime: number, endTime: number): Ifo
   return null
 }
 
-// const getStatus = (currentBlock: number, startBlock: number, endBlock: number): IfoStatus | null => {
-//   if (currentBlock < startBlock) {
-//     return 'coming_soon'
-//   }
-
-//   if (currentBlock >= startBlock && currentBlock <= endBlock) {
-//     return 'live'
-//   }
-
-//   if (currentBlock > endBlock) {
-//     return 'finished'
-//   }
-
-//   return null
-// }
-
 const getRibbonComponent = (status: IfoStatus, TranslateString: (translationId: number, fallback: string) => any) => {
   if (status === 'coming_soon') {
     return <CardRibbon variantColor="textDisabled" text={TranslateString(999, 'Coming Soon')} />
@@ -100,19 +87,14 @@ const getRibbonComponent = (status: IfoStatus, TranslateString: (translationId: 
 const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
   const {
     id,
-    address,
     name,
     subTitle,
     description,
-    launchDate,
-    launchTime,
     saleAmount,
     raiseAmount,
-    cakeToBurn,
     projectSiteUrl,
     currencyAddress,
     tokenDecimals,
-    releaseBlockNumber,
     currency,
     maxContribution,
     minContribution,
@@ -135,6 +117,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
     status: null,
     tokensPerBnb: new BigNumber(0),
     weiRaised: new BigNumber(0),
+    softCapReached: false,
   })
   const { account } = useWallet()
   const presaleContract = useIdoContract(ifo.address[CHAIN_ID])
@@ -146,7 +129,16 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
 
   useEffect(() => {
     const fetchProgress = async () => {
-      const [startTime, endTime, softCap, hardCap, tokensPerBnb, weiRaised, isOpen] = await Promise.all([
+      const [
+        startTime,
+        endTime,
+        softCap,
+        hardCap,
+        tokensPerBnb,
+        weiRaised,
+        isOpen,
+        softCapReached,
+      ] = await Promise.all([
         presaleContract.methods.startTime().call(),
         presaleContract.methods.endTime().call(),
         presaleContract.methods.softCap().call(),
@@ -154,6 +146,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
         presaleContract.methods.tokensPerBnb().call(),
         presaleContract.methods.weiRaised().call(),
         presaleContract.methods.isOpen().call(),
+        presaleContract.methods.softCapReached().call(),
       ])
 
       const softCapProgress = (weiRaised / softCap) * 100
@@ -190,11 +183,12 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
         status,
         tokensPerBnb,
         weiRaised,
+        softCapReached,
       })
     }
 
     fetchProgress()
-  }, [currentBlock, presaleContract, releaseBlockNumber, setState])
+  }, [currentBlock, presaleContract, setState])
 
   const isActive = state.status === 'live'
   const isFinished = state.status === 'finished'
@@ -209,7 +203,6 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
           status={state.status}
           secondsUntilStart={state.secondsUntilStart}
           secondsUntilEnd={state.secondsUntilEnd}
-          block={isActive || isFinished ? state.endBlockNum : state.startBlockNum}
         />
         {(isActive || isFinished) && (
           <>
@@ -237,34 +230,36 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
                 {`${state.hardCapProgress.toFixed(2)}%`}
               </Text>
             </Flex>
-            <StyledProgress>
-              <StyledLinearProgress
-                variant="buffer"
-                value={state.hardCapProgress}
-                valueBuffer={state.softCapProgress}
-              />
-            </StyledProgress>
           </>
         )}
-        {!account && <UnlockButton fullWidth />}
-        {(isActive || isFinished) && account && (
-          <IfoCardContribute
-            address={ifo.address[CHAIN_ID]}
-            currency="BNB"
-            currencyAddress={currencyAddress}
-            contract={presaleContract}
-            status={state.status}
-            raisingAmount={state.hardCap}
-            tokenDecimals={tokenDecimals}
-          />
-        )}
+        <ActionWrapper>
+          {isActive ||
+            (!isFinished && (
+              <StyledProgress>
+                <StyledLinearProgress
+                  variant="buffer"
+                  value={state.hardCapProgress}
+                  valueBuffer={state.softCapProgress}
+                />
+              </StyledProgress>
+            ))}
+          {!account && <UnlockButton fullWidth />}
+          {(isActive || isFinished) && account && (
+            <IfoCardContribute
+              address={ifo.address[CHAIN_ID]}
+              currency="BNB"
+              currencyAddress={currencyAddress}
+              contract={presaleContract}
+              status={state.status}
+              raisingAmount={state.hardCap}
+              softCapReached={state.softCapReached}
+            />
+          )}
+        </ActionWrapper>
         <IfoCardDescription description={description} defaultIsOpen={false} />
         <IfoCardDetails
-          launchDate={launchDate}
-          launchTime={launchTime}
           saleAmount={saleAmount}
           raiseAmount={raiseAmount}
-          cakeToBurn={cakeToBurn}
           projectSiteUrl={projectSiteUrl}
           raisingAmount={state.hardCap}
           totalAmount={new BigNumber(state.weiRaised)}

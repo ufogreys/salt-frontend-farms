@@ -15,7 +15,7 @@ export interface Props {
   contract: Contract
   status: IfoStatus
   raisingAmount: BigNumber
-  tokenDecimals: number
+  softCapReached: boolean
 }
 
 const IfoCardContribute: React.FC<Props> = ({
@@ -24,10 +24,13 @@ const IfoCardContribute: React.FC<Props> = ({
   contract,
   status,
   raisingAmount,
-  tokenDecimals,
+  softCapReached,
 }) => {
   const [pendingTx, setPendingTx] = useState(false)
   const [contributions, setContributions] = useState(new BigNumber(0))
+  const [claimedTokens, setClaimedTokens] = useState(new BigNumber(0))
+  const [refundedTokens, setRefundedTokens] = useState(new BigNumber(0))
+  const [tokensPerBnb, setTokensPerBnb] = useState(new BigNumber(0))
 
   const { account } = useWallet()
   const [onPresentContributeModal] = useModal(
@@ -37,6 +40,9 @@ const IfoCardContribute: React.FC<Props> = ({
   useEffect(() => {
     const fetch = async () => {
       setContributions(new BigNumber(await contract.methods.contributions(account).call()))
+      setClaimedTokens(new BigNumber(await contract.methods.claimedTokens(account).call()))
+      setRefundedTokens(new BigNumber(await contract.methods.refunds(account).call()))
+      setTokensPerBnb(new BigNumber(await contract.methods.tokensPerBnb().call()))
     }
 
     if (account) {
@@ -46,25 +52,79 @@ const IfoCardContribute: React.FC<Props> = ({
 
   const claim = async () => {
     setPendingTx(true)
-    await contract.methods.harvest().send({ from: account })
+    await contract.methods.claimTokens().send({ from: account })
     setPendingTx(false)
   }
+
+  const refund = async () => {
+    setPendingTx(true)
+    await contract.methods.claimRefund().send({ from: account })
+    setPendingTx(false)
+  }
+
   const isFinished = status === 'finished'
   const percentOfUserContribution = new BigNumber(contributions).div(raisingAmount).times(100)
+
+  const userClaimed = isFinished && claimedTokens.isGreaterThan(new BigNumber(0))
+  const userRefunded = isFinished && refundedTokens.isGreaterThan(new BigNumber(0))
+
+  const claimableTokens = getBalanceNumber(contributions) * getBalanceNumber(tokensPerBnb)
+
+  const getButtonLabel = () => {
+    if (!isFinished) return 'Contribute'
+
+    if (softCapReached) return 'Claim'
+
+    return 'Refund'
+  }
+
+  const getLabel = () => {
+    if (!isFinished) return `Your contribution (${currency})`
+
+    if (softCapReached) return 'Your tokens to claim'
+
+    return 'Your tokens to refund'
+  }
+
+  const getButtonValue = () => {
+    if (!isFinished) {
+      return getBalanceNumber(contributions, 1 ** 18).toFixed(4)
+    }
+
+    if (softCapReached) {
+      return userClaimed ? 'Claimed' : claimableTokens.toFixed(4)
+    }
+
+    return userRefunded ? 'Refunded' : claimableTokens.toFixed(4)
+  }
+
+  const getButtonHint = () => {
+    if (!isFinished) return `${percentOfUserContribution.toFixed(5)}% of total`
+
+    if (softCapReached) return `You'll be refunded any excess tokens when you claim`
+
+    return `You'll be refunded all your contributions`
+  }
+
+  const handleOnClick = () => {
+    if (!isFinished) return onPresentContributeModal
+
+    if (softCapReached) return claim
+
+    return refund
+  }
 
   return (
     <>
       <LabelButton
-        disabled={pendingTx}
-        buttonLabel={isFinished ? 'Claim' : 'Contribute'}
-        label={isFinished ? 'Your tokens to claim' : `Your contribution (${currency})`}
-        value={getBalanceNumber(contributions, 18).toFixed(4)}
-        onClick={isFinished ? claim : onPresentContributeModal}
+        disabled={pendingTx || userClaimed || userRefunded}
+        buttonLabel={getButtonLabel()}
+        label={getLabel()}
+        value={getButtonValue()}
+        onClick={handleOnClick()}
       />
       <Text fontSize="14px" color="textSubtle">
-        {isFinished
-          ? `You'll be refunded any excess tokens when you claim`
-          : `${percentOfUserContribution.toFixed(5)}% of total`}
+        {getButtonHint()}
       </Text>
     </>
   )
