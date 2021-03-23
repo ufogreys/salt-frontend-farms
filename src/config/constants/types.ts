@@ -31,6 +31,7 @@ export enum QuoteToken {
   'UST' = 'UST',
   'SALTBLUE' = 'SALT-BLUE',
   'SALTSLME' = 'SALT-SLME',
+  'SALTBUSD' = 'SALT-BUSD',
 }
 
 export enum PoolCategory {
