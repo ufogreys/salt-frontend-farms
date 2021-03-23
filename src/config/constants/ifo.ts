@@ -42,7 +42,28 @@ const ifos: Ifo[] = [
     tokenDecimals: 18,
     maxContribution: '100',
     minContribution: '0.001',
-  },
+  }, /*
+  {
+    id: 'coolswap',
+    address: {
+      56: '',
+      97: '0x8E3Be059992dee2a668902EED64bac9Bab134071',
+    },
+    isActive: true,
+    name: 'CoolSwap.finance',
+    token: 'COOL',
+    subTitle: ' CoolwSwap is a decentralized exchange running on Binance Smart Chain',
+    description:
+      ' CoolwSwap is a decentralized exchange running on Binance Smart Chain',
+    saleAmount: '625 000',
+    raiseAmount: '500',
+    projectSiteUrl: 'https://coolswap.finance/',
+    currency: 'BNB',
+    currencyAddress: '0xafb2997fe9a99022e61c7e01b974e0e3d7704b02',
+    tokenDecimals: 18,
+    maxContribution: '100',
+    minContribution: '0.001',
+  }, */
 ]
 
 export default ifos
