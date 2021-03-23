@@ -22,6 +22,7 @@ import {
   usePriceBlueBnb,
   usePriceBlueSaltLPBnb,
   usePriceSlmeSaltLPBnb,
+  usePriceSaltBusdLPBnb,
 } from 'state/hooks'
 import { QuoteToken } from 'config/constants/types'
 import FlexLayout from 'components/layout/Flex'
@@ -47,6 +48,7 @@ const Farm: React.FC = () => {
   const bluePrice = usePriceBlueBnb()
   const saltBlueLPPrice = usePriceBlueSaltLPBnb()
   const saltSlmeLPPrice = usePriceSlmeSaltLPBnb()
+  const saltBusdLPPrice = usePriceSaltBusdLPBnb()
 
   const priceToBnb = (tokenName: string, tokenPrice: BigNumber, quoteToken: QuoteToken): BigNumber => {
     const tokenPriceBN = new BigNumber(tokenPrice)
@@ -102,6 +104,9 @@ const Farm: React.FC = () => {
       totalStakingTokenInPool = saltBlueLPPrice.times(getBalanceNumber(pool.totalStaked))
     } else if (pool.tokenName === 'SLME') {
       totalStakingTokenInPool = saltSlmeLPPrice.times(getBalanceNumber(pool.totalStaked))
+    } else if (pool.tokenName === 'BUSD') {
+      totalStakingTokenInPool = saltBusdLPPrice.times(getBalanceNumber(pool.totalStaked))
+      // console.log('salt-busd LP', totalStakingTokenInPool.toString())
     } else {
       totalStakingTokenInPool = stakingTokenPriceInBNB.times(getBalanceNumber(pool.totalStaked))
     }
@@ -123,7 +128,7 @@ const Farm: React.FC = () => {
       <Hero>
         <div>
           <Heading as="h1" size="xxl" mb="16px">
-            🆕 {TranslateString(282, 'Oceans')}
+            {TranslateString(282, 'Oceans')}
           </Heading>
           <ul>
             <li>{TranslateString(580, 'Stake SALT to earn new tokens.')}</li>

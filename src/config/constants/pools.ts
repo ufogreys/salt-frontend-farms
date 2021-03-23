@@ -247,7 +247,7 @@ const pools: PoolConfig[] = [
     harvest: true,
     tokenPerBlock: '0.1736111111',
     sortOrder: 10,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 18,
     burnFee: 10,
   },
@@ -297,7 +297,7 @@ const pools: PoolConfig[] = [
     harvest: true,
     tokenPerBlock: '0.003681388889',
     sortOrder: 12,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 18,
     burnFee: 15,
   },
@@ -375,6 +375,31 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
     burnFee: 30,
+  },
+  {
+    sousId: 15,
+    tokenName: 'BUSD',
+    stakingTokenName: QuoteToken.SALTBUSD,
+    stakingTokenAddress: {
+      97: '0x85582d24455caaf44fc4f914bdca2a6cb73e6681',
+      56: '0x6596f770786915556C47E301cC8290aa14288d99', // SALT-BUSD
+    },
+    contractAddress: {
+      97: '0xF08d05d91426A63aB35Ef7f4bBC6E8717B59e838',
+      56: '0x94fcecEdBe1050d079c60b1EDeb1D4D16B3BF76C', // SmartChef
+    },
+    rewardTokenAddress: {
+      97: '0xec5dcb5dbf4b114c9d0f65bccab49ec54f6a0867', // DAI
+      56: '0xe9e7cea3dedca5984780bafc599bd69add087d56', // BUSD
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://binance.com/',
+    harvest: true,
+    tokenPerBlock: '0.01261865625',
+    sortOrder: 16,
+    isFinished: false,
+    tokenDecimals: 18,
+    burnFee: 100,
   },
 ]
 

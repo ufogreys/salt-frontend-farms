@@ -312,6 +312,56 @@ export const usePriceBlueSaltLPBnb = () => {
 }
 
 export const usePriceSlmeSaltLPBnb = () => {
+  const smlePrice = usePriceBnbBusd()
+  const saltPrice = usePriceSaltBnb()
+  const [price, setPrice] = useState({
+    blueTokenBalance: new BigNumber(0),
+    saltTokenBalance: new BigNumber(0),
+    totalSupplyLP: new BigNumber(0),
+  })
+
+  useEffect(() => {
+    const fetchPrice = async () => {
+      const lpAddress = '0x6596f770786915556C47E301cC8290aa14288d99' // SALT/BUSD LP
+      const [saltTokenBalanceLP, busdTokenBalanceLP, totalSupply] = await multicall(erc20, [
+        {
+          address: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4', // SALT
+          name: 'balanceOf',
+          params: [lpAddress],
+        },
+        {
+          address: '0xe9e7cea3dedca5984780bafc599bd69add087d56', // BUSD
+          name: 'balanceOf',
+          params: [lpAddress],
+        },
+        {
+          address: lpAddress,
+          name: 'totalSupply',
+          params: [],
+        },
+      ])
+
+      if (!busdTokenBalanceLP || !saltTokenBalanceLP || !totalSupply) return
+      setPrice({
+        blueTokenBalance: busdTokenBalanceLP,
+        saltTokenBalance: saltTokenBalanceLP,
+        totalSupplyLP: totalSupply,
+      })
+    }
+
+    fetchPrice()
+  }, [])
+
+  // price salt x salts in LP + price blue x blue in LP / LP tokens
+  const saltValue = new BigNumber(price.saltTokenBalance).times(saltPrice)
+  const slmeValue = new BigNumber(price.blueTokenBalance).times(smlePrice)
+  const topValue = saltValue.plus(slmeValue)
+  const lpPrice = topValue.div(price.totalSupplyLP)
+
+  return lpPrice
+}
+
+export const usePriceSaltBusdLPBnb = () => {
   const smlePrice = usePriceSlimeBnb()
   const saltPrice = usePriceSaltBnb()
   const [price, setPrice] = useState({
