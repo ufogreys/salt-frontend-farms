@@ -32,7 +32,7 @@ const config: MenuEntry[] = [
     href: '/oceans',
   },
   {
-    label: 'Lottery 🆕',
+    label: 'Lottery',
     icon: 'TicketIcon',
     href: '/lottery',
   },
@@ -42,9 +42,9 @@ const config: MenuEntry[] = [
     href: '/ido',
   },
   {
-    label: 'Audit By Certik in progress...',
+    label: 'Audited By Certik ✅',
     icon: 'AuditIcon',
-    href: '/',
+    href: 'https://certik.org/projects/saltswap',
   },
   // {
   //   label: 'NFT',
