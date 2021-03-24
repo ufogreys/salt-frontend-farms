@@ -28,7 +28,7 @@ const ifos: Ifo[] = [
       56: '0x665807C7531810EC676D90639e339e662B363dd0',
       97: '0x8E3Be059992dee2a668902EED64bac9Bab134071',
     },
-    isActive: true,
+    isActive: false,
     name: 'MomoProtocol',
     token: 'MOMO',
     subTitle: 'The 1st BSC project that offers Flashloan Arbitrage & Rewards Contributors through our Social App',
@@ -42,7 +42,7 @@ const ifos: Ifo[] = [
     tokenDecimals: 18,
     maxContribution: '100',
     minContribution: '0.001',
-  }, /*
+  } /*
   {
     id: 'coolswap',
     address: {
@@ -63,7 +63,7 @@ const ifos: Ifo[] = [
     tokenDecimals: 18,
     maxContribution: '100',
     minContribution: '0.001',
-  }, */
+  }, */,
 ]
 
 export default ifos
