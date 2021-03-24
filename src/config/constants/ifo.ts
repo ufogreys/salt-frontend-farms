@@ -42,11 +42,11 @@ const ifos: Ifo[] = [
     tokenDecimals: 18,
     maxContribution: '100',
     minContribution: '0.001',
-  } /*
+  },
   {
     id: 'coolswap',
     address: {
-      56: '',
+      56: '0x86e17Aa9D1496F6cde7f8ce0BeF2777995e1AAf2',
       97: '0x8E3Be059992dee2a668902EED64bac9Bab134071',
     },
     isActive: true,
@@ -63,7 +63,7 @@ const ifos: Ifo[] = [
     tokenDecimals: 18,
     maxContribution: '100',
     minContribution: '0.001',
-  }, */,
+  },
 ]
 
 export default ifos
