@@ -401,6 +401,31 @@ const pools: PoolConfig[] = [
     tokenDecimals: 18,
     burnFee: 100,
   },
+  {
+    sousId: 16,
+    tokenName: 'MOMO',
+    stakingTokenName: QuoteToken.SALTMOMO,
+    stakingTokenAddress: {
+      97: '0x85582d24455caaf44fc4f914bdca2a6cb73e6681',
+      56: '0x2e63a08ca1ab08a3f1eb0ca0d3f0a1a4278dfa8f', // SALT-MOMO
+    },
+    contractAddress: {
+      97: '0xF08d05d91426A63aB35Ef7f4bBC6E8717B59e838',
+      56: '0xb72893D5ABFce5940F3f8F401eFCdb2A95E5f7c7', // SmartChef
+    },
+    rewardTokenAddress: {
+      97: '0xec5dcb5dbf4b114c9d0f65bccab49ec54f6a0867', // DAI
+      56: '0xafb2997fe9a99022e61c7e01b974e0e3d7704b02', // MOMO
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://momoprotocol.finance/#/',
+    harvest: true,
+    tokenPerBlock: '0.01157407407',
+    sortOrder: 16,
+    isFinished: false,
+    tokenDecimals: 18,
+    burnFee: 5,
+  },
 ]
 
 export default pools

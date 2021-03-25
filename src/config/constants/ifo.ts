@@ -61,7 +61,7 @@ const ifos: Ifo[] = [
     currencyAddress: '0xafb2997fe9a99022e61c7e01b974e0e3d7704b02',
     tokenDecimals: 18,
     maxContribution: '100',
-    minContribution: '0.1',
+    minContribution: '0.001',
   },
 ]
 

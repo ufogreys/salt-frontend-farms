@@ -411,6 +411,86 @@ export const usePriceSaltBusdLPBnb = () => {
   return lpPrice
 }
 
+export const usePriceMomoBnb = () => {
+  const [price, setPrice] = useState(new BigNumber(0))
+
+  useEffect(() => {
+    const fetchPrice = async () => {
+      const lpAddress = '0xfd0fe39fe5ad487219d3e7cafad1b1c425c725b6' // MOMO/BNB LP
+      const [wbnbTokenBalanceLP, momoTokenBalanceLP] = await multicall(erc20, [
+        {
+          address: poolsConfig.find((p) => p.sousId === 1).rewardTokenAddress[CHAIN_ID],
+          name: 'balanceOf',
+          params: [lpAddress],
+        },
+        {
+          address: '0xafb2997fe9a99022e61c7e01b974e0e3d7704b02',
+          name: 'balanceOf',
+          params: [lpAddress],
+        },
+      ])
+
+      if (!momoTokenBalanceLP || !wbnbTokenBalanceLP) return
+
+      setPrice(new BigNumber(wbnbTokenBalanceLP).div(new BigNumber(momoTokenBalanceLP)))
+    }
+
+    fetchPrice()
+  }, [])
+
+  return price
+}
+
+export const usePriceSaltMomoLPBnb = () => {
+  const smlePrice = usePriceSlimeBnb()
+  const saltPrice = usePriceSaltBnb()
+  const [price, setPrice] = useState({
+    blueTokenBalance: new BigNumber(0),
+    saltTokenBalance: new BigNumber(0),
+    totalSupplyLP: new BigNumber(0),
+  })
+
+  useEffect(() => {
+    const fetchPrice = async () => {
+      const lpAddress = '0x2e63a08ca1ab08a3f1eb0ca0d3f0a1a4278dfa8f' // SALT/MOMO LP
+      const [saltTokenBalanceLP, slmeTokenBalanceLP, totalSupply] = await multicall(erc20, [
+        {
+          address: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4', // SALT
+          name: 'balanceOf',
+          params: [lpAddress],
+        },
+        {
+          address: '0xafb2997fe9a99022e61c7e01b974e0e3d7704b02', // MOMO
+          name: 'balanceOf',
+          params: [lpAddress],
+        },
+        {
+          address: lpAddress,
+          name: 'totalSupply',
+          params: [],
+        },
+      ])
+
+      if (!slmeTokenBalanceLP || !saltTokenBalanceLP || !totalSupply) return
+      setPrice({
+        blueTokenBalance: slmeTokenBalanceLP,
+        saltTokenBalance: saltTokenBalanceLP,
+        totalSupplyLP: totalSupply,
+      })
+    }
+
+    fetchPrice()
+  }, [])
+
+  // price salt x salts in LP + price blue x blue in LP / LP tokens
+  const saltValue = new BigNumber(price.saltTokenBalance).times(saltPrice)
+  const slmeValue = new BigNumber(price.blueTokenBalance).times(smlePrice)
+  const topValue = saltValue.plus(slmeValue)
+  const lpPrice = topValue.div(price.totalSupplyLP)
+
+  return lpPrice
+}
+
 export const usePriceEthBusd = (): BigNumber => new BigNumber(1477)
 
 export const useTotalValue = (): BigNumber => {
@@ -422,6 +502,10 @@ export const useTotalValue = (): BigNumber => {
   const saltPrice = usePriceSaltBusd()
   const bluePrice = usePriceBlueBnb()
   const slimePrice = usePriceSlimeBnb()
+  const saltBlueLPPrice = usePriceBlueSaltLPBnb()
+  const saltSlmeLPPrice = usePriceSlmeSaltLPBnb()
+  const saltBusdLPPrice = usePriceSaltBusdLPBnb()
+  const saltMomoLPPrice = usePriceSaltMomoLPBnb()
   const totalValue = useRef(new BigNumber(0))
 
   useEffect(() => {
@@ -454,19 +538,29 @@ export const useTotalValue = (): BigNumber => {
 
       if (pool.stakingTokenName === QuoteToken.SALTBLUE) {
         const totalSaltStaked = new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(18))
-        poolValue = bluePrice.times(bnbPrice).times(totalSaltStaked)
+        poolValue = saltBlueLPPrice.times(totalSaltStaked)
       }
 
       if (pool.stakingTokenName === QuoteToken.SALTSLME) {
         const totalSaltStaked = new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(18))
-        poolValue = slimePrice.times(bnbPrice).times(totalSaltStaked)
+        poolValue = saltSlmeLPPrice.times(totalSaltStaked)
+      }
+
+      if (pool.stakingTokenName === QuoteToken.SALTBUSD) {
+        const totalSaltStaked = new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(18))
+        poolValue = saltBusdLPPrice.times(totalSaltStaked)
+      }
+
+      if (pool.stakingTokenName === QuoteToken.SALTMOMO) {
+        const totalSaltStaked = new BigNumber(pool.totalStaked).div(new BigNumber(10).pow(18))
+        poolValue = saltMomoLPPrice.times(totalSaltStaked)
       }
 
       poolsTotalValue = poolsTotalValue.plus(poolValue ?? ZERO)
     }
 
     totalValue.current = farmsTotalValue.plus(poolsTotalValue)
-  }, [bluePrice, bnbPrice, ethPrice, farms, pools, saltPrice, slimePrice])
+  }, [bluePrice, bnbPrice, ethPrice, farms, pools, saltPrice, slimePrice, saltBlueLPPrice, saltSlmeLPPrice, saltBusdLPPrice, saltMomoLPPrice])
 
   if (!totalValue) {
     return new BigNumber(0)
