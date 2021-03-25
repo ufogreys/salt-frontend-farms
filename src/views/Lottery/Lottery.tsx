@@ -23,7 +23,6 @@ const Wrapper = styled.div`
 
 const Lottery: React.FC = () => {
   const lotteryContract = useLottery()
-  const { account } = useWallet()
   const TranslateString = useI18n()
   const [activeIndex, setActiveIndex] = useState(0)
   const [historyData, setHistoryData] = useState([])
@@ -49,10 +48,10 @@ const Lottery: React.FC = () => {
       setMostRecentLotteryNumber(previousLotteryNumber)
     }
 
-    if (account && lotteryContract) {
+    if (lotteryContract) {
       getInitialLotteryIndex()
     }
-  }, [account, lotteryContract])
+  }, [lotteryContract])
 
   const handleClick = (index) => {
     setActiveIndex(index)
