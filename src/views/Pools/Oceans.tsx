@@ -101,9 +101,9 @@ const Farm: React.FC = () => {
       rewardTokenFarm?.tokenPriceVsQuote,
       rewardTokenFarm?.quoteTokenSymbol,
     )
-    console.log('pool.tokenName', pool.tokenName)
-    console.log('rewardTokenPriceInBNB', rewardTokenPriceInBNB.toString())
-    console.log('stakingTokenPriceInBNB', stakingTokenPriceInBNB.toString())
+    // console.log('pool.tokenName', pool.tokenName)
+    // console.log('rewardTokenPriceInBNB', rewardTokenPriceInBNB.toString())
+    // console.log('stakingTokenPriceInBNB', stakingTokenPriceInBNB.toString())
     const totalRewardPricePerYear = rewardTokenPriceInBNB.times(pool.tokenPerBlock).times(BLOCKS_PER_YEAR)
     let totalStakingTokenInPool = new BigNumber(0)
     if (pool.tokenName === 'BLUE') {
@@ -111,7 +111,7 @@ const Farm: React.FC = () => {
       totalStakingTokenInPool = saltBlueLPPrice.times(getBalanceNumber(pool.totalStaked))
     } else if (pool.tokenName === 'SLME') {
       totalStakingTokenInPool = saltSlmeLPPrice.times(getBalanceNumber(pool.totalStaked))
-      console.log('salt-skime LP', totalStakingTokenInPool.toString())
+      // console.log('salt-skime LP', totalStakingTokenInPool.toString())
     } else if (pool.tokenName === 'BUSD') {
       totalStakingTokenInPool = saltBusdLPPrice.times(getBalanceNumber(pool.totalStaked))
       // console.log('salt-busd LP', totalStakingTokenInPool.toString())
