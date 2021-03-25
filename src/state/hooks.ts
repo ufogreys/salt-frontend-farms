@@ -312,7 +312,7 @@ export const usePriceBlueSaltLPBnb = () => {
 }
 
 export const usePriceSlmeSaltLPBnb = () => {
-  const smlePrice = usePriceBnbBusd()
+  const smlePrice = usePriceSlimeBnb()
   const saltPrice = usePriceSaltBnb()
   const [price, setPrice] = useState({
     blueTokenBalance: new BigNumber(0),
@@ -322,15 +322,15 @@ export const usePriceSlmeSaltLPBnb = () => {
 
   useEffect(() => {
     const fetchPrice = async () => {
-      const lpAddress = '0x6596f770786915556C47E301cC8290aa14288d99' // SALT/BUSD LP
-      const [saltTokenBalanceLP, busdTokenBalanceLP, totalSupply] = await multicall(erc20, [
+      const lpAddress = '0xbea4674a61cccc6b735999511ba9a8ba3aa26a85' // SALT/BUSD LP
+      const [saltTokenBalanceLP, slmeTokenBalanceLP, totalSupply] = await multicall(erc20, [
         {
           address: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4', // SALT
           name: 'balanceOf',
           params: [lpAddress],
         },
         {
-          address: '0xe9e7cea3dedca5984780bafc599bd69add087d56', // BUSD
+          address: '0x4fcfa6cc8914ab455b5b33df916d90bfe70b6ab1', // Slime
           name: 'balanceOf',
           params: [lpAddress],
         },
@@ -341,9 +341,9 @@ export const usePriceSlmeSaltLPBnb = () => {
         },
       ])
 
-      if (!busdTokenBalanceLP || !saltTokenBalanceLP || !totalSupply) return
+      if (!slmeTokenBalanceLP || !saltTokenBalanceLP || !totalSupply) return
       setPrice({
-        blueTokenBalance: busdTokenBalanceLP,
+        blueTokenBalance: slmeTokenBalanceLP,
         saltTokenBalance: saltTokenBalanceLP,
         totalSupplyLP: totalSupply,
       })
@@ -372,7 +372,7 @@ export const usePriceSaltBusdLPBnb = () => {
 
   useEffect(() => {
     const fetchPrice = async () => {
-      const lpAddress = '0xbea4674a61cccc6b735999511ba9a8ba3aa26a85' // SALT/BLUE LP
+      const lpAddress = '0x6596f770786915556C47E301cC8290aa14288d99' // SALT/Busd LP
       const [saltTokenBalanceLP, slmeTokenBalanceLP, totalSupply] = await multicall(erc20, [
         {
           address: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4', // SALT
@@ -380,7 +380,7 @@ export const usePriceSaltBusdLPBnb = () => {
           params: [lpAddress],
         },
         {
-          address: '0x4fcfa6cc8914ab455b5b33df916d90bfe70b6ab1', // BLUE
+          address: '0xe9e7cea3dedca5984780bafc599bd69add087d56', // Busd
           name: 'balanceOf',
           params: [lpAddress],
         },
