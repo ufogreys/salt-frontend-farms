@@ -322,7 +322,7 @@ export const usePriceSlmeSaltLPBnb = () => {
 
   useEffect(() => {
     const fetchPrice = async () => {
-      const lpAddress = '0xbea4674a61cccc6b735999511ba9a8ba3aa26a85' // SALT/BUSD LP
+      const lpAddress = '0xbea4674a61cccc6b735999511ba9a8ba3aa26a85' // SALT/Slme LP
       const [saltTokenBalanceLP, slmeTokenBalanceLP, totalSupply] = await multicall(erc20, [
         {
           address: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4', // SALT
