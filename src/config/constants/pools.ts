@@ -322,7 +322,7 @@ const pools: PoolConfig[] = [
     harvest: true,
     tokenPerBlock: '0.00005541666667',
     sortOrder: 13,
-    isFinished: false,
+    isFinished: true,
     tokenDecimals: 18,
     burnFee: 15,
   },
@@ -425,6 +425,31 @@ const pools: PoolConfig[] = [
     isFinished: false,
     tokenDecimals: 18,
     burnFee: 5,
+  },
+  {
+    sousId: 17,
+    tokenName: 'PALM',
+    stakingTokenName: QuoteToken.SALTPALM,
+    stakingTokenAddress: {
+      97: '0x85582d24455caaf44fc4f914bdca2a6cb73e6681',
+      56: '0x34951e9ca4891b4264a6cb9850e0b85a850414e5', // SALT-PALM
+    },
+    contractAddress: {
+      97: '0xF08d05d91426A63aB35Ef7f4bBC6E8717B59e838',
+      56: '0x42187c7eada603198165c2B95EA237865036BEd1', // SmartChef
+    },
+    rewardTokenAddress: {
+      97: '0xec5dcb5dbf4b114c9d0f65bccab49ec54f6a0867', // DAI
+      56: '0x9768E5b2d8e761905BC81Dfc554f9437A46CdCC6', // PALM
+    },
+    poolCategory: PoolCategory.COMMUNITY,
+    projectLink: 'https://yieldbay.finance',
+    harvest: true,
+    tokenPerBlock: '0.00744047619', 
+    sortOrder: 16,
+    isFinished: false,
+    tokenDecimals: 18,
+    burnFee: 10,
   },
 ]
 
