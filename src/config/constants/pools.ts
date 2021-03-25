@@ -417,7 +417,7 @@ const pools: PoolConfig[] = [
       97: '0xec5dcb5dbf4b114c9d0f65bccab49ec54f6a0867', // DAI
       56: '0xafb2997fe9a99022e61c7e01b974e0e3d7704b02', // MOMO
     },
-    poolCategory: PoolCategory.CORE,
+    poolCategory: PoolCategory.COMMUNITY,
     projectLink: 'https://momoprotocol.finance/#/',
     harvest: true,
     tokenPerBlock: '0.01157407407',
