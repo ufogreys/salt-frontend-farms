@@ -111,6 +111,7 @@ const Farm: React.FC = () => {
       totalStakingTokenInPool = saltBlueLPPrice.times(getBalanceNumber(pool.totalStaked))
     } else if (pool.tokenName === 'SLME') {
       totalStakingTokenInPool = saltSlmeLPPrice.times(getBalanceNumber(pool.totalStaked))
+      // console.log('salt-skime LP', totalStakingTokenInPool.toString())
     } else if (pool.tokenName === 'BUSD') {
       totalStakingTokenInPool = saltBusdLPPrice.times(getBalanceNumber(pool.totalStaked))
       // console.log('salt-busd LP', totalStakingTokenInPool.toString())
