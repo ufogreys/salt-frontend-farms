@@ -445,7 +445,7 @@ const pools: PoolConfig[] = [
     poolCategory: PoolCategory.COMMUNITY,
     projectLink: 'https://yieldbay.finance',
     harvest: true,
-    tokenPerBlock: '0.00744047619', 
+    tokenPerBlock: '0.00744047619',
     sortOrder: 16,
     isFinished: false,
     tokenDecimals: 18,
