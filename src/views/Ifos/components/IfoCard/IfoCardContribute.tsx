@@ -88,7 +88,7 @@ const IfoCardContribute: React.FC<Props> = ({
 
   const getButtonValue = () => {
     if (!isFinished) {
-      return getBalanceNumber(contributions, 1 ** 18).toFixed(4)
+      return getBalanceNumber(contributions, 18).toFixed(4)
     }
 
     if (softCapReached) {
