@@ -38,7 +38,7 @@ const config: MenuEntry[] = [
   },
   {
     label: 'Launchpad (IDOs)',
-    icon: 'IfoIcon',
+    icon: 'IdoIcon',
     href: '/ido',
   },
   {
