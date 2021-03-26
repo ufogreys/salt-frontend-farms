@@ -21,10 +21,12 @@ import {
   usePriceCtcBnb,
   usePriceBlueBnb,
   usePriceMomoBnb,
+  usePricePalmBnb,
   usePriceBlueSaltLPBnb,
   usePriceSlmeSaltLPBnb,
   usePriceSaltBusdLPBnb,
   usePriceSaltMomoLPBnb,
+  usePriceSaltPalmLPBnb,
 } from 'state/hooks'
 import { QuoteToken } from 'config/constants/types'
 import FlexLayout from 'components/layout/Flex'
@@ -49,10 +51,12 @@ const Farm: React.FC = () => {
   const ctcPrice = usePriceCtcBnb()
   const bluePrice = usePriceBlueBnb()
   const momoPrice = usePriceMomoBnb()
+  const palmPrice = usePricePalmBnb()
   const saltBlueLPPrice = usePriceBlueSaltLPBnb()
   const saltSlmeLPPrice = usePriceSlmeSaltLPBnb()
   const saltBusdLPPrice = usePriceSaltBusdLPBnb()
   const saltMomoLPPrice = usePriceSaltMomoLPBnb()
+  const saltPalmLPPrice = usePriceSaltPalmLPBnb()
 
   const priceToBnb = (tokenName: string, tokenPrice: BigNumber, quoteToken: QuoteToken): BigNumber => {
     const tokenPriceBN = new BigNumber(tokenPrice)
@@ -79,6 +83,9 @@ const Farm: React.FC = () => {
     }
     if (tokenName === 'MOMO') {
       return momoPrice
+    }
+    if (tokenName === 'PALM') {
+      return palmPrice
     }
     if (tokenPrice && quoteToken === QuoteToken.BUSD) {
       return tokenPriceBN.div(bnbPriceUSD)
@@ -118,6 +125,9 @@ const Farm: React.FC = () => {
     } else if (pool.tokenName === 'MOMO') {
       totalStakingTokenInPool = saltMomoLPPrice.times(getBalanceNumber(pool.totalStaked))
       // console.log('salt-busd LP', totalStakingTokenInPool.toString())
+    } else if (pool.tokenName === 'PALM') {
+      totalStakingTokenInPool = saltPalmLPPrice.times(getBalanceNumber(pool.totalStaked))
+      // console.log('salt-PALM LP', totalStakingTokenInPool.toString())
     } else {
       totalStakingTokenInPool = stakingTokenPriceInBNB.times(getBalanceNumber(pool.totalStaked))
     }
