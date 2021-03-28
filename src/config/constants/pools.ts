@@ -498,7 +498,7 @@ const pools: PoolConfig[] = [
     tokenPerBlock: '0.0162037037',
     sortOrder: 18,
     isFinished: false,
-    tokenDecimals: 8,
+    tokenDecimals: 18,
     burnFee: 10,
   },
 ]
