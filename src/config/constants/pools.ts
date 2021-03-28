@@ -476,6 +476,31 @@ const pools: PoolConfig[] = [
     tokenDecimals: 18,
     burnFee: 15,
   },
+  {
+    sousId: 18,
+    tokenName: 'MCH',
+    stakingTokenName: QuoteToken.SALTMCH,
+    stakingTokenAddress: {
+      97: '0x85582d24455caaf44fc4f914bdca2a6cb73e6681',
+      56: '0xf09a33f69c7f9a19f87c53469b52665ec4e1c97b', // SALT-MCH
+    },
+    contractAddress: {
+      97: '0x9FcA113B2D4E64462229E107A8F4Aa7359D055F5',
+      56: '0x01c1e411D447e9d18D95C05408A7e765Ec308D48', // SmartChef
+    },
+    rewardTokenAddress: {
+      97: '0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee', // BUSD, didnt find CAKE
+      56: '0x46483f3a766ae2c0c811ff953ac3dc69a3a20968', // MCH
+    },
+    poolCategory: PoolCategory.COMMUNITY,
+    projectLink: 'https://magnifico-chef-git-main-chefmagnifico.vercel.app/',
+    harvest: true,
+    tokenPerBlock: '0.0162037037',
+    sortOrder: 19,
+    isFinished: false,
+    tokenDecimals: 18,
+    burnFee: 10,
+  },
 ]
 
 export default pools
