@@ -477,7 +477,7 @@ const pools: PoolConfig[] = [
     burnFee: 15,
   },
   {
-    sousId: 18,
+    sousId: 19,
     tokenName: 'MCH',
     stakingTokenName: QuoteToken.SALTMCH,
     stakingTokenAddress: {
@@ -496,9 +496,9 @@ const pools: PoolConfig[] = [
     projectLink: 'https://magnifico-chef-git-main-chefmagnifico.vercel.app/',
     harvest: true,
     tokenPerBlock: '0.0162037037',
-    sortOrder: 19,
+    sortOrder: 18,
     isFinished: false,
-    tokenDecimals: 18,
+    tokenDecimals: 8,
     burnFee: 10,
   },
 ]
