@@ -571,7 +571,6 @@ export const usePriceSaltPalmLPBnb = () => {
   return lpPrice
 }
 
-
 export const usePriceMchBnb = () => {
   const [price, setPrice] = useState(new BigNumber(0))
 
