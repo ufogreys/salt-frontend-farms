@@ -602,7 +602,7 @@ export const usePriceMchBnb = () => {
 }
 
 export const usePriceSaltMchLPBnb = () => {
-  const smlePrice = usePriceSlimeBnb()
+  const smlePrice = usePriceMchBnb()
   const saltPrice = usePriceSaltBnb()
   const [price, setPrice] = useState({
     blueTokenBalance: new BigNumber(0),
@@ -643,10 +643,10 @@ export const usePriceSaltMchLPBnb = () => {
   }, [])
 
   // price salt x salts in LP + price blue x blue in LP / LP tokens
-  const saltValue = new BigNumber(price.saltTokenBalance).times(saltPrice)
-  const slmeValue = new BigNumber(price.blueTokenBalance).times(smlePrice).div(10000000000)
+  const saltValue = new BigNumber(price.saltTokenBalance).times(saltPrice).div(1e18)
+  const slmeValue = new BigNumber(price.blueTokenBalance).times(smlePrice).div(1e8)
   const topValue = saltValue.plus(slmeValue)
-  const lpPrice = topValue.div(price.totalSupplyLP)
+  const lpPrice = topValue.div(new BigNumber(price.totalSupplyLP).div(1e18))
 
   return lpPrice
 }
