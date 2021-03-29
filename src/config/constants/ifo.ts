@@ -63,6 +63,26 @@ const ifos: Ifo[] = [
     maxContribution: '100',
     minContribution: '0.1',
   },
+  {
+    id: 'railoracle',
+    address: {
+      56: '0x86e17Aa9D1496F6cde7f8ce0BeF2777995e1AAf2',
+      97: '0x8E3Be059992dee2a668902EED64bac9Bab134071',
+    },
+    isActive: true,
+    name: 'Railoracle',
+    token: 'RAIL',
+    subTitle: 'Railoracle [RAIL] will be an Oracle and Bridge Projekt for multiple Blockchains',
+    description: 'Railoracle [RAIL] will be an Oracle and Bridge Projekt for multiple Blockchains',
+    saleAmount: '944 520',
+    raiseAmount: '3704',
+    projectSiteUrl: 'https://www.railoracle.io',
+    currency: 'BNB',
+    currencyAddress: '0xafb2997fe9a99022e61c7e01b974e0e3d7704b02',
+    tokenDecimals: 18,
+    maxContribution: '200',
+    minContribution: '0.1',
+  },
 ]
 
 export default ifos
