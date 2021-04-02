@@ -86,7 +86,7 @@ const ifos: Ifo[] = [
   {
     id: 'digimonswap',
     address: {
-      56: '0x895338334AA1f30CA9442e00aB7E7B2920269170', // TODO
+      56: '0x08A247931Db82dd3EbB9d152A81461B02c3F4f76', 
       97: '0x8E3Be059992dee2a668902EED64bac9Bab134071',
     },
     isActive: true,
@@ -94,13 +94,13 @@ const ifos: Ifo[] = [
     token: 'Digimonx',
     subTitle: 'Railoracle [RAIL] will be an Oracle and Bridge Projekt for multiple Blockchains',
     description: 'Railoracle [RAIL] will be an Oracle and Bridge Projekt for multiple Blockchains',
-    saleAmount: '944 520', // TODO
+    saleAmount: '65 000', 
     raiseAmount: '500',
     projectSiteUrl: 'https://Digimonswap.org',
     currency: 'BNB',
     currencyAddress: '0xafb2997fe9a99022e61c7e01b974e0e3d7704b02',
     tokenDecimals: 18,
-    maxContribution: '200',
+    maxContribution: '100',
     minContribution: '0.1',
   },
 ]
