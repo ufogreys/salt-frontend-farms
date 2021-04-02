@@ -6,6 +6,7 @@ import { useWallet } from '@binance-chain/bsc-use-wallet'
 import poolsConfig from 'config/constants/pools'
 import erc20 from 'config/abi/erc20.json'
 import multicall from 'utils/multicall'
+import CoinGecko from 'coingecko-api';
 import { fetchFarmsPublicDataAsync, fetchPoolsPublicDataAsync, fetchPoolsUserDataAsync } from './actions'
 import { State, Farm, Pool } from './types'
 import { QuoteToken } from '../config/constants/types'
@@ -651,7 +652,22 @@ export const usePriceSaltMchLPBnb = () => {
   return lpPrice
 }
 
-export const usePriceEthBusd = (): BigNumber => new BigNumber(1477)
+export const usePriceEthBusd = (): BigNumber => {
+  const [ethPrice, setEthPrice] = useState(new BigNumber(1900))
+
+  useEffect(() => {
+    const fetchPrice = async () => {
+
+      const CoinGeckoClient = new CoinGecko();
+      const result = await CoinGeckoClient.coins.fetch('ethereum', {});
+      setEthPrice(new BigNumber(result.data?.market_data?.current_price?.usd))
+    }
+
+    fetchPrice()
+  }, [])
+
+  return ethPrice
+}
 
 export const useTotalValue = (): BigNumber => {
   const farms = useFarms()

@@ -70,7 +70,7 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
         if (farm.quoteTokenSymbol === QuoteToken.BNB) {
           totalValue = totalValue.times(bnbPrice)
         } else if (farm.quoteTokenSymbol === QuoteToken.ETH) {
-          apy = ethPriceUsd.div(ethPriceUsd).times(cakeRewardPerYear).div(farm.lpTotalInQuoteToken)
+          totalValue = totalValue.times(ethPriceUsd)
         }
 
         if (totalValue.comparedTo(0) > 0) {
