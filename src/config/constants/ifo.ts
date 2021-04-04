@@ -89,7 +89,7 @@ const ifos: Ifo[] = [
       56: '0x08A247931Db82dd3EbB9d152A81461B02c3F4f76',
       97: '0x8E3Be059992dee2a668902EED64bac9Bab134071',
     },
-    isActive: true,
+    isActive: false,
     name: 'Digimonswap',
     token: 'Digimonx',
     subTitle: 'Railoracle [RAIL] will be an Oracle and Bridge Projekt for multiple Blockchains',
