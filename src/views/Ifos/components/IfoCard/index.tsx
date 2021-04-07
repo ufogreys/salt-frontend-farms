@@ -118,6 +118,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
     tokensPerBnb: new BigNumber(0),
     weiRaised: new BigNumber(0),
     softCapReached: false,
+    finalized: false,
   })
   const { account } = useWallet()
   const presaleContract = useIdoContract(ifo.address[CHAIN_ID])
@@ -138,6 +139,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
         weiRaised,
         isOpen,
         softCapReached,
+        finalized,
       ] = await Promise.all([
         presaleContract.methods.startTime().call(),
         presaleContract.methods.endTime().call(),
@@ -147,6 +149,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
         presaleContract.methods.weiRaised().call(),
         presaleContract.methods.isOpen().call(),
         presaleContract.methods.softCapReached().call(),
+        presaleContract.methods.finalized().call(),
       ])
 
       const softCapProgress = (weiRaised / softCap) * 100
@@ -184,6 +187,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
         tokensPerBnb,
         weiRaised,
         softCapReached,
+        finalized,
       })
     }
 
@@ -191,7 +195,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
   }, [currentBlock, presaleContract, setState])
 
   const isActive = state.status === 'live'
-  const isFinished = state.status === 'finished'
+  const isFinished = state.status === 'finished' || state.finalized
 
   return (
     <StyledIfoCard ifoId={id} ribbon={Ribbon} isActive={isActive}>
@@ -250,6 +254,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
               currencyAddress={currencyAddress}
               contract={presaleContract}
               status={state.status}
+              finalized={state.finalized}
               raisingAmount={state.hardCap}
               softCapReached={state.softCapReached}
             />
