@@ -92,8 +92,10 @@ const ifos: Ifo[] = [
     isActive: false,
     name: 'Digimonswap',
     token: 'Digimonx',
-    subTitle: 'Digimonswap is a decentralized exchange running on the Binance Smart Chain with features that let users stake, farm and earn tokens.',
-    description: 'Digimonswap is a decentralized exchange running on the Binance Smart Chain with features that let users stake, farm and earn tokens.',
+    subTitle:
+      'Digimonswap is a decentralized exchange running on the Binance Smart Chain with features that let users stake, farm and earn tokens.',
+    description:
+      'Digimonswap is a decentralized exchange running on the Binance Smart Chain with features that let users stake, farm and earn tokens.',
     saleAmount: '65 000',
     raiseAmount: '500',
     projectSiteUrl: 'https://Digimonswap.org',
@@ -133,7 +135,8 @@ const ifos: Ifo[] = [
     name: 'Ozone Finance',
     token: 'OZONE',
     subTitle: 'Yield farms for all earthlings on BSC!',
-    description: 'We are building Yield Farms for all earthlings on Binance Smart Chain. We will be soon expanding our project to Polygon Network and during the launch of Ozone Finance for Polygon, $OZONE Hodlers will received an airdrop on their OZONE wallet address. We are also going to introduce No-Loss Lottery, NFT, and Layered Farming. You can learn more about these three features on our project website',
+    description:
+      'We are building Yield Farms for all earthlings on Binance Smart Chain. We will be soon expanding our project to Polygon Network and during the launch of Ozone Finance for Polygon, $OZONE Hodlers will received an airdrop on their OZONE wallet address. We are also going to introduce No-Loss Lottery, NFT, and Layered Farming. You can learn more about these three features on our project website',
     saleAmount: '196 000',
     raiseAmount: '350',
     projectSiteUrl: 'https://ozone.finance',
