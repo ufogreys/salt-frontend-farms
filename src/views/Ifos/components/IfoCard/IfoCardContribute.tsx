@@ -16,15 +16,16 @@ export interface Props {
   status: IfoStatus
   raisingAmount: BigNumber
   softCapReached: boolean
+  isFinished: boolean
 }
 
 const IfoCardContribute: React.FC<Props> = ({
   currency,
   currencyAddress,
   contract,
-  status,
   raisingAmount,
   softCapReached,
+  isFinished,
 }) => {
   const [pendingTx, setPendingTx] = useState(false)
   const [contributions, setContributions] = useState(new BigNumber(0))
@@ -62,7 +63,6 @@ const IfoCardContribute: React.FC<Props> = ({
     setPendingTx(false)
   }
 
-  const isFinished = status === 'finished'
   const percentOfUserContribution = new BigNumber(contributions).div(raisingAmount).times(100)
 
   const userClaimed = isFinished && claimedTokens.isGreaterThan(new BigNumber(0))

@@ -191,7 +191,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
   }, [currentBlock, presaleContract, setState])
 
   const isActive = state.status === 'live'
-  const isFinished = state.status === 'finished'
+  const isFinished = state.status === 'finished' || state.hardCapProgress === 100
 
   return (
     <StyledIfoCard ifoId={id} ribbon={Ribbon} isActive={isActive}>
@@ -250,6 +250,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
               currencyAddress={currencyAddress}
               contract={presaleContract}
               status={state.status}
+              isFinished={isFinished}
               raisingAmount={state.hardCap}
               softCapReached={state.softCapReached}
             />
