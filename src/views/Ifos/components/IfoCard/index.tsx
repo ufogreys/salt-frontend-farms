@@ -207,6 +207,7 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
           status={state.status}
           secondsUntilStart={state.secondsUntilStart}
           secondsUntilEnd={state.secondsUntilEnd}
+          finalized
         />
         {(isActive || isFinished) && (
           <>

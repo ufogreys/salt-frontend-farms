@@ -10,6 +10,7 @@ export interface IfoCardTimeProps {
   status: IfoStatus
   secondsUntilStart: number
   secondsUntilEnd: number
+  finalized: boolean
 }
 
 const Details = styled.div`
@@ -27,7 +28,13 @@ const Countdown = styled.div`
   text-align: center;
 `
 
-const IfoCardTime: React.FC<IfoCardTimeProps> = ({ isLoading, status, secondsUntilStart, secondsUntilEnd }) => {
+const IfoCardTime: React.FC<IfoCardTimeProps> = ({
+  isLoading,
+  status,
+  secondsUntilStart,
+  secondsUntilEnd,
+  finalized,
+}) => {
   const TranslateString = useI18n()
   const countdownToUse = status === 'coming_soon' ? secondsUntilStart : secondsUntilEnd
   const timeUntil = getTimePeriods(countdownToUse)
@@ -37,7 +44,7 @@ const IfoCardTime: React.FC<IfoCardTimeProps> = ({ isLoading, status, secondsUnt
     return <Details>{TranslateString(656, 'Loading...')}</Details>
   }
 
-  if (countdownToUse <= 0) {
+  if (countdownToUse <= 0 || finalized) {
     return (
       <Details>
         <Text bold>{TranslateString(999, 'Finished!')}</Text>
