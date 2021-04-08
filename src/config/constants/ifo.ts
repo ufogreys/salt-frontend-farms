@@ -128,7 +128,7 @@ const ifos: Ifo[] = [
   {
     id: 'ozonefinance',
     address: {
-      56: '0x1be63A4D6C95b46Bed09e0fC31D5c82939D5493D',
+      56: '0xdF565B8d18A4286237E14d072b804C48aa83C1A3',
       97: '0x8E3Be059992dee2a668902EED64bac9Bab134071',
     },
     isActive: true,
