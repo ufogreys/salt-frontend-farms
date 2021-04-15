@@ -131,7 +131,7 @@ const ifos: Ifo[] = [
       56: '0xdF565B8d18A4286237E14d072b804C48aa83C1A3',
       97: '0x8E3Be059992dee2a668902EED64bac9Bab134071',
     },
-    isActive: true,
+    isActive: false,
     name: 'Ozone Finance',
     token: 'OZONE',
     subTitle: 'Yield farms for all earthlings on BSC!',
@@ -144,6 +144,27 @@ const ifos: Ifo[] = [
     currencyAddress: '0xafb2997fe9a99022e61c7e01b974e0e3d7704b02',
     tokenDecimals: 18,
     maxContribution: '100',
+    minContribution: '0.1',
+  },
+  {
+    id: 'shrimpfinance',
+    address: {
+      56: '0xdF565B8d18A4286237E14d072b804C48aa83C1A3', // TODO
+      97: '0x8E3Be059992dee2a668902EED64bac9Bab134071',
+    },
+    isActive: true,
+    name: 'ShrimpSwap',
+    token: 'SHRIMP',
+    subTitle: 'The deflationary yield farm on Binance Smart Chain',
+    description:
+      'We believe that the current yield farm ecosystem is suffering from hyperdeflation, i.e. the extremely large decrease in the general prices of tokens in the blockchain. This results in a deflationary spiral which leads to less appreciation of the token, lower Annual Percentage Rates (APRs) and lower demand for the tokens in general, and thus deposit levels. This scenario creates a deflationary environment which does not serve the interests of the parties involved.',
+    saleAmount: '2 100 000',
+    raiseAmount: '150',
+    projectSiteUrl: 'https://https://shrimpswap.finance/',
+    currency: 'BNB',
+    currencyAddress: '0xafb2997fe9a99022e61c7e01b974e0e3d7704b02',
+    tokenDecimals: 18,
+    maxContribution: '10',
     minContribution: '0.1',
   },
 ]
