@@ -27,8 +27,8 @@ const Hero = () => {
     <StyledHero>
       <Container>
         <Title>{TranslateString(500, 'IDO: Initial Dex Offering')}</Title>
-        <Blurb>{TranslateString(502, 'Buy new tokens with a brand new token sale model.')}</Blurb>
-        <Blurb>1% of the raised amount is used to buyback and burn SALT or contribute to a new Ocean</Blurb>
+        <Blurb>6% of the raised amount is used to buyback and burn SALT</Blurb>
+        <Blurb>or contribute to a new Ocean</Blurb>
       </Container>
     </StyledHero>
   )
