@@ -84,7 +84,6 @@ export const usePriceBnbBusd = (): BigNumber => {
 
 export const usePriceSlimeBnb = () => {
   const [price, setPrice] = useState(new BigNumber(0))
-
   useEffect(() => {
     const fetchPrice = async () => {
       const lpAddress = '0xcb645714520080EF4E65De3254d61356262F0818' // SLIME/BNB LP
