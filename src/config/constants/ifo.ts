@@ -164,7 +164,7 @@ const ifos: Ifo[] = [
     currency: 'BNB',
     currencyAddress: '0x62ee12e4fe74a815302750913c3c796bca23e40e',
     tokenDecimals: 18,
-    maxContribution: '10',
+    maxContribution: '50',
     minContribution: '0.1',
   },
 ]
