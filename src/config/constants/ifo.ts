@@ -149,20 +149,20 @@ const ifos: Ifo[] = [
   {
     id: 'shrimpfinance',
     address: {
-      56: '', // FIXME
+      56: '0x330ad7172fc36deb1087bf9b49af98ef63c8ebdc',
       97: '',
     },
     isActive: true,
     name: 'ShrimpSwap',
     token: 'SHRIMP',
-    subTitle: 'The deflationary yield farm on Binance Smart Chain',
+    subTitle: 'The deflationary yield farm on BSC',
     description:
       'We believe that the current yield farm ecosystem is suffering from hyperdeflation, i.e. the extremely large decrease in the general prices of tokens in the blockchain. This results in a deflationary spiral which leads to less appreciation of the token, lower annual percentage rates (APRs) and lower demand for the tokens in general, and thus deposit levels. Shrimp is a deflationary token that addresses this issue.',
-    saleAmount: '2 100 000',
-    raiseAmount: '150',
-    projectSiteUrl: 'https://shrimpswap.finance/',
+    saleAmount: '1 050 000',
+    raiseAmount: '200',
+    projectSiteUrl: 'https://shrimpswap.finance',
     currency: 'BNB',
-    currencyAddress: '', // FIXME
+    currencyAddress: '0x62ee12e4fe74a815302750913c3c796bca23e40e',
     tokenDecimals: 18,
     maxContribution: '10',
     minContribution: '0.1',
