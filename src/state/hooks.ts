@@ -606,7 +606,7 @@ export const usePriceSafepBnb = () => {
 
   useEffect(() => {
     const fetchPrice = async () => {
-      const lpAddress = '' // safep/BNB LP
+      const lpAddress = '0x94dfad55c01b5321b8df5fa2acdf74b97c2ba545' // safep/BNB LP
       const [wbnbTokenBalanceLP, palmTokenBalanceLP] = await multicall(erc20, [
         {
           address: poolsConfig.find((p) => p.sousId === 1).rewardTokenAddress[CHAIN_ID],
