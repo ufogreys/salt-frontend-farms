@@ -526,6 +526,31 @@ const pools: PoolConfig[] = [
     tokenDecimals: 18,
     burnFee: 20,
   },
+  {
+    sousId: 21,
+    tokenName: 'SAFEP',
+    stakingTokenName: QuoteToken.SALT,
+    stakingTokenAddress: {
+      97: '0x85582d24455caaf44fc4f914bdca2a6cb73e6681',
+      56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4', // SALT
+    },
+    contractAddress: {
+      97: '0xF08d05d91426A63aB35Ef7f4bBC6E8717B59e838',
+      56: '0x6ED1c81336C4Aa4eB58a028A53026548Ff465fBA', // SmartChef
+    },
+    rewardTokenAddress: {
+      97: '0xec5dcb5dbf4b114c9d0f65bccab49ec54f6a0867', // DAI, didnt had WBNB
+      56: '0xa8c514d991f59bab02d32b68f04204cb89261c88', // SAFEP
+    },
+    poolCategory: PoolCategory.COMMUNITY,
+    projectLink: 'https://safeprotocol.io/',
+    harvest: true,
+    tokenPerBlock: '5.78703703',
+    sortOrder: 20,
+    isFinished: false,
+    tokenDecimals: 8,
+    burnFee: 10,
+  },
 ]
 
 export default pools
