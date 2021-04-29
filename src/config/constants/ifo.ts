@@ -170,7 +170,7 @@ const ifos: Ifo[] = [
   {
     id: 'yuzuswap',
     address: {
-      56: '0x330ad7172fc36deb1087bf9b49af98ef63c8ebdc', // TODO
+      56: '0xe6a766c5f201175f8b58fb7cadde2fe50fd801ed',
       97: '',
     },
     isActive: true,
