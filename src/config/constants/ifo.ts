@@ -152,7 +152,7 @@ const ifos: Ifo[] = [
       56: '0x330ad7172fc36deb1087bf9b49af98ef63c8ebdc',
       97: '',
     },
-    isActive: true,
+    isActive: false,
     name: 'ShrimpSwap',
     token: 'SHRIMP',
     subTitle: 'The deflationary yield farm on BSC',
@@ -165,6 +165,27 @@ const ifos: Ifo[] = [
     currencyAddress: '0x62ee12e4fe74a815302750913c3c796bca23e40e',
     tokenDecimals: 18,
     maxContribution: '50',
+    minContribution: '0.1',
+  },
+  {
+    id: 'yuzuswap',
+    address: {
+      56: '0x330ad7172fc36deb1087bf9b49af98ef63c8ebdc', // TODO
+      97: '',
+    },
+    isActive: true,
+    name: 'YuzuSwap',
+    token: 'YUZU',
+    subTitle: 'YuzuSwap is a MultiDex YieldFarm and AMM',
+    description:
+      'YuzuSwap is a Multi-DEX Yieldfarm and DeFi platform on Binance Smartchain. Stake YuzuSwap LP Token or PancakeSwap LP Token to earn $YUZU! Stake your freshly harvested $YUZU straight to our Bars and stake them for even more rewards or use them to buy EntryTickets for our upcoming Games.',
+    saleAmount: '100 000',
+    raiseAmount: '200',
+    projectSiteUrl: 'https://yuzuswap.com',
+    currency: 'BNB',
+    currencyAddress: '0x14d1f138bd33dfd6c6874556d1342e7c30a5398b',
+    tokenDecimals: 18,
+    maxContribution: '100',
     minContribution: '0.1',
   },
 ]
