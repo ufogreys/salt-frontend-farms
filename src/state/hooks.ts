@@ -631,6 +631,36 @@ export const usePriceSafepBnb = () => {
   return price
 }
 
+export const usePriceUbuBnb = () => {
+  const [price, setPrice] = useState(new BigNumber(0))
+
+  useEffect(() => {
+    const fetchPrice = async () => {
+      const lpAddress = '0x506C6F29DbB50Ef7D9C580cDB914c0E7877515aE' // ubu/BNB LP
+      const [wbnbTokenBalanceLP, palmTokenBalanceLP] = await multicall(erc20, [
+        {
+          address: poolsConfig.find((p) => p.sousId === 1).rewardTokenAddress[CHAIN_ID],
+          name: 'balanceOf',
+          params: [lpAddress],
+        },
+        {
+          address: '0xd2ddfba7bb12f6e70c2aab6b6bf9edaef42ed22f', // ubu
+          name: 'balanceOf',
+          params: [lpAddress],
+        },
+      ])
+
+      if (!palmTokenBalanceLP || !wbnbTokenBalanceLP) return
+
+      setPrice(new BigNumber(wbnbTokenBalanceLP).div(new BigNumber(palmTokenBalanceLP)))
+    }
+
+    fetchPrice()
+  }, [])
+
+  return price
+}
+
 export const usePriceSaltMchLPBnb = () => {
   const smlePrice = usePriceMchBnb()
   const saltPrice = usePriceSaltBnb()
