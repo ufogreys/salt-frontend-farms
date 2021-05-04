@@ -607,7 +607,7 @@ const pools: PoolConfig[] = [
     stakingTokenName: QuoteToken.SALT,
     stakingTokenAddress: {
       97: '0x85582d24455caaf44fc4f914bdca2a6cb73e6681',
-      56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4', // SALT-MOMO
+      56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4', // SALT
     },
     contractAddress: {
       97: '0xF08d05d91426A63aB35Ef7f4bBC6E8717B59e838',
