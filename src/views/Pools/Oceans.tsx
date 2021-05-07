@@ -25,6 +25,7 @@ import {
   usePriceMchBnb,
   usePriceSafepBnb,
   usePriceUbuBnb,
+  usePriceGenBnb,
   usePriceBlueSaltLPBnb,
   usePriceSlmeSaltLPBnb,
   usePriceSaltBusdLPBnb,
@@ -59,6 +60,7 @@ const Farm: React.FC = () => {
   const mchPrice = usePriceMchBnb()
   const safepPrice = usePriceSafepBnb()
   const ubuPrice = usePriceUbuBnb()
+  const genPrice = usePriceGenBnb()
   const saltBlueLPPrice = usePriceBlueSaltLPBnb()
   const saltSlmeLPPrice = usePriceSlmeSaltLPBnb()
   const saltBusdLPPrice = usePriceSaltBusdLPBnb()
@@ -103,6 +105,9 @@ const Farm: React.FC = () => {
     }
     if (tokenName === 'UBU') {
       return ubuPrice
+    }
+    if (tokenName === 'GEN') {
+      return genPrice
     }
     if (tokenPrice && quoteToken === QuoteToken.BUSD) {
       return tokenPriceBN.div(bnbPriceUSD)

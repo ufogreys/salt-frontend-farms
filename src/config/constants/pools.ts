@@ -626,6 +626,31 @@ const pools: PoolConfig[] = [
     tokenDecimals: 18,
     burnFee: 20,
   },
+  {
+    sousId: 25,
+    tokenName: 'GEN',
+    stakingTokenName: QuoteToken.SALT,
+    stakingTokenAddress: {
+      97: '0x85582d24455caaf44fc4f914bdca2a6cb73e6681',
+      56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4', // SALT
+    },
+    contractAddress: {
+      97: '0xF08d05d91426A63aB35Ef7f4bBC6E8717B59e838',
+      56: '0x06073f27d79B5b447AA20bf6F1ADfDf150d1Ebb5', // SmartChef
+    },
+    rewardTokenAddress: {
+      97: '0xec5dcb5dbf4b114c9d0f65bccab49ec54f6a0867', // DAI
+      56: '0xB0F2939A1c0e43683E5954c9Fe142F7df9F8D967', // GEN
+    },
+    poolCategory: PoolCategory.COMMUNITY,
+    projectLink: 'https://evodefi.com',
+    harvest: true,
+    tokenPerBlock: '0.000540123456790123',
+    sortOrder: 24,
+    isFinished: false,
+    tokenDecimals: 18,
+    burnFee: 20,
+  },
 ]
 
 export default pools
