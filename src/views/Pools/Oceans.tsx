@@ -37,7 +37,6 @@ import {
 import { QuoteToken } from 'config/constants/types'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
-import Coming from './components/Coming'
 import PoolCard from './components/PoolCard'
 import PoolTabButtons from './components/PoolTabButtons'
 import Divider from './components/Divider'
@@ -194,10 +193,9 @@ const Farm: React.FC = () => {
       <FlexLayout>
         <Route exact path={`${path}`}>
           <>
-            {orderBy(openPools, ['sortOrder']).map((pool) => (
+            {orderBy(openPools, ['sortOrder'], 'desc').map((pool) => (
               <PoolCard key={pool.sousId} pool={pool} />
             ))}
-            <Coming />
           </>
         </Route>
         <Route path={`${path}/history`}>
