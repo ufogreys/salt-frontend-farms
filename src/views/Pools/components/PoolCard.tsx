@@ -110,6 +110,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
   return (
     <Card isActive={isCardActive} isFinished={isFinished}>
       {isFinished && <PoolFinishedSash />}
+      {sousId === 26 && <PoolNewSash />}
       <div style={{ padding: '24px' }}>
         <CardTitle isFinished={isFinished}>
           {isOldSyrup && '[OLD]'} {tokenName} {TranslateString(348, 'Pool')}
@@ -222,6 +223,17 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
 
 const PoolFinishedSash = styled.div`
   background-image: url('/images/pool-finished-sash.svg');
+  background-position: top right;
+  background-repeat: not-repeat;
+  height: 135px;
+  position: absolute;
+  right: -24px;
+  top: -24px;
+  width: 135px;
+`
+
+const PoolNewSash = styled.div`
+  background-image: url('/images/pool-new-sash.svg');
   background-position: top right;
   background-repeat: not-repeat;
   height: 135px;
