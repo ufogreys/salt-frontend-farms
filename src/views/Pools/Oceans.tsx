@@ -27,6 +27,7 @@ import {
   usePriceUbuBnb,
   usePriceGenBnb,
   usePriceShrimpBnb,
+  usePriceShellBnb,
   usePriceBlueSaltLPBnb,
   usePriceSlmeSaltLPBnb,
   usePriceSaltBusdLPBnb,
@@ -62,6 +63,7 @@ const Farm: React.FC = () => {
   const ubuPrice = usePriceUbuBnb()
   const genPrice = usePriceGenBnb()
   const shrimpPrice = usePriceShrimpBnb()
+  const shellPrice = usePriceShellBnb()
   const saltBlueLPPrice = usePriceBlueSaltLPBnb()
   const saltSlmeLPPrice = usePriceSlmeSaltLPBnb()
   const saltBusdLPPrice = usePriceSaltBusdLPBnb()
@@ -112,6 +114,9 @@ const Farm: React.FC = () => {
     }
     if (tokenName === 'SHRIMP') {
       return shrimpPrice
+    }
+    if (tokenName === 'SHELL') {
+      return shellPrice
     }
     if (tokenPrice && quoteToken === QuoteToken.BUSD) {
       return tokenPriceBN.div(bnbPriceUSD)
