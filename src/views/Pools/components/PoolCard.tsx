@@ -110,7 +110,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
   return (
     <Card isActive={isCardActive} isFinished={isFinished}>
       {isFinished && <PoolFinishedSash />}
-      {sousId === 26 && <PoolNewSash />}
+      {sousId === 27 && <PoolNewSash />}
       <div style={{ padding: '24px' }}>
         <CardTitle isFinished={isFinished}>
           {isOldSyrup && '[OLD]'} {tokenName} {TranslateString(348, 'Pool')}
