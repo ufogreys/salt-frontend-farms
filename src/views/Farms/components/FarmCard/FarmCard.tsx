@@ -164,6 +164,14 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
           </Text>
         </Flex>
       )}
+       {!removed && (
+        <>
+          <Flex justifyContent="space-between">
+            <Text>{TranslateString(23, 'Total Liquidity')}:</Text>
+            <Text bold>{totalValueFormated}</Text>
+          </Flex>
+        </>
+      )}
       <Flex justifyContent="space-between">
         <Text>{TranslateString(318, 'Earn')}:</Text>
         <Text bold>{earnLabel}</Text>
