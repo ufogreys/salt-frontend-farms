@@ -209,34 +209,34 @@ const IfoCard: React.FC<IfoCardProps> = ({ ifo }) => {
           secondsUntilEnd={state.secondsUntilEnd}
           finalized
         />
+        <Flex justifyContent="space-between">
+          <Text style={{ fontSize: '16px' }}>Price:</Text>
+          <Text bold style={{ fontSize: '16px' }}>
+            1 BNB = {`${new BigNumber(state.tokensPerBnb).div(10 ** tokenDecimals)}`} {ifo.token}
+          </Text>
+        </Flex>
         {(isActive || isFinished) && (
           <>
-            <Flex justifyContent="space-between">
-              <Text style={{ fontSize: '16px' }}>Price:</Text>
-              <Text bold style={{ fontSize: '16px' }}>
-                1 BNB = {`${new BigNumber(state.tokensPerBnb).div(10 ** tokenDecimals)}`} {ifo.token}
-              </Text>
-            </Flex>
             <Flex justifyContent="space-between">
               <Text style={{ fontSize: '16px' }}>BNB raised:</Text>
               <Text bold style={{ fontSize: '16px' }}>
                 {getFullDisplayBalance(new BigNumber(state.weiRaised))} BNB
               </Text>
             </Flex>
-            <Flex justifyContent="space-between">
-              <Text style={{ fontSize: '16px' }}>Soft Cap ({getBalanceNumber(state.softCap)} BNB):</Text>
-              <Text bold style={{ fontSize: '16px' }}>
-                {`${state.softCapProgress.toFixed(2)}%`}
-              </Text>
-            </Flex>
-            <Flex justifyContent="space-between">
-              <Text style={{ fontSize: '16px' }}>Hard Cap ({getBalanceNumber(state.hardCap)} BNB):</Text>
-              <Text bold style={{ fontSize: '16px' }}>
-                {`${state.hardCapProgress.toFixed(2)}%`}
-              </Text>
-            </Flex>
           </>
         )}
+        <Flex justifyContent="space-between">
+          <Text style={{ fontSize: '16px' }}>Soft Cap ({getBalanceNumber(state.softCap)} BNB):</Text>
+          <Text bold style={{ fontSize: '16px' }}>
+            {`${state.softCapProgress.toFixed(2)}%`}
+          </Text>
+        </Flex>
+        <Flex justifyContent="space-between">
+          <Text style={{ fontSize: '16px' }}>Hard Cap ({getBalanceNumber(state.hardCap)} BNB):</Text>
+          <Text bold style={{ fontSize: '16px' }}>
+            {`${state.hardCapProgress.toFixed(2)}%`}
+          </Text>
+        </Flex>
         <ActionWrapper>
           {(isActive || !isFinished) && (
             <StyledProgress>

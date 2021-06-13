@@ -122,17 +122,17 @@ const FarmCard: React.FC<FarmCardProps> = ({ farm, removed, cakePrice, bnbPrice,
   }, [bnbPrice, cakePrice, ethPrice, farm.lpTotalInQuoteToken, farm.quoteTokenSymbol])
 
   const stakedBalancePercentageFormated = stakedBalance
-  ? Number(stakedBalance.div(farm.tokenAmountRaw).times(100)).toLocaleString(undefined, {
-      maximumFractionDigits: 2,
-    })
-  : '-'
+    ? Number(stakedBalance.div(farm.tokenAmountRaw).times(100)).toLocaleString(undefined, {
+        maximumFractionDigits: 2,
+      })
+    : '-'
 
-const stakedBalanceInUSD = stakedBalance.div(farm.tokenAmountRaw).times(totalValue)
-const stakedBalanceInUSDFormated = stakedBalancePercentageFormated
-  ? `$${Number(stakedBalanceInUSD).toLocaleString(undefined, {
-      maximumFractionDigits: 0,
-    })}`
-  : '-'
+  const stakedBalanceInUSD = stakedBalance.div(farm.tokenAmountRaw).times(totalValue)
+  const stakedBalanceInUSDFormated = stakedBalancePercentageFormated
+    ? `$${Number(stakedBalanceInUSD).toLocaleString(undefined, {
+        maximumFractionDigits: 0,
+      })}`
+    : '-'
 
   const totalValueFormated = totalValue
     ? `$${Number(totalValue).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
@@ -181,7 +181,7 @@ const stakedBalanceInUSDFormated = stakedBalancePercentageFormated
       )}
       {!removed && (
         <>
-        <Flex justifyContent="space-between">
+          <Flex justifyContent="space-between">
             <Text>{TranslateString(23, 'Your Liquidity')}:</Text>
             <Text bold>{`${stakedBalanceInUSDFormated} (${stakedBalancePercentageFormated}%)`}</Text>
           </Flex>
