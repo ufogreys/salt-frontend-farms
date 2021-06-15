@@ -200,8 +200,8 @@ const ifos: Ifo[] = [
     subTitle: 'SweetSwap - The Sweetest AMM on Binance',
     description:
       'SweetSwap is a crypto finance protocol based on the Automated Market Maker Model (AMM). As V1, SweetSwap has launched a decentralized exchange, yield farm and staking platform built on the Binance Smart Chain.',
-    saleAmount: '4 800 000',
-    raiseAmount: '600',
+    saleAmount: '1 600 000',
+    raiseAmount: '200',
     projectSiteUrl: 'https://sweetswap.finance',
     currency: 'BNB',
     currencyAddress: '0xb36b5716cc186ae16696de2953ae56dfafcc23c4',
