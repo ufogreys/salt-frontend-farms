@@ -191,7 +191,7 @@ const ifos: Ifo[] = [
   {
     id: 'sweetswap',
     address: {
-      56: '0x6bc718acce541ba6e0c71b8a2bdca593645117a1',
+      56: '0x15dad1ed13439b7867fc30a72dfe23402c5865bb',
       97: '',
     },
     isActive: true,

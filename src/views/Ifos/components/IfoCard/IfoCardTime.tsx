@@ -39,7 +39,7 @@ const IfoCardTime: React.FC<IfoCardTimeProps> = ({
   const countdownToUse = status === 'coming_soon' ? secondsUntilStart : secondsUntilEnd
   const timeUntil = getTimePeriods(countdownToUse)
   const suffix = status === 'coming_soon' ? 'start' : 'finish'
-  
+
   if (isLoading) {
     return <Details>{TranslateString(656, 'Loading...')}</Details>
   }
