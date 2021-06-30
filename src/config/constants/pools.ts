@@ -678,6 +678,31 @@ const pools: PoolConfig[] = [
   },
   {
     sousId: 27,
+    tokenName: 'SHELL',
+    stakingTokenName: QuoteToken.SALT,
+    stakingTokenAddress: {
+      97: '0x85582d24455caaf44fc4f914bdca2a6cb73e6681',
+      56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4', // SALT
+    },
+    contractAddress: {
+    97: '0xF08d05d91426A63aB35Ef7f4bBC6E8717B59e838',
+    56: '0xc2597B4b1A035e59274A81D7d61fB321B9627854', // SmartChef
+  },
+  rewardTokenAddress: {
+    97: '0xec5dcb5dbf4b114c9d0f65bccab49ec54f6a0867', // DAI
+    56: '0x0cb5ffb1e824e8adc81f3d264aa447bf13d7ac7e', // shell
+  },
+  poolCategory: PoolCategory.COMMUNITY,
+  projectLink: 'https://islandfans.net',
+  harvest: true,
+  tokenPerBlock: '54.012345679012345679',
+  sortOrder: 26,
+  isFinished: true,
+  tokenDecimals: 18,
+  burnFee: 10,
+  },
+  {
+    sousId: 28,
     tokenName: 'CAKE',
     stakingTokenName: QuoteToken.SALT,
     stakingTokenAddress: {
@@ -696,7 +721,7 @@ const pools: PoolConfig[] = [
     projectLink: 'https://pancakeswap.finance/',
     harvest: true,
     tokenPerBlock: '0.000246913580246913',
-    sortOrder: 26,
+    sortOrder: 27,
     isFinished: false,
     tokenDecimals: 18,
     burnFee: 20,
