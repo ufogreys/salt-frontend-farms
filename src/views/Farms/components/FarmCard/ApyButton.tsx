@@ -10,6 +10,7 @@ export interface ApyButtonProps {
   apy?: BigNumber
   quoteTokenAdresses?: Address
   quoteTokenSymbol?: string
+  stakedBalanceInUSD?: BigNumber
   tokenAddresses: Address
 }
 
@@ -19,6 +20,7 @@ const ApyButton: React.FC<ApyButtonProps> = ({
   quoteTokenSymbol,
   tokenAddresses,
   cakePrice,
+  stakedBalanceInUSD,
   apy,
 }) => {
   const [onPresentApyModal] = useModal(
@@ -28,6 +30,7 @@ const ApyButton: React.FC<ApyButtonProps> = ({
       quoteTokenSymbol={quoteTokenSymbol}
       tokenAddresses={tokenAddresses}
       cakePrice={cakePrice}
+      stakedBalanceInUSD={stakedBalanceInUSD}
       apy={apy}
     />,
   )
