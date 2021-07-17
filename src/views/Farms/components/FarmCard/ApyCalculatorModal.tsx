@@ -100,7 +100,7 @@ const ApyCalculatorModal: React.FC<ApyCalculatorModalProps> = ({
         {!stakedBalanceInUSD.isZero() && (
           <GridItem>
             <Text fontSize="12px" bold color="textSubtle" textTransform="uppercase" mb="20px">
-              {`Shrimp per $${Number(stakedBalanceInUSD).toLocaleString(undefined, { maximumFractionDigits: 0 })}`}
+              {`SALT per $${Number(stakedBalanceInUSD).toLocaleString(undefined, { maximumFractionDigits: 0 })}`}
             </Text>
           </GridItem>
         )}

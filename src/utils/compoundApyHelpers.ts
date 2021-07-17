@@ -2,7 +2,7 @@ import BigNumber from 'bignumber.js'
 
 const roundToTwoDp = (number) => Math.round(number * 100) / 100
 
-export const calculateCakeEarned = ({ numberOfDays, farmApy, cakePrice, principalAmount = 1000  }) => {
+export const calculateCakeEarned = ({ numberOfDays, farmApy, cakePrice, principalAmount = 1000 }) => {
   // Everything here is worked out relative to a year, with the asset compounding daily
   const timesCompounded = 365
   //   We use decimal values rather than % in the math for both APY and the number of days being calculates as a proportion of the year
