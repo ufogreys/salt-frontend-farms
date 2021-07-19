@@ -34,6 +34,7 @@ import {
   usePriceSaltMomoLPBnb,
   usePriceSaltPalmLPBnb,
   usePriceSaltMchLPBnb,
+  useOceanPriceBnb,
 } from 'state/hooks'
 import { QuoteToken } from 'config/constants/types'
 import FlexLayout from 'components/layout/Flex'
@@ -63,6 +64,10 @@ const Farm: React.FC = () => {
   const ubuPrice = usePriceUbuBnb()
   const genPrice = usePriceGenBnb()
   const shrimpPrice = usePriceShrimpBnb()
+  const whalePrice = useOceanPriceBnb(
+    "0xa55cf050eaec79622a168a02c8f94abd4fef1087",
+    "0x93662179C3590D4dA42858ABE917C10542a40831"
+  )
   const shellPrice = usePriceShellBnb()
   const saltBlueLPPrice = usePriceBlueSaltLPBnb()
   const saltSlmeLPPrice = usePriceSlmeSaltLPBnb()
@@ -114,6 +119,9 @@ const Farm: React.FC = () => {
     }
     if (tokenName === 'SHRIMP') {
       return shrimpPrice
+    }
+    if (tokenName === 'WHALE') {
+      return whalePrice
     }
     if (tokenName === 'SHELL') {
       return shellPrice

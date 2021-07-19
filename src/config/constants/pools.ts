@@ -726,6 +726,31 @@ const pools: PoolConfig[] = [
     tokenDecimals: 18,
     burnFee: 20,
   },
+  {
+    sousId: 29,
+    tokenName: 'WHALE',
+    stakingTokenName: QuoteToken.SALT,
+    stakingTokenAddress: {
+      97: '0x85582d24455caaf44fc4f914bdca2a6cb73e6681',
+      56: '0x2849b1aE7E04A3D9Bc288673A92477CF63F28aF4', // SALT
+    },
+    contractAddress: {
+      97: '0x9FcA113B2D4E64462229E107A8F4Aa7359D055F5',
+      56: '0xCee933cA73B165a13145324e5C99947a58e95872', // SmartChef
+    },
+    rewardTokenAddress: {
+      97: '0xed24fc36d5ee211ea25a80239fb8c4cfd80f12ee', // BUSD, didnt find CAKE
+      56: '0x93662179c3590d4da42858abe917c10542a40831', // WHALE
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://shrimpswap.finance',
+    harvest: true,
+    tokenPerBlock: '0.041666666666666666',
+    sortOrder: 28,
+    isFinished: false,
+    tokenDecimals: 18,
+    burnFee: 20,
+  },
 ]
 
 export default pools
