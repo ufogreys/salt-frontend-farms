@@ -73,7 +73,6 @@ const Hero = () => {
   return (
     <StyledHero>
       <StyledContainer>
-        <StyledImage src="/images/salt-bae.png" alt="salt bae" width={110} height={110} />
         <LeftWrapper>
           <Title>{TranslateString(999, 'The Salty Lottery')}</Title>
           <Blurb>{TranslateString(999, 'Buy salty tickets and win $SALT')}</Blurb>
