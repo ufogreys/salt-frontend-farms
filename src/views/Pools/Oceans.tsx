@@ -65,8 +65,8 @@ const Farm: React.FC = () => {
   const genPrice = usePriceGenBnb()
   const shrimpPrice = usePriceShrimpBnb()
   const whalePrice = useOceanPriceBnb(
-    "0xa55cf050eaec79622a168a02c8f94abd4fef1087",
-    "0x93662179C3590D4dA42858ABE917C10542a40831"
+    '0xa55cf050eaec79622a168a02c8f94abd4fef1087',
+    '0x93662179C3590D4dA42858ABE917C10542a40831',
   )
   const shellPrice = usePriceShellBnb()
   const saltBlueLPPrice = usePriceBlueSaltLPBnb()
