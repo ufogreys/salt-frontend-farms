@@ -33,7 +33,6 @@ const IfoCardTime: React.FC<IfoCardTimeProps> = ({
   status,
   secondsUntilStart,
   secondsUntilEnd,
-  finalized,
 }) => {
   const TranslateString = useI18n()
   const countdownToUse = status === 'coming_soon' ? secondsUntilStart : secondsUntilEnd
