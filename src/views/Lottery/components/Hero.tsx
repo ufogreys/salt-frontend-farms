@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Heading, Text, Image } from '@saltswap/uikit'
+import { Heading, Text } from '@saltswap/uikit'
 import useI18n from 'hooks/useI18n'
 import Container from 'components/layout/Container'
 import LotteryProgress from './LotteryProgress'
@@ -60,11 +60,6 @@ const RightWrapper = styled.div`
   ${({ theme }) => theme.mediaQueries.lg} {
     padding-left: 32px;
   }
-`
-
-const StyledImage = styled(Image)`
-  align-self: center;
-  margin-right: 10px;
 `
 
 const Hero = () => {
