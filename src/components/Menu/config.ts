@@ -4,7 +4,7 @@ const config: MenuEntry[] = [
   {
     label: 'Home',
     icon: 'HomeIcon',
-    href: '/',
+    href: 'https://salt-frontend-farms-g0zd0k2r8-ufogreys.vercel.app/',
   },
   {
     label: 'Exchange',
