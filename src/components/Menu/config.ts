@@ -8,12 +8,12 @@ const config: MenuEntry[] = [
   },
   {
     label: 'Exchange',
-    href: 'https://exchange.saltswap.finance/#/swap',
+    href: 'https://salt-frontend-pctzm8sk5-ufogreys.vercel.app/#/swap',
     icon: 'ExchangeIcon',
   },
   {
     label: 'Liquidity',
-    href: 'https://exchange.saltswap.finance/#/pool',
+    href: 'https://salt-frontend-pctzm8sk5-ufogreys.vercel.app/#/pool',
     icon: 'LiquidityIcon',
   },
   {
@@ -44,7 +44,7 @@ const config: MenuEntry[] = [
   {
     label: 'Audited By Certik ✅',
     icon: 'AuditIcon',
-    href: 'https://certik.org/projects/saltswap',
+    href: 'https://certik.org/projects/in-dex-sale',
   },
   // {
   //   label: 'NFT',
@@ -62,15 +62,15 @@ const config: MenuEntry[] = [
     items: [
       {
         label: 'CoinMarketCap',
-        href: 'https://coinmarketcap.com/currencies/saltswap-finance',
+        href: 'https://coinmarketcap.com/currencies/in-dex-sale',
       },
       {
         label: 'CoinGecko',
-        href: 'https://www.coingecko.com/en/coins/saltswap',
+        href: 'https://www.coingecko.com/en/coins/in-dex-sale',
       },
       {
         label: 'DappRadar',
-        href: 'https://dappradar.com/binance-smart-chain/defi/saltswap',
+        href: 'https://dappradar.com/binance-smart-chain/defi/in-dex-sale',
       },
     ],
   },
@@ -80,21 +80,21 @@ const config: MenuEntry[] = [
     items: [
       // {
       //   label: 'Voting',
-      //   href: 'https://voting.saltswap.finance',
+      //   href: 'https://voting.in-dex-sale.finance',
       // },
       {
         label: 'Github',
-        href: 'https://github.com/saltswap/',
+        href: 'https://github.com/ufogreys',
         icon: 'GithubIcon',
       },
       {
         label: 'Docs',
-        href: 'https://saltswap.gitbook.io/salt-swap/',
+        href: 'https://idsdefi.gitbook.io/in-dex-sale/the-company/about-this',
         icon: 'GitbookIcon',
       },
       {
-        label: 'Blog',
-        href: 'https://saltswap.medium.com/',
+        label: 'IDO Application',
+        href: 'https://docs.google.com/forms/d/e/1FAIpQLSfxDeaFCD6BE5Lddt7Iq9b4fpjNj3P1H3Ejh0vqriRJpwe1IA/viewform',
         icon: 'MediumIcon',
       },
     ],
